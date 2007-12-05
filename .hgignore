@@ -1,0 +1,14 @@
+syntax: glob
+# ignore LaTeX auxiliary files
+*.log
+*.aux
+*.bst
+*.toc
+*.lot
+*.lof
+*.lol
+
+# ignore PDF/LaTeX output
+*.pdf
+*.ps
+*.dvi

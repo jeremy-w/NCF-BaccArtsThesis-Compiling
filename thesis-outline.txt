@@ -1,0 +1,60 @@
+Contrasting Compilation of Imperative and Functional Languages
+Jeremy W. Sherman
+New College of Florida
+Sarasota, Florida
+Spring 2008
+
+I. Background
+  A. Introduction
+    1. Topic
+    2. Why topic interesting
+    3. Structure of our examination of the topic
+    4. Target audience
+
+  B. Fundamental Theoretical Background
+    1. Computer Science
+      (a) Entscheidungsproblem
+      (b) Turing
+      (c) Church
+    2. Computer Architecture
+         Overview...
+    3. Compilation
+      (a) Three-part model
+            (i) Front-end
+           (ii) Middle
+          (iii) Back-end
+      (b) Intermediate representations
+
+II. Compiling Imperative Languages
+  A. What Is an Imperative Language
+    1. Quick History
+    2. Examples
+    3. Concepts
+    4. Problems
+  B. Building the Front End
+  C. Building the Back End
+  D. Optimizing
+       Optimizations with examples
+
+III. Compiling Functional Languages
+  A. What Is a Functional Language
+    1. History
+    2. Examples
+    3. Concepts
+    4. Problems
+  B. Theory Fundamental to Functional Programming
+    1. Lambda calculus
+    2. Type theory
+  C. Building the Front End
+  D. Building the Back End
+       Abstract machines...
+  E. Optimizing
+       Optimizations with examples
+
+IV. Comparing Imperative and Functional Language Compilation
+  A. Fundamental Differences
+  B. Fundamental Similarities
+  C. Conclusion
+
+Bibliography
+Index
