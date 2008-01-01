@@ -2,7 +2,7 @@ syntax: glob
 # ignore LaTeX auxiliary files
 *.log
 *.aux
-*.bst #bibliographic style file
+*.out #hyperref bookmark file
 # table of contents files
 *.toc #table of contents
 *.lot #list of tables
