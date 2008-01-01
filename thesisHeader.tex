@@ -1,0 +1,71 @@
+% !iTexMac(input): thesis.tex
+\documentclass[10pt,letterpaper,twoside,openright,titlepage,fleqn,%1headlines,
+                cleardoubleempty,abstractoff,pointlessnumbers,%
+                headinclude,footexclude,%
+                ]{scrreprt}
+% to modify binding correction, change the call to textarea in classicthesis.sty
+
+\newif\ifbib
+\bibfalse
+%\bibtrue
+
+\newif\ifidx
+\idxfalse
+%\idxtrue
+
+% List of Files (written to .log file)
+\listfiles
+
+\input{thesisMacros}
+
+% Load Packages
+\usepackage{loadpackages}
+% Options for classicthesis.sty: 
+% tocaligned eulerchapternumbers drafting linedheaders listsseparated
+% subfigure nochapters beramono eulermath parts
+\usepackage[eulerchapternumbers,drafting,beramono,
+            subfigure,eulermath,parts]{classicthesis}
+
+% Indexing:
+% (Note that it is best to create the index after writing.)
+\usepackage{makeidx}
+%\citeindextrue %uncomment to have citations appear in the index
+\ifidx
+\makeindex %uncomment to turn logging of index terms on
+\fi
+            
+% Setup and Finetuning
+\newlength{\abcd} % for ab..z string length calculation
+\newcommand{\myfloatalign}{\centering} % how all the floats will be aligned
+\setlength{\extrarowheight}{3pt} % increase table row height
+
+% Where to look for graphics
+\graphicspath{{graphics/}{misc/}}
+
+% Hyperreferences
+\hypersetup{%
+    colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+    breaklinks=true, pdfpagemode=None, pageanchor=true, pdfpagemode=UseOutlines,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
+    urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, pagecolor=RoyalBlue,% 
+    % uncomment the following line if you want to have black links (e.g., for printing)   
+    %urlcolor=Black, linkcolor=Black, citecolor=Black, pagecolor=Black,%
+    pdftitle={\myTitle},%
+    pdfauthor={\myName},%
+    pdfsubject={compiling functional languages},%
+    pdfkeywords={compilation, functional languages, lambda calculus},%
+    pdfcreator={pdfLaTeX},%
+    pdfproducer={LaTeX with hyperref},%
+    pdfpagelayout=TwoColumnRight%
+}   
+
+% Hyphenation
+%\hyphenation{put special hyphenation here}
+\usepackage{setspace}
+\begin{document}
+\frenchspacing
+\raggedbottom
+\selectlanguage{american} % american ngerman
+%\renewcommand*{\bibname}{new name}
+%\setbibpreamble{}
