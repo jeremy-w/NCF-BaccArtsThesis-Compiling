@@ -2,13 +2,22 @@ syntax: glob
 # ignore LaTeX auxiliary files
 *.log
 *.aux
-*.bst
-*.toc
-*.lot
-*.lof
-*.lol
+*.bst #bibliographic style file
+# table of contents files
+*.toc #table of contents
+*.lot #list of tables
+*.lof #list of figures
+*.lol #list of lists
+# index files
+*.idx #output of makeidx package; run makeindex to generate *.ind file for inclusion
+*.ilg #makeindex log
+#*.ind #? this would ignore the generated index file
 
-# ignore PDF/LaTeX output
+# ignore PDF/LaTeX output; no change here will be meaningful
 *.pdf
 *.ps
 *.dvi
+
+# ignore other utility files
+.DS_Store #Mac OS X directory info
+*~ #vim backup file
