@@ -8,6 +8,10 @@ syntax: glob
 *.lot #list of tables
 *.lof #list of figures
 *.lol #list of lists
+# bibliography files
+*.bbl #text of bib as input into the document
+*.blg #bibtex log
+*.brf #no clue
 # index files
 *.idx #output of makeidx package; run makeindex to generate *.ind file for inclusion
 *.ilg #makeindex log
