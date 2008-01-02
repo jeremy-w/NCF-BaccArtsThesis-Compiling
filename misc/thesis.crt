@@ -1,0 +1,6 @@
+# This is a crontab file. Don't forget to stop it after you're done by 
+# executing "crontab -r"!
+
+#m  h   d   mo  wkd cmd
+0   0   *   *   *   $HOME/Projects/thesis/misc/thesis-backup.sh
+# backup thesis every day at midnight!
