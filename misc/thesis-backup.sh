@@ -6,7 +6,7 @@ myHost='students.ncf.edu:thesis-backups/'
 # build filename
 cd $myRepo
 echo "$0: building filename..."
-myRevId=`hg heads | awk '/changeset/ {print $2}'`
+myRevId=`/opt/local/bin/hg heads | awk '/changeset/ {print $2}'`
 myFileId=`echo $myRevId | awk -F ':' '{print "r" $1 "(" $2 ")"}'`
 # keeping a colon in the name messed with Mac OS X's mind
 myFilename="thesis-$myFileId.tbz2"
