@@ -25,6 +25,7 @@
 % subfigure nochapters beramono eulermath parts
 \usepackage[eulerchapternumbers,drafting,beramono,
             subfigure,eulermath,parts]{classicthesis}
+\usepackage{ellipsis}
 
 % Indexing:
 % (Note that it is best to create the index after writing.)
@@ -44,6 +45,8 @@
 
 % Hyperreferences
 \hypersetup{%
+    pagebackref=true, %adds backrefs in bibliography to pages where cited
+    %backref=true, %adds backrefs in bibliography to sections where cited
     colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
     breaklinks=true, pdfpagemode=None, pageanchor=true, pdfpagemode=UseOutlines,%
     plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%

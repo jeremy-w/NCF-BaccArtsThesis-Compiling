@@ -25,3 +25,5 @@ syntax: glob
 # ignore other utility files
 .DS_Store #Mac OS X directory info
 *~ #vim backup file
+*.swp #vim swapfile
+session.logfile #my commit logfile
