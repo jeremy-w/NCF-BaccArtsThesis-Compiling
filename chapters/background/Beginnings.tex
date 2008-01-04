@@ -1,10 +1,57 @@
 \myChapter{Beginnings}\label{background:beginnings}
-% Need to do this because otherwise there's a bad interaction between
-% the smallcaps and the italic in the section heading in the body
-% versus the desired italics in the table of contents; it seems
-% small caps italics is not an option...
+% Need to practically write this twice this because otherwise there's a bad interaction between the smallcaps and the italic in the section heading in the body versus the desired italics in the table of contents; it seems small caps italics is not an option...
+% Also, can't use \Deutsch in the title---LaTeX coughs something about capacity exceeded. This is okay, because I wanted to use Babel to handle German hyphenation, and this is not going to be hyphenated in the TOC, anyway.
 \section[A Sticky \foreign{Entscheidungsproblem}]{A Sticky Entscheidungsproblem}
+The \vocab{decision problem}, known under its German name \Deutsch{Entscheidungsproblem,} was an important problem in twentieth-century mathematical logic. It is intimately bound up with Hilbert's tenth problem: 
+\begin{quote}
+Given a Diophantine equation with any number of unknown quantities and with rational integral numerical coefficients: \emph{To devise a process according to which it can be determined in a finite number of operations whether the equation is solvable in rational integers.}
+\end{quote}
+One formulation was given by Hilbert and Ackermann in their 1928 book \textit{Principles of Theoretical Logic.} They call the dual problems of determining the universal validity and determining the satisfiability of a logical expression the decision problem. The problem is solved when one knows a ``process'' that determines either property of any given logical expression in first-order logic. The particular formulation of first-order logic they had in mind was that propounded in their book, \Deutsch{der engere Funktionenkalk"ul} (renamed to \Deutsch{der engere Pr"adikatenkalk"ul} in the 1959 edition).
 
-\section{Turing and His Machines}
+By the 1930s, not only was the nebulous idea of a process formalized, but the decision problem had been solved in a way unanticipated by Hilbert's formulations of either this problem or the Diophantine problem: it was impossible to provide such a process.
+
+The idea of a process was formalized three ways:
+\begin{itemize}
+\item the theory of \vocab{recursive functions}
+\item the \vocab{\lambdacalc}
+\item the \vocab{Turing machine.}
+\end{itemize}
+From \lambdacalc springs the functional paradigm, while the Turing machine inspires the imperative paradigm.
 
 \section{Church and His Calculus}
+Church developed the \lambdacalc in hope of providing a logical basis for all of mathematics. While he was ultimately frustrated in this, he succeeded in creating a rich framework for both logic and, eventually, computer programming.
+
+The \lambdacalc formulates the computation as term rewriting and distills the concept of the function to textual substitution. The text comes in the form of \vocab{lambda terms;} the rewriting comes as \vocab{reduction rules.} To define the set of lambda terms $\Lambda$, we seed it with an infinite set of variables $V = \set{v, v\prime, v\prime\prime, \dotsc}$ and then further admit all expressions built using two operations, \vocab{application} and \vocab{abstraction:}
+\begin{align*}
+x \in V &\implies x \in \Lambda\\
+M,N \in \Lambda &\implies (MN) \in \Lambda \quad\text{(application)}\\
+M \in \Lambda,\, x \in V &\implies (\lambda x M) \in \Lambda \quad\text{(abstraction)}
+\end{align*}
+The fundamental reduction rule of the \lambdacalc is that of \vocab{$\beta$-reduction}: the application of an abstracted term $\lambda x M$ to another term $N$ can be replaced by $M$ with $N$ substituted for every occurrence of $x$ throughout $M$, or, written more symbolically, $\forall M,N \in \Lambda,$
+\[
+(\lambda x M)N = \replace{x}{N}{M}.
+\]
+
+We will have more to say about the \lambdacalc later in Chapter~\ref{functional:theory}, \nameref{functional:theory}. For now, we will content ourselves with pointing out that $N$ in $(\lambda x M)N$ may be \emph{any} other lambda term, including another abstracted term; the only distinction between ``functions'' $(\lambda x M)$ and ``literals'' $v, v\prime,$ etc.\ is that ``functions'' provide opportunities for $\beta$-reduction.
+
+\section{Turing and His Machines}
+Turing was working expressly to address the \Deutsch{Entscheidungsproblem}. He formalized computation by way of an abstract machine. A ``process'' is embodied in a machine. In the case of the decision problem, it would accept logical expressions---instances of the decision problem---as input.\footnote{These expressions would, of course, have to be suitably encoded for its consumption.} If there were an algorithm for the decision problem, it would then determine the answer for that instance. Instead, Turing found that any such machine would never necessarily be able to decide whether the instance is or is not satisfiable; the decision problem is fundamentally \vocab{undecidable}, which is another way of saying it is not computable.
+
+Turing's machines look very much like a high-level sketch of our modern von~Neumann machines. They consist in a finite control (the program), a read-write head, and an infinitely long tape (the memory). The tape is divided into cells: each cell is either marked with a symbol or blank. The problem instance is written on the tape and the machine started; if it comes to a halt, the state it is in indicates the result of the computation.
+
+Formally, we can treat a Turing machines as a six-tuple $(Q, \Sigma, B, \delta, q_{0}, F)$:
+\begin{description} % For some reason, uppercase words were being lowercased following \item. Protecting didn't work, but \MakeUppercase did. ::shrug::
+\item[\MakeUppercase{$Q$}] is the finite set of states the control can be in.
+\item[$\Sigma$] is the finite alphabet available for writing the input on the tape.
+\item[\MakeUppercase{$B$}] is a distinguished blank symbol unavailable for writing the input; prior to placing the input on the tape, the tape is nothing but an endless sequence of cells filled with $B$.
+\item[$\delta$] is a state transition function, $\delta\from \Sigma \times Q \to (Sigma \union B) \times Q \times D$, describing how the Turing machine reacts to reading a symbol $\sigma$ in state $q$: 
+\begin{itemize}
+\item it writes some symbol, either the blank symbol or an input symbol; 
+\item it moves from its current state to some state in $Q$, possibly the same state; and
+\item its head moves some direction, either left $L$ or right $R$ (that is, $D = \set{L, R}$).
+\end{itemize}
+\item[$q_{0}$] is the initial state of the machine.
+\item[\MakeUppercase{$F$}] is the set of \vocab{accepting states}; $F \subset Q$, and if the machine concludes its computation, that is, \vocab{halts} in some state in $F$, this indicates an affirmative answer to the question posed it.
+\end{description}
+
+relation to von~Neumann machines, imperative languages, etc.; forward-reference the next chapter

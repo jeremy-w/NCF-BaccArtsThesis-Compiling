@@ -12,5 +12,19 @@
 \newcommand{\myLocation}{Sarasota, Fla.\xspace}
 \newcommand{\myTime}{May 2008\xspace}
 
-\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\foreign}[1]{\textit{#1}}
+\newcommand{\code}[1]{\texttt{#1}} %the variable \code{x}
+\newcommand{\foreign}[1]{\textit{#1}} %the \foreign{Entscheidungsproblem}
+\newcommand{\vocab}[1]{\spacedlowsmallcaps{#1}} %the \vocab{lambda terms} are...
+\newcommand{\lambdacalc}{lambda calculus\xspace} %We discuss the \lambdacalc...
+\newcommand{\Lambdacalc}{Lambda calculus\xspace} %\Lambdacalc is really cool.
+\newcommand{\Deutsch}[1]{\foreign{\begin{otherlanguage}{ngerman}#1\end{otherlanguage}}} 
+
+% Expressing substitution: replace:#1 with:#2 in:#3
+\newcommand{\replace}[3]{\ensuremath{#3\left[#1 := #2\right]}} %M[x := N]
+%\newcommand{\replace}[3]{\ensuremath{#3\left[#2 / #1\right]}} %M[N/x]
+
+\newcommand{\set}[1]{\ensuremath{\left\{ #1 \right\}}} % X = {1, 2, 3}
+\newcommand{\union}[1]{\ensuremath{\cup}}
+\newcommand{\from}{\colon} % f: X -> Y
+\let\oldprime=\prime
+\renewcommand{\prime}{\ensuremath{^{\oldprime}}{}} % automatic superscript; random {} at the end is necessary to avoid complaints from LaTeX about double superscripts when one \prime directly follows another, e.g. v\prime\prime.

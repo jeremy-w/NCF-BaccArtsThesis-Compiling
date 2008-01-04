@@ -348,11 +348,11 @@
 % ********************************************************************
 % footnotes setup   
 % ********************************************************************
-\RequirePackage[bottom]{footmisc}  % norule para symbol* marginal perpage
+\RequirePackage[bottom,perpage,symbol*]{footmisc}  % norule para symbol* marginal perpage
     % KOMA-command, footnotemark not superscripted at the bottom
     \deffootnote{0em}{0em}{\thefootnotemark\hspace*{.5em}}      
-    %\setfnsymbol{bringhurst}   % use symbols recommended by guru Robert Bringhurst 
-    %\setlength{\footnotemargin}{-1em}     
+    \setfnsymbol{bringhurst}   % use symbols recommended by guru Robert Bringhurst 
+    \setlength{\footnotemargin}{-1em}     
     
 % ********************************************************************
 % Drafting Stuff
