@@ -17,7 +17,10 @@
 \newcommand{\vocab}[1]{\spacedlowsmallcaps{#1}} %the \vocab{lambda terms} are...
 \newcommand{\lambdacalc}{lambda calculus\xspace} %We discuss the \lambdacalc...
 \newcommand{\Lambdacalc}{Lambda calculus\xspace} %\Lambdacalc is really cool.
-\newcommand{\Deutsch}[1]{\foreign{\begin{otherlanguage}{ngerman}#1\end{otherlanguage}}} 
+\newcommand{\Deutsch}[1]{\foreign{\begin{otherlanguage}{ngerman}#1\end{otherlanguage}}}
+% Two options for part-and-namerefs. First has problems if hyphenation interferes with the hyperref'd part and also creates too much emphasized text. Second emphasizes (via a link) only the part name.
+%\newcommand{\partandnameref}[2]{\hyperref[#2]{#1}~\ref{#2}, \nameref{#2}}
+\newcommand{\partandnameref}[2]{#1~\ref*{#2}, \nameref{#2}} % \partandnameref{Chapter}{label} -> Chapter 9, NAME
 
 % Expressing substitution: replace:#1 with:#2 in:#3
 \newcommand{\replace}[3]{\ensuremath{#3\left[#1 := #2\right]}} %M[x := N]

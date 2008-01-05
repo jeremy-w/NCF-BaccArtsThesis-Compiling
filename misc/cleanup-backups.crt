@@ -1,7 +1,0 @@
-# This is a crontab file for my account at NCF. Every day at noon,
-# we remove every thesis backup that's more than a week old.
-MAILTO=""
-#NCF server has no mail(1)!
-0 12 * * * exec >> $HOME/thesis-backups/cleanup.log 2&>1; date +"%a %_d %b %Y: "; ls -t $HOME/thesis-backups/thesis-*.tbz2 | awk 'BEGIN {x=""}; NR > 7 {x=x"\n\t"$0; cmd="rm \"" $0 "\""; system(cmd)}; END {if (x != "") print "deleted:" x}'
-# date string example: "Mon  1 Jan 2008: " (date is space-padded)
-0 16 1 * * cd "$HOME/thesis-backups/"; tar -cjf cleanup-log-`date +"%Y-%m"`.tbz2 cleanup.log

@@ -1,0 +1,6 @@
+# This is a crontab file for my account at NCF. Every day at noon,
+# we remove every thesis backup that's more than a week old.
+MAILTO=""
+#NCF server has no mail(1)!
+0 12 * * * $HOME/thesis-backups/cleanup-backups.sh
+0 16 1 * * $HOME/thesis-backups/tidy-cleanup-log.sh

@@ -42,8 +42,9 @@
 %   (sorry for the inconvenience at this point)
 % * For margin notes: \graffito{}
 % * There is a problem with the case of math text in part-,
-%   chapter-, and section titles and I have got no clue on how to fix this 
-%   (either the case or the spacing breaks). So far, I chose the case. :-(
+%   chapter-, and section titles (either the case or the spacing breaks). 
+%   => this can be fixed by using pdftex 1.40 or later and enabling the
+%      option pdfspacing of this package
 %
 % ********************************************************************  
 \NeedsTeXFormat{LaTeX2e}
@@ -58,27 +59,82 @@
     \newboolean{beramono} % toggle nice monospaced font (w/ bold) + pre-installed 
     \newboolean{eulermath} % use awesome Euler fonts for math
     \newboolean{parts} % use part division for the text
+    \newboolean{a5paper} % use those tiny DIN A5 pages
+    \newboolean{minionpro} % setup for minion pro font
+    \newboolean{minionprospacing} % use minion pro's textssc for letter spacing
+    \newboolean{pdfspacing} % use pdftex for letterspacing (via microtype)
+    \newboolean{subfig} % setupt for preloaded subfig package
+    
+% ********************************************************************
+% Options
+% ******************************************************************** 
 \DeclareOption{tocaligned}{\setboolean{tocaligned}{true}}
 \DeclareOption{eulerchapternumbers}{\setboolean{eulerchapternumbers}{true}}
 \DeclareOption{drafting}{\setboolean{drafting}{true}}
 \DeclareOption{linedheaders}{\setboolean{linedheaders}{true}}
 \DeclareOption{listsseparated}{\setboolean{listsseparated}{true}}
-\DeclareOption{subfigure}{\PassOptionsToPackage{subfigure}{tocloft}}
+\DeclareOption{subfigure}{%
+    \PackageWarningNoLine{classicthesis}{Package "subfigure" and option "subfigure are deprecated, used "subfig instead.}
+    \setboolean{subfig}{true}%
+    }
+\DeclareOption{subfig}{\setboolean{subfig}{true}}
 \DeclareOption{nochapters}{\setboolean{nochapters}{true}}
 \DeclareOption{beramono}{\setboolean{beramono}{true}} 
 \DeclareOption{eulermath}{\setboolean{eulermath}{true}} 
 \DeclareOption{parts}{\setboolean{parts}{true}} 
+\DeclareOption{a5paper}{\setboolean{a5paper}{true}}
+\DeclareOption{minionpro}{\setboolean{minionpro}{true}} 
+\DeclareOption{minionprospacing}{\setboolean{minionprospacing}{true}} 
+\DeclareOption{pdfspacing}{\setboolean{pdfspacing}{true}} 
 \ProcessOptions\relax
 
-% turn off some things if we do not use chapters
+% subfig-related stuff
+\@ifpackageloaded{subfig}%
+    {\setboolean{subfig}{true}%
+    }{\relax}
+\@ifpackageloaded{subfigure}%
+    {\setboolean{subfig}{true}%
+     \PackageWarningNoLine{classicthesis}{Package "subfigure" and option "subfigure are deprecated, %
+                                            use "subfig instead.}
+    }{\relax}
+\ifthenelse{\boolean{subfig}}%
+    {\PassOptionsToPackage{subfigure}{tocloft}%
+    }{\relax}%
+
+% fine-tuning if we use minionprospacing
+\ifthenelse{\boolean{minionprospacing}}%
+    {%
+        \PackageInfo{classicthesis}{Using option "minionprospacing". %
+            This activates "minionpro" in general and turns off %
+            the option "pdfspacing".}%
+        % is the user trying to use pdfspacing at the same time?    
+        \ifthenelse{\boolean{pdfspacing}}%
+            {% both minionprospacing and pdfspacing are active
+                \PackageWarningNoLine{classicthesis}{You cannot use "pdfspacing" at the same time %
+                    as "minionprospacing"!}%
+            }{\relax}%
+        \setboolean{minionpro}{true}%
+        \setboolean{pdfspacing}{false}%
+    }{\relax}
+
+% fine-tuning if we do not use chapters
 \ifthenelse{\boolean{nochapters}}%
     {%
+        % is the user trying to use parts at the same time?
+        \ifthenelse{\boolean{parts}}%
+            {% both parts and nochapters are active
+                \PackageWarningNoLine{classicthesis}{You cannot use "parts" at the same time %
+                    as "nochapters"!}%
+            }{\relax}%
+        % turn off some things if we do not use chapters
+        \PackageInfo{classicthesis}{Using option "nochapters" (probably for an article). %
+                This turns off the options "linedheaders",%
+                "listsseparated", "eulerchapternumbers", and "parts". Please be aware of that.}
         \setboolean{linedheaders}{false}%
         \setboolean{listsseparated}{false}%
         \setboolean{eulerchapternumbers}{false}%
         \setboolean{parts}{false}
-    }%
-    {\relax}%
+    }{\relax}%
 
 % ********************************************************************                
 % PDF Stuff
@@ -86,25 +142,42 @@
 \RequirePackage{ifpdf}
 \ifpdf\RequirePackage{hyperref}\fi % for texorpdfstring command below
 
-% define linewidth to compile with LaTeX
-\ifpdf\relax\else%
-    \newlength{\lineheight}%
-    \setlength{\lineheight}{\baselineskip}%
-\fi
-
 % ********************************************************************                
 % Colors
 % ********************************************************************
-\RequirePackage[usenames,dvipsnames]{xcolor} 
+\RequirePackage[dvipsnames]{xcolor} % [dvipsnames] 
+\definecolor{halfgray}{gray}{0.55} % chapter numbers will be semi transparent .5 .55 .6 .0
+\definecolor{webgreen}{rgb}{0,.5,0}
+\definecolor{webbrown}{rgb}{.6,0,0}
+%\definecolor{Maroon}{cmyk}{0, 0.87, 0.68, 0.32}
+%\definecolor{RoyalBlue}{cmyk}{1, 0.50, 0, 0}
+%\definecolor{Black}{cmyk}{0, 0, 0, 0}
 
 % ********************************************************************
 % Font Stuff
 % ********************************************************************   
-\RequirePackage[osf,sc]{mathpazo} % Palatino with real small caps and old style figures\\
-%\RequirePackage[osf]{MinionPro}
+\ifthenelse{\boolean{minionpro}}%
+    {%
+        % specialists: MinionPro
+        \RequirePackage[opticals,osf]{MinionPro} %  opticals, fullfamily,
+    }{%
+        % default: Palatino
+        \RequirePackage[osf,sc]{mathpazo} % Palatino with real small caps and old style figures
+        \linespread{1.05} % a bit more for Palatino
+        % just some font experiments (ignore)
+        %\RequirePackage{lmodern}
+        %\RequirePackage[urw-garamond]{mathdesign}
+        %\RequirePackage[light,condensed,math]{iwona}
+        %\renewcommand{\sfdefault}{iwona}
+    }
+
 \ifthenelse{\boolean{beramono}}%
     {\RequirePackage[scaled=0.85]{beramono}}%
-    {\renewcommand{\ttdefault}{\rmdefault}} % put your own suitable typewriter font here
+    {%
+    	\relax%
+    	% put your own suitable typewriter font here
+    	%\renewcommand{\ttdefault}{\rmdefault}
+    } 
 \ifthenelse{\boolean{eulermath}}%
     {\RequirePackage[euler-digits]{eulervm}} % Euler math fonts
     {\relax}
@@ -112,17 +185,40 @@
     {\newfont{\chapterNumber}{eurb10 scaled 7000}}%
     {\newfont{\chapterNumber}{pplr9d scaled 7000}}          
     % Euler eurb10 / Palatino OSF pplr9d / Palatino SC pplrc9d
-    % Latin Modern cork-lmr10
-\definecolor{halfgray}{gray}{0.55} % chapter numbers will be semi transparent .5 .55 .6 .0
+    % Latin Modern cork-lmr10 / Minion MinionPro-Regular-osf-t1
+    % (MinionPro-SemiboldCapt-osf-t1 MinionPro-SemiboldDisp-osf-t1)
 
 \RequirePackage{microtype} % character protruding and other micro-typography stuff
-% (increases the size of the resulting PDF a lot)
+% [expansion=false]
 
 % ********************************************************************
 % Textblock size
 %*******************************************************
-%\areaset[5mm]{312pt}{657pt} % 624 + 33 head % 5mm for binding
-\areaset[0.5in]{312pt}{657pt} % 624 + 33 head % 5mm for binding
+\ifthenelse{\boolean{a5paper}}%
+    {% A5
+        \ifthenelse{\boolean{minionpro}}%
+        {% Minion gets some extra sizes
+            \areaset[5mm]{278pt}{556pt}%
+            \setlength{\marginparwidth}{5em}%
+            \setlength{\marginparsep}{1.25em}%
+        }{% Palatino or else
+            \areaset[5mm]{288pt}{555pt}%
+            \setlength{\marginparwidth}{4em}%
+            \setlength{\marginparsep}{1.25em}%
+        }%
+	}{% A4
+        \ifthenelse{\boolean{minionpro}}%
+        {% Minion gets some extra sizes
+            \areaset[5mm]{288pt}{684pt}% 609 + 33 + 42 head \the\footskip
+            \setlength{\marginparwidth}{7.5em}%
+            \setlength{\marginparsep}{2em}%
+        }{% Palatino or else
+            %\areaset[5mm]{312pt}{699pt} % 624 + 33 head + 42 head \the\footskip
+            \areaset[0.5in]{312pt}{699pt} % 624 + 33 head + 42 head \the\footskip; 0.5in BCOR
+            \setlength{\marginparwidth}{7em}%
+            \setlength{\marginparsep}{2em}%
+        }%
+	}
 % Here some suggestions for the text widths and heights:
 % Palatino 	10pt: 288--312pt | 609--657pt
 % Palatino 	11pt: 312--336pt | 657--705
@@ -132,14 +228,18 @@
 % ********************************************************************
 % Own Stuff
 % ********************************************************************
+% Disable single lines at the start of a paragraph (Schusterjungen)
+\clubpenalty = 10000
+% Disable single lines at the end of a paragraph (Hurenkinder)
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000 % formulas
+
 % Graffiti as in GKP's book "Concrete Mathematics"
-\setlength{\marginparwidth}{7em}
-\setlength{\marginparsep}{2em}
 \DeclareRobustCommand{\graffito}[1]{\marginpar{%
-    \slshape\small%
-    %\parindent=0pt\lineskip=0pt\lineskiplimit=0pt%\baselineskip=10pt
-    %\tolerance=2000\hyphenpenalty=300\exhyphenpenalty=300%
-    %\doublehyphendemerits=100000\finalhyphendemerits=\doublehyphendemerits%
+    \slshape\footnotesize%\small%
+    \parindent=0pt\lineskip=0pt\lineskiplimit=0pt%\baselineskip=10pt
+    \tolerance=2000\hyphenpenalty=300\exhyphenpenalty=300%
+    \doublehyphendemerits=100000\finalhyphendemerits=\doublehyphendemerits%
     \raggedright\hspace{0pt}#1}}
 
 % Enumeration environment with small caps
@@ -153,22 +253,42 @@
 % ********************************************************************  
 \RequirePackage{booktabs} % for better rules in tables
 \RequirePackage{textcase} % for \MakeTextUppercase
-\RequirePackage{soul} % for letterspacing 
-    \sodef\allcapsspacing{\upshape}{0.15em}{0.65em}{0.6em}  
-    \sodef\lowsmallcapsspacing{\scshape}{0.075em}{0.5em}{0.6em}     
-	%\DeclareRobustCommand{\spacedallcaps}[1]{%
-	%	\protected@edef\@myXtemp{\MakeTextUppercase{\allcapsspacing{#1}}}\@myXtemp}
-    \DeclareRobustCommand{\spacedallcaps}[1]{\MakeTextUppercase{\allcapsspacing{#1}}}     
-	%\DeclareRobustCommand{\spacedlowsmallcaps}[1]{%
-	%	%\protected@edef\@myYtemp{\textsc{\lowsmallcapsspacing{\MakeTextLowercase{#1}}}}\@myYtemp}
-	%	\protected@edef\@myYtemp{\MakeTextLowercase{\textsc{\lowsmallcapsspacing{#1}}}}\@myYtemp}
-	\DeclareRobustCommand{\spacedlowsmallcaps}[1]{\MakeTextLowercase{\textsc{\lowsmallcapsspacing{#1}}}}   
-    
-% ********************************************************************
-% figures are placed only within section they were declared in
-% provides command \FloatBarrier
-% ********************************************************************
-\RequirePackage[section,below]{placeins}    
+
+\ifthenelse{\boolean{minionprospacing}}%
+    {%
+        \PackageInfo{classicthesis}{Using MinionPro's textssc for character spacing.}%
+        \DeclareRobustCommand{\spacedallcaps}[1]{\textssc{\MakeTextUppercase{#1}}}%
+        \DeclareRobustCommand{\spacedlowsmallcaps}[1]{\textssc{\MakeTextLowercase{#1}}}%
+    }{%
+        \ifthenelse{\boolean{pdfspacing}}%
+        {%
+            \PackageInfo{classicthesis}{Using pdftex/microtype for character spacing.%
+                                        Make sure your pdftex is version 1.40 or higher.}%
+            \microtypesetup{expansion=false}%
+            \DeclareRobustCommand{\spacedallcaps}[1]{\textls[160]{\MakeTextUppercase{#1}}}%
+            \DeclareRobustCommand{\spacedlowsmallcaps}[1]{\textls[80]{\scshape\MakeTextLowercase{#1}}}%
+        }{%
+            \RequirePackage{soul} % for letterspacing 
+                \sodef\allcapsspacing{\upshape}{0.15em}{0.65em}{0.6em}%
+                \sodef\lowsmallcapsspacing{\scshape}{0.075em}{0.5em}{0.6em}%   
+                \DeclareRobustCommand{\spacedallcaps}[1]{\MakeTextUppercase{\allcapsspacing{#1}}}%   
+	            \DeclareRobustCommand{\spacedlowsmallcaps}[1]{\MakeTextLowercase{\textsc{\lowsmallcapsspacing{#1}}}}%
+        }%
+    }
+
+% ********************************************************************                
+% headlines
+% ********************************************************************  
+\RequirePackage[automark]{scrpage2} % provides headers and footers (KOMA Script)
+    \clearscrheadings
+    \setheadsepline{0pt}
+    \ifthenelse{\boolean{nochapters}}%
+        {\relax}%
+        {\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{}}}
+    \renewcommand{\sectionmark}[1]{\markright{\thesection\ \spacedlowsmallcaps{#1}}}
+    \lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
+    \rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
+    \renewcommand{\headfont}{\small}  
     
 % ********************************************************************
 % layout of the chapter-, section-, subsection-, subsubsection-,
@@ -180,7 +300,8 @@
 		{%
     \titleformat{\part}[display]
         {\normalfont\centering\large}%
-        {\thispagestyle{empty}\partname~\thepart}{1em}%
+        %{\thispagestyle{empty}\partname~\thepart}{1em}% OLD
+        {\thispagestyle{empty}\partname~\MakeTextUppercase{\thepart}}{1em}%
         {\color{Maroon}\spacedallcaps}
     }{\relax}
     % chapters
@@ -188,11 +309,11 @@
     {% lines above and below, number right
     \titleformat{\chapter}[display]%             
         {\relax}{\raggedleft{\color{halfgray}\chapterNumber\thechapter} \\ }{0pt}%
-        {\titlerule\vspace*{.9\lineheight}\raggedright\spacedallcaps}[\normalsize\vspace*{.8\lineheight}\titlerule]%
+        {\titlerule\vspace*{.9\baselineskip}\raggedright\spacedallcaps}[\normalsize\vspace*{.8\baselineskip}\titlerule]%
     }{% something like Bringhurst  
     \titleformat{\chapter}[display]%
-        {\relax}{\mbox{}\marginpar{\vspace*{-3\lineheight}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
-        {\raggedright\spacedallcaps}[\normalsize\vspace*{.8\lineheight}\titlerule]% 
+        {\relax}{\mbox{}\marginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
+        {\raggedright\spacedallcaps}[\normalsize\vspace*{.8\baselineskip}\titlerule]% 
     }
     % sections \FloatBarrier
     \titleformat{\section}
@@ -211,25 +332,11 @@
     % spacing
     \ifthenelse{\boolean{nochapters}}%
         {\relax}%
-        {\titlespacing*{\chapter}{0pt}{1\lineheight}{1.2\lineheight}}
-    \titlespacing*{\section}{0pt}{1.25\lineheight}{1\lineheight} 
-    \titlespacing*{\subsection}{0pt}{1.25\lineheight}{1\lineheight}
-    \titlespacing*{\paragraph}{0pt}{1\lineheight}{1\lineheight}
+        {\titlespacing*{\chapter}{0pt}{1\baselineskip}{1.2\baselineskip}}
+    \titlespacing*{\section}{0pt}{1.25\baselineskip}{1\baselineskip} 
+    \titlespacing*{\subsection}{0pt}{1.25\baselineskip}{1\baselineskip}
+    \titlespacing*{\paragraph}{0pt}{1\baselineskip}{1\baselineskip}
 
-% ********************************************************************                
-% headlines
-% ********************************************************************  
-\RequirePackage[automark]{scrpage2} % provides headers and footers (KOMA Script)
-    \clearscrheadings
-    \setheadsepline{0pt}
-    \ifthenelse{\boolean{nochapters}}%
-        {\relax}%
-        {\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{}}}
-    \renewcommand{\sectionmark}[1]{\markright{\thesection\ \spacedlowsmallcaps{#1}}}
-    \lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
-    \rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
-    \renewcommand{\headfont}{\small}    
-  
 % ********************************************************************                
 % layout of the TOC, LOF and LOT (LOL-workaround see next section)
 % ********************************************************************
@@ -245,8 +352,15 @@
     % parts
     \ifthenelse{\boolean{parts}}%
     {%
-      \renewcommand{\cftpartpresnum}{\scshape\MakeTextLowercase\partname~\spacedlowsmallcaps}% 
-      \renewcommand{\cftpartfont}{\color{Maroon}\normalfont}%
+      %\renewcommand{\cftpartpresnum}{\scshape\MakeTextLowercase\partname~\spacedlowsmallcaps}% OLD
+      % vvv NEW vvv
+      \renewcommand{\thepart}{\roman{part}}%
+      \renewcommand{\cftpartpresnum}{\scshape}%  \MakeTextLowercase
+%      \renewcommand{\cftpartaftersnum}{\cftchapaftersnum}%
+%      \renewcommand{\cftpartaftersnumb}{\quad}%
+%      \setlength{\cftpartnumwidth}{\cftpartnumwidth}
+      % ^^^ NEW ^^^
+       \renewcommand{\cftpartfont}{\color{Maroon}\normalfont}%
       \renewcommand{\cftpartpagefont}{\normalfont}%
       \renewcommand{\cftpartleader}{\hspace{1.5em}}% 
       \renewcommand{\cftpartafterpnum}{\cftparfillskip}%       
@@ -265,18 +379,29 @@
             \renewcommand{\cftchapafterpnum}{\cftparfillskip}% 
             %\setlength{\cftbeforechapskip}{.1em}%           
         }
+    % NEW: All the \normalfont-ing for sections, subsections, tables is new.
     % sections
+    \ifthenelse{\boolean{nochapters}}%        
+        {%
+            \setlength{\cftbeforesecskip}{.1em}%
+            \setlength{\beforebibskip}{1em}%
+        }%
+        {\relax}
     	\renewcommand{\cftsecpresnum}{\scshape\MakeTextLowercase}%
+    	\renewcommand{\cftsecfont}{\normalfont}%
+        \renewcommand{\cftsecpagefont}{\normalfont}%
         \renewcommand{\cftsecleader}{\hspace{1.5em}} 
         \renewcommand{\cftsecafterpnum}{\cftparfillskip}
         \ifthenelse{\boolean{tocaligned}}{\renewcommand{\cftsecindent}{0em}}{\relax}
     % subsections
     	\renewcommand{\cftsubsecpresnum}{\scshape\MakeTextLowercase}%
+    	\renewcommand{\cftsubsecfont}{\normalfont}%
         \renewcommand{\cftsubsecleader}{\hspace{1.5em}} 
         \renewcommand{\cftsubsecafterpnum}{\cftparfillskip}                
         \ifthenelse{\boolean{tocaligned}}{\renewcommand{\cftsubsecindent}{0em}}{\relax}
     % figures     
-    	\renewcommand{\cftfigpresnum}{\scshape\MakeTextLowercase}%                  
+    	\renewcommand{\cftfigpresnum}{\scshape\MakeTextLowercase}% 
+    	\renewcommand{\cftfigfont}{\normalfont}%                 
         \renewcommand{\cftfigleader}{\hspace{1.5em}} 
         \renewcommand{\cftfigpresnum}{\figurename~}%Fig.~}
         \renewcommand{\cftfigafterpnum}{\cftparfillskip}
@@ -286,6 +411,7 @@
         \cftsetindents{figure}{0em}{\figurelabelwidth}
     % tables
     	\renewcommand{\cfttabpresnum}{\scshape\MakeTextLowercase}%
+    	\renewcommand{\cfttabfont}{\normalfont}%
         \renewcommand{\cfttableader}{\hspace{1.5em}} 
         \renewcommand{\cfttabpresnum}{\tablename~}%Tab.~}
         \renewcommand{\cfttabafterpnum}{\cftparfillskip}    
@@ -309,21 +435,47 @@
     \ifthenelse{\boolean{nochapters}}%
     {\relax}%
     {%
-        \newcommand{\myChapter}[1]{% for chapters      
-            \ifpdf\chapter[\texorpdfstring{\spacedlowsmallcaps{#1}}{#1}]{#1}%
-            \else\chapter{#1}\fi%
-        }%
+%% w/ optional parameter 
+        \newcommand{\myChapter}[2][]{% for chapters
+        	\ifthenelse{\equal{#1}{}}{%  
+        		%\chapter[\tocEntry{#2}]{#2} % causes soul "reconstruction failed" with plain LaTeX    
+            	\ifpdf\chapter[\texorpdfstring{\spacedlowsmallcaps{#2}}{#2}]{#2}%
+            	\else\chapter[\spacedlowsmallcaps{#2}]{#2}\fi%
+          }{%
+          		%\chapter[\tocEntry{#1}]{#2}
+          		\ifpdf\chapter[\texorpdfstring{\spacedlowsmallcaps{#1}}{#1}]{#2}%
+            	\else\chapter[\spacedlowsmallcaps{#1}]{#2}\fi%
+        }}%
+%% Old version w/o optional parameter
+%        \newcommand{\myChapter}[1]{% for chapters      
+%            \ifpdf\chapter[\texorpdfstring{\spacedlowsmallcaps{#1}}{#1}]{#1}%
+%            \else\chapter[\spacedlowsmallcaps{#1}]{#1}\fi%
+%        }%
     }
     
     % yet another dirty work-around to get the spaced low small caps into the toc ;-(
     \ifthenelse{\boolean{parts}}%
     {%
-	    	\newcommand{\myPart}[1]{% for parts      
-	        	\ifpdf\part[\texorpdfstring{\spacedlowsmallcaps{#1}}{#1}]{#1}% spacedallcaps
-	        	\else\part{#1}\fi%
-     		}%
+            % OLD w/o optional param
+	    	%\newcommand{\myPart}[1]{% for parts      
+	        %	\ifpdf\part[\texorpdfstring{\spacedlowsmallcaps{#1}}{#1}]{#1}% spacedallcaps
+	        %	\else\part{#1}\fi%
+	    	\newcommand{\myPart}[2][]{% for parts     
+	    		\ifthenelse{\equal{#1}{}}{%  
+		        	\ifpdf%
+		        	% ugly hack to remove the part number from the PDF bookmark entry
+		        	\pdfstringdefDisableCommands{\let\thepart\@gobbletwo}% 	        
+		        	\part[\texorpdfstring{\spacedlowsmallcaps{#2}}{#2}]{#2}% spacedallcaps spacedlowsmallcaps	
+		        	\else\part[\spacedlowsmallcaps{#2}]{#2}\fi%
+		      }{%
+		      		\ifpdf%
+		        	% ugly hack to remove the part number from the PDF bookmark entry
+		        	\pdfstringdefDisableCommands{\let\thepart\@gobbletwo}% 	        
+		        	\part[\texorpdfstring{\spacedlowsmallcaps{#1}}{#1}]{#2}% spacedallcaps spacedlowsmallcaps	
+		        	\else\part[\spacedlowsmallcaps{#1}]{#2}\fi%
+     		}}%
      }{\relax}
-        
+             
     \newcommand{\tocEntry}[1]{% for bib, etc.
     	\ifpdf\texorpdfstring{\spacedlowsmallcaps{#1}}{#1}%
         \else{#1}\fi%

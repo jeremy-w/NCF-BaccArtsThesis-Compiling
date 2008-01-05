@@ -1,9 +1,20 @@
 % !iTexMac(input): thesis.tex
-\documentclass[10pt,letterpaper,twoside,openright,titlepage,fleqn,%1headlines,
-                cleardoubleempty,abstractoff,pointlessnumbers,%
-                headinclude,footexclude,%
+\documentclass[twoside,openright,titlepage,fleqn,%1headlines,
+                pointlessnumbers,headinclude,BCOR0.5in,%
+                %10pt,letterpaper,cleardoubleempty,abstractoff, % <- obsolete
+                % footexclude, % intentionally omitted; textarea redefined accordingly
                 ]{scrreprt}
 % to modify binding correction, change the call to textarea in classicthesis.sty
+% ********************************************************************
+% KOMA-Script setup (new, see commented line above)
+% ********************************************************************
+\KOMAoptions{%
+    paper=letter,%
+    fontsize=10pt,%
+    cleardoublepage=empty,%
+    footinclude=true,%
+    abstract=false%
+}
 
 \newif\ifbib
 \bibfalse
@@ -13,45 +24,68 @@
 \idxfalse
 %\idxtrue
 
-% List of Files (written to .log file)
-\listfiles
+% ********************************************************************
+% Development Stuff
+% ********************************************************************
+\listfiles % List of Files (written to .log file)
+%\usepackage[l2tabu, orthodox, abort]{nag}
+%\usepackage[warning, all]{onlyamsmath}
 
 \input{thesisMacros}
 
-% Load Packages
+%*******************************************************
+% Packages with options that might require adjustments
+%*******************************************************
+\usepackage[latin1]{inputenc} 
+\usepackage[ngerman,american]{babel}           
+\RequirePackage[square,numbers,sort&compress,longnamesfirst]{natbib} % quite good bib style
+\usepackage[section,below]{placeins} %<--- not everybody wants this; with it, figures are placed only within section they were declared in (also provides command \FloatBarrier)
+%*******************************************************
 \usepackage{loadpackages}
-% Options for classicthesis.sty: 
+%*******************************************************
+% Options for classicthesis.sty:
 % tocaligned eulerchapternumbers drafting linedheaders listsseparated
-% subfigure nochapters beramono eulermath parts
-\usepackage[eulerchapternumbers,drafting,beramono,
-            subfigure,eulermath,parts]{classicthesis}
+% subfig nochapters beramono eulermath parts minionpro pdfspacing
+\usepackage[eulerchapternumbers,drafting,%pdfspacing,%
+            subfig,beramono,eulermath,parts]{classicthesis}
 \usepackage[xspace]{ellipsis}
 
-% Indexing:
+% ********************************************************************
+% Indexing
+%*******************************************************
 % (Note that it is best to create the index after writing.)
 \usepackage{makeidx}
+% \usepackage{index} % might be better/necessary; allows creating multiple indices
 %\citeindextrue %uncomment to have citations appear in the index
 \ifidx
 \makeindex %uncomment to turn logging of index terms on
 \fi
             
+% ********************************************************************
 % Setup and Finetuning
+%*******************************************************
 \newlength{\abcd} % for ab..z string length calculation
 \newcommand{\myfloatalign}{\centering} % how all the floats will be aligned
 \setlength{\extrarowheight}{3pt} % increase table row height
-
+% ********************************************************************
+% Captions look and feel
+%*******************************************************
+\captionsetup{format=hang,font=small}
+% ********************************************************************
 % Where to look for graphics
-\graphicspath{{graphics/}{misc/}}
-
+%*******************************************************
+%\graphicspath{{gfx/}{misc/}} % considered harmful according to l2tabu
+% ********************************************************************
 % Hyperreferences
+%*******************************************************
 \hypersetup{%
     pagebackref=true, %adds backrefs in bibliography to pages where cited
     %backref=true, %adds backrefs in bibliography to sections where cited
     colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
     breaklinks=true, pdfpagemode=None, pageanchor=true, pdfpagemode=UseOutlines,%
     plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
-    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
-    urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, pagecolor=RoyalBlue,% 
+    hypertexnames=true, pdfhighlight=/O,%hyperfootnotes=true,%nesting=true,%frenchlinks,%
+    urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, %pagecolor=RoyalBlue,%
     % uncomment the following line if you want to have black links (e.g., for printing)   
     %urlcolor=Black, linkcolor=Black, citecolor=Black, pagecolor=Black,%
     pdftitle={\myTitle},%
@@ -62,9 +96,13 @@
     pdfproducer={LaTeX with hyperref},%
     pdfpagelayout=TwoColumnRight%
 }   
-
+%********************************************************************
 % Hyphenation
+%*******************************************************
 %\hyphenation{put special hyphenation here}
+% ********************************************************************
+% GO!GO!GO! MOVE IT!
+%*******************************************************
 \usepackage{setspace}
 \begin{document}
 \frenchspacing

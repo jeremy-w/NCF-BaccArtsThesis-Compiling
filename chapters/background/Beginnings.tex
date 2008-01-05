@@ -32,7 +32,7 @@ The fundamental reduction rule of the \lambdacalc is that of \vocab{$\beta$-redu
 (\lambda x M)N = \replace{x}{N}{M}.
 \]
 
-We will have more to say about the \lambdacalc later in Chapter~\ref{functional:theory}, \nameref{functional:theory}. For now, we will content ourselves with pointing out that $N$ in $(\lambda x M)N$ may be \emph{any} other lambda term, including another abstracted term; the only distinction between ``functions'' $(\lambda x M)$ and ``literals'' $v, v\prime,$ etc.\ is that ``functions'' provide opportunities for $\beta$-reduction.
+We will have more to say about the \lambdacalc later in \partandnameref{Chapter}{functional:theory}. For now, we will content ourselves with pointing out that $N$ in $(\lambda x M)N$ may be \emph{any} other lambda term, including another abstracted term; the only distinction between ``functions'' $(\lambda x M)$ and ``literals'' $v, v\prime,$ etc.\ is that ``functions'' provide opportunities for $\beta$-reduction.
 
 \section{Turing and His Machines}
 Turing was working expressly to address the \Deutsch{Entscheidungsproblem}. He formalized computation by way of an abstract machine. A ``process'' is embodied in a machine. In the case of the decision problem, it would accept logical expressions---instances of the decision problem---as input.\footnote{These expressions would, of course, have to be suitably encoded for its consumption.} If there were an algorithm for the decision problem, it would then determine the answer for that instance. Instead, Turing found that any such machine would never necessarily be able to decide whether the instance is or is not satisfiable; the decision problem is fundamentally \vocab{undecidable}, which is another way of saying it is not computable.

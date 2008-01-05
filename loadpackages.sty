@@ -32,26 +32,37 @@
 %
 % ********************************************************************  
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{loadpackages}[2006/08/28 v1.3 Package Loader for Classic Thesis Style]
-  
+\ProvidesPackage{classicthesis-ldpkg}[2007/11/01 v2.3 Package Loader for Classic Thesis Style]
+ 
+\@ifpackageloaded{classicthesis}%
+    {\PackageWarningNoLine{classicthesis-ldpkg}{Package "classicthesis" should be loaded AFTER "classicthesis-ldpkg".}}%
+    {\relax}%    
+ 
+% ********************************************************************
+% Options
+% ******************************************************************** 
+\RequirePackage{ifthen}
+    \newboolean{@nochapters} % disable all chapter-specific commands
+\DeclareOption{nochapters}{\setboolean{@nochapters}{true}}
+\ProcessOptions\relax
+
 % ******************************************************************** 
 % Packages
 % ******************************************************************** 
 \RequirePackage[T1]{fontenc}                
 \RequirePackage{textcomp}
-\RequirePackage[latin1]{inputenc} % latin1 utf8
-\RequirePackage[usenames,dvipsnames]{xcolor} 
-\RequirePackage[ngerman,american]{babel}           
+%\RequirePackage[usenames,dvipsnames]{xcolor} % commented out and usenames omitted in new version
 \RequirePackage{xspace} % to get the spacing after macros right
 \RequirePackage{tabularx} % better tables
-\RequirePackage{remreset}
 \RequirePackage{mparhack} % get marginpar right
-\RequirePackage[square,numbers,sort&compress,longnamesfirst]{natbib} % quite good bib style
+\RequirePackage{fixltx2e} % fixes some LaTeX stuff
 \RequirePackage[fleqn]{amsmath} % math environments and more by the AMS                   
 \RequirePackage{relsize} % scale font up or down                                        
 \RequirePackage[smaller]{acronym} % nice macros for handling all acronyms in the thesis
-\renewcommand{\textsf}[1]{\textrm{#1}}  % to get the acronyms list right (we don't use sans-serif or bold anyway)
-\renewcommand{\textbf}[1]{\textsmaller{#1}}
+\renewcommand{\bflabel}[1]{{#1}\hfill} % fix the list of acronyms
+% Next two lines deleted in newer version.
+%\renewcommand{\textsf}[1]{\textrm{#1}}  % to get the acronyms list right (we don't use sans-serif or bold anyway)
+%\renewcommand{\textbf}[1]{\textsmaller{#1}}
 
 % ********************************************************************
 % Commands
@@ -84,105 +95,59 @@
 \newcommand{\Ologn}{\ensuremath{O(\log n)}\xspace}
 \newcommand{\Oone}{\ensuremath{O(1)}\xspace}
 
-
-% ********************************************************************
-% Using PDFLaTeX:
-% ********************************************************************
-\RequirePackage[pdftex,hyperfootnotes=false,pdfpagelabels]{hyperref}  % backref linktocpage pagebackref
-\pdfcompresslevel=9
-\pdfadjustspacing=1 
-\RequirePackage[pdftex]{graphicx} % PDFTeX driver for graphicx
-\DeclareGraphicsRule{*}{mps}{*}{} % enables use of MetaPost graphics with pdflatex 
-
-%*******************************************************
-% new colors for better readability
-\definecolor{webgreen}{rgb}{0,.5,0}
-\definecolor{webbrown}{rgb}{.6,0,0}
-
-%*******************************************************
-% for German texts to get \autoref macros right
-\renewcommand{\figureautorefname}{Figure}
-\renewcommand{\tableautorefname}{Table}
-\renewcommand{\partautorefname}{Part}
-\renewcommand{\chapterautorefname}{Chapter}
-\renewcommand{\sectionautorefname}{Section}
-\renewcommand{\subsectionautorefname}{Section}
-\renewcommand{\subsubsectionautorefname}{Section}
-%\renewcommand{\paragraphautorefname}{Absatz}
-%\renewcommand{\subparagraphautorefname}{Unterabsatz}
-%\renewcommand{\footnoteautorefname}{Fu\"snote}
-%\renewcommand{\FancyVerbLineautorefname}{Zeile}
-%\renewcommand{\theoremautorefname}{Theorem}
-%\renewcommand{\appendixautorefname}{Anhang}
-%\renewcommand{\equationautorefname}{Gleichung}        
-%\renewcommand{\itemautorefname}{Punkt}                
-%\newcommand*{\subfigureautorefname}{Abbildung}
-
-% ********************************************************************
-% get the links to the figures and tables right
-\RequirePackage[all]{hypcap} % to be loaded after hyperref package
-
-% ********************************************************************
-% setup the style of the backrefs from the bibliography
-\RequirePackage[hyperpageref]{backref} % to be loaded after hyperref package 
-   \renewcommand*{\backref}[1]{}  % Disable standard
-   \renewcommand*{\backrefalt}[4]{% Detailed backref
-      \ifcase #1 %
-         \relax%(Not cited.)%
-      \or
-         (Cited on page~#2.)%
-      \else
-         (Cited on pages~#2.)
-      \fi}
-%   \hspace*{\fill}{\scriptsize\itshape\mbox{%
-%   \ifnum#1=1 %
-%     (Cited on page~%
-%   \else
-%     (Cited on pages~%
-%   \fi
-%   #2)}
-%}
-
 % ********************************************************************
 % take care of the caption fonts and sizes (tables and figures)
-\RequirePackage[subfigure]{ccaption}
-    \hangcaption
-    \captionnamefont{\small\normalfont}
-    \captiontitlefont{\small}
-    \captiondelim{.\ }
-    \setlength{\abovecaptionskip}{\baselineskip}
-    \setlength{\belowcaptionskip}{\baselineskip}
+\RequirePackage{caption}
+% The rest of this captioning stuff is omitted in the newer version with the move from ccaption to caption.
+%    \hangcaption
+%    \captionnamefont{\small\normalfont}
+%    \captiontitlefont{\small}
+%    \captiondelim{.\ }
+%    \setlength{\abovecaptionskip}{\baselineskip}
+%    \setlength{\belowcaptionskip}{\baselineskip}
     
 % ********************************************************************
 % caption numbering now w/o chapter number
 \RequirePackage{remreset}
     \makeatletter
-        \@removefromreset{table}{chapter}  % requires remreset package
+        \ifthenelse{\boolean{@nochapters}}%
+        {\relax}{%
+            \@removefromreset{table}{chapter}  % requires remreset package
+        }
         \renewcommand{\thetable}{\arabic{table}}
     \makeatother
     \makeatletter
-        \@removefromreset{figure}{chapter}  % requires remreset package
+        \ifthenelse{\boolean{@nochapters}}%
+        {\relax}{%
+            \@removefromreset{figure}{chapter}  % requires remreset package
+        }
         \renewcommand{\thefigure}{\arabic{figure}}  
     \makeatother
 
 % ********************************************************************
 % enable subfigures in figures
-\RequirePackage[hang]{subfigure}
-    \makeatletter
-        \@removefromreset{subfigure}{chapter}  % requires remreset package
-        \renewcommand{\thesubfigure}{(\alph{subfigure})}
-        \renewcommand{\p@subfigure}{}
-    \makeatother    
+\RequirePackage{subfig}
+% vvv OLD vvv
+%\RequirePackage[hang]{subfigure}
+%    \makeatletter
+%        \@removefromreset{subfigure}{chapter}  % requires remreset package
+%        \renewcommand{\thesubfigure}{(\alph{subfigure})}
+%        \renewcommand{\p@subfigure}{}
+%    \makeatother    
+% ^^^ OLD ^^^
     
 % ********************************************************************
 % fine typesetting of code listings
 \RequirePackage{listings}  
 % ********************************************************************
 % caption numbering now w/o chapter number
-\makeatletter
-    \@removefromreset{lstlisting}{chapter}  % requires remreset package
-    \providecommand{\thelstlisting}{\arabic{lstlisting}}
-\makeatother
+%\makeatletter
+%    \ifthenelse{\boolean{@nochapters}}%
+%    {\relax}{%
+%        \@removefromreset{lstlisting}{chapter}% requires remreset package
+%    }
+%    \renewcommand{\thelstlisting}{\arabic{lstlisting}} % <-- might cause an error with some TeX distributions
+%\makeatother
 % ********************************************************************
 % ...and get the layout of the list of listings right (dirty workaround)
 %\makeatletter
@@ -216,14 +181,77 @@
     %identifierstyle=\color{NavyBlue},
     commentstyle=\color{Green}\ttfamily,
     stringstyle=\rmfamily,
-    numbers=left,%none
+    numbers=none,%left,%
     numberstyle=\scriptsize,%\tiny
-    stepnumber=2,
+    stepnumber=5,
     numbersep=8pt,
     showstringspaces=false,
     breaklines=true,
     frameround=ftff,
     frame=single
     %frame=L
-}   
-              
+}    
+
+% ********************************************************************
+% Using PDFLaTeX:
+% ********************************************************************
+\RequirePackage[pdftex,hyperfootnotes=false,pdfpagelabels]{hyperref}  % backref linktocpage pagebackref
+\pdfcompresslevel=9
+\pdfadjustspacing=1 
+\RequirePackage[pdftex]{graphicx} % PDFTeX driver for graphicx
+\DeclareGraphicsRule{*}{mps}{*}{} % enables use of MetaPost graphics with pdflatex 
+
+%*******************************************************
+% for German texts to get \autoref macros right
+\renewcommand{\figureautorefname}{Figure}
+\renewcommand{\tableautorefname}{Table}
+\renewcommand{\partautorefname}{Part}
+\renewcommand{\chapterautorefname}{Chapter}
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\renewcommand{\subsubsectionautorefname}{Section}
+%\renewcommand{\paragraphautorefname}{Absatz}
+%\renewcommand{\subparagraphautorefname}{Unterabsatz}
+%\renewcommand{\footnoteautorefname}{Fu\"snote}
+%\renewcommand{\FancyVerbLineautorefname}{Zeile}
+%\renewcommand{\theoremautorefname}{Theorem}
+%\renewcommand{\appendixautorefname}{Anhang}
+%\renewcommand{\equationautorefname}{Gleichung}        
+%\renewcommand{\itemautorefname}{Punkt}                
+%\newcommand*{\subfigureautorefname}{Abbildung}
+
+%*******************************************************
+% new colors for better readability - not def'd in new version; see if a problem
+%\definecolor{webgreen}{rgb}{0,.5,0}
+%\definecolor{webbrown}{rgb}{.6,0,0}
+
+% ********************************************************************
+% get the links to the figures and tables right
+\RequirePackage[all]{hypcap} % to be loaded after hyperref package
+
+% ********************************************************************
+% setup the style of the backrefs from the bibliography
+\newcommand{\backrefnotcitedstring}{\relax}%(Not cited.)
+\newcommand{\backrefcitedsinglestring}[1]{(Cited on page~#1.)}
+\newcommand{\backrefcitedmultistring}[1]{(Cited on pages~#1.)}
+
+\RequirePackage[hyperpageref]{backref} % to be loaded after hyperref package 
+   \renewcommand{\backreftwosep}{ and~} % seperate 2 pages
+   \renewcommand{\backreflastsep}{, and~} % seperate last of longer list
+   \renewcommand*{\backref}[1]{}  % Disable standard
+   \renewcommand*{\backrefalt}[4]{% Detailed backref
+      \ifcase #1 %
+         \backrefnotcitedstring%
+      \or
+         \backrefcitedsinglestring{#2}%
+      \else
+         \backrefcitedmultistring{#2}%
+      \fi}
+%   \hspace*{\fill}{\scriptsize\itshape\mbox{%
+%   \ifnum#1=1 %
+%     (Cited on page~%
+%   \else
+%     (Cited on pages~%
+%   \fi
+%   #2)}
+%}       
