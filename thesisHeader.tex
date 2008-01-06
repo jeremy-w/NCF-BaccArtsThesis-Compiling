@@ -1,6 +1,6 @@
 % !iTexMac(input): thesis.tex
 \documentclass[twoside,openright,titlepage,fleqn,%1headlines,
-                pointlessnumbers,headinclude,BCOR0.5in,%
+                pointlessnumbers,headinclude,BCOR.5in,%
                 %10pt,letterpaper,cleardoubleempty,abstractoff, % <- obsolete
                 % footexclude, % intentionally omitted; textarea redefined accordingly
                 ]{scrreprt}
@@ -12,7 +12,7 @@
     paper=letter,%
     fontsize=10pt,%
     cleardoublepage=empty,%
-    footinclude=true,%
+    footinclude=false,%
     abstract=false%
 }
 
@@ -38,7 +38,7 @@
 %*******************************************************
 \usepackage[latin1]{inputenc} 
 \usepackage[ngerman,american]{babel}           
-\RequirePackage[square,numbers,sort&compress,longnamesfirst]{natbib} % quite good bib style
+\usepackage[square,numbers,sort&compress,longnamesfirst]{natbib} % quite good bib style
 \usepackage[section,below]{placeins} %<--- not everybody wants this; with it, figures are placed only within section they were declared in (also provides command \FloatBarrier)
 %*******************************************************
 \usepackage{loadpackages}
@@ -47,7 +47,7 @@
 % tocaligned eulerchapternumbers drafting linedheaders listsseparated
 % subfig nochapters beramono eulermath parts minionpro pdfspacing
 \usepackage[eulerchapternumbers,drafting,%pdfspacing,%
-            subfig,beramono,eulermath,parts]{classicthesis}
+            subfig,beramono,eulermath,parts,letterpaper]{classicthesis}
 \usepackage[xspace]{ellipsis}
 
 % ********************************************************************

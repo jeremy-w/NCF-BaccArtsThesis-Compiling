@@ -60,6 +60,7 @@
     \newboolean{eulermath} % use awesome Euler fonts for math
     \newboolean{parts} % use part division for the text
     \newboolean{a5paper} % use those tiny DIN A5 pages
+    \newboolean{letterpaper} % use 8.5in x 11in US letter paper
     \newboolean{minionpro} % setup for minion pro font
     \newboolean{minionprospacing} % use minion pro's textssc for letter spacing
     \newboolean{pdfspacing} % use pdftex for letterspacing (via microtype)
@@ -83,6 +84,7 @@
 \DeclareOption{eulermath}{\setboolean{eulermath}{true}} 
 \DeclareOption{parts}{\setboolean{parts}{true}} 
 \DeclareOption{a5paper}{\setboolean{a5paper}{true}}
+\DeclareOption{letterpaper}{\setboolean{letterpaper}{true}}
 \DeclareOption{minionpro}{\setboolean{minionpro}{true}} 
 \DeclareOption{minionprospacing}{\setboolean{minionprospacing}{true}} 
 \DeclareOption{pdfspacing}{\setboolean{pdfspacing}{true}} 
@@ -194,7 +196,25 @@
 % ********************************************************************
 % Textblock size
 %*******************************************************
-\ifthenelse{\boolean{a5paper}}%
+\ifthenelse{\boolean{letterpaper}}%
+    {% letter paper
+        \ifthenelse{\boolean{minionpro}}%
+        {% Minion gets some extra sizes
+            \areaset[.5in]{288pt}{684pt}% 609 + 33 + 42 head \the\footskip
+            \setlength{\marginparwidth}{7.5em}%
+            \setlength{\marginparsep}{2em}%
+        }{% Palatino or else
+            %\areaset[.5in]{312pt}{580.44pt} % golden section: 505.44 + 33 + 42 \the\footskip; 0.5in BCOR
+            %\areaset[.5in]{288pt}{651pt} % double-square: 576 + 33 + 42 
+            %\areaset[.5in]{312pt}{699pt} % bigger double-square
+            %    \setlength{\topmargin}{-26.28pt} % using length from footinclude=false...
+            \areaset[.5in]{312pt}{657pt} %suitable if footinclude=false
+            \setlength{\marginparwidth}{7em}%
+            \setlength{\marginparsep}{2em}%
+        }%
+    }
+    { % ELSE
+    \ifthenelse{\boolean{a5paper}}%
     {% A5
         \ifthenelse{\boolean{minionpro}}%
         {% Minion gets some extra sizes
@@ -213,12 +233,12 @@
             \setlength{\marginparwidth}{7.5em}%
             \setlength{\marginparsep}{2em}%
         }{% Palatino or else
-            %\areaset[5mm]{312pt}{699pt} % 624 + 33 head + 42 head \the\footskip
-            \areaset[0.5in]{312pt}{699pt} % 624 + 33 head + 42 head \the\footskip; 0.5in BCOR
+            \areaset[5mm]{312pt}{699pt} % 624 + 15 \the\headheight + 18 \the\headsep + 42 \the\footskip
             \setlength{\marginparwidth}{7em}%
             \setlength{\marginparsep}{2em}%
         }%
 	}
+}
 % Here some suggestions for the text widths and heights:
 % Palatino 	10pt: 288--312pt | 609--657pt
 % Palatino 	11pt: 312--336pt | 657--705
