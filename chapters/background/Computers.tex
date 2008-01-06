@@ -1,2 +1,47 @@
 \myChapter{Computers}\label{background:computers}
-Stuff...
+\section{From Abstract Turing Machines to Concrete Computing Machines}
+A Turing machine takes some input, acts on it, and, if it terminates, produces some output. For example, we can produce a Turing machine that takes as input a natural number and checks whether that number is even or odd, and we can guarantee that it will always halt with an answer. To compute the solution to another problem, we must produce another Turing machine. This is fine when we are working with paper and pencil, but Turing machine computations executed via paper and pencil offer no advantage over any other work with paper and pencil and have the extreme disadvantage of being exceedingly tedious. What if we wanted to produce machines that perform these computations in the real world, machines that will not become bored and make a mistake, and, further, can carry out the computations much faster than we? In that case, producing a separate machine for every computation would not be of much use. Indeed, what we need is a universal machine, a single machine capable of computing anything any Turing machine can compute.
+
+This \vocab{universal Turing machine} would accept as input the description of another Turing machine and data for that machine to operate upon and then simulate the operation of the input machine on the input data. By devising an encoding for the description of a Turing machine that can be processed by a Turing machine, we can build this abstract machine. What remains is to build the concrete machine. What parts would such a machine need? From a user's perspective, any Turing machine performs three primary activities:
+\begin{itemize}
+\item accept input
+\item compute the result for this input
+\item produce output.
+\end{itemize}
+Two of these steps involve communicating with the user; one is entirely internal to the machine. When we move to a universal \TM, what was once internal becomes external: the need to simulate the action of another \TM demands some way to store the description of the \TM while simulating it.
+
+In essence, these are the parts of a modern computer:
+\begin{itemize}
+\item means of accepting input and communicating output
+\item storage for input, both programs and data
+\item facilities to process instructions and data.
+\end{itemize}
+The processing facilities of the universal \TM are its transition function and states together with the definition of \TMs. Its input-output facilities are not actually part of the \TM: input appears on the tape, computation occurs, and we somehow observe the final state of the \TM. The universal \TM's storage is its tape. It is a remarkable fact that both data and program (the description of the machine to be simulated) lie on the same tape. A single memory for both instructions and data is the hallmark of the \vocab{von Neumann architecture} and distinguishes it from the \vocab{Harvard architecture}, which uses separate memories for program and data.\footnote{To be fair, it is possible to define universal \TMs naturally homologous to both of these architectures; it is simply our exposition that makes the von~Neumann appear the more natural.}
+
+This chapter will describe these three fundamental divisions of a computer with a particular emphasis on aspects of their implementation that affect compilation.
+
+\section{Processor}
+\paragraph{Talking points:}
+\begin{aenumerate}
+\item supported operations, speeds/difficulties
+\item cisc->risc->post-risc->???
+\item out of order execution
+\item superscalar processors
+\item pipelining and stalls
+\end{aenumerate}
+
+\section{Memory}
+\paragraph{Talking points:}
+\begin{aenumerate}
+\item caching
+\item memory hierarchy
+\item speeds
+\end{aenumerate}
+
+\section{Input/Output}
+\paragraph{Talking points:}
+\begin{aenumerate}
+\item means of implementation
+\item speeds
+\item interactive and not
+\end{aenumerate}
