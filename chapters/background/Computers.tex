@@ -1,47 +1,106 @@
 \myChapter{Computers}\label{background:computers}
 \section{From Abstract Turing Machines to Concrete Computing Machines}
-A Turing machine takes some input, acts on it, and, if it terminates, produces some output. For example, we can produce a Turing machine that takes as input a natural number and checks whether that number is even or odd, and we can guarantee that it will always halt with an answer. To compute the solution to another problem, we must produce another Turing machine. This is fine when we are working with paper and pencil, but Turing machine computations executed via paper and pencil offer no advantage over any other work with paper and pencil and have the extreme disadvantage of being exceedingly tedious. What if we wanted to produce machines that perform these computations in the real world, machines that will not become bored and make a mistake, and, further, can carry out the computations much faster than we? In that case, producing a separate machine for every computation would not be of much use. Indeed, what we need is a universal machine, a single machine capable of computing anything any Turing machine can compute.
+A Turing machine takes some input, acts on it, and, if it terminates, produces some output. For example, we can produce a Turing machine that takes as input a natural number and checks whether that number is even or odd, and we can guarantee that it will always halt with an answer. To compute the solution to another problem, we must produce another Turing machine. This is fine when we are working with paper and pencil, but Turing machine computations executed via paper and pencil offer no advantage over any other work with paper and pencil and have the disadvantage of being exceedingly tedious. What if we wanted to produce machines that perform these computations in the real world, machines that will not become bored and make a mistake, and, further, can carry out the computations much faster than we? In that case, producing a separate machine for every computation would not be of much use. Indeed, what we need is a universal machine, a single machine capable of computing anything any Turing machine can compute.
 
-This \vocab{universal Turing machine} would accept as input the description of another Turing machine and data for that machine to operate upon and then simulate the operation of the input machine on the input data. By devising an encoding for the description of a Turing machine that can be processed by a Turing machine, we can build this abstract machine. What remains is to build the concrete machine. What parts would such a machine need? From a user's perspective, any Turing machine performs three primary activities:
+This \vocab{universal Turing machine} would accept as input the description of another Turing machine and data for that machine to operate upon and then simulate the operation of the input machine on the input data. By devising an encoding for the description of a Turing machine that can be processed by a Turing machine, we can build this abstract machine. What remains is to build the concrete machine.
+
+What parts would such a machine need? From a user's perspective, any Turing machine performs three primary activities:
 \begin{itemize}
 \item accept input
-\item compute the result for this input
+\item perform the computation for this input
 \item produce output.
 \end{itemize}
 Two of these steps involve communicating with the user; one is entirely internal to the machine. When we move to a universal \TM, what was once internal becomes external: the need to simulate the action of another \TM demands some way to store the description of the \TM while simulating it.
 
-In essence, these are the parts of a modern computer:
+Considering Turing machines has in fact brought us to the essential parts of a modern computer:
 \begin{itemize}
 \item means of accepting input and communicating output
 \item storage for input, both programs and data
 \item facilities to process instructions and data.
 \end{itemize}
-The processing facilities of the universal \TM are its transition function and states together with the definition of \TMs. Its input-output facilities are not actually part of the \TM: input appears on the tape, computation occurs, and we somehow observe the final state of the \TM. The universal \TM's storage is its tape. It is a remarkable fact that both data and program (the description of the machine to be simulated) lie on the same tape. A single memory for both instructions and data is the hallmark of the \vocab{von Neumann architecture} and distinguishes it from the \vocab{Harvard architecture}, which uses separate memories for program and data.\footnote{To be fair, it is possible to define universal \TMs naturally homologous to both of these architectures; it is simply our exposition that makes the von~Neumann appear the more natural.}
-
 This chapter will describe these three fundamental divisions of a computer with a particular emphasis on aspects of their implementation that affect compilation.
 
-\section{Processor}
-\paragraph{Talking points:}
-\begin{aenumerate}
-\item supported operations, speeds/difficulties
-\item cisc->risc->post-risc->???
-\item out of order execution
-\item superscalar processors
-\item pipelining and stalls
-\end{aenumerate}
+Before we move on, let us take one last look at Turing machines in light of this list. The processing facilities of the universal \TM are its transition function and states operating per the definition of \TMs. Input-output facilities are not actually part of the \TM: input appears on the tape, computation occurs, and we somehow observe the final state of the \TM. The universal \TM's storage is its tape. It is interesting that both data and program (the description of the machine to be simulated) lie on the same tape. A single memory for both instructions and data is the hallmark of the \vocab{von Neumann architecture} and distinguishes it from the \vocab{Harvard architecture}, which uses separate memories for program and data.\footnote{To be fair, it is possible to define universal \TMs naturally homologous to both of these architectures; it is simply our exposition that makes the von~Neumann appear the more natural.} While \TMs are a tremendously useful model for computation in the abstract, and while they also serve surprisingly well to bridge the conceptual distance from the abstract model to the concrete machine, that is as far as they will bring us. In the rest of this chapter, we will be talking about time-bound, space-bound, hardware computers, the clever methods used to reduce the limitations introduced by reality, and how those methods affect compilation.
 
-\section{Memory}
+\section{Processor}\label{background:computers:processor}
+The processor is the brain of the computer. It is responsible for reading instructions, decoding and dispatching them for execution, and directing the other functional units in their operation. It does this repeatedly in a rapid cycle: processor performance is often measured in terms of millions of instructions per second (\vocab{MIPS}), as well as in terms of the average cycles per instruction (\vocab{CPI}). The time to execute an instruction varies from a few cycles (simple arithmetic operations) to millions of cycles (loading values from memory). The processor keeps track of which instruction to fetch next via its \vocab{program counter (PC)}. Every time it fetches an instruction, it increments the \abbrev{PC} to the address of the location of the next instruction.
+
+\subsection{Instruction Decoding}
+The processor only understands binary digits, or \vocab{bits.} The instructions themselves are bit strings. Each processor is an implementation of some instruction-set architecture and understands a certain instruction set language designed for that architecture. Many more recently designed processors architectures' instructions are all of a fixed length and have a very predictable form. This simplifies processing instructions, as there is no question of how many bits to read in for each instruction. On the other hand, the ubiquitous x86 architecture's instructions are of variable length.
+
+Instruction decoding involves reading in a full instruction, interpreting the various parts of the instruction, and taking the corresponding action. Instructions generally cover arithmetic operations (add, subtract, multiply, divide) on integers and floating point numbers, shifts (left and right), logical operations (and, or, not, exclusive or), conditional branches and jumps, and memory operations (load, store, and possibly copy). The way conditional branches are supported and the types of conditional branch instructions provided vary from processor to processor, as do the ways that memory locations can be specified. Many other operations may be provided, such as those meant to deal particularly with strings coded into bits in one way or another or instructions meant to deal with numbers encoded as binary-coded decimal rather than as binary numbers. Each instruction set is different.
+
+\subsection{Functional Units}
+The instructions themselves are carried out by other functional units. Many of the arithmetic operations will eventually be routed through an arithmetic logic unit (\vocab{ALU}). Those dealing with floating point numbers, however, are likely to be sent to either a floating point unit or even a floating point co-processor.
+
+Storage for operands is frequently provided by \vocab{registers.} Registers may be either special-purpose (available for use only in floating point operations, for example, or devoted to storing the \abbrev{PC} or the number zero) or general-purpose (available for any use in any instruction). Others may be functionally general-purpose but reserved for use by the operating system or assembler. The trend has been to greater numbers of general-purpose registers. Certain registers are exposed to the programmer via the instruction set language and guaranteed by the instruction set architecture, but the implementation is likely to make use internally of far more registers. If all the operands of an instruction are must be in registers, the instruction is said to be register-register. Some instruction sets to have register-memory or even memory-memory instructions, where one or even all operands of the instruction are in memory. This was particularly common in the past.
+
+\subsection{Assembly Language}
+Bit-string instructions are fine for machines, but they are difficult for humans to work with. For this reason, \vocab{assembly languages} were developed. Assembly languages represent the instructions with alphabetic abbreviations such as \code{j} for \emph{jump}, \code{beq} for \emph{branch if equal}, or \code{add}. They will often allow the use of textual labels for the specification of branch and jump targets and the use of names for registers as opposed to purely numbers. They will accept directives as to the alignment of data in memory, convert character strings to bit strings encoded in \abbrev{ASCII}, optionally null-terminated. They might also provide greater levels of abstraction, such as providing pseudoinstructions like a richer set of branch conditionals that can be readily translated into the processor-provided instructions or allowing the programmer to define macros for common code sequences.
+
+The \vocab{assembler} is responsible for translating this symbolic instruction language into the binary instruction set language. It assembles assembly language code into \vocab{object code} executable by the processor. Its action is that of a compiler, though its job is generally much simpler than that of compilers for higher-level languages whose level of abstraction is much farther from the underlying processor.
+
+\subsection{Types of Processors}
+There have been many types of processors, but the two dominant types are the \vocab{complex instruction set computers (CISC)} and the \vocab{reduced instruction set computers (RISC).}
+
+\CISCs were developed when computing resources were very limited and most programming was done in assembly languages. Since the instruction set language itself was programmers' primary interface to the machine, it seemed worthwhile to provide higher-level instructions that accomplished more complex goals, such as copying an entire string of characters from one place in memory to another or repeating an instruction a number of times determined by a counter register. They also frequently used variable-length instructions, to minimize the amount of space required by instructions---more complex instructions would frequently require more information, and so more bits, than simpler instructions.
+
+\RISCs developed after higher-level languages and their compilers had come into general use. Their design followed the discovery that compilers of the time were not taking advantage of many of the features of \CISCs meant to ease programming in assembly language. Inclusion of these features slowed the processor and made it difficult to take advantage of more advanced processor design ideas. By reducing the complexity of the instruction set, the amount of space needed in the processor to implement the instruction set could be reduced, enabling the inclusion of greater numbers of fast registers.
+
+\RISC ideas have been highly influential, and \RISC processors are often used in embedded situations, such as in cell phones, \abbrev{PDA}s, washing machines, automobiles, and microwaves. However, when \abbrev{IBM} elected to go with Intel's 8086 series \CISC processors rather than Motorola's 68000 series \RISC processors for its personal computers, it set the stage for the x86 and its successors to become the most common non-embedded processors. Modern \CISC processors, such as those made by Intel and \abbrev{AMD,} blend elements of the \RISC philosophy in their designs while preserving compatibility with older x86 software. The \CISC instructions are often internally translated into \RISC microcode which is then executed by the processor. Many of the more ``\CISC{}y'' instructions have been preserved for compatibility but allowed to ``atrophy'' to where they will execute much more slowly than a longer sequence of simpler instructions accomplishing the same result. This blending of \RISC and \CISC ideas has brought us to what might be called a post-\RISC era.
+
+\subsection{Issues Particularly Affecting Compilation}
+When you compile software, you want it to run as well as possible on your computer. Often, this means as fast as possible, and as much work has gone into making the processors themselves run as fast as possible, the processor provides a lot for a compiler writer to worry about.
+
+\subsubsection{Registers}
+The number of registers available for compilation affects the usefulness of various optimizations as well as the speed of the compiled code. Storing to memory is slow, while registers are fast: the more data that can be kept in register, the better. Thus, the more general purpose registers available to the compiler when it comes time to allocate the generated code among the available registers, the better. Some processors provide a means to utilize the greater number of implementation-supplied registers; \abbrev{SPARC}'s \vocab{register windows} are one example. As mentioned above, some architectures will specify that various registers are reserved for various purposes and unavailable to the compiler. The architecture might also specify how registers are to be treated during a procedure call. All of this affects the generated code.
+
+\subsubsection{Historical Accidents and Implementation-Specific Extensions}
+As mentioned above, while the instruction set language might provide a special-purpose instruction for handling, say, string copying, this might actually execute slower than an sequence of simpler instructions accomplishing the same thing. Thus, it is not sufficient to be familiar with the specification of the instruction set language or even of the instruction set architecture: decisions made in the implementation of the specific processor can affect choices made during compilation (or at least in some cases should). Other operations retained for compatibility might also be best avoided.
+
+At the same time, various implementations will extend the instruction set in ways their designers hoped would be of use to compiler writers. Examples are the streaming \abbrev{SIMD} extensions added to various successors of the x86 architecture by Intel and \abbrev{AMD} meant to speed up code compiled for multimedia applications.
+
+\subsubsection{Pipelining and Speculation}
+In an attempt to speed up instruction execution in general, modern processors are deeply \vocab[pipelining]{pipelined}. Pipelining exploits \vocab{instruction-level parallelism}. Rather than decoding an instruction, executing it, then decoding the next instruction, instructions are continually being decoded and beginning execution, so that their execution overlaps. Pipelining does not decrease how long it takes an instruction to execute, but it does increase the number of instructions that can be executed per unit of time, making it appear that instructions are executing faster.
+
+The depth of the pipeline places an upper limit on the number of instructions whose execution can overlap. However, various hazards threaten to decrease instruction throughput.
+\begin{description}
+\item[\vocab{structural hazards}] occur when multiple instructions require simultaneous use of the same functional units.
+\item[\vocab{data hazards}] occur when an instruction requires data that is not yet available.
+\item[\vocab{control hazards}] occur when the program counter is to be altered, but how it will be altered is not known sufficiently in advance to keep the pipeline full.
+\end{description}
+All of these hazards cause \vocab{stalls}, also known as \vocab{bubbles}---space in the pipeline where an instruction would be executing, except that it cannot.
+
+Various methods are employed to address these hazards. Structural hazards can be addressed by carefully designing the instruction set and the processor. Within the processor, data hazards are addressed by \vocab{forwarding}. Forwarding diverts data to where it is needed as soon as it is available, rather than waiting for it to become available through the usual means. For example, if an instruction is waiting on a value to be loaded from memory to a register, rather than waiting for the value to enter the datapath and finally be committed to register before loading it from the register, forwarding will make the value available as soon as it enters the datapath. It will eventually be stored to the targeted register, but in the mean time, the instruction that was waiting on the value can continue execution.\footnote{Some instruction sets expose the delay following branch (and load-store) instructions to the user in what is called a \vocab{delayed branch}: the next (or next several) instructions following a branch instruction are always executed. As pipelines deepened, exposing the delay to the user became less and less feasible, and successors of such instruction sets have often phased out such instructions in favor of non-delayed versions.} Outside the processor, data hazards are partially addressed by the introduction of a memory hierarchy, which we will discuss in \partandnameref{Section}{background:computers:memory}.
+
+Control hazards are addressed by \vocab{branch prediction}. This can be as simple as always assuming a branch will not be taken or more complex, such as dynamically tracking whether the branch is taken more often than not during execution and acting accordingly. The processor begins executing instructions as if the branch had gone the way it predicted; when the branch is finally decided, if it goes the way that was predicted, there is no stall. If it goes the other way, there must still be a stall. Further, the processor must be able to undo all the instructions executed along the path not taken.
+
+This is a specific example of a more general technique called \vocab{speculative execution}, in which a guess is made about some property of a part of the instruction stream, execution continues as if the guess were correct, and then is either confirmed or undone depending on whether the guess was correct or not. This is useful not only for branches, but for reordering the instruction stream in general to increase instruction-level parallelism.
+
+\subsection{Multiple Issue Processors}
+Another way to address these hazards and improve performance in general is to move to \vocab{multiple issue} processors. Rather than issuing at most a single instruction each cycle, multiple issue processors issue multiple instructions where possible. They are able to do this because much of the datapath has been duplicated, perhaps multiple times. Instructions can then truly execute simultaneously rather than simply overlapping. Clever methods are employed to ensure the appearance of sequential execution is not violated and to resolve dependencies between instructions. However, instruction sequences that have been optimized to maximize instruction-level parallelism will run faster; an optimizing compiler will take advantage of this.
+
+In fact, in \vocab{static multiple issue} processors, compilers have no choice but to take advantage of this, as the processor itself merely performs multiple issues by following instructions. The burden of scheduling instructions to maximize instruction-level parallelism and taking advantage of the architecture falls entirely on the compiler. This has the advantage of enabling the compiler to leverage its knowledge of the properties of the entire program to demonstrate that reordering and simultaneously scheduling instructions is safe, but it has the disadvantage of requiring recompilation for every such implementation. %we do not discuss VLIW, vectorization
+
+Dynamic multiple issue, or superscalar, processors exploit instruction-level parallelism in the instructions as they read them by reordering instructions, issuing multiple instructions whenever possible, and speculatively executing instructions when they can. Since many of the implementation-level issues are dealt with by the implementation in this case, while knowledge of the specific implementation will provide an advantage, it is not necessary to produce code that will run sufficiently well across many implementations of the same instruction set. % we do not discuss register renaming, predicated execution
+
+Not only do pipelining, speculation, and multiple-issue greatly complicate the development of a processor, they also make it more difficult to predict how generated code will be executed, as well as placing great emphasis on optimizing for instruction level parallelism. Examples of the affect these have on compilers are the efforts taken to minimize the number of branches and keep values in register as long as possible, though this latter is even more severely motivated by the presence of a memory hierarchy.
+
+\section{Memory}\label{background:computers:memory}
 \paragraph{Talking points:}
 \begin{aenumerate}
-\item caching
 \item memory hierarchy
+\item caching
 \item speeds
+\item cache-aware and cache-oblivious algorithms and compiler design as well as generated code
 \end{aenumerate}
 
-\section{Input/Output}
+\section{Input/Output}\label{background:computers:inputoutput}
 \paragraph{Talking points:}
 \begin{aenumerate}
-\item means of implementation
+\item means of implementation: busy-wait, interrupts
 \item speeds
 \item interactive and not
 \end{aenumerate}
+
+\subsection{Exceptions}

@@ -15,7 +15,9 @@
 % Semantic markup
 \newcommand{\code}[1]{\texttt{#1}} %the variable \code{x}
 \newcommand{\foreign}[1]{\textit{#1}} %the \foreign{Entscheidungsproblem}
-\newcommand{\vocab}[1]{\spacedlowsmallcaps{#1}} %the \vocab{lambda terms} are...
+\newcommand{\vocab}[2][1]{\spacedlowsmallcaps{#2}} %the \vocab{lambda terms} are...
+%\newcommand{\abbrev}[1]{\allcapsspacing{#1}} % introduced unwanted space before
+\newcommand{\abbrev}[1]{#1} % \abbrev{IBM}
 \newcommand{\Deutsch}[1]{\foreign{\begin{otherlanguage}{ngerman}#1\end{otherlanguage}}}
 % Expressing substitution: replace:#1 with:#2 in:#3
 \newcommand{\replace}[3]{\ensuremath{#3\left[#1 := #2\right]}} %M[x := N]
@@ -25,7 +27,11 @@
 \newcommand{\lambdacalc}{lambda calculus\xspace} %We discuss the \lambdacalc...
 \newcommand{\Lambdacalc}{Lambda calculus\xspace} %\Lambdacalc is really cool.
 \newcommand{\TM}{Turing machine\xspace}
-\newcommand{\TMs}{Turing machines \xspace}
+\newcommand{\TMs}{Turing machines\xspace}
+\newcommand{\CISC}{\abbrev{CISC}\xspace}
+\newcommand{\CISCs}{\abbrev{CISC}s\xspace}
+\newcommand{\RISC}{\abbrev{RISC}\xspace}
+\newcommand{\RISCs}{\abbrev{RISC}s\xspace}
 
 % More complex macros
 % Two options for part-and-namerefs. First has problems if hyphenation interferes with the hyperref'd part and also creates too much emphasized text. Second emphasizes (via a link) only the part name.
