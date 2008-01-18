@@ -83,7 +83,7 @@
     %backref=true, %adds backrefs in bibliography to sections where cited
     colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
     breaklinks=true, pdfpagemode=None, pageanchor=true, pdfpagemode=UseOutlines,%
-    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=2,%
     hypertexnames=true, pdfhighlight=/O,%hyperfootnotes=true,%nesting=true,%frenchlinks,%
     urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, %pagecolor=RoyalBlue,%
     % uncomment the following line if you want to have black links (e.g., for printing)   
@@ -94,7 +94,8 @@
     pdfkeywords={compilation, functional languages, lambda calculus},%
     pdfcreator={pdfLaTeX},%
     pdfproducer={LaTeX with hyperref},%
-    pdfpagelayout=TwoColumnRight%
+    pdfpagelayout=TwoColumnRight%,
+    %pdflang={en-US}%
 }   
 %********************************************************************
 % Hyphenation
@@ -102,6 +103,7 @@
 %\hyphenation{put special hyphenation here}
 
 \usepackage{setspace} % enable \doublespacing
+%\usepackage{hypercap} % make links to floats point to top of float rather than bottom of caption
 
 \begin{document}
 \frenchspacing

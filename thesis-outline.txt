@@ -23,36 +23,33 @@ I. Background
             (i) Front-end; theory of grammars, lexing, parsing, etc.
            (ii) Middle
           (iii) Back-end
-      (b) Intermediate representations
+      (b) Intermediate representations 
+            (and their importance for optimizations)
       (c) Bootstrapping
 
-II. Compiling Imperative Languages
-  A. What Is an Imperative Language
+II. Compiling Imperative Languages (20-30 pp.)
+  A. What Is an Imperative Language (be brief)
     1. Quick History
     2. Examples
     3. Concepts
     4. Problems
-  B. Building the Front End (lexing, parsing)
-  C. Building the Back End
-  D. Optimizing
+  D. Optimizing (main body of chapter)
        Optimizations with examples
 
 III. Compiling Functional Languages
-  A. What Is a Functional Language
-    1. History
-    2. Examples
-    3. Concepts
-    4. Problems
-  B. Theory Fundamental to Functional Programming
+  A. Theory Fundamental to Functional Programming
     1. Lambda calculus
       (a) Untyped
       (b) Typed
     2. Type theory
-  C. Building the Front End
-  D. Building the Back End
-       Abstract machines...
-  E. Optimizing
-       Optimizations with examples
+  B. What Is a Functional Language
+    1. History
+    2. Examples
+    3. Concepts
+    4. Problems
+  C. Case Studies
+    1. OCAML
+    2. GHC
 
 IV. Comparing Imperative and Functional Language Compilation
   A. Comparing Functional and Imperative Languages

@@ -31,6 +31,8 @@ index:
 		latex_count=`expr $$latex_count - 1` ;\
 	fi
 
+all: thesis bib index
+
 clean:
 	for file in `ls thesis.{aux,bbl,blg,brf,idx,ilg,lof,log,lol,lot,out} 2>/dev/null`; \
 		do rm $$file; \
@@ -38,3 +40,7 @@ clean:
 
 open:
 	open thesis.pdf
+
+status:
+	printf "\n\t--- File Status ---\n"; hg status; printf "\n\t--- FIXMEs ---\n"; grep -Ri --color --exclude=Makefile --exclude=*~ fixme .;\
+		printf "\n\t--- TODOs ---\n"; grep -Ri --color --exclude=Makefile --exclude=*~ todo .
