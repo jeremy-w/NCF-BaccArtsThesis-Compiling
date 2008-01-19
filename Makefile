@@ -1,3 +1,6 @@
+simple:
+	pdflatex thesis && open thesis.pdf
+
 thesis:
 	pdflatex thesis
 	latex_count=3 ; \

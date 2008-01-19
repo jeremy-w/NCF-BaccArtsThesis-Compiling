@@ -32,6 +32,8 @@
 \newcommand{\CISCs}{\abbrev{CISC}s\xspace}
 \newcommand{\RISC}{\abbrev{RISC}\xspace}
 \newcommand{\RISCs}{\abbrev{RISC}s\xspace}
+\newcommand{\IR}{intermediate representation\xspace}
+\newcommand{\IRs}{intermediate representations\xspace}
 \newcommand{\FA}{finite automaton\xspace}
 \newcommand{\FAs}{finite automata\xspace}
 \newcommand{\regex}{regular expression\xspace}
@@ -53,7 +55,13 @@
 \newcommand{\emptyword}{\ensuremath{\epsilon}}
 \newcommand{\kstar}{\ensuremath{^{\star}}{}}
 \newcommand{\posclos}{\ensuremath{^{+}}{}}
-\newcommand{\alt}{\ensuremath{+}}
+\newcommand{\alt}{\ensuremath{\mid}}%{\ensuremath{\,\vert\,}}
+\newcommand{\produces}{\ensuremath{\rightarrow}}
+\newcommand{\altproduces}{\ensuremath{::=}}
+\newcommand{\derivesrelay}[1][]{\ensuremath{\xRightarrow[#1]{\DArgTop}}}
+\newcommand{\derives}[1][]{\def\DArgTop{{#1}}\derivesrelay} % S \derives[*][lm] foo
+\newcommand{\token}[1]{\ensuremath{\langle\text{\textit{#1}}\rangle}}
+\newcommand{\where}{\mid}
 
 % Math: Simple abbreviations
 \let\oldprime=\prime
