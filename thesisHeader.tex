@@ -67,6 +67,14 @@
 \newlength{\abcd} % for ab..z string length calculation
 \newcommand{\myfloatalign}{\centering} % how all the floats will be aligned
 \setlength{\extrarowheight}{3pt} % increase table row height
+% TOC - subsubsections
+\renewcommand{\cftsubsubsecpresnum}{\scshape\MakeTextLowercase}%
+\renewcommand{\cftsubsubsecfont}{\itshape}%
+\renewcommand{\cftsubsubsecleader}{\hspace{1.5em}} 
+\renewcommand{\cftsubsubsecafterpnum}{\cftparfillskip}                
+\ifthenelse{\boolean{tocaligned}}{\renewcommand{\cftsubsubsecindent}{0em}}{\relax}
+\setlength{\cftsubsubsecnumwidth}{2em}
+%\cftnodots %doesn't seem to be necessary for some reason...
 % ********************************************************************
 % Captions look and feel
 %*******************************************************

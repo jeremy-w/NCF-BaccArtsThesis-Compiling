@@ -16,7 +16,7 @@
 \newcommand{\code}[1]{\texttt{#1}} %the variable \code{x}
 \newcommand{\foreign}[1]{\textit{#1}} %the \foreign{Entscheidungsproblem}
 \newcommand{\vocab}[2][]{\spacedlowsmallcaps{#2}} %the \vocab{lambda terms} are...
-%\newcommand{\abbrev}[1]{\allcapsspacing{#1}} % introduced unwanted space before
+%\newcommand{\abbrev}[1]{\spacedallcaps{#1}} % too spaced out, interrupts reading
 \newcommand{\abbrev}[1]{#1} % \abbrev{IBM}
 \newcommand{\Deutsch}[1]{\foreign{\begin{otherlanguage}{ngerman}#1\end{otherlanguage}}}
 % Expressing substitution: replace:#1 with:#2 in:#3
@@ -36,11 +36,11 @@
 \newcommand{\RISC}{\abbrev{RISC}\xspace}
 \newcommand{\RISCs}{\abbrev{RISC}s\xspace}
 \newcommand{\FA}{finite automaton\xspace}
-\newcommand{\FAs}{finite automata\xspace}
+\newcommand{\FAs}[1][f]{#1inite automata\xspace} %\FAs[F] -> Finite...; \FAs -> finite...
 \newcommand{\regex}{regular expression\xspace}
 \newcommand{\regexes}{regular expressions\xspace}
 \newcommand{\CFG}{context-free grammar\xspace}
-\newcommand{\CFGs}{context-free grammars\xspace}
+\newcommand{\CFGs}[1][c]{#1ontext-free grammars\xspace}
 \newcommand{\PDA}{pushdown automaton\xspace}
 \newcommand{\PDAs}{pushdown automata\xspace}
 \newcommand{\IR}{intermediate representation\xspace}

@@ -43,18 +43,18 @@ Turing was working expressly to address the \Deutsch{Entscheidungsproblem}. He f
 Turing's machines look very much like a high-level sketch of our modern von~Neumann machines. They consist in a finite control (the program), a read-write head, and an infinitely long tape (the memory). The tape is divided into cells: each cell is either marked with a symbol or blank. The problem instance is written on the tape and the machine started; if it comes to a halt, the state it is in indicates the yea-nay--result of the computation. The final contents of the tape can be used to communicate actual details of the answer: for the decision problem as given above, the final state could be used to indicate that, yes, the input instance is satisfiable, while the tape could contain Boolean values satisfying the equation.
 
 Formally, we can treat a Turing machine as a six-tuple $(Q, \Sigma, B, \delta, q_{0}, F)$:
-\begin{description} % For some reason, uppercase opt args to \item were being lowercased. Protecting didn't work, but \MakeUppercase did. ::shrug::
+\begin{description} % For some reason, uppercase args to \item were being lowercased. Protecting didn't work, but \MakeUppercase did. ::shrug::
 \item[\MakeUppercase{$Q$}] is the finite set of states the control can be in.
 \item[$\Sigma$] is the finite alphabet available for writing the input on the tape.
 \item[\MakeUppercase{$B$}] is a distinguished blank symbol that cannot be part of the input; prior to placing the input on the tape, the tape is nothing but an endless sequence of cells filled with $B$.
-\item[$\delta$] is a state transition function, $\delta\from (\Sigma \union B) \times Q \to (\Sigma \union B) \times Q \times D$, describing how the Turing machine reacts to reading a symbol $\sigma$ in state $q$: %CRIT-FIXME: What about halting as an action?
+\item[$\delta$] is a state transition function, $\delta\from (\Sigma \union B) \times Q \to (\Sigma \union B) \times Q \times D$, describing how the Turing machine reacts to reading a symbol $\sigma$ in state $q$:
 \begin{itemize}
 \item it writes some symbol, either the blank symbol or an input symbol; 
 \item it moves from its current state to some state in $Q$, possibly the same state; and
 \item its head moves some direction, either left $L$ or right $R$ (that is, $D = \set{L, R}$).
 \end{itemize}
 \item[$q_{0}$] is the initial state of the machine.
-\item[\MakeUppercase{$F$}] is the set of \vocab{accepting states}; $F \subset Q$, and if the machine concludes its computation, that is, \vocab{halts} in some state in $F$, this indicates an affirmative answer to the question posed it. %CRIT-FIXME: Clean up def'n of halting using Automata Theory textbook.
+\item[\MakeUppercase{$F$}] is the set of \vocab{accepting states}; $F \subset Q$, and if the machine concludes its computation, that is, \vocab{halts} in some state in $F$, this indicates an affirmative answer to the question posed it. The computation is concluded when the machine can make no further move, which occurs when $\delta(\sigma, q)$ is undefined.\footnote{This makes $\delta$ a partial function. We can restore its totality by introducing the possibility of transitioning to a distinguished \spacedallcaps{HALT} action, but this is not really necessary.}
 \end{description}
 
 In the Turing machines' sequential operation and reliance on changes in their state and data store to perform computation, we find the roots of the imperative paradigm. Even more plain is the resemblance to our modern-day computers. %The finite control of a \TM corresponds to the stored program, while its tape corresponds to memory. But note that the instructions are encoded separately from the data; this is the arrangement that would become known as the \vocab{Harvard architecture,} which would itself become a mere footnote in the history of computing machines. The architecture that eventually came to dominate was the \vocab{von Neumann,} characterized by a single memory where both data and program reside. This, again, has its Turing machine analogue in the \vocab{universal Turing machine,} which accepts as input the description of another Turing machine and data for that machine to operate upon and then simulates the operation of the input machine on the input data.

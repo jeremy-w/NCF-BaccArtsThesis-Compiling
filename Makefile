@@ -45,5 +45,10 @@ open:
 	open thesis.pdf
 
 status:
-	printf "\n\t--- File Status ---\n"; hg status; printf "\n\t--- FIXMEs ---\n"; grep -Ri --color --exclude=Makefile --exclude=*~ fixme .;\
-		printf "\n\t--- TODOs ---\n"; grep -Ri --color --exclude=Makefile --exclude=*~ todo .
+	printf "\n\t--- File Status ---\n"; hg status;\
+	printf "\n\t--- NOTEs ---\n"; grep -R --color --exclude=Makefile --exclude=*~ NOTE .;\
+	printf "\n\t--- TODOs ---\n"; grep -Ri --color --exclude=Makefile --exclude=*~ TODO .;\
+	printf "\n\t--- FIXMEs ---\n"; grep -Ri --color --exclude=Makefile --exclude=*~ FIXME .;\
+
+backup:
+	./misc/thesis-backup.sh
