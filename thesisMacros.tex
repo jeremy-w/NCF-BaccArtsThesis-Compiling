@@ -54,6 +54,20 @@
      }%end-if
 }%end-def
 
+%\BURS[Long]{pl} -> Bottom-up...
+%\BURS[long]{pl} (default) -> bottom-up...
+%\BURS[short]{pl} -> \abbrev{BURS}
+%all are followed by \xspace; pl can also be sg, and represents whether the result is plural or singular. This doesn't matter for the short form.
+\newcommand{\BURS}[2][long]{\ifthenelse{%
+\equal{#1}{long}}{%
+bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
+\ifthenelse{\equal{#1}{Long}}{%
+Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
+\abbrev{BURS}%
+}%close inner if-then-else
+}%close outer if-then-else
+\xspace}%tack on tailing \xspace and close newcommand
+
 % More complex macros
 % Two options for part-and-namerefs. First has problems if hyphenation interferes with the hyperref'd part and also creates too much emphasized text. Second emphasizes (via a link) only the part name.
 %\newcommand{\partandnameref}[2]{\hyperref[#2]{#1}~\ref{#2}, \nameref{#2}}

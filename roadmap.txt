@@ -1,4 +1,5 @@
 Background
+    * Checkpoint 1: Computers *
     Back End
      - Reading all done. Writing begins Wed 6 Feb 2008.
         Introduction !finished 6 Feb
@@ -6,6 +7,7 @@ Background
         Instruction Scheduling !finished 7 Feb
         Register Allocation !finished 8 Feb
     Conclusion, Biblio Refs !finished 8 Feb
+    * Checkpoint 2: Background *
 Imperative => 4-8 days; say 13 Feb 2008 done
      - This is meant to be a rather brief section. Show what the functional is up against. Really more background, but the standard background, here.
     Definition
@@ -18,9 +20,11 @@ Imperative => 4-8 days; say 13 Feb 2008 done
         Examples -> together with Concepts, 1 day
         Concepts - write before examples/with examples, so we can illustrate concepts with examples
         Problems -> 1 day if you include the thinking, maybe
+    * Checkpoint 3: Imperative up to Optimization *
     Optimization -> 1-3 days
         Draw from Engineering a Compiler. Standard targets of optimization, standard analytic frameworks, scopes of analysis and optimization, difficulties.
     Conclusion, Biblio Refs
+    * Checkpoint 4: Imperative Optimization *
 Functional => ~4 weeks total; say 11 March 2008 done
     Theory -> 1 day
          - Use Hudak + Type Theory and FP guy for LC; leave Barendregt on the shelf...
@@ -32,15 +36,28 @@ Functional => ~4 weeks total; say 11 March 2008 done
         History - draw from Hudak's Comp. Surv. article
         Examples - use Haskell, since that's what I know
         Concepts - should this be integrated with the history?
-        Problems - the ``trivial update'' problem, I/O, acceptance and widespread use; problems also for compilation and optimization
+        Problems - the ``trivial update'' problem, I/O, acceptance and widespread use; problems also for compilation and optimization.
+    * Checkpoint 5: Functional up to Case Studies *
     Case Studies -> Give 1 week on top of understanding to turn my notes into something coherent for my thesis
-        OCAML -> Give 1 week to learn OCAML well enough to understand its compiler, 2 at most
         GHC -> Give 1 week to understand GHC
+    * Checkpoint 6: GHC Notes *
+        OCAML -> Give 1 week to learn OCAML well enough to understand its compiler, 2 at most
+    * Checkpoint 7: OCAML Notes *
+    * Checkpoint 8: Functional Case Studies *
     Conclusion, Biblio Refs
 Conclusion -> with Intro, 1 week at most; done during week of Spring Break
     Any Necessary Refs
+    * Checkpoint 9: Functional Conclusion + Overall Conclusion *
 Introduction
+    * Checkpoint 10: Complete Rough Draft *
 
 Massive Editing -> 1-2 weeks, done at the beginning of Mod 2 alongside studying for Bacc
+    * Checkpoint 11: First Draft *
+    - further edits plus making and adding in illustrations
+    * Checkpoint 12: Second Draft + Illustrations *
+    - any last edits of this more complete version
+    * Checkpoint 13: 
 Immediately distribute to committee.
 Then, Bacc...
+    - edit to incorporate suggestions of committee
+    * Checkpoint 13: Library Copy *

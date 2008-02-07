@@ -4,13 +4,40 @@
 \refstepcounter{dummy}
 \pdfbookmark[1]{\contentsname}{tableofcontents}
 %\setcounter{tocdepth}{\subsectionlevel}
-\tableofcontents
+\manualmark
 \markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}} 
+\tableofcontents
+\automark[section]{chapter}
+% REPEATED FROM classicthesis.sty
+% required to get spacedlowsmallcaps section headers
+    \clearscrheadings
+    \setheadsepline{0pt}
+    \ifthenelse{\boolean{nochapters}}%
+        {\relax}%
+        {\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{}}}
+    \renewcommand{\sectionmark}[1]{\markright{\thesection\ \spacedlowsmallcaps{#1}}}
+    \lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
+    \rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
+    \renewcommand{\headfont}{\small}  
+% END REPETITION
 %*******************************************************
-% work-around to have small caps also here in the headline
-% will not work at this place if the TOC has more than 2 pages
-% use \manualmark and then the \markboth as above
-% later a modification of \automark[section]{chapter}
+% The work-around, namely 
+% \markboth{\spacedlowsmallcaps{\contentsname}}%
+%   {\spacedlowsmallcaps{\contentsname}} 
+% following \tableofcontents, in order 
+% to have small caps here in the headline as well as in 
+% the body only affects the last two pages of the TOC. 
+% Once the TOC grows longer than two pages, you must 
+% turn off automatic heading creation before generating 
+% the table of contents by issuing \manualmark and then 
+% specifying \markboth as above. Later, you can return to 
+% automatic heading creation via 
+%     \automark[section]{chapter}
+% corresponding to [right header]{left header}.[*] Do not 
+% forget to restore the heading configuration done in 
+% classicthesis.sty!
+% [*] A one-sided document is considered to have 
+%     only a left header.
 %*******************************************************
 % List of Figures and of the Tables
 %*******************************************************
