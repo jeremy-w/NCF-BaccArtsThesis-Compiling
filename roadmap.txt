@@ -1,0 +1,46 @@
+Background
+    Back End
+     - Reading all done. Writing begins Wed 6 Feb 2008.
+        Introduction !finished 6 Feb
+        Instruction Selection !finished 7 Feb
+        Instruction Scheduling !finished 7 Feb
+        Register Allocation !finished 8 Feb
+    Conclusion, Biblio Refs !finished 8 Feb
+Imperative => 4-8 days; say 13 Feb 2008 done
+     - This is meant to be a rather brief section. Show what the functional is up against. Really more background, but the standard background, here.
+    Definition
+        History (quick! use Prog Lang Pragmatics book) -> 1 long day, 2-3 more reasonable days
+            Goto-based
+            Structured
+            OOP
+            (AOP)
+            Scripting Languages
+        Examples -> together with Concepts, 1 day
+        Concepts - write before examples/with examples, so we can illustrate concepts with examples
+        Problems -> 1 day if you include the thinking, maybe
+    Optimization -> 1-3 days
+        Draw from Engineering a Compiler. Standard targets of optimization, standard analytic frameworks, scopes of analysis and optimization, difficulties.
+    Conclusion, Biblio Refs
+Functional => ~4 weeks total; say 11 March 2008 done
+    Theory -> 1 day
+         - Use Hudak + Type Theory and FP guy for LC; leave Barendregt on the shelf...
+        LC
+        Typed LC
+        Type Theory - just a brief ``it exists, it matters, go elsewhere for details''
+    Definition -> 1 long day, 2 regular at most
+        - Relate to SSA as FP?
+        History - draw from Hudak's Comp. Surv. article
+        Examples - use Haskell, since that's what I know
+        Concepts - should this be integrated with the history?
+        Problems - the ``trivial update'' problem, I/O, acceptance and widespread use; problems also for compilation and optimization
+    Case Studies -> Give 1 week on top of understanding to turn my notes into something coherent for my thesis
+        OCAML -> Give 1 week to learn OCAML well enough to understand its compiler, 2 at most
+        GHC -> Give 1 week to understand GHC
+    Conclusion, Biblio Refs
+Conclusion -> with Intro, 1 week at most; done during week of Spring Break
+    Any Necessary Refs
+Introduction
+
+Massive Editing -> 1-2 weeks, done at the beginning of Mod 2 alongside studying for Bacc
+Immediately distribute to committee.
+Then, Bacc...

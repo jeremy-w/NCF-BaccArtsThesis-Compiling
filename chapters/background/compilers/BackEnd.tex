@@ -1,5 +1,12 @@
 \section{Back End: Generating Target Code}
+The \vocab{back end} is responsible for completing the work of a compiler. It receives the program in some \IR{}, itself might construct various further \IRs of the program, and ultimately produces the final representation, the program in the target language. The \IR expresses a computation in a form understood by the compiler. The back end must take this and express it in the target language. This requires finding translatable units and recording their translation, then sequencing these translations for the best effect. This translation must obey whatever resource limits exist in the target language.
+
+Here, we will focus on an \ISL as the target language. In this setting, the task of choosing how to represent the elements of the \IR in the target language corresponds to instruction selection; ordering the translations corresponds to instruction scheduling; and working within the limits of the target language corresponds to register allocation.\footnote{This is true if the \IR treats all data as being in registers except when it cannot. If the \IR instead leaves all data in memory and moves it into registers for only as long as necessary, then \vocab{register promotion}, which is the process of figuring out what data can be promoted from storage in memory to storage in register and then promoting it, is a better word for what occurs than register allocation. This promotion step is more a matter of taking advantage of the power of the language rather than one of restricting the translation to obey the language's limits. We will discuss register allocation here, but similar techniques apply to register promotion.}
+
+These tasks are not cleanly separated. Choices made in each can (and when they cannot because of particular architectural decisions, they perhaps should) affect the others. The instructions selected to express a particular subcomputation can increase or decrease the demand on registers, which can require instructions be inserted to free up registers for other computations. The introduction of new instructions would strongly suggest that the whole sequence of instructions be rescheduled, which can again introduce problems with register load. Nevertheless, we will discuss them separately, because that is how they are best dealt with.
+
 \subsection{Instruction Selection}
+
 
 \subsection{Instruction Scheduling}
 
