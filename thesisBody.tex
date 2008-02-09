@@ -21,24 +21,24 @@
 \pagenumbering{arabic}
 
 % use \cleardoublepage here to avoid problems with pdfbookmark
-\cleardoublepage\myPart{A Brief Word}
-\include{chapters/introduction/Introduction}
+\cleardoublepage%\myPart{A Brief Word}\label{briefword}
+\include{chapters/introduction/Introduction}\label{introduction}
 
-\cleardoublepage\myPart{Background}
+\cleardoublepage\myPart{Background}\label{background}
 \include{chapters/background/Overview}
 \include{chapters/background/Beginnings}
 \include{chapters/background/Computers}
 \include{chapters/background/Compilers}
 \include{chapters/background/Conclusion}
 
-\cleardoublepage\myPart{Compiling Imperative Languages}
+\cleardoublepage\myPart{Compiling Imperative Languages}\label{imperative}
 %\include{chapters/imperative/Overview}
 %\include{chapters/imperative/ImperativeLangs}
 %\include{chapters/imperative/Optimizing}
 \label{imperative:optimizing}
 %\include{chapters/imperative/Conclusion}
 
-\cleardoublepage\myPart{Compiling Functional Languages}
+\cleardoublepage\myPart{Compiling Functional Languages}\label{functional}
 % begin dummy labels so compilation runs faster:
 \label{functional:theory}
 %\include{chapters/functional/Overview}
@@ -48,7 +48,7 @@
 %\include{chapters/functional/CaseStudies}
 %\include{chapters/functional/Conclusion}
 
-\cleardoublepage\myPart{Comparing Paradigms}
+\cleardoublepage\myPart{Comparing Paradigms}\label{conclusion}
 %\include{chapters/comparison/Overview}
 %\include{chapters/comparison/Languages}
 %\include{chapters/comparison/Compiling}
@@ -56,12 +56,12 @@
 
 % Backmatter
 %\appendix
-%\cleardoublepage\myPart{Appendix}
-%\include{Chapters/Appendix}
+%\cleardoublepage\myPart{Appendices}\label{appendices}
+%\include{Chapters/Appendix}%probably want at least to aggregate all acronyms and initialisms together with their expansions
 %  Note: ifbib and ifidx are declared at the top of thesisHeader.tex
 \ifbib
-\cleardoublepage\include{backmatter/bibliography}
+\cleardoublepage\include{backmatter/bibliography}\label{bibliography}
 \fi
 \ifidx
-\cleardoublepage\include{backmatter/index}
+\cleardoublepage\include{backmatter/index}\label{index}%likely want multiple indices: vocabulary and acronyms, and the rest
 \fi
