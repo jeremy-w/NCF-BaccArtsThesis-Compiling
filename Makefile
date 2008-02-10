@@ -10,29 +10,29 @@ thesis:
 		echo "Rerunning latex..." ;\
 		pdflatex thesis ;\
 		latex_count=`expr $$latex_count - 1` ;\
-	 done
+	done
 
 bib:
 	bibtex thesis
 	pdflatex thesis
 	latex_count=3 ; \
-	while egrep -is '(rerun|undefined references)' thesis.log \
-	then \
+	while egrep -is '(rerun|undefined references)' thesis.log ;\
+	do \
 		echo "Rerunning latex..." ;\
 		pdflatex thesis ;\
 		latex_count=`expr $$latex_count - 1` ;\
-	fi
+	done
 
 index:
 	makeindex thesis
 	pdflatex thesis
 	latex_count=3 ; \
-	while egrep -is '(rerun|undefined references)' thesis.log \
-	then \
+	while egrep -is '(rerun|undefined references)' thesis.log ;\
+	do \
 		echo "Rerunning latex..." ;\
 		pdflatex thesis ;\
 		latex_count=`expr $$latex_count - 1` ;\
-	fi
+	done
 
 all: thesis bib index
 
