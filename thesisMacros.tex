@@ -68,6 +68,10 @@ Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
 }%close outer if-then-else
 \xspace}%tack on tailing \xspace and close newcommand
 
+\newcommand{\Fortran}[1][]{\spacedlowsmallcaps{FORTRAN#1}\xspace}
+\newcommand{\Algol}[1][]{\spacedlowsmallcaps{ALGOL#1}\xspace}
+\newcommand{\Unix}{\spacedlowsmallcaps{UNIX}\xspace}
+
 % More complex macros
 % Two options for part-and-namerefs. First has problems if hyphenation interferes with the hyperref'd part and also creates too much emphasized text. Second emphasizes (via a link) only the part name.
 %\newcommand{\partandnameref}[2]{\hyperref[#2]{#1}~\ref{#2}, \nameref{#2}}

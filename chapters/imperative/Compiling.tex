@@ -1,8 +1,84 @@
 \myChapter{Compiling}\label{imperative:compiling}
-\section{Scopes and Symbols}
+The common overall approach to programming adopted by imperative languages gives rise to common issues in their compilation. A few such issues are scoping, data storage, and common data types such as arrays.
 
-\section{Modules}
+\section{Static and Dynamic Links}
+Static scoping means that the variables of enclosing scopes must be accessible from within their enclosed scopes. It also means that inner scopes must be able to \vocab{mask} or \vocab{shadow} the variables of outer scopes, creating a variable with an identical name in an inner scope that then makes the same-named variable in the outer scope inaccessible from that inner scope.\footnote{Some languages do provide a way to refer unambiguously to variables in enclosing scopes, such as Tcl's \code{upvar} and \code{uplevel}.}
+\begin{lstlisting}[float, caption=Scopes and shadowing]
+int x = 5;
+std::cout << x; // prints 5
+{ /* now in brace-delimited inner scope */
+    int x = 6; // this x masks the outer
+    std::cout << x; // prints 6
+} /* back in outer scope: outer x no longer masked */
+std::cout << x; // prints 5
+\end{lstlisting}
 
-\section{Datatypes}
+We mentioned the use of a symbol table as a form of \IR{}. But a single symbol table cannot cope with this nesting. Instead, \vocab{nested symbol tables} are used. As each block is entered, a new symbol table is created. On leaving, the symbol table is destroyed. This corresponds to the definitions of the inner scope going out of scope.
+
+The different blocks are connected in two ways: statically and dynamically. By statically, we mean lexically, in the textual representation of the source code. By dynamically, we mean at runtime, in the sense that the scope of a called function or other such block nests within that of the caller, regardless of where the block is located statically. The symbol tables are connected in two ways that reflect this distinction, via a \vocab{static link} and a \vocab{dynamic link}. If a variable's definition is not found in the local symbol table, the static link is followed up and that symbol table checked; this process is repeated till there is no enclosing scope, at which point we must conclude the variable is simply undefined. Similarly, when a function is called, its scope is dynamically linked to that of its caller: at the end of the function, control will return to the caller; exiting a function corresponds to returning along the dynamic link.
+
+Object-oriented programming introduces one more kind of link through its class hierarchies. Class hierarchies allow subclasses to inherit the definitions and so state and behavior of their ancestors. Often, this is used to create multiple specializations of a more general class, as might be used to treat the relationship between cars and boats with the more general class of vehicle. The superclass link can be thought of much like an extension of the static link to handle the class structure of object oriented programs.
+
+\section{Stacks, Heaps, and Static Storage}
+Symbol tables hold symbols that allow us to access data. Where should this data be placed? The way inner scopes nest within outer can be seen as analogous to a piling up of definitions. Those on top mask those below; when we leave a scope, we pop it off the stack to reveal the scope below. Data that comes and goes with a scope can then be allocated on a stack. The behavior of functions and their data is similar, as suggested by the use of the dynamic link. Data can be allocated as part of the call stack; once we return to a lower level in the stack, that is, once we return from the function, its local data is no longer needed. Thus, local variables are \vocab{stack-allocated}.
+
+Data whose extent is not related to these ideas, such as that stored in space allocated by the programmer and freed either by the programmer or automatically during garbage collection, cannot be allocated on the stack. Instead, it must be stored safely away till needed later or till we know it is no longer needed. The region where such data is allocated is known as the \vocab{heap}, and such data is said to be \vocab{heap-allocated}.\footnote{This heap has nothing to do with the heap data structure, which is often used to implement priority queues.}
+
+Data that must persist throughout the program's execution is called \vocab{static} and is typically \vocab{statically allocated}. Such data is allocated when the program is initialized and not freed till the program terminates.
+
+Stack-allocated data is handily managed implicitly by the call and return sequence and nesting of scopes, while heap-allocated data can be more troublesome. A typical layout in memory for the stack and heap places their starting points at opposite ends of the space available, so that they both have the most space possible. The total stack and heap size is limited, but neither is arbitrarily limited beyond that, as both grow towards each other from opposite ends of the memory space.
+
+\section{Arrays}
+Arrays are the most common \vocab{compound data type}, so called because they are a data type, array, of some other data type, the base type. An example would be an array of integers, \lstinline|int[] array = {0, 1, 2, 3}|.
+
+With arrays, there are questions of central interest to the programmer, since they are matters of syntax and convenience. How are the elements indexed? Is the first element number 1 or number 0? Can the lower bound be changed? What information is available at runtime about the array, for example, its size, lower bound, or base type?
+
+Then, there are questions that face the compiler writer but are less directly a language user's concern. The most obvious of these is how to lay out a multi-dimensional array in one-dimensional memory. There are three popular approaches, each used by a major programming language. Their names are biased to two-dimensional arrays, but the ideas generalize to higher-dimensional arrays.
+
+\begin{description}
+\item{\vocab{column-major order}} places elements in the same column in adjacent memory locations. This order is used by \Fortran{}.
+
+\item{\vocab{row-major order}} places elements in the same row in adjacent memory locations. This order is used by C.
+
+\item{\vocab{indirection vectors}} use pointers to one-dimensional arrays. This is the approach adopted by Java.
+%TODO: Produce illustration of col-maj, row-maj, ind vecs. Blocks with arrows to the whole thing in line.
+\end{description}
+
+The choice of column-major or row-major order influences which is the best order to traverse an array: traversing a column-major array by row requires jumping through memory, while traversing it by column simply requires advancing steadily, bit by bit through memory. For higher dimensional arrays, row-major means the rightmost index varies fastest, while column-major means the leftmost index varies fastest. Accessing an element is done by arithmetic, which is used to calculate an offset from the \vocab{base address} of the array.
+
+An example should clarify this. Suppose we represent something's address by prefixing an at-sign \code{\&} to it. Say we want to access the element \code{a[3][5][7]} of a $10 \times 10 \times 10$ row-major array of integers where each dimension's lower bound is 0. We calculate its address as an offset from \code{\&a} in terms of the size of an integer $s$ as follows:
+\begin{aenumerate}
+\item Find its offset from the start of the highest dimension. Here, that is the third dimension, and we will call the offset $o_{3}$. We want to know the start of the eighth element, which is the length of seven integers beyond the start of this dimension. Thus, $o_{3} = 7 \cdot s$.
+\item Find where that dimension begins in terms of the start of the next lower. Here, that would be $o_{2}$, and that would place us past five runs of ten integers apiece, since each dimension is ten integers long. Thus, $o_{2} = 5 \cdot 10 \cdot s$.
+\item Repeat the previous step until we run out of lower dimensions. Here, we need only repeat it once more, to find the offset to the start of the second dimension. That is past three runs of ten runs of ten integers apiece, thus, $o_{1} = 3 \cdot 10 \cdot 10 \cdot s$.
+\item Finally, sum all the offsets. This is the offset from the base address. Added to the base address, it gives the address of the desired element. Thus, our element is the $s$ amount of data starting at $\&a[3][5][7] = \&a + o_{1} + o_{2} + o_{3}.$
+\end{aenumerate}
+It is not hard to see how this computation can be simplified:
+\begin{align*}
+\&a[3][5][7] &= \&a + o_{1} + o_{2} + o_{3}\\
+&= \&a + 3 \cdot 10 \cdot 10 \cdot s + 5 \cdot 10 \cdot s + 7 \cdot s\\
+&= \&a + s(7 + 10(5 + 10(3)))
+\end{align*}
+The computation can also be generalized to handle nonzero lower bounds and arrays of more dimensions.
+
+Indirection vectors are similar, but different. Every $n$-dimensional array with $n$ greater than $1$ is simply an array of addresses of arrays representing the $n - 1$ dimension, except the final dimension, which is a 1-dimensional array of the base type. To access \code{a[3][5][7]} as we did above, we would:
+\begin{aenumerate}
+\item Find the address stored at index 3 of the array of addresses.
+\item Dereference that address to access the next dimension. Repeat the previous instruction with the index at that dimension, and so on till we arrive at the last dimension, at which point we proceed by simple one-dimensional array arithmetic to retrieve the value.
+\end{aenumerate}
+If we represent dereferencing by a star \code{*}, then we can write this:
+\begin{lstlisting}[escapechar=!]
+/* a is a multidimensional array's name */
+base = !\&!a;
+b = (*base)[3];
+c = (*b)[5];
+value = (*c) + 7 * sizeof(int); 
+// equivalently, 
+//     value = (*(*((*base)[3])[5])) + 7 * sizeof(int);
+\end{lstlisting}
+
+Indirection vectors replace the cost of array arithmetic with pointer dereferencing. Rather than calculate a complicated offset, they acquire the next needed address directly from a trivial, one-dimensional offset of a known address.%
+%TODO: Expand more on why you might want to select indirection vectors over row/col-major addressing.
 
 \section{Bibliographic Notes}\label{imperative:compiling:notes}
+For further information on these topics, almost any text on compilers will do, though only more recent texts such as \citet{Cooper:Engineering:2004} will discuss issues germane to object-oriented languages.
