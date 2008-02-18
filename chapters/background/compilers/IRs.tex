@@ -1,4 +1,4 @@
-\section{Intermediate Representations}
+\section{Intermediate Representations}\label{background:compilers:irs}
 Translation begins with a source language and ends with a target, but those are rarely the only representations of the program used during compilation. Between the initial representation of the source code input to the compiler and the final representation of the target code output from the compiler, the compiler will use various \vocab{intermediate representations (\abbrev{IR}s)}. These need not resemble either the initial or final representation in the least, and the compiler is not restricted to use only one intermediate representation. Intermediate representations are, in a sense, common, private languages used within and between different parts of a compiler that support the operation of those parts.
 
 The \IRs chosen affect all parts of the compiler, both on the superficial level of simple representation of the code and on the deeper level of how the compiler carries out its translation and even how much the compiler can prove about the runtime behavior of the code to exploit in optimizing it.

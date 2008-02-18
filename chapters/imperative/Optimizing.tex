@@ -1,2 +1,69 @@
 \myChapter{Optimizing}\label{imperative:optimizing}
-\dots
+Our discussion of optimization in \partandnameref{Section}{background:compilers:middle} focused on the variety of properties of a program one might wish to optimize and gave examples such as speed, size, and power consumption and the problem of optimization phase ordering. Now, we will describe how one optimizes a program, along with some examples of common optimizations applied to imperative programs.
+
+Optimization comprises two closely-related tasks: analysis, which gathers the information needed for an optimization, and application of the optimization. Each application of an optimization changes the program, so a single analysis is likely to be repeated several times. Optimizations and their analyses range from being quite generally applicable to being quite specific to the language, even to specific uses of the language. The source code might even be written in order to ease optimization, possibly through annotations with no meaning in the source language but helpful to the optimizer. Program analysis and optimization is a fruitful area of research, with new analyses and optimizations being developed constantly and older ones refined. The details of implementation are specific to each compiler and its chosen \IRs{}; as such, the \IR itself contributes in important ways to optimization. Indeed, \SSA[long] form was developed, and is extensively employed, to ease optimization.\footnote{For more on \SSA{}, see \partandnameref{Section}{background:compilers:irs}.}%
+% TODO: Mention llvm for its use of SSA in bib notes.
+
+\section{Analysis}
+Analysis is integral to optimization. The variety of analyses are often loosely classified based on their subject. Perhaps the broadest class is \vocab{data flow analysis}. It can be distinguished from classes such as \vocab{alias analysis}, which deals with attempting to discover which names in the program refer to the same data (that is, are \vocab[alias]{aliases} for the same data), control flow analysis, and dependence analysis.
+
+\subsection{Control Flow}
+Control flow analysis is necessary to perform almost all other analyses. The aim of control flow analysis is to deduce the control flow relationships between the elements of the \IR{}. In a linear \abbrev{IR}, this makes explicit the sequential flow between adjacent statements as well as that created by jump statements, goto statements, and more structured control flow statements.
+
+There are several approaches to control flow analysis varying in their applicability, speed, and the type of information they provide. Some methods can produce a relatively high-level structural analysis of control flow that recognizes the type of control flow created by the use of structured programming statements such as \code{while}, \code{if-then}, \code{if-then-else}, and \code{case}. Others can do little more than recognize the presence of some sort of loops as opposed to simple sequential control flow.
+
+\subsubsection{Structural Units}
+It is necessary to understand the structure of the control flow graph in order to understand the various scopes of analysis and optimization. The fundamental element of a control flow graph, typically constituting the nodes of the graph, is the \vocab{basic block (BB)}, a maximal sequence of instructions that must be executed from start to finish. This bars the possibility of either entering or exiting from the middle of a basic block, so that, for example, labeled statements can only begin a basic block. Procedure calls are a matter of some delicacy, and whether they are treated as interrupting a basic block or not depends on the purpose of the control flow analysis being performed. They might even be treated in both ways. Delayed branches also introduce problems as to how the instructions in the delay slots should be treated; fortunately, this issue can largely be ignored except for very low-level representations on architectures that make such delays visible.
+
+We say a basic block with more than one predecessor in the control flow graph is a \vocab{join point}, since several flows of control come together in that graph. A basic block with more than one successor is similarly called a \vocab{branch point}. A single basic block can be both a join point and a branch point.
+
+A slightly larger structural unit is the \vocab{extended basic block (EBB)}. Extended basic blocks comprise a rooted control flow subgraph. Its root is a join point. An \abbrev{EBB} is the largest connected set of basic blocks reachable from the join point that are not themselves join points. Thus, if control reaches any of the blocks in the \abbrev{EBB}, it must have gone through the root.
+
+The procedure itself forms the next largest generally recognizable structural unit, though this is defined not in terms of the graph but rather by the program itself. The largest unit is the entire program. In between extended basic blocks and an entire procedure sit regions of various sorts, defined as suitable for different analyses and optimizations.
+
+\subsubsection{Scopes of Analysis and Optimization}
+Corresponding to these structural units are the different scopes of analysis and optimization. These names are used to describe the subgraphs of the control flow graph considered during a given analysis or optimization.
+\begin{description}
+\item[\vocab{local scope}] corresponds to a single basic block.
+\item[\vocab{superlocal scope}] corresponds to a single extended basic block.
+\item[\vocab{regional scope}] corresponds to a region not otherwise specified.
+\item[\vocab{global scope}] (also called \vocab{intraprocedural scope}) corresponds to an entire procedure.
+\item[\vocab{whole-program scope}] is unambiguous; you might sometimes see it called \vocab{interprocedural scope} as well, particularly in the phrase ``interprocedural analysis,'' which describes a variety of often rather intractable analyses.
+\end{description}
+``Global scope'' might appear to be a misnomer for anything less than the entire program, but it is generally preferred to ``intraprocedural analysis,'' since that sounds altogether too much like ''interprocedural analysis.'' Global analysis encompasses a procedure's entire control flow graph; interprocedural analysis must cope with a number control flow graphs, one for each procedure.\footnote{Attempts to introduce ``universal'' as a synonym for ``interprocedural'' as ``global'' is used for ``intraprocedural'' were unsuccessful, but the contrast between the two names might help to remember the distinction.}
+
+\subsection{Data Flow}
+Data flow analysis, together with control flow analysis, is the bread and butter of optimization. It can frequently be performed alongside control flow analysis: both require similar techniques for building and propagating information. Where control flow analysis concerns how basic blocks are related, data flow analysis concerns how various kinds of data are communicated along those relations.
+
+Data flow analyses are posed as data flow problems. An example is the \vocab{reaching definitions problem}: What definitions of a variable could still be in force (\vocab{live}) at the point of a given use of that variable? Similar is the problem of \vocab{upward exposed variables}: Control flow graphs are generally drawn so control flows from top to bottom, and this question asks, what variables must have been defined upward of a given basic block?
+
+These two problems typify two major classes of data flow problems, the \vocab{forward data flow problems}, like reaching definitions, and the \vocab{backward data flow problems}, like upward-exposed variables. These are so called because they require propagating information either forward along the control flow graph's edges or backwards. A third, rarer, and more troublesome class is that of the \vocab{bidirectional data flow problems}. This class is troublesome enough that it is often either not bothered with or reformulated in terms of the other two, as was the case for \vocab{partial-redundance elimination}, which seeks to discover computations of the same value that are performed multiple times along certain paths through the control flow graph.
+
+Data flow analysis is well enough understood that it can be automated in good part by the appropriate tools. This understanding is based theoretically upon \vocab{lattices} and \vocab{flow functions}. Solutions to the problems become the \vocab{fixed points} of properly formulated data flow equations, which can be solved by iteration and, often, several other quicker and more clever methods. %
+%TODO: Discuss lattices and flow functions.
+%TODO: Emphasize conservatism and correctness against aggressiveness.
+
+\subsection{Dependence}
+important for scheduling
+
+\subsection{Alias}
+often a problem in all sorts of ways\empause very subtle
+
+\section{Optimization}
+\subsection{Scale}
+local, regional, global, whole-program
+
+\subsection{Time}
+early, mid, late
+
+\subsection{Examples}
+cse, dead code, hoisting, induction variable elim/linear func test replacement
+
+\section{Bibliographic Notes}
+% TODO: Comment on value of static analysis for more than optimization.
+While \citet[chapters~8--10]{Cooper:Engineering:2004} provides an introduction to analysis and optimization, \citet{Muchnick:Advanced:1997} concerns itself almost exclusively with analysis, optimization, and the construction of a compiler that executes these. It leaves untouched matters of optimizations for parallel architectures and other such optimizations needed by demanding scientific computing programs. For discussion of those issues, it recommends CITE-ME-T, among others CITE-ME-P-SEVERAL.
+
+The \abbrev{LLVM} (Low-Level Virtual Machine) project CITE-ME-P is notable among other things for its extensive use of \SSA form in its compiler architecture. It uses \SSA as its primary representation of the program through most of compilation.
+
+Static analysis is valuable for much more than compile-time optimization. It is necessary for development of advanced \abbrev{IDEs} (interactive development environments), source code style-checking tools, and bug-finding tools, among other things. Static analysis and its many uses is an active topic of research that has led to several commercial ventures, such as Klocwork and \dots.%
+% TODO: Look up other static analysis programs from the SE Radio talk.
