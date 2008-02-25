@@ -47,9 +47,9 @@
 \newcommand{\IRs}{intermediate representations\xspace}
 \newcommand{\AST}{abstract syntax tree\xspace}
 \newcommand{\ASTs}{abstract syntax trees\xspace}
-\newcommand{\SSA}[1][short]{\ifthenelse{\equal {#1}{short}}{%then
+\newcommand{\SSA}[1][short]{\ifthenelse{\equal {#1}{short}}{%then is short - the default
          \spacedlowsmallcaps{SSA}\xspace%this suggests all \abbrev should be in small caps...
-     }{%else
+     }{%else is long
          static single assignment\xspace%
      }%end-if
 }%end-def

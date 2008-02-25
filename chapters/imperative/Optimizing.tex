@@ -39,31 +39,61 @@ Data flow analyses are posed as data flow problems. An example is the \vocab{rea
 
 These two problems typify two major classes of data flow problems, the \vocab{forward data flow problems}, like reaching definitions, and the \vocab{backward data flow problems}, like upward-exposed variables. These are so called because they require propagating information either forward along the control flow graph's edges or backwards. A third, rarer, and more troublesome class is that of the \vocab{bidirectional data flow problems}. This class is troublesome enough that it is often either not bothered with or reformulated in terms of the other two, as was the case for \vocab{partial-redundance elimination}, which seeks to discover computations of the same value that are performed multiple times along certain paths through the control flow graph.
 
-Data flow analysis is well enough understood that it can be automated in good part by the appropriate tools. This understanding is based theoretically upon \vocab{lattices} and \vocab{flow functions}. Solutions to the problems become the \vocab{fixed points} of properly formulated data flow equations, which can be solved by iteration and, often, several other quicker and more clever methods. %
-%TODO: Discuss lattices and flow functions.
-%TODO: Emphasize conservatism and correctness against aggressiveness.
+Data flow analysis is well enough understood that it can be automated in good part by the appropriate tools. This understanding is based theoretically upon \vocab{lattices} and \vocab{flow functions}. Lattices are structured to correspond to the properties of the program under analysis. Flow functions allow us to abstractly model the effect of parts of the representation on those properties. Together, these let us abstractly simulate the effects of executing the program and discover intrinsic properties of the program, frequently independent of input values and control flow. Data flow problems can be posed in terms of these lattices and flow functions. Solutions to the problems become the \vocab{fixed points} of properly formulated data flow equations, which can be solved by iteration and, often, several other quicker and more clever methods. Solvability of such problems can be guaranteed for a variety of flow functions.
+
+An issue that is not dealt with directly by these abstractions is the correctness of transformations based on these analyses. The analysis must be performed with an eye towards the optimizing transformation that will be based on its results. We wish to be as aggressive as possible in optimizing the program, but we cannot be so aggressive that we do not preserve its behavior. In developing and implementing optimizations, we walk a fine line between aggressiveness and conservatism: if we are too conservative in drawing conclusions from our analysis, we will fail to improve the program as much as possible; if we are overly aggressive, we will be unfaithful to the original program, and the results will be something related but different. This dilemma has its parallel in translation: a word-for-word translation is stilted and awkward, but without great care a more natural, fluid translation risks departing from the meaning of the source text.
 
 \subsection{Dependence}
-important for scheduling
+Dependence analysis aims to discover computational dependences of various sorts between the elements of the representation, often the individual statements in a low-level linear representation. It is central to instruction scheduling and is discussed in detail in \partandnameref{Section}{background:compilers:back}.
 
 \subsection{Alias}
-often a problem in all sorts of ways\empause very subtle
+Alias analysis is concerned with determining when and which different names can refer to the same data. The way aliases can be created and used varies greatly from language to language. Alias analysis is often quite difficult. Making the most conservative assumptions possible\empause namely that all data whose addresses have been made available can be affected by any alias in the program\empause can guarantee correctness at the expense of preventing possible optimizations. The cost of these hyperconservative assumptions varies depending on the program. In programs that do not make extensive use of aliases, this assumption might not pose much of a problem. In programs that do use aliases extensively, the assumption could bar almost all optimization. Thus, alias analysis is necessary to creating an aggressively optimizing compiler.
+
+There are two parts to alias analysis: \vocab{alias gathering}, which discovers which variables are aliases and basic information about what data is aliased, and \vocab{alias propagation}, which propagates this information throughout the program and completes the analysis. The propagation phase can be modeled as a data flow problem.
+
+There are a few distinguishable types of alias information. \vocab{may information} describes what may happen but does not always happen. This information must be accounted for and its effects allowed, but it cannot be depended on to occur. \vocab{must information} is information about what must happen. This information is very useful in performing optimizations. Alias information (and the analysis that produces it) can also be \vocab{flow sensitive} and \vocab{flow insensitive}. The flow here is control flow. Flow insensitive analysis is simpler and generally can be performed as several local analyses that are then pieced together to form the whole of the information. Flow sensitive analysis is more difficult, both computationally and conceptually, but also more detailed. It requires understanding and, to some extent, simulating the program's control flow. The combinations of these factors\empause must, may, flow sensitive, and flow insensitive\empause determine how long the analysis takes, the usefulness of the information, and both the optimizations that can be based on the information and the extent of those optimizations.
 
 \section{Optimization}
-\subsection{Scale}
-local, regional, global, whole-program
-
 \subsection{Time}
-early, mid, late
+As discussed above, optimizations can be classified by their scope. They can also be classified by when they are generally applied: early in computation, somewhere in the middle, or later. Time generally corresponds to the level of abstraction of the program representation. Early on, the representation is much closer to the source language than later, when it generally becomes much closer to assembly language.
 
 \subsection{Examples}
-cse, dead code, hoisting, induction variable elim/linear func test replacement
+We will now give several examples of optimizations. We will name the optimization, briefly describe it, and then give an example of some source language code, its representation as a control flow graph in \SSA form, the transformed graph, and the resulting code.
+\paragraph{Common Subexpression Elimination}
+There are several varieties of common subexpression elimination depending on the scope and approach. They all have the aim of avoiding redundant computation by reusing existing values.
+
+\paragraph{Dead and Useless Code Elimination}
+This optimization is easy to describe, though in practice it ends up being applied in a variety of cases. It simplifies the representation, which speeds the following analyses and transformations. It is commonly run many times during compilation. It aims to eliminate code that is \vocab{useless}, that is, that computes a result no longer used, and code that is \vocab{dead} or unreachable. Dead and useless code can be the result of textual substitution as done by the C preprocessor in expanding macros or the result of other optimizations eliminating all uses of a definition or all statements in a block.
+%\begin{figure}[bth]
+%\caption{Dead and Useless Code Elimination}
+%\myfloatalign
+%\subfloat[Source code]{%
+%
+%}
+%\subfloat[Control flow graph]{%
+%
+%}
+%\subfloat[Transformed graph]{%
+%
+%}
+%\subfloat[Transformed code]{%
+%
+%}
+%\end{figure}
+
+\paragraph{Code Hoisting}
+Code hoisting is so-called because it corresponds visually to lifting a computation up in the control flow graph, which is usually drawn so that control flows from top to bottom. Rather than specifying that a computation occur in all branches of an extended basic block, we might be able to hoist the computation up to the common ancestor of all those blocks so that it is specified only once. This reduces code size. Code hoisting is a type of \vocab{code motion}.
+
+%\paragraph{Partial Redundancy Elimination}
+%Partial redundancy elimination is closely related to code hoisting. A computation is partially redundant if it is computed along more than one path through the control flow graph but not all. One way of carrying out partial redundancy elimination is \vocab{lazy code motion}, where the laziness comes out in its attempt to postpone inserting instructions till as late as possible. Lazy code motion 
+
+\paragraph{Loop Unswitching}
+Here, switching refers to if-then-else control flow or, more generally, switch\dots{}case control flow. When this occurs within the loop, the switching occurs with each passage through the loop. If the condition determining which case of the switch is executed is loop invariant, then we can move the switch to surround the loop and then duplicate the loop within each case. Then the switch is encountered only once, when we select which variety of the loop to use. This trades code size against execution speed: there are fewer branches, so the code will run faster, but the loop body must be repeated in each case.
+%I guess we're not doing induction variable elim/linear func test replacement any more.
 
 \section{Bibliographic Notes}
-% TODO: Comment on value of static analysis for more than optimization.
-While \citet[chapters~8--10]{Cooper:Engineering:2004} provides an introduction to analysis and optimization, \citet{Muchnick:Advanced:1997} concerns itself almost exclusively with analysis, optimization, and the construction of a compiler that executes these. It leaves untouched matters of optimizations for parallel architectures and other such optimizations needed by demanding scientific computing programs. For discussion of those issues, it recommends CITE-ME-T, among others CITE-ME-P-SEVERAL.
+While \citet[chapters~8--10]{Cooper:Engineering:2004} provides an introduction to analysis and optimization, \citet{Muchnick:Advanced:1997} concerns itself almost exclusively with analysis, optimization, and the construction of a compiler that executes these. (This chapter is heavily indebted to both books.) It leaves untouched matters of optimizations for parallel architectures and other such optimizations needed by demanding scientific computing programs. For discussion of those issues, it recommends \citet{Bannerjee:Dependence:1988,Bannerjee:Loop:1993,Bannerjee:Loop:1994,Wolfe:High-Performance:1996} and \citet{Zima:Supercompilers:1991}.
 
-The \abbrev{LLVM} (Low-Level Virtual Machine) project CITE-ME-P is notable among other things for its extensive use of \SSA form in its compiler architecture. It uses \SSA as its primary representation of the program through most of compilation.
+The \abbrev{LLVM} (Low-Level Virtual Machine) project \citep{Lattner:LLVM:2002} is notable among other things for its extensive use of \SSA form in its compiler architecture. It uses \SSA as its primary representation of the program through most of compilation.
 
-Static analysis is valuable for much more than compile-time optimization. It is necessary for development of advanced \abbrev{IDEs} (interactive development environments), source code style-checking tools, and bug-finding tools, among other things. Static analysis and its many uses is an active topic of research that has led to several commercial ventures, such as Klocwork and \dots.%
-% TODO: Look up other static analysis programs from the SE Radio talk.
+Static analysis is valuable for much more than compile-time optimization. It is necessary for development of advanced \abbrev{IDEs} (interactive development environments), source code style-checking tools, and bug-finding tools, among other things. Static analysis and its many uses is an active topic of research that has led to several commercial ventures, such as Klocwork,\footnote{\url{http://www.klocwork.com/}} Coverity,\footnote{\url{http://www.coverity.com/}} and Fortify,\footnote{\url{http://www.fortifysoftware.com/}} as well as open-source research projects seeing industrial use such as Findbugs~\citep{Hovemeyer:Finding:2004}.
