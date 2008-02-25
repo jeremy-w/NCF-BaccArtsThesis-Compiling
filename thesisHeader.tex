@@ -75,14 +75,18 @@
 \ifthenelse{\boolean{tocaligned}}{\renewcommand{\cftsubsubsecindent}{0em}}{\relax}
 \setlength{\cftsubsubsecnumwidth}{2em}
 %\cftnodots %doesn't seem to be necessary for some reason...
+
 % ********************************************************************
 % Captions look and feel
 %*******************************************************
 \captionsetup{format=hang,font=small}
+
 % ********************************************************************
-% Where to look for graphics
+% Graphics
 %*******************************************************
 %\graphicspath{{gfx/}{misc/}} % considered harmful according to l2tabu
+\usepackage[all]{xy} % for drawing diagrams
+
 % ********************************************************************
 % Hyperreferences
 %*******************************************************
@@ -105,13 +109,28 @@
     pdfpagelayout=TwoColumnRight%,
     %pdflang={en-US}%
 }   
+
+%\usepackage{hypercap} % make links to floats point to top of float rather than bottom of caption; similar package hypcap already loaded by loadpackages.sty: which is better?
+
 %********************************************************************
 % Hyphenation
 %*******************************************************
 %\hyphenation{put special hyphenation here}
 
+%********************************************************************
+% Line Spacing
+%*******************************************************
 \usepackage{setspace} % enable \doublespacing
-%\usepackage{hypercap} % make links to floats point to top of float rather than bottom of caption
+
+%********************************************************************
+% Inclusion Control
+%*******************************************************
+% List those files out of all \include'd that should actually be included.
+% (You will want to comment this section out to get a full draft.)
+\includeonly{%
+frontmatter/contents,%
+chapters/imperative/Optimizing%
+}
 
 \begin{document}
 \frenchspacing

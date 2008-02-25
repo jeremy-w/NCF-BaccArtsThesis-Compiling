@@ -1,8 +1,7 @@
 \myChapter{Optimizing}\label{imperative:optimizing}
 Our discussion of optimization in \partandnameref{Section}{background:compilers:middle} focused on the variety of properties of a program one might wish to optimize and gave examples such as speed, size, and power consumption and the problem of optimization phase ordering. Now, we will describe how one optimizes a program, along with some examples of common optimizations applied to imperative programs.
 
-Optimization comprises two closely-related tasks: analysis, which gathers the information needed for an optimization, and application of the optimization. Each application of an optimization changes the program, so a single analysis is likely to be repeated several times. Optimizations and their analyses range from being quite generally applicable to being quite specific to the language, even to specific uses of the language. The source code might even be written in order to ease optimization, possibly through annotations with no meaning in the source language but helpful to the optimizer. Program analysis and optimization is a fruitful area of research, with new analyses and optimizations being developed constantly and older ones refined. The details of implementation are specific to each compiler and its chosen \IRs{}; as such, the \IR itself contributes in important ways to optimization. Indeed, \SSA[long] form was developed, and is extensively employed, to ease optimization.\footnote{For more on \SSA{}, see \partandnameref{Section}{background:compilers:irs}.}%
-% TODO: Mention llvm for its use of SSA in bib notes.
+Optimization comprises two closely-related tasks: analysis, which gathers the information needed for an optimization, and application of the optimization. Each application of an optimization changes the program, so a single analysis is likely to be repeated several times. Optimizations and their analyses range from being quite generally applicable to being quite specific to the language, even to specific uses of the language. The source code might even be written in order to ease optimization, possibly through annotations with no meaning in the source language but helpful to the optimizer. Program analysis and optimization is a fruitful area of research, with new analyses and optimizations being developed constantly and older ones refined. The details of implementation are specific to each compiler and its chosen \IRs{}; as such, the \IR itself contributes in important ways to optimization. Indeed, \SSA[long] form was developed, and is extensively employed, to ease optimization.\footnote{For more on \SSA{}, see \partandnameref{Section}{background:compilers:irs}.}
 
 \section{Analysis}
 Analysis is integral to optimization. The variety of analyses are often loosely classified based on their subject. Perhaps the broadest class is \vocab{data flow analysis}. It can be distinguished from classes such as \vocab{alias analysis}, which deals with attempting to discover which names in the program refer to the same data (that is, are \vocab[alias]{aliases} for the same data), control flow analysis, and dependence analysis.
@@ -58,37 +57,44 @@ There are a few distinguishable types of alias information. \vocab{may informati
 As discussed above, optimizations can be classified by their scope. They can also be classified by when they are generally applied: early in computation, somewhere in the middle, or later. Time generally corresponds to the level of abstraction of the program representation. Early on, the representation is much closer to the source language than later, when it generally becomes much closer to assembly language.
 
 \subsection{Examples}
-We will now give several examples of optimizations. We will name the optimization, briefly describe it, and then give an example of some source language code, its representation as a control flow graph in \SSA form, the transformed graph, and the resulting code.
+We will now give several examples of optimizations. We will name the optimization, briefly describe it, and then give an example of some source language code. Where useful, we will give its representation as a control flow graph in \SSA form and the transformed graph. We conclude by showing the results of the optimization as transformed source code.
 \paragraph{Common Subexpression Elimination}
-There are several varieties of common subexpression elimination depending on the scope and approach. They all have the aim of avoiding redundant computation by reusing existing values.
+There are several varieties of common subexpression elimination depending on the scope and approach. They all have the aim of avoiding redundant computation by reusing existing values. Common subexpression elimination can be usefully applied both early and late in compilation.
+
+Listings \ref{optimizing:cse:before} and \ref{optimizing:cse:after} provide a simple example of common subexpression elimination. The initial assignments of both \code{i} and \code{j} require the computation of \code{a * b}. Common subexpression elimination will factor out this computation into a temporary value so that it need only be computed once. Notice that common subexpression elimination tends to increase register pressure since the common subexpressions require storage must be stored.
+
+\lstinputlisting[float=p,caption={Common subexpression elimination: Source code},label=optimizing:cse:before]{chapters/imperative/examples/cseBefore}
+
+\lstinputlisting[float=p,caption={Common subexpression elimination: Transformed code},label=optimizing:cse:after]{chapters/imperative/examples/cseAfter}
 
 \paragraph{Dead and Useless Code Elimination}
 This optimization is easy to describe, though in practice it ends up being applied in a variety of cases. It simplifies the representation, which speeds the following analyses and transformations. It is commonly run many times during compilation. It aims to eliminate code that is \vocab{useless}, that is, that computes a result no longer used, and code that is \vocab{dead} or unreachable. Dead and useless code can be the result of textual substitution as done by the C preprocessor in expanding macros or the result of other optimizations eliminating all uses of a definition or all statements in a block.
-%\begin{figure}[bth]
-%\caption{Dead and Useless Code Elimination}
-%\myfloatalign
-%\subfloat[Source code]{%
-%
-%}
-%\subfloat[Control flow graph]{%
-%
-%}
-%\subfloat[Transformed graph]{%
-%
-%}
-%\subfloat[Transformed code]{%
-%
-%}
-%\end{figure}
+
+The following example (see listings~\ref{optimizing:deadcode:before} and~\ref{optimizing:deadcode:after}) is a very artificial example in C. Code portability is often achieved in C by writing suitable preprocessor macros that are then configured based on the environment in which the code is compiled. Environment-dependent code that cannot be dealt with abstractly through macros is included conditional on other macros representing the platform. The preprocessor's conditional statements are normally used to selectively include code for compilation by the compiler as opposed to the conditional statements of the language. Here, we instead use the C language's conditional statements to include code. This results in dead and useless code that would be removed by dead and useless code elimination.
+
+\lstinputlisting[float=p,caption={Dead and useless code elimination: Source code},label=optimizing:deadcode:before]{chapters/imperative/examples/deadBefore}
+
+\lstinputlisting[float=p,caption={Dead and useless code elimination: Transformed code},label=optimizing:deadcode:after]{chapters/imperative/examples/deadAfter}
 
 \paragraph{Code Hoisting}
-Code hoisting is so-called because it corresponds visually to lifting a computation up in the control flow graph, which is usually drawn so that control flows from top to bottom. Rather than specifying that a computation occur in all branches of an extended basic block, we might be able to hoist the computation up to the common ancestor of all those blocks so that it is specified only once. This reduces code size. Code hoisting is a type of \vocab{code motion}.
+Code hoisting is so called because it corresponds visually to lifting a computation up in the control flow graph, which is usually drawn so that control flows from top to bottom. Rather than specifying that a computation occur in all branches of an extended basic block, we might be able to hoist the computation up to the common ancestor of all those blocks so that it is specified only once. This reduces code size. Code hoisting is a type of \vocab{code motion}.
+
+Listings \ref{optimizing:hoisting:before} and \ref{optimizing:hoisting:after} provide a trivial example. As with other such examples, it is likely the programmer would perform such a painfully obvious optimization in the source code. Nevertheless, it is instructive. The computation of \code{x}, which occurs in all branches of the switch\dots{}case statement, is hoisted from the cases to before the switch.
+
+\lstinputlisting[float=p,caption={Code hoisting: Source code},label=optimizing:hoisting:before]{chapters/imperative/examples/hoistingBefore}
+
+\lstinputlisting[float=p,caption={Code hoisting: Transformed code},label=optimizing:hoisting:after]{chapters/imperative/examples/hoistingAfter}
 
 %\paragraph{Partial Redundancy Elimination}
 %Partial redundancy elimination is closely related to code hoisting. A computation is partially redundant if it is computed along more than one path through the control flow graph but not all. One way of carrying out partial redundancy elimination is \vocab{lazy code motion}, where the laziness comes out in its attempt to postpone inserting instructions till as late as possible. Lazy code motion 
 
 \paragraph{Loop Unswitching}
 Here, switching refers to if-then-else control flow or, more generally, switch\dots{}case control flow. When this occurs within the loop, the switching occurs with each passage through the loop. If the condition determining which case of the switch is executed is loop invariant, then we can move the switch to surround the loop and then duplicate the loop within each case. Then the switch is encountered only once, when we select which variety of the loop to use. This trades code size against execution speed: there are fewer branches, so the code will run faster, but the loop body must be repeated in each case.
+
+\lstinputlisting[float=p,caption={Loop unswitching: Source code},label=optimizing:unswitching:before]{chapters/imperative/examples/unswitchingBefore}
+
+\lstinputlisting[float=p,caption={Loop unswitching: Transformed code},label=optimizing:unswitching:after]{chapters/imperative/examples/unswitchingAfter}
+
 %I guess we're not doing induction variable elim/linear func test replacement any more.
 
 \section{Bibliographic Notes}
