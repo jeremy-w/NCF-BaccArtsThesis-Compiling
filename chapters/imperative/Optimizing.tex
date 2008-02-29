@@ -57,7 +57,7 @@ There are a few distinguishable types of alias information. \vocab{may informati
 As discussed above, optimizations can be classified by their scope. They can also be classified by when they are generally applied: early in computation, somewhere in the middle, or later. Time generally corresponds to the level of abstraction of the program representation. Early on, the representation is much closer to the source language than later, when it generally becomes much closer to assembly language.
 
 \subsection{Examples}
-We will now give several examples of optimizations. We will name the optimization, briefly describe it, and then give an example of some source language code. Where useful, we will give its representation as a control flow graph in \SSA form and the transformed graph. We conclude by showing the results of the optimization as transformed source code.
+We will now give several examples of optimizations. We will name the optimization, briefly describe it, and then give an example of some source language code. We then demonstrate the results of the optimization as transformed source code and provide a description of the transformations performed.
 \paragraph{Common Subexpression Elimination}
 There are several varieties of common subexpression elimination depending on the scope and approach. They all have the aim of avoiding redundant computation by reusing existing values. Common subexpression elimination can be usefully applied both early and late in compilation.
 
@@ -70,7 +70,7 @@ Listings \ref{optimizing:cse:before} and \ref{optimizing:cse:after} provide a si
 \paragraph{Dead and Useless Code Elimination}
 This optimization is easy to describe, though in practice it ends up being applied in a variety of cases. It simplifies the representation, which speeds the following analyses and transformations. It is commonly run many times during compilation. It aims to eliminate code that is \vocab{useless}, that is, that computes a result no longer used, and code that is \vocab{dead} or unreachable. Dead and useless code can be the result of textual substitution as done by the C preprocessor in expanding macros or the result of other optimizations eliminating all uses of a definition or all statements in a block.
 
-The following example (see listings~\ref{optimizing:deadcode:before} and~\ref{optimizing:deadcode:after}) is a very artificial example in C. Code portability is often achieved in C by writing suitable preprocessor macros that are then configured based on the environment in which the code is compiled. Environment-dependent code that cannot be dealt with abstractly through macros is included conditional on other macros representing the platform. The preprocessor's conditional statements are normally used to selectively include code for compilation by the compiler as opposed to the conditional statements of the language. Here, we instead use the C language's conditional statements to include code. This results in dead and useless code that would be removed by dead and useless code elimination.
+The example in listings~\ref{optimizing:deadcode:before} and~\ref{optimizing:deadcode:after} is a very artificial example in C. Code portability is often achieved in C by writing suitable preprocessor macros that are then configured based on the environment in which the code is compiled. Environment-dependent code that cannot be dealt with abstractly through macros is included conditional on other macros representing the platform. The preprocessor's conditional statements are normally used to selectively include code for compilation by the compiler as opposed to the conditional statements of the language. Here, we instead use the C language's conditional statements to include code. This results in dead and useless code that would be removed by dead and useless code elimination, as shown in the transformed code.
 
 \lstinputlisting[float=p,caption={Dead and useless code elimination: Source code},label=optimizing:deadcode:before]{chapters/imperative/examples/deadBefore}
 
@@ -79,17 +79,23 @@ The following example (see listings~\ref{optimizing:deadcode:before} and~\ref{op
 \paragraph{Code Hoisting}
 Code hoisting is so called because it corresponds visually to lifting a computation up in the control flow graph, which is usually drawn so that control flows from top to bottom. Rather than specifying that a computation occur in all branches of an extended basic block, we might be able to hoist the computation up to the common ancestor of all those blocks so that it is specified only once. This reduces code size. Code hoisting is a type of \vocab{code motion}.
 
-Listings \ref{optimizing:hoisting:before} and \ref{optimizing:hoisting:after} provide a trivial example. As with other such examples, it is likely the programmer would perform such a painfully obvious optimization in the source code. Nevertheless, it is instructive. The computation of \code{x}, which occurs in all branches of the switch\dots{}case statement, is hoisted from the cases to before the switch.
+Listings~\ref{optimizing:hoisting:before} and \ref{optimizing:hoisting:after} provide a trivial example. As with other such examples, it is likely the programmer would perform such a painfully obvious optimization in the source code. Nevertheless, it is instructive. The computation of \code{x}, which occurs in all branches of the switch\dots{}case statement, is hoisted from the cases to before the switch. You can see this hoisting visually in terms of the corresponding control flow graphs in Fig.~\ref{optimizing:hoisting:cfgs}.
 
 \lstinputlisting[float=p,caption={Code hoisting: Source code},label=optimizing:hoisting:before]{chapters/imperative/examples/hoistingBefore}
 
 \lstinputlisting[float=p,caption={Code hoisting: Transformed code},label=optimizing:hoisting:after]{chapters/imperative/examples/hoistingAfter}
+
+\input{chapters/imperative/examples/hoistingCfgs}
 
 %\paragraph{Partial Redundancy Elimination}
 %Partial redundancy elimination is closely related to code hoisting. A computation is partially redundant if it is computed along more than one path through the control flow graph but not all. One way of carrying out partial redundancy elimination is \vocab{lazy code motion}, where the laziness comes out in its attempt to postpone inserting instructions till as late as possible. Lazy code motion 
 
 \paragraph{Loop Unswitching}
 Here, switching refers to if-then-else control flow or, more generally, switch\dots{}case control flow. When this occurs within the loop, the switching occurs with each passage through the loop. If the condition determining which case of the switch is executed is loop invariant, then we can move the switch to surround the loop and then duplicate the loop within each case. Then the switch is encountered only once, when we select which variety of the loop to use. This trades code size against execution speed: there are fewer branches, so the code will run faster, but the loop body must be repeated in each case.
+
+In listing~\ref{optimizing:unswitching:before}, we find a loop with a nested if-then-else statement. If we assume that \code{warnlevel} remains unchanged throughout the loop, then we would, each time we go through the loop, have to test \code{warnlevel} in order to select the same, still appropriate branch. Listing~\ref{optimizing:unswitching:after} shows the results of applying loop unswitching to the code in listing~\ref{optimizing:unswitching:before}. The branch is now selected prior to looping, which eliminates many tests and jumps.
+
+Note how loop unswitching obscures the basic intent of the code, namely, "tell everyone on the team a certain message depending on the current \code{warnlevel}," and reduplicates the code governing control flow (the for-loop header). If the programmer were to apply loop unswitching manually to the source code in this case, obscuring the code's purpose would harm its long-term maintainability, and reduplicating the control flow code introduces the opportunity of updating it in one branch but failing to update it it in the other. Thus, it is inadvisable for the programmer to manually perform this optimization. Since the execution time saved by unswitching the loop could be significant, it is important that the compiler perform this optimization.
 
 \lstinputlisting[float=p,caption={Loop unswitching: Source code},label=optimizing:unswitching:before]{chapters/imperative/examples/unswitchingBefore}
 

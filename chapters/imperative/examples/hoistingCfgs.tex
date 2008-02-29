@@ -1,0 +1,36 @@
+\begin{figure}[p]%
+\myfloatalign%
+\caption{Code hoisting: Control flow graphs}%
+\label{optimizing:hoisting:cfgs}%
+\captionsetup{position=top}%
+\subfloat[Source code]{\xymatrix @C=0.075in {%
+&*+[F]\txt{begin} \ar[d]\\
+&*+[F]\txt{\lstinline{int x, y, j;}\\\lstinline{j = . . .;}} \ar[d]\\
+&*+[F]\txt{\lstinline{switch (j)}} 
+\ar[dl]_*+{\txt{\lstinline{case 0:}}}
+\ar[d]|-*+{\txt{\lstinline{case 1:}}}
+\ar[dr]^*+{\txt{\lstinline{default:}}}
+\\
+*+[F]\txt{\lstinline{x = 42;}\\\lstinline{y = 1;}} \ar[dr] &%
+*+[F]\txt{\lstinline{x = 42;}\\\lstinline{y = 2;}} \ar[d] &%
+*+[F]\txt{\lstinline{x = 42;}\\\lstinline{y = 3;}} \ar[dl]\\
+&*+[F]\txt{end}
+}%end xymatrix
+}%end subfloat
+\qquad%
+\subfloat[Transformed code]{\xymatrix @C=0.075in {%
+&*+[F]\txt{begin} \ar[d]\\
+&*+[F]\txt{\lstinline{int x, y, j;}\\\lstinline{j = . . .;}\\
+\lstinline{x = 42;}} \ar[d]\\
+&*+[F]\txt{\lstinline{switch (j)}} 
+\ar[dl]_*+{\txt{\lstinline{case 0:}}}
+\ar[d]|-*+{\txt{\lstinline{case 1:}}}
+\ar[dr]^*+{\txt{\lstinline{default:}}}
+\\
+*+[F]\txt{\lstinline{y = 1;}} \ar[dr] &%
+*+[F]\txt{\lstinline{y = 2;}} \ar[d] &%
+*+[F]\txt{\lstinline{y = 3;}} \ar[dl]\\
+&*+[F]\txt{end}
+}%end xymatrix
+}%end subfloat
+\end{figure}

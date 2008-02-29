@@ -1,0 +1,9 @@
+#include "location.h"
+#include "transport.h"
+#include "platformConfig.h"
+Transport deliveryMethod;
+Location from = location_getHere();
+Location to = location_getThere();
+/* useless code eliminated */
+deliveryMethod = wormhole_open();
+/* dead code eliminated */

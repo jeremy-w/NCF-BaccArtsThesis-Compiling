@@ -1,0 +1,16 @@
+#include "location.h"
+#include "transport.h"
+#include "platformConfig.h"
+Transport deliveryMethod;
+Location from = location_getHere();
+Location to = location_getThere();
+deliveryMethod = transport_nextDayAir;
+/* Suppose platformConfig.h SUPPORTS_WORMHOLES is false,
+ * SUPPORTS_FTL is true. */
+if (SUPPORTS_WORMHOLES) {
+    deliveryMethod = wormhole_open();
+    /* this renders the earlier definition of deliveryMethod useless */
+} else if (SUPPORTS_FTL) {
+    /* this branch can never execute, so it is dead */
+    deliveryMethod = ftl_getShip();
+}
