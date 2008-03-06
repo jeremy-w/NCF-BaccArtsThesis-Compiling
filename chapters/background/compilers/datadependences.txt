@@ -1,0 +1,4 @@
+rx := 4
+ry := rx + 1
+rz := rx $\times$ 5
+rx := 5

@@ -1,0 +1,70 @@
+\begin{figure}[btp]%
+\myfloatalign%
+\label{lexing:fafigs}%
+\caption[Specifying \abbrev{FA} states and functions: Figures]{%
+Specifying \abbrev{FA} states and functions: Figures\\
+These transition diagrams present the same information as the tables of Fig.~\ref{lexing:fatables}. They represent three \FAs recognizing the language $(a \alt b)\kstar b$.}%
+\captionsetup{position=top}%
+\SelectTips{eu}{10}
+\entrymodifiers={++[o][F-]}
+\subfloat[Deterministic]{%
+\label{lexing:dfafig}
+\xymatrix{% 3 by 3 matrix
+% row 1: empty for arrows
+*{} & *{} & *{} \\
+% row 2: start, 0, 1 
+*{\bullet} \ar[r]^<*+{\text{start}} &
+0   \ar[r]^{b}
+    \ar@(r,u)[]_{a}&
+*+++[o][F=]{1} 
+    \ar@(r,u)[]_{b}
+    \ar@/^1pc/[l]^{a}\\
+% row 3: empty for arrows
+*{} & *{} & *{} \\
+}%end xymatrix
+}%end subfloat
+\qquad
+\subfloat[Non-Deterministic]{%
+\label{lexing:nfafig}
+\xymatrix{% 2 by 3 matrix
+% row 1: empty for arrows
+*{} & *{} & *{} \\
+% row 2: start, 0, 1
+*{\bullet} \ar[r]^<*+{\text{start}} &
+0   \ar[r]^{b}
+    \ar@(ur,ul)[]_{a,\,b}&
+*+++[o][F=]{1}
+}%end xymatrix
+}%end subfloat
+\qquad
+\subfloat[\emptyword--Non-Deterministic]{%
+\label{lexing:enfafig}
+\xymatrix @R=0.5pc {% 4 by 8 matrix
+% row 1 is empty except for arrows passing through
+*{} & *{} & *{} & *{} & *{} & *{} & *{} & *{} \\ 
+% row 2: 3 blanks, state 2, state 4, three more blanks
+*{} & *{} & *{} &
+2   \ar[r]^{a}  &
+4   \ar[dr]^{\emptyword} &
+*{} & *{} & *{} \\
+% row 3: start, 0, 1, blank, blank, 6, 7, 8
+*{\bullet} \ar[r]^<*+{\text{start}} &
+0   \ar[r]^{\emptyword} &
+1   \ar[ur]^{\emptyword}
+    \ar[dr]_{\emptyword} &
+*{} &  
+*{} &
+6   \ar[r]^{\emptyword} 
+    \ar `u/20pt[uul]
+        `[lll]_{\emptyword}
+         [lll]&
+7   \ar[r]^{b} &
+*+++[o][F=]{8} \\
+% row 4: three blanks, 3, 5, three blanks
+*{} & *{} & *{} &
+3   \ar[r]_{b}  &
+5   \ar[ur]_{\emptyword} &
+*{} & *{} & *{}
+}%end xymatrix
+}%end subfloat
+\end{figure}

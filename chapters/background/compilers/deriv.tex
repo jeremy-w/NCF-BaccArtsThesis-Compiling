@@ -1,0 +1,65 @@
+\begin{figure}[btp]
+\caption[Growing a parse tree]{Growing a parse tree\\
+These figures represent the construction of a parse tree corresponding to the leftmost derivation of $aabb$ given in \eqref{syntax:deriv}. The non-terminal chosen in step \ref{parsetree:construction:choose} is underlined, and we have labeled the arrows between trees with the chosen production.}
+\label{syntax:parsetree}
+\myfloatalign
+\SelectTips{eu}{10}
+\begin{xy}
+\entrymodifiers={++}
+\xymatrix @C=1.2em @R=1.2em {
+% Description:
+% This matrix is of four trees each 3 by 5 with a middle buffer col.The whole matrix is 6 by 11.
+% The spacing in the source code is an attempt to make this sort of readable. I don't know that it helped.
+% The dotted arrows between the framed trees have been tweaked to leave a decent buffer between the arrows and the frames.
+% The row and column spacing was tweaked to match the textarea fairly well.
+%
+%Columns:
+%1  2   3   4   5   6   7   8   9   10  11
+%Row 1: frame top ul and ur trees, set roots
+%ul:
+\save[].[ddrrrr]*[F]\frm{}\restore%frame ul tree
+    &   &{\underline{S}}  &   &   &   &
+%ur:
+\save[].[ddrrrr]*[F]\frm{}\restore%frame ur tree
+                            &   &S
+\ar[dll]\ar[dl]\ar[dr]\ar[drr]%connect root to children
+                                    &   &   \\
+%Row 2: dotted arrow between ul and ur trees, first derivation
+%ul:
+    &   &   &   &
+\ar @{-->} []+<0.95em,0em> ; [rr] ^(0.4){S \produces aABb} 
+%ur:
+                    &   &a  &{\underline{A}}  &   &B  &b  \\
+%Row 3: dotted arrow between ur and ll trees
+    &   &   &   &   &   &
+\ar @{-->} []-<0.75em,0.75em> ; [dll]+<0.75em,0.75em> _(0.4){A \produces a}
+                            &   &   &   &   \\
+%Row 4:
+%bl:
+\save[].[ddrrrr]*[F]\frm{}\restore%frame bl tree
+    &   &S
+\ar[dll]\ar[dl]\ar[dr]\ar[drr]%connect root to children 
+            &   &   &   &
+%br:
+\save[].[ddrrrr]*[F]\frm{}\restore%frame br tree
+                            &   &S
+\ar[dll]\ar[dl]\ar[dr]\ar[drr]%connect root to children
+                                    &   &   \\
+%Row 5:
+%bl:
+a   &A
+\ar[d]%connect A to child
+        &   &{\underline{B}}  &b
+\ar @{-->} []+<0.95em,0em> ; [rr] ^(0.4){B \produces b}%dotted arrow between bl and br trees
+%br:
+                    &   &a  &A
+\ar[d]%connect A to child
+                                &   &B
+\ar[d]%connect B to child
+                                        &b  \\
+%Row 6:
+%bl:                %br:
+    &a  &   &   &   &   &   &a  &   &b  &     %
+}
+\end{xy}
+\end{figure}

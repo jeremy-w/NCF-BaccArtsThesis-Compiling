@@ -6,7 +6,7 @@ The \IRs chosen affect all parts of the compiler, both on the superficial level 
 For all its importance, \IRs remain more a matter of craft than science. Many \abbrev{IR}s have been used\empause estimates of two for every compiler ever created are likely conservative\empause , but this myriad of \abbrev{IR}s nevertheless is susceptible to categorization along various axes. Two such axes are the form of the \IR and its level of abstraction.
 
 \subsection{Form}
-Intermediate representations divide broadly into classes based on their structure: those whose structure is linear, and those whose structure is graphical.
+Intermediate representations divide broadly into classes based on their structure: those whose structure is linear, and those whose structure is \vocab{graphical}, an artificial term meaning ``graph-like'' that has nothing to do with graphics or visual display.
 
 \subsubsection{Linear}
 Linear \abbrev{IR}s resemble the structure of most programming languages, in that they have an implicit sequencing: begin at the beginning and process each instruction in turn till the last instruction is processed. Jump instructions of some form or another\empause either as higher-level, structured control flow constructs such as \code{while} and \code{for}, or as lower-level jumps and branches to labeled statements (or, at an even lower level, to statements a certain offset away)\empause can be used to explicitly alter this implicit order.

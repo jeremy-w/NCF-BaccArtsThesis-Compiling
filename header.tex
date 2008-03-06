@@ -41,7 +41,7 @@
 %*******************************************************
 \usepackage{loadpackages}
 \usepackage{mathtools}
-\input{thesisMacros}
+\input{macros}
 %*******************************************************
 % Options for classicthesis.sty:
 % tocaligned eulerchapternumbers drafting linedheaders listsseparated
@@ -65,6 +65,7 @@
 % Setup and Finetuning
 %*******************************************************
 \newlength{\abcd} % for ab..z string length calculation
+\newlength{\starlen}
 \newcommand{\myfloatalign}{\centering} % how all the floats will be aligned
 \setlength{\extrarowheight}{3pt} % increase table row height
 % TOC - subsubsections
@@ -112,6 +113,13 @@
 
 %\usepackage{hypercap} % make links to floats point to top of float rather than bottom of caption; similar package hypcap already loaded by loadpackages.sty: which is better?
 
+% ********************************************************************
+% Listing styles
+%*******************************************************
+\lstdefinestyle{riscpseudo}{mathescape=true,literate={:=}{{$\gets$}}1 {rx}{{$r_{x}$}}2 {ry}{{$r_{y}$}}2 {rz}{{$r_{z}$}}2 {=:}{{$\to$}}1}
+\lstdefinestyle{riscpseudoDisplay}{xleftmargin=\mathindent,frame=none,%
+mathescape=true,literate={:=}{{$\gets$}}1 {rx}{{$r_{x}$}}2 {ry}{{$r_{y}$}}2 {rz}{{$r_{z}$}}2 {=:}{{$\to$}}1}
+
 %********************************************************************
 % Hyphenation
 %*******************************************************
@@ -121,6 +129,7 @@
 % Line Spacing
 %*******************************************************
 \usepackage{setspace} % enable \doublespacing
+\settowidth{\starlen}{*}
 
 %********************************************************************
 % Inclusion Control
@@ -129,7 +138,7 @@
 % (You will want to comment this section out to get a full draft.)
 \includeonly{%
 frontmatter/contents,%
-chapters/imperative/Optimizing%
+chapters/background/Compilers%
 }
 
 \begin{document}

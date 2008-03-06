@@ -1,0 +1,57 @@
+\begin{figure}[btp]%
+\myfloatalign%
+\label{lexing:fatables}%
+\caption[Specifying \abbrev{FA} states and functions: Tables]{%
+Specifying \abbrev{FA} states and functions: Tables\\
+These tables present the same information as the transition diagrams of Fig.~\ref{lexing:fafigs}. They represent three \FAs recognizing the language $(a \alt b)\kstar b$. We have adopted the convention that 
+all \FAs begin in state 0, 
+asterisks indicate final states, and
+empty entries represent undefined transitions.}%
+\captionsetup{position=top}%
+\subfloat[Deterministic]{%
+\label{lexing:dfatab}
+\begin{tabular}{ccc}
+\toprule
+& \multicolumn{2}{c}{\spacedlowsmallcaps{Input}} \\
+\cmidrule{2-3}
+\tableheadline{State}   & $a$   & $b$   \\
+\midrule
+\hspace{\starlen}0      & 0     & 1     \\
+                *1      & 0     & 1     \\
+\bottomrule
+\end{tabular}
+}\qquad
+\subfloat[Non-Deterministic]{%
+\label{lexing:nfatab}
+\begin{tabular}{ccc}
+\toprule
+& \multicolumn{2}{c}{\spacedlowsmallcaps{Input}} \\
+\cmidrule{2-3}
+\tableheadline{State}   & $a$   & $b$   \\
+\midrule
+\hspace{\starlen}0      & 0     & 0, 1  \\
+                *1      &       &       \\
+\bottomrule
+\end{tabular}
+}\qquad%
+\subfloat[\emptyword--Non-Deterministic]{%
+\label{lexing:enfatab}
+\begin{tabular}{cccc}
+\toprule
+& \multicolumn{3}{c}{\spacedlowsmallcaps{Input}}    \\
+\cmidrule{2-4}
+\tableheadline{State}   & \emptyword & $a$  & $b$   \\
+\midrule
+\hspace{\starlen}0      & 1          &      &       \\
+\hspace{\starlen}1      & 2, 3       &      &       \\
+\hspace{\starlen}2      &            & 4    &       \\
+\hspace{\starlen}3      &            &      & 5     \\
+\hspace{\starlen}4      & 6          &      &       \\
+\hspace{\starlen}5      & 6          &      &       \\
+\hspace{\starlen}6      & 1, 7       &      &       \\
+\hspace{\starlen}7      &            &      & 8     \\
+                *8      &            &      &       \\
+\bottomrule
+\end{tabular}
+}%
+\end{figure}

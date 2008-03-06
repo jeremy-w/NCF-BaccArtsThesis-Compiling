@@ -2,25 +2,28 @@
 \vocab{Syntax analysis} follows lexical analysis. If lexical analysis is concerned with categorizing words by part of speech, then syntax analysis is concerned with understanding how these parts of speech are grammatically related and whether the sentences so formed are grammatical or not.
 
 \subsubsection{Context-Free Languages}
-In fact, ``grammatical'' is precisely the word, for the formalism affording ready syntax analysis is that of context-free grammars. As with the regular languages, we are able to describe a given context-free language either constructively or declaratively. The context-free languages are a proper superset of the regular languages and a proper subset of the recursive languages. Roughly, the context-free languages are distinguished from the regular languages by their ability to describe ``matching bracket'' constructs, such as the proper nesting of parentheses in an arithmetic expression, while the recursive languages are distinguished from the context-free languages in part by their ability to cope with context-sensitive languages.\footnote{The context-sensitive languages are, however, only a proper subset of the recursive languages.}
+In fact, ``grammatical'' is precisely the word, for the formalism affording ready syntax analysis is that of context-free grammars. As with the regular languages, we are able to describe a given context-free language either constructively or declaratively. The context-free languages are a proper superset of the regular languages and a proper subset of the recursive languages. Roughly, the context-free languages are distinguished from the regular languages by their ability to describe ``matching bracket'' constructs, such as the proper nesting of parentheses in an arithmetic expression, while the recursive languages are distinguished from the context-free languages in part by their ability to cope with context.
 
 \subsubsection{Context-Free Grammars}
-We use \vocab{context-free grammars} to specify context-free languages declaratively. As with \regexes and \FAs, context-free grammars operate in the context of a specific alphabet. The letters of the alphabet are called \vocab{terminals} or \vocab{terminal symbols}. \CFGs[C] augment this alphabet with a finite set of \vocab{non-terminals (non-terminal symbols)} to be used in specifying grammatical \vocab{productions}, which function as \vocab{rewrite rules}. Together, the set of terminal and non-terminal symbols are called \vocab{grammar symbols}, as they specify all the symbols used by the grammar. Analogous to the start state of the \FA is the context-free grammar's distinguished \vocab{start symbol}. Putting these rules together, one arrives at a grammar specification like the following:
+We use \vocab{context-free grammars} to specify context-free languages declaratively. As with \regexes and \FAs, context-free grammars operate in the context of a specific alphabet. The letters of the alphabet are called \vocab{terminals} or \vocab{terminal symbols}. \CFGs[C] augment this alphabet with a finite set of \vocab{non-terminals (non-terminal symbols)} to be used in specifying grammatical \vocab{productions}, which function as \vocab{rewrite rules}. Together, the set of terminal and non-terminal symbols are called \vocab{grammar symbols}, as they specify all the symbols used by the grammar. Analogous to the start state of the \FA is the context-free grammar's distinguished \vocab{start symbol}. All words in the language described by the \CFG are derived from the start symbol via the productions in a manner to be described shortly.
+
+Putting these rules together, one arrives at a grammar specification like the following:
+\begin{equation*}
+\begin{split}
+&G = \left(N, T, \Sigma, P, S\right) \qquad N = \set{A, B} \qquad T = \set{a, b} \qquad \Sigma = {a, b}\\
+&P = \{S \produces A, \quad S \produces B, \quad S \produces aABb, \quad
+    A \produces a \alt \emptyword, \quad B \produces b \alt \emptyword\}
+\end{split}
+\end{equation*}
+where $N$ is the set of non-terminals, $T$ the set of terminals, $\Sigma$ the alphabet, and $P$ the set of productions, where \produces\ is read as ``produces.'' %(The symbol \produces is also sometimes written \altproduces.)
+The symbol to the left of the arrow is called the \vocab{head} of the production, while those to the right are called the \vocab{body}. For example, in the production $S \produces aABb$, $S$ is the head of the production and $aABb$ is the body:
 \[
-G = \left(N, T, \Sigma, P, S\right)
-\]%
-\[
-N = \set{A, B} \qquad T = \set{a, b} \qquad \Sigma = {a, b}
+\underset{\text{\normalsize\textit{head}}}{\underbrace{S}} \produces \underset{\text{\normalsize\textit{body}}}{\underbrace{aABb}}
 \]
-\[\begin{split}
-P = \{&S \produces A, &&S \produces B, &&S \produces aABb,\\
-&A \produces a \alt \emptyword, &&B \produces b \alt \emptyword\}
-\end{split}\]
-where $N$ is the set of non-terminals, $T$ the set of terminals, $\Sigma$ the alphabet, and $P$ the set of productions, where \produces\ is read as ``produces.'' The symbol to the left of the arrow is called the \vocab{head} of the production, while those to the right are called the \vocab{body}. %(The symbol \produces is also sometimes written \altproduces.)
-``Computation'' proceeds by substitution: for example,
-\[
+Derivation proceeds by substitution of production bodies for production heads: for example,
+\begin{equation}\label{syntax:deriv}
 S \derives[S \produces aABb] aABb \derives[A \produces a] aaBb \derives[B \produces b] aabb
-\]
+\end{equation}
 where \derives\ is read as ``derives in one step'' and the rule justifying the derivation is written above the arrow. Taking a cue from regular expressions, we can also write \derives[\star] for ``derives in zero or more steps'' (all grammar symbols derive themselves in zero steps) and \derives[+] for ``derives in one or more steps,'' where the productions justifying the derivation are implicit in the superscript star; the keen reader should perhaps like to construct their own explicit, step-by-step derivation. The language defined by the grammar is defined to be those strings made up only of terminal symbols that can be derived from the start symbol.
 
 \paragraph{Parse Trees} We can use a \vocab{parse tree} to represent the derivation of a word in the language without concern for unnecessary sequencing of derivations imposed by our sequential presentation. For example, our choice to derive $a$ from $A$ prior to deriving $b$ from $B$ above is irrelevant, but that we first derived $aABb$ from $S$ before performing either of the remaining derivations is not, since the heads of these derivations are introduced by the derivation from $S$. We define parse trees constructively: 
@@ -30,8 +33,9 @@ where \derives\ is read as ``derives in one step'' and the rule justifying the d
 \item Create new child nodes of the chosen head symbol, one for each symbol in the body.
 \item Repeat from \ref{parsetree:construction:choose}.
 \end{aenumerate}
-At any point in time, the string of symbols derived thus far\empause those on the leaves, read in the same order applied to the child nodes in the body of a production\empause is called a \vocab{sentential form}. The process terminates when a word in the language is derived, as no non-terminal leaf nodes remain.
-%FIXME: Demonstrate parse trees with TREES!
+At any point in time, the string of symbols derived thus far\empause those on the leaves, read in the same order applied to the child nodes in the body of a production\empause is called a \vocab{sentential form}. The process terminates when a word in the language is derived, as no non-terminal leaf nodes remain. Fig.~\ref{syntax:parsetree} on page~\pageref{syntax:parsetree} gives the parse trees created in deriving $aabb$ from our example grammar.
+
+\input{chapters/background/compilers/deriv.tex}
 
 \paragraph{Ambiguity} Parse trees represent the derivation of a word without regard to unnecessary sequencing. A given tree represents a given parse. If more than one parse tree can derive the same word in the language, the grammar is said to be \vocab{ambiguous}. This corresponds to the use of a significantly different ordering of productions and potentially even of a different set of productions. The grammar is called ambiguous because, given such a word, it is uncertain which productions were used to derive it. The grammar we gave above is ambiguous when it comes to the empty word \emptyword, because $S \derives A \derives \emptyword$ and $S \derives B \derives \emptyword$ are both valid derivations with corresponding significantly different valid parse trees of \emptyword. However, if we were to eliminate the productions $S \derives A$ and $S \derives B$ from the grammar, we would then have an unambiguous grammar for the context-free language comprising $\set{ab, aab, abb, aabb} \equiv \set{a^{i}b^{j} \where 1 \leq i, j \leq 2}$. The only sequential choices are insignificant: in deriving $aabb$, we must have derived $aABb$ from $S$, but following that, did we first derive the second $a$ or the second $b$?
 
@@ -52,7 +56,7 @@ where the convention used for the stack operations is that the symbol that is to
 There are some casualties of the transition from \FAs to the increased descriptive power of \PDAs. \PDAs are inherently non-deterministic: they always admit \emptyword-transitions and can be in a set of states at any given time. This non-determinism is essential for them to define the context-free languages. The languages described by deterministic \PDAs, while still a proper superset of the regular languages, are only a proper subset of the context-free languages. Further, there is no algorithmic way to produce a minimal \PDA for a given language. This poses a particular problem for parsing: as with lexing, we would like to use grammars to describe the syntactic structure and \PDAs to perform parsing by recognizing that structure, but we must now find some way for our inherently deterministic computers to cope with this inherent non-determinism in a reasonable amount of time.
 
 \subsubsection{Parsers}
-As exaggeratedly hinted at above, while grammars define a language, parsers are faced with an input that they must characterize as either of that language or not. They must, in fact, do more than simply check that their input is grammatical: they must construct an \IR of their input to pass on to the next part of the compiler.
+As exaggeratedly hinted at above, while grammars define a language, parsers are faced with an input that they must characterize as either of that language or not. They must, in fact, do more than simply check that their input is grammatical: they must construct an \IR of their input to pass on to the next part of the compiler.\footnote{If, indeed, there is a next pass: it is possible to construct one-pass compilers that translate from source to target in a single pass over the source code.}
 
 We also mentioned the problem of the non-determinism inherent to \CFGs and \PDAs. So long as we only face insignificant questions of sequencing, we will have no problem determining what to do next. Realistic inputs do not require truly non-deterministic parsing. A program is meant to have a single meaning: to correspond to a parse tree, not a parse forest. Non-determinism occurs in parsing a programming language when the available context is insufficient to predict the shape of the parse tree, and it becomes necessary to entertain several possibilities simultaneously. Eventually, more context will be available to resolve the ambiguity, and we can return to building a single parse tree and abandon the others as false starts. Problems such as these are likely to affect only part of the input, and methods have been developed that handle such ``temporary non-determinism'' gracefully. %NOTE: Run this paragraph by Henckell again. It was a confusing one before.
 
