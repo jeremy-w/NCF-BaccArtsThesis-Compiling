@@ -4,32 +4,32 @@
 \label{optimizing:hoisting:cfgs}%
 \captionsetup{position=top}%
 \SelectTips{eu}{10}
-\subfloat[Source code]{\xymatrix @C=0.075in {%
-&*+[F]\txt{begin} \ar[d]\\
-&*+[F]\txt{\lstinline{int x, y, j;}\\\lstinline{j = . . .;}} \ar[d]\\
+\subfloat[Source code]{\xymatrix @C=0.07in {%
+&*+[F]\txt{begin} \ar[d]+U+<0em,0.1em>\\
+&*+[F]\txt{\lstinline{int x, y, j;}\\\lstinline{j = . . .;}} \ar[d]+U+<0em,0.1em>\\
 &*+[F]\txt{\lstinline{switch (j)}} 
-\ar[dl]_*+{\txt{\lstinline{case 0:}}}
-\ar[d]|-*+{\txt{\lstinline{case 1:}}}
-\ar[dr]^*+{\txt{\lstinline{default:}}}
+\ar[dl]_(0.55)*+{\txt{\lstinline{case 0:}}}
+\ar[d]+U+<0em,0.1em>|-*+{\txt{\lstinline{case 1:}}}
+\ar[dr]^(0.55)*+{\txt{\lstinline{default:}}}
 \\
 *+[F]\txt{\lstinline{x = 42;}\\\lstinline{y = 1;}} \ar[dr] &%
-*+[F]\txt{\lstinline{x = 42;}\\\lstinline{y = 2;}} \ar[d] &%
+*+[F]\txt{\lstinline{x = 42;}\\\lstinline{y = 2;}} \ar[d]+U+<0em,0.1em> &%
 *+[F]\txt{\lstinline{x = 42;}\\\lstinline{y = 3;}} \ar[dl]\\
 &*+[F]\txt{end}
 }%end xymatrix
 }%end subfloat
-\qquad%
-\subfloat[Transformed code]{\xymatrix @C=0.075in {%
-&*+[F]\txt{begin} \ar[d]\\
+\qquad\nolinebreak%
+\subfloat[Transformed code]{\xymatrix @C=0.07in {%
+&*+[F]\txt{begin} \ar[d]+U+<0em,0.1em>\\
 &*+[F]\txt{\lstinline{int x, y, j;}\\\lstinline{j = . . .;}\\
-\lstinline{x = 42;}} \ar[d]\\
+\lstinline{x = 42;}} \ar[d]+U+<0em,0.1em>\\
 &*+[F]\txt{\lstinline{switch (j)}} 
-\ar[dl]_*+{\txt{\lstinline{case 0:}}}
-\ar[d]|-*+{\txt{\lstinline{case 1:}}}
-\ar[dr]^*+{\txt{\lstinline{default:}}}
+\ar[dl]_(0.6)*+{\txt{\lstinline{case 0:}}}
+\ar[d]+U+<0em,0.1em>|-*+{\txt{\lstinline{case 1:}}}
+\ar[dr]^(0.6)*+{\txt{\lstinline{default:}}}
 \\
 *+[F]\txt{\lstinline{y = 1;}} \ar[dr] &%
-*+[F]\txt{\lstinline{y = 2;}} \ar[d] &%
+*+[F]\txt{\lstinline{y = 2;}} \ar[d]+U+<0em,0.1em> &%
 *+[F]\txt{\lstinline{y = 3;}} \ar[dl]\\
 &*+[F]\txt{end}
 }%end xymatrix

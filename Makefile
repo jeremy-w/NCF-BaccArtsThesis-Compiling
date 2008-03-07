@@ -16,12 +16,15 @@ bib:
 	bibtex thesis
 	pdflatex thesis
 	latex_count=3 ; \
-	while egrep -is '(rerun|undefined references)' thesis.log ;\
+	while egrep -is '(rerun|undefined references)' thesis.log && test $$latex_count -gt 0;\
 	do \
 		echo "Rerunning latex..." ;\
 		pdflatex thesis ;\
 		latex_count=`expr $$latex_count - 1` ;\
 	done
+
+bibupdate:
+	./misc/update-bib.sh
 
 index:
 	makeindex thesis

@@ -1,0 +1,65 @@
+\begin{figure}[p]%
+%NOTE: The 0.1em shifts away from the box edges are necessary to keep the arrow tips from merging with the boxes. This is especially important for down arrows, since the eu tips are so spread out that they almost disappear entirely into the box edge.
+\myfloatalign%
+\caption{Structural unit examples}%
+\label{optimizing:units}%
+\captionsetup{position=top}%
+\SelectTips{eu}{10}
+\def\block#1{*+[F-]{\txt{\textit{#1}}}}
+\def\blankblock{*+[F-]{\phantom{\txt{\textit{basic block}}}}}
+\subfloat[Basic blocks]{%
+\begin{xy}%
+\xymatrix{%
+%basic block types
+&\blankblock \ar []+D ; [d]+U+<0em,0.1em>\\
+&\block{basic block} \ar []+D ; [d]+U+<0em,0.1em>\\
+&\blankblock\\
+\blankblock \ar []+DR; [dr]+UL+<-0.05em,0.05em> & & \blankblock \ar[]+DL;[dl]+UR+<0.05em,0.05em>\\
+&\block{join point}\\
+&\block{branch point}\ar[]+DL;[dl]+UR+<0.05em,0.05em>\ar[]+DR;[dr]+UL+<-0.05em,0.05em>\\
+\blankblock & & \blankblock
+}%end xymatrix
+\end{xy}%
+}
+\def\blankblock{*+[F-]{\phantom{\txt{\textit{root}}}}}
+\def\dotblock{*+[F--]{\phantom{\txt{\textit{root}}}}}
+\subfloat[Extended basic block][Extended basic block\\
+Blocks with a solid outline are part of the extended basic block. Blocks with a \\dashed outline are not.]{% The linebreak was made to imitate the linebreak made by LaTeX before I widened the figure to where the phantom boxes extend into the margin.
+\begin{xy}%
+\xymatrix @!C=30pt {%
+% EBB
+%Columns:
+% 1 2   3   4   5   6   7 
+%R1
+    &   &{\phantom{\blankblock}}\ar @{-->} []+DR;[dr]+UL+<-0.05em,0.05em>
+            &   &{\phantom{\blankblock}}\ar @{-->} []+DL;[dl]+UR+<0.05em,0.05em> \\
+%R2
+    &   &   &\block{root}\ar[]+DL;[dll]+UR+<0.05em,0.05em>\ar[]+DR;[dr]+UL+<-0.05em,0.05em>
+                &   &   &   \\
+%R3
+    &\blankblock\ar[]+D;[d]+U+<0em,0.1em>
+        &   &   &\blankblock\ar []+DL ; [dl]+UR+<0.05em,0.05em> 
+                            \ar []+DR ; [dr]+UL+<-0.05em,0.05em>
+                    &   &{\phantom{\blankblock}}\ar @{-->} []+DL;[dl]+UR+<0.05em,0.05em>
+                            \\
+%R4
+    &\blankblock\ar[]+DL;[dl]+UR+<0.05em,0.05em>\ar[]+DR;[dr]+UL+<-0.05em,0.05em>
+        &   &\blankblock\ar[]+D;[d]+U+<0em,0.1em>
+                &   &\dotblock\ar @{-->} []+DL;[dl]+UR+<0.05em,0.05em> \ar @{-->} []+DR;[dr]+UL+<-0.05em,0.05em>
+                        &   \\
+%R5
+\blankblock\ar[]+DR+<0.05em,0.05em>;[dr]+UL+<-0.05em,0.05em>
+    &   &\blankblock\ar[]+DL;[dl]+UR+<0.05em,0.05em>
+            &\dotblock\ar @{-->} []+D;[d]+U+<0em,0.1em>
+                &{\phantom{\blankblock}}
+                    &   &{\phantom{\blankblock}}
+                            \\
+%R6
+    &\dotblock
+        &   &\dotblock\ar @{-->} @(r,r) []+R+<1pt,0pt> ; [u]+R+<1pt,0pt> &
+}
+\end{xy}
+}
+%\rule{\the\textwidth}{10pt}
+% This rule together with an honest to goodness ruler let me ensure the visible part of the above figure fit in the textwidth. LaTeX will complain of an overfull hbox because it ``sees'' the phantom boxes, but no-one else can, so it is best to overlook the hbox warning here.
+\end{figure}
