@@ -91,7 +91,21 @@ Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
 \newcommand{\derives}[1][]{\def\DArgTop{{#1}}\derivesrelay} % S \derives[*][lm] foo
 \newcommand{\token}[1]{\ensuremath{\langle\text{\textit{#1}}\rangle}}
 \newcommand{\where}{\mid}
+\newcommand{\pair}[2]{\ensuremath{\left(#1,\,#2\right)}}
 
 % Math: Simple abbreviations
 \let\oldprime=\prime
 \renewcommand{\prime}{\ensuremath{^{\oldprime}}{}} % automatic superscript; random {} at the end is necessary to avoid complaints from LaTeX about double superscripts when one \prime directly follows another, e.g. v\prime\prime.
+
+% Tokenization
+\newcommand{\mtt}[1]{\ensuremath{\text{\ttfamily#1}}}
+\newcommand{\mt}[1]{\ensuremath{\text{\ttfamily\small#1}}}
+\newcommand{\mk}[1]{\mt{\color{RoyalBlue}#1}}
+\newcommand{\crsymb}{\rotatebox[origin=c]{180}{\ensuremath{\Rsh}}}
+\newcommand{\spacedtab}{\textvisiblespace\textvisiblespace\textvisiblespace\textvisiblespace}
+% Blocking Tokens
+% I've been forced to hardcode angle brackets to handle multiline tokens. Only underlining would also work with multiline tokens without a ton more work to have open-ended boxes or part of a brace on one line that continues on the next.
+\newcommand{\block}[2]{\langle#1\rangle_{\mtt{#2}}}%put each token in angle brackets
+%\newcommand{\block}[2]{\underset{\mtt{\hspace{0.5em}#2\hspace{0.5em}}}{\underline{\vphantom{\mt{\textvisiblespace}}#1}}}%underline each token
+%\newcommand{\block}[2]{\underset{\mtt{#2}}{\fbox{\mt{\vphantom{\crsymb\textvisiblespace}}#1\hspace{1pt}}}}%box each token
+%\newcommand{\block}[2]{\underbrace{\vphantom{\mt{\textvisiblespace}}#1}_{\mtt{#2}}}%brace beneath each token

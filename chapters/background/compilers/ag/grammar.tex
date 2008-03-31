@@ -1,0 +1,70 @@
+\begin{figure}[btp]%
+\myfloatalign%
+\label{ag:grammar}%
+\caption[An attribute grammar]{%
+An attribute grammar\\
+The nonterminals are \protect{\lstinline{GOAL}, \lstinline{ADDER}, \lstinline{VAL}, \lstinline{SUM}, and \lstinline{DEF}.} The terminals are \protect{\lstinline{NAME}, \lstinline{NUM}, and the single characters \lstinline{.}, \lstinline{+}, and \lstinline{=}.} The start symbol is the head of the first production, \protect{\lstinline{GOAL}}.}
+\captionsetup{position=top}%
+\subfloat[Symbols and Attributes][Symbols and Attributes\\
+Start and terminal symbols are prohibited from having inherited attributes, hence the dashes. An empty entry indicates the symbol has no attributes of that type, though it could.]
+{%
+\label{ag:symbols}%
+\begin{tabular}{lcc}
+\toprule
+    &\multicolumn{2}{c}{\spacedlowsmallcaps{Attributes}}\\
+\cmidrule(l){2-3}
+\tableheadline{Symbol} 
+    &\tableheadline{Inherited} &\tableheadline{Synthesized}\\
+\midrule
+\mt{GOAL}   &\empause   &\mt{total}\\
+\mt{ADDER}  &\mt{defs}  &\mt{total}\\
+\mt{SUM}    &\mt{defs}  &\mt{total}\\
+\mt{DEF}    &\mt{defs}  &\mt{pair}\\
+\mt{VAL}    &\mt{defs}  &\mt{amt}\\
+\mt{NUM}    &\empause   &\mt{amt}\\
+\mt{NAME}   &\empause   &\mt{txt}\\
+\mt{.}      &\empause   \\
+\mt{+}      &\empause   \\
+\mt{=}      &\empause   \\
+\bottomrule
+\end{tabular}%
+}\qquad
+\subfloat[Productions and Rules][Productions and Rules\\
+An unquoted string of non-whitespace characters represents a single grammar symbol. Characters between single quotation marks represent themselves as symbols in the production.]{%
+\label{ag:productions}%
+\begin{tabular}{l@{}ll}
+\toprule
+\multicolumn{2}{c}{\spacedlowsmallcaps{Production}} &\tableheadline{Semantic Rules}\\
+\midrule
+\mt{GOAL}       &$\,\produces \mt{ADDER}$
+     &$\mt{GOAL}.\mt{total} \gets \mt{ADDER}.\mt{total}$\\
+$\mt{ADDER}_1$  &$\,\produces \mt{DEF '.' ADDER}_2$
+     &$\mt{DEF}.\mt{defs} \gets \mt{ADDER}_1.\mt{defs}$\\
+    &&$\mt{ADDER}_2.\mt{defs} \gets 
+            \mt{DEF}.\mt{defs} \union \mt{DEF}.\mt{pair}$\\
+    &&$\mt{ADDER}_1.\mt{total} \gets \mt{ADDER}_2.\mt{total}$\\
+$\mt{ADDER}$    &$\,\produces \mt{SUM '.'}$
+     &$\mt{SUM}.\mt{defs} \gets \mt{ADDER}.\mt{defs}$\\
+    &&$\mt{ADDER}.\mt{total} \gets \mt{SUM}.\mt{total}$\\
+$\mt{VAL}$      &$\,\produces \mt{NAME}$
+     &$\mt{VAL}.\mt{amt} \gets 
+                  \{\operatorname{snd} p 
+                    \where p \in \mt{VAL}.\mt{defs}$\\
+                    &&$\hphantom{\mt{VAL}.\mt{amt} \gets 
+                                    \{s}%\operatorname{snd} p \mid p}
+                    \land \operatorname{fst} p = \mt{NAME}.\mt{txt}\}$\\
+$\mt{VAL}$      &$\,\produces \mt{NUM}$
+     &$\mt{VAL}.\mt{amt} = \mt{NUM}.\mt{amt}$\\
+$\mt{SUM}_1$    &$\,\produces \mt{VAL '+' SUM}_2$
+     &$\mt{VAL}.\mt{defs} \gets \mt{SUM}_1.\mt{defs}$\\
+    && $\mt{SUM}_2.\mt{defs} \gets \mt{SUM}_1.\mt{defs}$\\
+    &&$\mt{SUM}_1.\mt{total} \gets \mt{VAL}.\mt{amt} + \mt{SUM}_2.\mt{total}$\\
+$\mt{SUM}$      &$\,\produces \mt{VAL}$
+     &$\mt{SUM}.\mt{total} \gets \mt{VAL}.\mt{amt}$\\
+$\mt{DEF}$      &$\,\produces \mt{NAME '=' SUM}$
+     &$\mt{SUM}.\mt{defs} \gets \mt{DEF}.\mt{defs}$\\
+    &&$\mt{DEF}.\mt{pair} \gets \pair{\mt{NAME}.\mt{txt}}{\mt{SUM}.\mt{total}}$\\
+\bottomrule
+\end{tabular}%
+}
+\end{figure}

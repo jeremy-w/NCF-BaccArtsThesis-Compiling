@@ -1,0 +1,173 @@
+\begin{figure}[btp]%
+\myfloatalign%
+\label{ag:tree}%
+\caption[An attributed tree]{An attributed tree\\
+The bottom-most row is external to the grammar. It would be processed by the lexer and transformed into the terminal symbol tokens shown immediately above that row.}%
+\captionsetup{position=top}%
+\SelectTips{eu}{10}
+\begin{xy}
+\entrymodifiers={+}
+\hspace{15pt}%For some reason, it's not actually centering. Obnoxious!
+\xymatrix @C=0pt @R=1.2em {
+%9
+*++\txt{\mt{GOAL}\\\mt{total}}
+&
+&
+&
+%
+&
+&
+&
+&
+&
+&
+%%
+%&
+%&
+%&
+%&
+\\
+%8
+*++\txt{\mt{ADDER}\\\mt{defs}\\\mt{total}} \ar[u]
+&
+&
+&
+%
+&
+&
+&
+&
+&
+&
+%%
+%&
+%&
+%&
+%&
+\\
+%7
+&
+&
+&
+%
+&*++\txt{\mt{ADDER}\\\mt{defs}\\\mt{total}} \ar[llllu]
+&
+&
+&
+&
+&
+%%
+%&
+%&
+%&
+%&
+\\
+%6
+&
+&
+&
+%
+&*++\txt{\mt{DEF}\\\mt{defs}\\\mt{pair}} \ar[u]
+&
+&
+&
+&
+&
+%%
+%&*++\txt{\mt{ADDER}\\\mt{defs}\\\mt{total}}
+%&
+%&
+%&
+\\
+%5
+*++\txt{\mt{DEF}\\\mt{defs}\\\mt{pair}} \ar[uuu]
+&
+&
+&
+%
+&
+&
+&*++\txt{\mt{SUM}\\\mt{defs}\\\mt{total}} \ar[llu]
+&
+&
+&
+%%
+%&*++\txt{\mt{SUM}\\\mt{defs}\\\mt{total}}
+%&
+%&
+%&
+\\
+%4
+&
+&*++\txt{\mt{SUM}\\\mt{defs}\\\mt{total}} \ar[llu]
+&
+%
+&
+&
+&
+&
+&*++\txt{\mt{SUM}\\\mt{defs}\\\mt{total}} \ar[llu]
+&
+%%
+%&
+%&
+%&*++\txt{\mt{SUM}\\\mt{defs}\\\mt{total}}
+%&
+\\
+%3
+&
+&*++\txt{\mt{VAL}\\\mt{defs}\\\mt{amt}} \ar[u]
+&
+%
+&
+&
+&*++\txt{\mt{VAL}\\\mt{defs}\\\mt{amt}} \ar[uu]
+&
+&*++\txt{\mt{VAL}\\\mt{defs}\\\mt{amt}} \ar[u]
+&
+%%
+%&*++\txt{\mt{VAL}\\\mt{defs}\\\mt{amt}}
+%&
+%&*++\txt{\mt{VAL}\\\mt{defs}\\\mt{amt}}
+%&
+\\
+%2
+*++\txt{\mt{NAME}\\\mt{txt}} \ar[uuu]
+&\mt{'='} \ar[uuul]
+&*++\txt{\mt{NUM}\\\mt{amt}} \ar[u]
+&\mt{'.'} \POS [];[uuuuuulll] \curve{[uuuuu]} \POS c ?>*\dir{>}
+%
+&*++\txt{\mt{NAME}\\\mt{txt}} \ar[uuuu]
+&\mt{'='} \ar[uuuul]
+&*++\txt{\mt{NAME}\\\mt{txt}} \ar[u]
+&\mt{'+'} \ar[uuul]
+&*++\txt{\mt{NUM}\\\mt{amt}} \ar[u]
+&\mt{'.'} \POS [];[uuuuulllll] \curve{[uuu] & [uuuul]} \POS c ?>*\dir{>}
+%&\mt{'.'} \ar @/_60pt/ [uuuuulllll]
+%%
+%&*++\txt{\mt{NAME}\\\mt{txt}}
+%&\mt{'+'}
+%&*++\txt{\mt{NAME}\\\mt{txt}}
+%&\mt{'.'}
+\\
+%1
+a \ar[u]
+&= \ar[u]
+&1 \ar[u]
+&\vphantom{a}.\ar[u] 
+%
+&b \ar[u]
+&= \ar[u]
+&a \ar[u]
+&+ \ar[u]
+&2 \ar[u]
+&\vphantom{a}. \ar[u] 
+%%
+%&a \ar[u]
+%&+ \ar[u]
+%&b \ar[u]
+%&\vphantom{b}. \ar[u]
+}
+%\POS*\frm{-}
+\end{xy}
+\end{figure}

@@ -40,6 +40,7 @@
 \usepackage[section,below]{placeins} %<--- not everybody wants this; with it, figures are placed only within section they were declared in (also provides command \FloatBarrier)
 %*******************************************************
 \usepackage{loadpackages}
+\usepackage{amssymb}
 \usepackage{mathtools}
 \input{macros}
 %*******************************************************
@@ -119,6 +120,7 @@
 \lstdefinestyle{riscpseudo}{mathescape=true,literate={:=}{{$\gets$}}1 {rx}{{$r_{x}$}}2 {ry}{{$r_{y}$}}2 {rz}{{$r_{z}$}}2 {=:}{{$\to$}}1}
 \lstdefinestyle{riscpseudoDisplay}{xleftmargin=\mathindent,frame=none,%
 mathescape=true,literate={:=}{{$\gets$}}1 {rx}{{$r_{x}$}}2 {ry}{{$r_{y}$}}2 {rz}{{$r_{z}$}}2 {=:}{{$\to$}}1}
+\lstalias{flex}{Haskell}
 
 %********************************************************************
 % Hyphenation
@@ -138,12 +140,12 @@ mathescape=true,literate={:=}{{$\gets$}}1 {rx}{{$r_{x}$}}2 {ry}{{$r_{y}$}}2 {rz}
 % (You will want to comment this section out to get a full draft.)
 \includeonly{%
 frontmatter/contents,%
-%chapters/background/Compilers%
-chapters/imperative/Overview,%
-chapters/imperative/Defining,%
-chapters/imperative/Compiling,%
-chapters/imperative/Optimizing,%
-chapters/imperative/Conclusion,
+chapters/background/Compilers,%
+%chapters/imperative/Overview,%
+%chapters/imperative/Defining,%
+%chapters/imperative/Compiling,%
+%chapters/imperative/Optimizing,%
+%chapters/imperative/Conclusion,
 backmatter/bibliography%
 }
 

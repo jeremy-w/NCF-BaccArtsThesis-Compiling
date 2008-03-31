@@ -1,0 +1,74 @@
+\begin{figure}[btp]%
+\myfloatalign%
+\label{lexing:symtab}%
+\caption{Using the symbol table to tokenize}
+\captionsetup{position=top}%
+\subfloat[Desired Tokenization][Desired Tokenization\\
+A new line declaring \protect{\lstinline[language=flex]{ifPredicate}} to be a variable precedes the input text of Fig.~\ref{lexing:tokens}. The tokenization changes accordingly.
+]{%
+\label{lexing:symtabtokdesired}%
+\begin{minipage}{212pt}%
+\vspace{-16pt}%Eliminate unwanted vspace introduced by math environment.
+\begin{align*}%
+&\block{\mk{var}}{KW}
+\block{\mt{\textvisiblespace}}{WS}
+\block{\mt{ifPredicate}}{VARID}
+\block{\mt{;}}{SEQ}\\
+&\block{\mk{if}}{KW} 
+\block{\mt{\textvisiblespace}}{WS}
+\block{\mt{ifPredicate}}{VARID}
+\block{\mt{;}}{SEQ}
+\block{\crsymb}{WS}\\
+&\block{\mk{then}}{KW}
+\mt{$\langle$\crsymb}\\
+&\hphantom{\langle}\mt{\spacedtab$\rangle$}_{\mtt{WS}}
+\block{\mk{echo}}{KW}
+\block{\text{\small"True."}}{STR}
+\block{\mt{;}}{SEQ}
+\block{\crsymb}{WS}\\
+&\block{\mk{else}}{KW}
+\mt{$\langle$\crsymb}\\
+&\hphantom{\langle}\mt{\spacedtab$\rangle$}_{\mtt{WS}}
+\block{\mk{echo}}{KW}
+\block{\text{\small"False."}}{STR}
+\block{\mt{;}}{SEQ}
+\block{\crsymb}{WS}\\
+&\block{\mk{fi}}{KW} 
+\end{align*}%
+\end{minipage}%
+}%end subfloat
+\qquad
+\subfloat[Lexical Rules][Lexical Rules\\
+When a rule's regular expression has the highest priority of all those matching the input, the input matched is stored in \protect{\lstinline[language=CAML]{match}} and the associated action is taken. Each action ends by returning the token type of the matched input.]{%
+\label{lexing:symtabtokrules}
+\begin{tabular}{ll}%
+\toprule
+\tableheadline{Regular Expression} &\tableheadline{Action}\\
+\midrule
+$[\mt{\textvisiblespace\crsymb}]^+$ &\mt{return WS;}\\
+$\mk{if} \alt \mk{then} \alt \mk{else} \alt \mk{fi} \alt \mk{echo}$
+& \mt{return KW;}\\
+$\mk{var}$ &\mt{context=VARDECL, return KW;}\\
+$\mk{func}$ &\mt{context=FUNCDECL, return KW;}\\
+$[\mt{A--Za--z}]^+$ &\mt{if (context == VARDECL)}\\
+    &\mt{\ \ context=PLAIN, return VARID;}\\
+    &\mt{else if (context == FUNCDECL)}\\
+    &\mt{\ \ context=PLAIN, return FUNCID;}\\
+    &\mt{else return lookup(\mk{match});}\\
+$\text{\small"}[\hat{\hphantom{\text{\mt{"}}}}\text{\small"}]\kstar\text{\small"}$ &\mt{return STR;}\\
+\mt{;} &\mt{return SEQ;}\\
+\bottomrule
+\end{tabular}%
+%\qquad
+%\subfloat[Rules]{%
+%\label{lexing:tokrules}
+%\small\ttfamily
+%\begin{minipage}{20em}%
+%\mt{WS\ \ \ \ \ \ \ \ \ \ \ [{\textvisiblespace}{\crsymb}]+}\newline
+%\mt{KW\ \ \ \ \ \ }\mk{if}\mt{|}\mk{then}\mt{|}\mk{else}\mt{|}\mk{fi}\mt{|}\mk{echo}\newline
+%\lstinline[columns=fixed]!ID\ \ \ \ \ \ \ \ \ \ \ \[A-Za-z\]+!\newline
+%\lstinline[columns=fixed]!STR\ \ \ \ \ \ \ \ \ \ \\"\[^\\"\]*\\"!\newline
+%\lstinline[columns=fixed]!SEQ\ \ \ \ \ \ \ \ \ \ ;!%
+%\end{minipage}
+}%end subfloat
+\end{figure}

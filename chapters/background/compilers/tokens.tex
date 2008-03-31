@@ -1,0 +1,63 @@
+\begin{figure}[btp]%
+\myfloatalign%
+\label{lexing:tokens}%
+\caption{Tokenizing}
+\captionsetup{position=top}%
+\subfloat[Desired Tokenization][Desired Tokenization\\
+Each token is enclosed by a pair of angle brackets. The subscript text following each closing bracket indicates the preceding token's type. \crsymb\ and \textvisiblespace\ have been used to represent the whitespace characters newline and space.%
+]{%
+\label{lexing:tokdesired}%
+\begin{minipage}{212pt}%
+\vspace{-16pt}%Eliminate unwanted vspace introduced by math environment.
+\begin{align*}%
+&\block{\mk{{if}}}{KW} 
+\block{\mt{\textvisiblespace}}{WS}
+\block{\mt{ifPredicate}}{ID}
+\block{\mt{;}}{SEQ}
+\block{\crsymb}{WS}\\
+&\block{\mk{then}}{KW}
+\mt{$\langle$\crsymb}\\
+&\hphantom{\langle}\mt{\spacedtab$\rangle$}_{\mtt{WS}}
+\block{\mk{echo}}{KW}
+\block{\text{\small"True."}}{STR}
+\block{\mt{;}}{SEQ}
+\block{\crsymb}{WS}\\
+&\block{\mk{else}}{KW}
+\mt{$\langle$\crsymb}\\
+&\hphantom{\langle}\mt{\spacedtab$\rangle$}_{\mtt{WS}}
+\block{\mk{echo}}{KW}
+\block{\text{\small"False."}}{STR}
+\block{\mt{;}}{SEQ}
+\block{\crsymb}{WS}\\
+&\block{\mk{fi}}{KW} 
+\end{align*}%
+\end{minipage}%
+}%end subfloat
+\qquad
+\subfloat[Lexical Rules][Lexical Rules\\
+Each rule specifies how to lexically distinguish one type of token in terms of a corresponding regular expression. When more than one rule matches the input, the earliest is used.]{%
+\label{lexing:tokrules}
+\begin{tabular}{ll}%
+\toprule
+\tableheadline{Token Type} &\tableheadline{Regular Expression}\\
+\midrule
+\mt{WS} &$[\mt{\textvisiblespace\crsymb}]^+$\\
+\mt{KW} &$\mk{if} \alt \mk{then} \alt \mk{else} \alt \mk{fi} \alt \mk{echo}$\\
+\mt{ID} &$[\mt{A--Za--z}]^+$\\
+\mt{STR} &$\text{\small"}[\hat{\hphantom{\text{\mt{"}}}}\text{\small"}]\kstar\text{\small"}$\\
+\mt{SEQ} &\mt{;}\\
+\bottomrule
+\end{tabular}%
+%\qquad
+%\subfloat[Rules]{%
+%\label{lexing:tokrules}
+%\small\ttfamily
+%\begin{minipage}{20em}%
+%\mt{WS\ \ \ \ \ \ \ \ \ \ \ [{\textvisiblespace}{\crsymb}]+}\newline
+%\mt{KW\ \ \ \ \ \ }\mk{if}\mt{|}\mk{then}\mt{|}\mk{else}\mt{|}\mk{fi}\mt{|}\mk{echo}\newline
+%\lstinline[columns=fixed]!ID\ \ \ \ \ \ \ \ \ \ \ \[A-Za-z\]+!\newline
+%\lstinline[columns=fixed]!STR\ \ \ \ \ \ \ \ \ \ \\"\[^\\"\]*\\"!\newline
+%\lstinline[columns=fixed]!SEQ\ \ \ \ \ \ \ \ \ \ ;!%
+%\end{minipage}
+}%end subfloat
+\end{figure}
