@@ -117,6 +117,7 @@
 % ********************************************************************
 % Listing styles
 %*******************************************************
+\renewcommand{\lstlistlistingname}{List of Listings}
 \lstdefinestyle{riscpseudo}{mathescape=true,literate={:=}{{$\gets$}}1 {rx}{{$r_{x}$}}2 {ry}{{$r_{y}$}}2 {rz}{{$r_{z}$}}2 {=:}{{$\to$}}1}
 \lstdefinestyle{riscpseudoDisplay}{xleftmargin=\mathindent,frame=none,%
 mathescape=true,literate={:=}{{$\gets$}}1 {rx}{{$r_{x}$}}2 {ry}{{$r_{y}$}}2 {rz}{{$r_{z}$}}2 {=:}{{$\to$}}1}
@@ -138,16 +139,16 @@ mathescape=true,literate={:=}{{$\gets$}}1 {rx}{{$r_{x}$}}2 {ry}{{$r_{y}$}}2 {rz}
 %*******************************************************
 % List those files out of all \include'd that should actually be included.
 % (You will want to comment this section out to get a full draft.)
-\includeonly{%
-frontmatter/contents,%
-chapters/background/Compilers,%
+%\includeonly{%
+%frontmatter/contents,%
+%chapters/background/Compilers,%
 %chapters/imperative/Overview,%
 %chapters/imperative/Defining,%
 %chapters/imperative/Compiling,%
 %chapters/imperative/Optimizing,%
 %chapters/imperative/Conclusion,
-backmatter/bibliography%
-}
+%backmatter/bibliography%
+%}
 
 \begin{document}
 \frenchspacing

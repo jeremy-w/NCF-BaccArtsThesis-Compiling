@@ -141,37 +141,39 @@
 \RequirePackage{listings}  
 % ********************************************************************
 % caption numbering now w/o chapter number
-%\makeatletter
-%    \ifthenelse{\boolean{@nochapters}}%
-%    {\relax}{%
-%        \@removefromreset{lstlisting}{chapter}% requires remreset package
-%    }
+\makeatletter
+    \ifthenelse{\boolean{@nochapters}}%
+    {\relax}{%
+        \@removefromreset{lstlisting}{chapter}% requires remreset package
+    }
 %    \renewcommand{\thelstlisting}{\arabic{lstlisting}} % <-- might cause an error with some TeX distributions
-%\makeatother
+    \gdef\thelstlisting{\@arabic\c@lstlisting} % taken from listings.sty v1.4 line 1570
+\makeatother
 % ********************************************************************
 % ...and get the layout of the list of listings right (dirty workaround)
-%\makeatletter
-%        \def\@dottedtocline#1#2#3#4#5{%
-%          \ifnum #1>\c@tocdepth \else
-%            \vskip \z@ \@plus.2\p@
-%            {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
-%             \parindent #2\relax\@afterindenttrue
-%             \interlinepenalty\@M
-%             \leavevmode
-%             \@tempdima #3\relax
-%             \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-%             \hbox{{#4}\nobreak
-%             \hspace{1.5em}
-%             \nobreak
-%             \hb@xt@\@pnumwidth{\normalfont \normalcolor #5}}%
-%             \par}%
-%          \fi}
-%        \def\@pnumwidth{0em}
-%\makeatother
+\makeatletter
+        \def\@dottedtocline#1#2#3#4#5{%
+          \ifnum #1>\c@tocdepth \else
+            \vskip \z@ \@plus.2\p@
+            {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+             \parindent #2\relax\@afterindenttrue
+             \interlinepenalty\@M
+             \leavevmode
+             \@tempdima #3\relax
+             \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+             \hbox{{#4}\nobreak
+             \hspace{1.5em}
+             \nobreak
+             \hb@xt@\@pnumwidth{\normalfont \normalcolor #5}}%
+             \par}%
+          \fi}
+        \def\@pnumwidth{0em}
+\makeatother
 % ********************************************************************
 % to get the LoL entries right, change line 1461 in listings.sty (v1.3a) to
 % {\protect\hspace{-\parindent}Listing~\thelstlisting\hspace{1.5em}\lst@@caption}%
 % really nasty, if you know of a better way, please let me know
+% (This appears to be line 1611 in listings.sty v1.4.)
 % ********************************************************************
 %\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
 % ********************************************************************
