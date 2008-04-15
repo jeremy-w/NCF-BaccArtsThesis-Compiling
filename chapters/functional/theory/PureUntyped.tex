@@ -1,0 +1,256 @@
+\subsection{Pure Untyped \LambdaCalc}
+Pure untyped \lambdacalc is the original form of the \lambdacalc{}. When someone speaks of ``the \lambdacalc{}'' without qualification, this is what is meant. Its purity is due to its conceptual simplicity and elegance. We call it untyped because it makes no distinction between types: everything is of the same type.
+
+The building blocks of the \lambdacalc are an infinite set of variables. The easiest way to generate this set is to pick a base name, say $v$, and simply add primes whenever a new variable is needed: $v\prime$, $v\prime\prime$, \dots. This is also the easiest way to ensure anyone trying to read an expression in the \lambdacalc loses their place, and since we shall not have need of an infinite set of variables in our examples, we will content ourselves with the more readily distinguished $x$, $y$, $z$, and so forth.
+
+From these variables we flesh out the \lambdacalc with \vocab{lambda terms}. To describe these lambda terms, we give some simple rules:
+\begin{aenumerate}
+\item Variables are themselves lambda terms.
+\begin{align*}
+V &= v \alt v\prime \alt v\prime\prime \alt \dotsb\\
+V &\in \Lambda
+\end{align*}
+\item Abstraction of a lambda term over a variable produces a lambda term.
+\[
+\frac{v \in V\qquad M \in \Lambda}{\lambda v M \in \Lambda}
+\]
+\item Application of one lambda term to another produces a lambda term.
+\[
+\frac{M \in \Lambda\qquad N \in \Lambda}{M N \in \Lambda}
+\]
+\end{aenumerate}
+The notation $\frac{\langle\text{\textit{upper statements}}\rangle}{\langle\text{\textit{lower statements}}\rangle}$ means that, if we can infer the truth of the upper statements, then we can infer the truth of the lower. The horizontal line between the two levels can be read ``implies.''
+
+Since excessive use of parentheses can pose as much a difficulty to reading as excessive use of primes, we rely on certain conventions to disambiguate otherwise ambiguous lambda terms:
+\begin{itemize}
+\item Application associates to the left.
+\[
+MNOP \equiv (((MN)O)P)
+\]
+\item Abstraction associates to the right.
+\[
+\lambda x \lambda y \lambda z M \equiv (\lambda x (\lambda y (\lambda z M)))
+\]
+\item The variable of abstraction is separated from the term undergoing abstraction by a dot.
+\[
+\lambda x M \equiv \lambda x . M
+\]
+\end{itemize}
+To be clear, we use $M \equiv N$ to state that $M$ and $N$ are syntactically equivalent. When we say that they are syntactically equivalent, we mean that they were ``built'' the same way. For example, thanks to the infinity of basic variables, we can construct an infinity of lambda terms by picking a variable, picking another variable and applying the first to the second, then abstracting over the second:
+\begin{enumerate}
+\item Pick a variable.
+\[
+x \qquad y \qquad z \qquad \dotso
+\]
+\item Pick another.
+\[
+y \qquad z  \qquad w \qquad \dots
+\]
+\item Apply the first to the second.
+\[
+xy \qquad yz  \qquad zw \qquad \dots
+\]
+\item Abstract over the second.
+\[
+\lambda y . xy \qquad \lambda z . yz \qquad \lambda w . zw \qquad \dotso
+\]
+\end{enumerate}
+We consider all these terms to be equivalent. This is justified because all these terms behave the same way, as we shall see quite soon. However, this broad identification of superficially different terms has its pitfalls, which we shall come to shortly.
+
+There is one more ingredient of the pure untyped \lambdacalc{}. So far, we have established a static universe of lambda terms. We can conceive of larger and larger terms, but we cannot simplify them or do anything beyond list them. The missing spark that puts these terms in motion and enables computation is called \vocab{$\beta$-re\-duc\-tion}. $\beta$-reduction resembles the application of grammatical productions in context-free grammars, and the notation is similar, though both the behavior and notation are slightly and significantly different.
+
+We begin by defining \vocab{one-step $\beta$-reduction}, written $\betared$. This relates lambda terms to lambda terms; specifically, it describes the substitution of one lambda term for the variable of abstraction in another:
+\[
+(\lambda x . M) N \betared \replace{x}{N}{M}
+\]
+We can also describe how this behaves with other sorts of terms:
+\begin{itemize}
+\item $\beta$-reduction can occur freely in either half of an application.
+\[
+\frac{M \betared M\prime}{MN \betared M\prime N}
+\qquad
+\frac{M \betared M\prime}{NM \betared NM\prime}
+\]
+\item $\beta$-reduction can occur freely underneath abstraction.
+\[
+\frac{M \betared M\prime}{\lambda x.M \betared \lambda x.M\prime}
+\]
+\end{itemize}
+We can similarly define \vocab{many-step $\beta$-reduction}, \betared[*]: $M \betared[*] N$ if there is some chain of $\beta$-reductions beginning with $M$ and terminating with $N$, that is, $M \betared M\prime \betared \dotsb \betared N$.\footnote{Note that we are using a two-headed arrow $\twoheadrightarrow$ here instead of the starred arrow $\derives[*]{}$ that we used for the similar concept of derivation in multiple steps with context-free grammars. As with derivation, where a subscript $lm$ or $rm$ indicated whether leftmost or rightmost derivation was used, a subscript $\beta$ here indicates that $\beta$-reduction was employed.}
+
+\subsubsection{\texorpdfstring{$\beta$-Reduction and the Perils of Names}{Beta-Reduction and the Perils of Names}}\label{untyped:nameperils}
+What is going on here? We can think of it this way: abstraction binds its variable. Once we have abstracted a term over a given variable, we cannot do so again. The variable is no longer free. When we apply an abstracted term to another term, $\beta$-reduction simultaneously performs the binding of the variable to the other term and substitutes that term for the bound variable throughout the body of the abstracted term. Now that its purpose has been fulfilled and the abstraction made concrete, the abstraction disappears. An example will make this clearer. Take $\lambda y . xy$. Applying it to some lambda term, $M$, and $\beta$-reducing it gives:
+\[
+(\lambda y . xy) M \betared \replace{y}{M}{xy} = xM
+\]
+
+But here there be dragons. This is where the convenient identification of syntactically equivalent terms returns with a vengeance. Suppose we take the doubly-abstracted term $\lambda x. \lambda y. xy$ and apply it to the seemingly innocent term $wyz$. Let us also apply it to the equivalent term $tuv$. What happens?
+\begin{align*}
+(\lambda x. \lambda y. xy) wyz &\betared \replace{x}{wyz}{\lambda y. xy} = \lambda y. wyzy
+\\
+(\lambda x. \lambda y. xy) tuv &\betared \replace{x}{tuv}{\lambda y. xy} = \lambda y. tuvy
+\end{align*}
+But, should we apply this to yet another term, say $s$, something unexpected occurs:
+\begin{align*}
+(\lambda y. wyzy) s &\betared \replace{y}{s}{wyzy} = wszs
+\\
+(\lambda y. tuvy) s &\betared \replace{y}{s}{tuvy} = tuvs
+\end{align*}
+The results are no longer syntactically equivalent! The problem is one of \vocab{variable capture}: we substituted $wyz$, which has as its free variables $\set{w, y, z}$, into a term in which $y$ was bound, thus incidentally binding the $y$ of $wyz$. When we substituted the syntactically equivalent $tuv$, however, all three variables remained free in the result. The only way to ensure that syntactically equivalent terms produce equivalent results is to be very careful to avoid variable capture by renaming bound variables to some variable that is still free in the term about to be substituted. Here, that would mean renaming $y$ to some variable free in $wyz$, say $v$. If we perform this renaming and then repeat our experiment, we get the appropriate results:
+\begin{align*}
+(\lambda x. \lambda y. xy) wyz &\equiv (\lambda x. \lambda v. xv) wyz \quad \text{(renaming)}
+\\
+(\lambda x. \lambda v. xv) wyz &\betared \replace{x}{wyz}{\lambda v. xv} = \lambda v. wyzv
+\quad \text{(first application)}
+\\
+(\lambda v. wyzv) s &\betared \replace{v}{s}{wyzv} = wyzs \quad \text{(second application)}
+\\
+wyzs &\equiv tuvs \quad \text{(the results)}
+\end{align*}
+As you can see, the result is now syntactically equivalent to that reached when we use $tuv$ instead of $wyz$.
+
+\subsubsection{\texorpdfstring{$\alpha$-Reduction}{Alpha-Reduction}}\label{untyped:alpha}
+There are two ways around this. One is to simply assume that all this renaming takes place automatically and get on with the theory. This is very convenient if all you are interested in is developing the theory associated with the \lambdacalc and is a favorite choice of theoreticians. The other option is to formalize this renaming process by introducing another type of reduction, \vocab{$\alpha$-reduction}, and modify the rules surrounding $\beta$-reduction to explicitly forbid its use where variable capture would occur, thus forcing the invocation of $\alpha$-reduction before $\beta$-reduction can continue. This is somewhat messier, but it better reflects what must occur in a practical implementation of the \lambdacalc{}. While waving our hands and saying that we identify syntactically equivalent terms and all renaming occurs as necessary for things to work out as desired in the end works fine on paper and fine with humans, we must be a bit more explicit in implementing the \lambdacalc in a computer program.
+
+Doing so gets even messier. We must continually come up with unique names, make repeated textual substitutions, and keep checking to ensure we're not about to capture a variable. But this mess was foisted upon us by our choice of variables. We have already made clear by our treatment of these variables that their names serve as nothing more than placeholders. They are just ways for the abstraction to point down into the term and indicate at which points we should make the substitutions called for by $\beta$-reduction. What if, instead, we reversed the relationship between the abstraction and its term?
+
+\subsubsection{De Bru\ij n Indices}\label{untyped:indices}
+The central insight of \vocab{de Bru\ij n indices} is to eliminate the use of corresponding variable names in the abstraction and term in favor of numbers ``pointing'' to the appropriate lambda. Thus, instead of writing $\lambda x . xy$, we wouold write $\lambda.1y$, since the $x$ in the former notation is bound by the first enclosing $\lambda$. The more complex term $\lambda x . (\lambda y . xy) (\lambda z. \lambda y. xyz)$ would become $\lambda . (\lambda . 2 1) (\lambda . \lambda . 321)$. This demonstrates that we are not simply renaming variables-as-letters to variables-as-numbers. Rather, the number indicates the level of nesting of its corresponding $\lambda$. Take the $x$s in the last example, which became respectively $2$ and $3$. Let us visually display the level of nesting by dropping down a line on the page; then the conversion between variable names and de Bru\ij n indices becomes easier to see:
+\begin{table}[h]
+\caption{Converting to de Bru\ij n indices}
+\myfloatalign
+\begin{tabular}{llllllll}
+\toprule
+\multicolumn{4}{c}{\spacedlowsmallcaps{Variable Names}} 
+&\multicolumn{4}{c}{\spacedlowsmallcaps{De Bru\ij n Indices}}
+\\
+\cmidrule(r){1-4}
+\cmidrule(l){5-8}
+$\lambda x.$  &                    &               &                       &
+$\lambda.  $
+\\
+              & $(\lambda y. x y)$ & $(\lambda z.$ &                       &
+              & $(\lambda  . 2 1)$ & $(\lambda  .$
+\\
+              &                    &               & $ \lambda y. x y z)$ &
+              &                    &               & $ \lambda  . 3 2 1)$
+\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This conversion can be performed algorithmically by keeping track of which variable names were bound at which level of nesting. We can also readily convert from de Bru\ij n indices back to variable names. This allows for the entry and display of lambda terms using variable names while reduction proceeds in terms of de Bru\ij n indices. Since de Bru\ij n indices give a unique representation for each syntactically equivalent lambda term, they sidestep the problems with variable binding and the like that we encountered earlier.\footnote{You might have noticed that, since the indices do depend on the level of nesting, they must be adjusted when substitution occurs under abstraction. But this is only a slight problem compared to the mess brought on by names, and it can be readily and efficiently dealt with.}
+
+\subsubsection{Currying}\label{untyped:currying}
+But as when we went from a many-primed symbol to variable names, names are more convenient for humans both to write and read, and so we return to using the more conventional notation. We can even do a bit more to increase the readability of our lambda terms. We have already eliminated excess parentheses: let us now eliminate excess lambdas.
+
+Consider the lambda term $\lambda x. (\lambda y. (xy))$. According to our conventions, abstraction associates to the right, and so this can be unambiguously written as $\lambda x. \lambda y. xy$. But, look again: the distinction between the variable bound by abstraction and the term within which it is bound is clear, since each abstracted term has the form $\lambda \text{ $\langle$\textit{variable}$\rangle$ } . \text{ $\langle$\textit{term}$\rangle$}$. When we come across nested abstraction, as above, it is clear that those variables closer to the nested term but left of a dot are the result of abstraction at a deeper level of nesting. So let us write, instead of $\lambda x. \lambda y. xy$, rather $\lambda x y . xy$. This applies wherever we would not require that parentheses intervene between nested lambdas due to convention. Thus, we could rewrite $\lambda x. (\lambda y. xy) (\lambda z. \lambda y. xyz)$ as $\lambda x. (\lambda y. xy) (\lambda zy.xyz)$.
+
+Notice now how a lambda term such as $\lambda xy. xy$ resembles a function of multiple arguments. If we apply it to two terms in succession, then it eventually $\beta$-reduces precisely as if we had supplied two arguments to a binary function: $(\lambda xy. xy) M N \betared[*] M N$. But, what happens if we apply it to a single term? Well, $(\lambda xy. xy) M \betared \lambda y. My$, that is, we get back a term abstracted over $y$. It is as if, on supplying only one argument to an $n$-ary function, we got back a function of arity $n - 1$. When we apply this term to, say, $N$, we arrive at $M N$ yet again, precisely as if we had immediately supplied both ``arguments'' to the original term.
+
+This is not mere coincidence. We can, in fact, represent \emph{all} $n$-ary functions as compositions of $n$ unary functions. Each such function simply returns a function expecting the next argument of the original, $n$-ary function. This form of an $n$-ary function is known as its \vocab{curried} form, and the process of transforming an uncurred function into a curried function is called \vocab{currying}.\footnote{The name is a reference to the logician Haskell B. Curry, though the idea appears to be due to Moses Sch\"{o}nfinkel.}
+
+\subsubsection{From Reduction to Conversion}\label{untyped:conversion}
+Let us now step back a ways to where we had just defined $\beta$-reduction. $\beta$-reduction is a one-way process: it can never make a term more complicated than it was before.\footnote{We cannot go all the way to claiming that $\beta$-reduction always results in a less complicated term. For example, $(\lambda x.xx) (\lambda x.xx)$ always and only $\beta$-reduces to itself and thus becomes neither more nor less complicated.} But it does relate different terms: one term is related to another if it can eventually $\beta$-reduce to that term. In some sense, all terms that are the result of $\beta$-reduction of some other term are related in that very way. We thus name this relation by saying that such terms are \vocab{$\beta$-convertible}, so that if $M \betared[*] N$, or $N \betared[*] M$, or $L \betared[*] M$ and $L \betared[*] N$, or $M \betared[*] P$ and $N \betared[*] P$, then $M$ and $N$ (and additionally $L$ and $P$, if such is the case) are $\beta$-convertible. This is illustrated in Fig.~\ref{untyped:betaconv}, p.~\pageref{untyped:betaconv}. We notate this relation with a subscripted equals sign: $M \betacon N$.\footnote{To be more exact, $\beta$-conversion is the equivalence relation generated by many-step $\beta$-reduction.}
+
+(Now that we have introduced $\beta$-conversion, it is time to emend our earlier comments on $\alpha$-reduction. What we have called $\alpha$-reduction is more commonly, and more properly, called $\alpha$-conversion, since the relation between names is inherently bidirectional: $x$ converts to $y$ as readily as $y$ converts to $x$.)
+
+\begin{figure}[btp]
+\caption[$\beta$-conversion]{$\beta$-conversion\\
+Letters represent lambda terms. A directed arrow $M \to N$ means that $M$ $\beta$-reduces to $N$ in some number of steps, that is, $M \betared[*] N$.
+}
+\label{untyped:betaconv}
+\myfloatalign
+\begingroup
+\SelectTips{eu}{10}
+\setlength\extrarowheight{15pt}%default length is 3.0pt
+\begin{tabular}{cc}
+\tableheadline{From this\dots} &\tableheadline{we deduce this.}
+\\
+\xymatrix{M \ar[r] &N}
+& 
+$M \betacon N$
+\\
+\xymatrix{&L \ar[dl] \ar[dr]\\
+M & & N} & $M \betacon L \betacon N$\\
+\xymatrix{M \ar[dr] & & N \ar[dl]\\
+& P}
+&
+$M \betacon P \betacon N$
+\\
+\xymatrix{
+&L \ar[dl] \ar[dr]\\
+M \ar[dr] & &N \ar[dl] %\ar@{=>}[rr] & & {L \betacon M \betacon N \betacon P}
+\\
+&P
+}
+&
+$L \betacon M \betacon N \betacon P$
+\end{tabular}
+\endgroup
+\end{figure}
+
+An important property of the \lambdacalc is related to this. It is known as the \vocab{Church-Rosser property}, and it says two things.
+\begin{itemize} 
+\item Firstly, it says that if any lambda term can be reduced in one or more steps to two different lambda terms, then it is possible to reduce each of those lambda terms in some number of steps to the same term. More symbolically, this can be put as follows: if $M \betared[*] M_{1}$ and $M \betared[*] M_{2}$, then there exists an $M_{3}$ such that $M_{1} \betared[*] M_{3}$ and $M_{2} \betared[*] M_{3}$. What this means graphically is that, given the figure from the second row of the table in Fig.~\ref{untyped:betaconv}~(p.~\pageref{untyped:betaconv}), we can infer the existence of the term $P$ in the the last row of that table.
+\item Secondly, it states that if two terms $M$ and $N$ are $\beta$-convertible into each other, then there is some other common term $P$ to which the first two can both be reduced. This is to say that, if $M \betacon N$, then we can find some $P$ such that $M \betared[*] P$ and $N \betared[*] P$ as well.
+\end{itemize}
+
+\subsubsection{Normal Forms}\label{untyped:nf}
+Now that we have defined lambda terms and $\beta$-reduction, we can give a normal form for lambda terms. This is important if we are to explain the impact of the Church-Rosser property. A lambda term is said to be in \vocab{normal form} if it cannot be further $\beta$-reduced, that is to say, the lambda term $M$ is in normal form if there is no $N$ such that $M \betared N$.
+
+Not all terms have normal forms. The lambda term $(\lambda x.xx)(\lambda x.xx)$, sometimes called $\Omega$, has no normal form, since it reduces always and only to itself. Some terms do have normal forms, but it is possible to $\beta$-reduce the term an arbitrary number of times without reaching this form. What this means practically that it is important to select the right \vocab{reducible expression (redex)} to $\beta$-reduce, otherwise one might continue $\beta$-reducing without ever terminating in the normal form. It is easy to produce examples of such terms by throwing $\Omega$ into the mix: $(\lambda xy.y) \Omega z$ has as its normal form $z$, but of course one could repeatedly select $\Omega$ for reduction and thereby never realize this. Terms that \emph{always} reduce to normal form within a finite number of $\beta$-reductions, regardless of the reduction strategy employed, are called \vocab{strongly normalizing}.
+
+Now that the concepts of normal forms and strongly normalizing terms is clear, we can explicate the Church-Rosser property. Altogether, it means that, if a term has a normal form, then regardless of the reduction steps we use to reach that form, it will always be possible from anywhere along the way to reach the normal form: there's no way we can misstep and be kept from ever reaching the normal form short of intentionally, repeatedly making the wrong choice of expression to reduce. If the term is strongly normalizing, we can go one better and state that the reduction steps we use to reach its normal form are completely irrelevant, as all chains of reductions will eventually terminate in that normal form. The property also shows that the normal form is unique, for if $N_{1}$ and $N_{2}$ were two distinct normal forms of a given term, then they would have to share a common term $N_{3}$ to which they could both be $\beta$-reduced.
+
+\subsubsection{Recursion and $Y$}\label{untyped:y}
+The pure, untyped \lambdacalc is Turing complete. An important part of achieving this degree of expressive power is the ability to make recursive definitions using the \lambdacalc{}. The way to do so is surprisingly succinct. One common means is what is known as the \vocab{paradoxical combinator}, universally designated by $Y$. Here is its definition:
+\[
+Y = \lambda f. (\lambda x.f(xx))(\lambda x.f(xx))
+\]
+It is also known as the \vocab{fixed-point combinator}, since for every $F$, we have that $F(YF) \betacon YF$.\footnote{$Y$ is not unique in producing fixed points. Turing's fixed point operator $\Theta = (\lambda a b . b (aab)) (\lambda a b . b (aab))$ will do just as well.} Let us see how exactly this works:
+\begin{align*}
+Y F &\equiv (\redex{\lambda f}. (\lambda x.\redex{f}(xx))(\lambda x.\redex{f}(xx))) \redex{F} \\
+&\betared (\redex{\lambda x}. F(\redex{x}\redex{x})) \redex{(\lambda x. F(xx))}\\
+&\betared F ( (\lambda x. \redex{F}(xx)) (\lambda x. \redex{F}(xx)) )\\
+&\betacon F (\redex{(\lambda f. (\lambda x.f(xx))(\lambda x.f(xx)))} F)\\
+&\equiv F (Y F)
+\end{align*}
+At each step, we have used color to indicate the terms that are involved in producing the next step. We have indicated at each step whether syntactic equivalence, $\beta$-reduction, or full-fledged $\beta$-conversion was employed. As you can see, we begin by using simple $\beta$-reduction. The breakthrough that permits us to arrive at the desired form is replacing the two instances of $F$ in the inner term $((\dotsb F \dotsb)(\dotsb F \dotsb))$ by the application of $\lambda f. (\dotsb f \dotsb)(\dotsb f \dotsb)$ to $F$.
+
+If you look at the steps leading up to that abstraction, you can see how $Y$ leads to recursion. Let us carry this process out a bit further:
+\begin{align*}
+Y F &\equiv (\redex{\lambda f}. (\lambda x.\redex{f}(xx))(\lambda x.\redex{f}(xx))) \redex{F} \\
+&\betared (\redex{\lambda x}. F(\redex{x}\redex{x})) \redex{(\lambda x. F(xx))}\\
+&\betared F (\redex{\lambda x}. F(\redex{x}\redex{x})) \redex{(\lambda x. F(xx))}\\
+&\betared F ( F ( ((\redex{\lambda x}. F(\redex{x}\redex{x})) \redex{(\lambda x. F(xx))} ))\\
+&\betared F ( F ( F ( ((\redex{\lambda x}. F(\redex{x}\redex{x})) \redex{(\lambda x. F(xx))} )))\\
+&\vdots
+\end{align*}
+As you can see quite plainly, $YF$ leads to repeated self-application of $F$. This iteration of $F$ is how it produces a fixed point.%CRIT-TODO: Does it ALWAYS reach a fixed point? Or only sometimes?
+
+\subsubsection{A Brief Word on Reduction Strategies}\label{untyped:strategies}
+Before we move on to extend the \lambdacalc with some concepts a bit more elaborate and convenient than the low-level but elegant pure, untyped \lambdacalc{}, it behooves us to put in a brief word about reduction strategies.
+
+In the context of the \lambdacalc{}, we call them reduction strategies. In the context of programming languages in general, we use the phrase \vocab{order of evaluation}. They both come down to the same thing: where do we want to focus our efforts? And, perhaps more importantly, where should we focus our efforts? 
+
+The choices we make in terms of \lambdacalc reduction strategy have equivalents in terms of order of evaluation of functions and their arguments. The fundamental question is this: should we evaluate the arguments before passing them on to the function, or should we call the function and just point it at its arguments so it has access to them and their values as needed?
+
+If we first deal with the arguments and only then with the function as a whole, then we are employing a \vocab{call-by-value} evaluation strategy, so-called because the function call takes place with the values of the arguments provided to the function. The arguments are evaluated, and the resulting value is bound to the formal parameters of the function.
+
+If we instead begin by evaluating the body of the function itself and only evaluate the arguments as necessary, we are pursuing a \vocab{call-by-name} evaluation strategy. Call-by-name gets its name from the way that the formal parameters are bound only to the names of the actual arguments. It is only when the value of one of the arguments is required to proceed with evaluating the function's body that the argument is evaluated.
+
+The \lambdacalc equivalent of call-by-value is known as the \vocab{applicative order} reduction strategy. We can describe the applicative order strategy quite simply: reduction is first performed in the term to which the abstraction is being applied. Only when we have exhausted this possibility do we perform the application.
+
+If we strengthen this preference into a hard and fast rule that no $\beta$-reduction is to be performed under an abstraction, then we can define an alternative normal form, known as \vocab{weak normal form}:
+\begin{itemize}
+\item Variables are defined to be in weak normal form.
+\item An application $MN$ is in weak normal form iff both $M$ and $N$ are in weak normal form.
+\item An abstraction $\lambda x . M$ is in weak normal form.
+\end{itemize}
+It is in the treatment of abstractions that weak normal form differs from normal form: weak normal form considers all abstractions $\lambda x . M$ to already be in weak normal form, while normal form requires that the term $M$ being abstracted over also be in normal form.
+
+The \lambdacalc equivalent of call-by-name, on the other hand, is known as the \vocab{normal order} reduction strategy and corresponds to always select the leftmost--outermost reducible expression for reduction. Normal order is so called because, if the term has a normal form, we can always reduce it to normal form by employing the normal order reduction strategy. The same cannot be said for applicative order, which can fail to reduce a term to normal form even when one exists. Again, the $\Omega$ term makes it easy to give an example. Something as simple as $(\lambda x y. y) \Omega z$ suffices. Under normal order evaluation, we first $\beta$-reduce $(\lambda x y. y) \Omega \betared (\lambda y. y)$ and then apply the result to $z$, giving the normal form $z$. With applicative order evaluation, however, we begin by $\beta$-reducing the first argument, $\Omega$\empause and that is as close as we shall ever get to the normal form $z$, since $\Omega$ has no normal form.
+
+\subsubsection{Strictness}\label{untyped:strictness}
+If a computation never terminates, as with the attempt to $\beta$-reduce $\Omega$ to normal form, then we say that it \vocab{diverges}. An important concept for functions is that of \vocab{strictness}. We say a function is strict in a given parameter if the evaluation of the function itself diverges whenever the evaluation of the parameter diverges. The function $\lambda x y. y$ given above is strict only in its second argument, $y$, since we can evaluate the function even when a divergent term is substituted for $x$, as recently demonstrated. A function that is strict in all arguments is called a \vocab{strict function}. The function $\lambda x. x$ can readily be seen as strict, since this function is simply the identity function.

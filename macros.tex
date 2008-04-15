@@ -13,8 +13,9 @@
 \newcommand{\myTime}{May 2008\xspace}
 
 % Semantic markup
-\newcommand{\code}[1]{\texttt{#1}} %the variable \code{x}
+\newcommand{\code}[1]{{\small\ttfamily #1}} %the variable \code{x}
 \newcommand{\foreign}[1]{\textit{#1}} %the \foreign{Entscheidungsproblem}
+\newcommand{\asword}[1]{\textit{#1}} %such a strange word, \asword{word.}
 \newcommand{\vocab}[2][]{\spacedlowsmallcaps{#2}} %the \vocab{lambda terms} are...
 %\newcommand{\abbrev}[1]{\spacedallcaps{#1}} % too spaced out, interrupts reading
 \newcommand{\abbrev}[1]{#1} % \abbrev{IBM}
@@ -23,10 +24,12 @@
 \newcommand{\replace}[3]{\ensuremath{#3\left[#1 := #2\right]}} %M[x := N]
 %\newcommand{\replace}[3]{\ensuremath{#3\left[#2 / #1\right]}} %M[N/x]
 \newcommand{\empause}{ -- }%{---}; using spaced en-dash per Bringhurst
+\newcommand{\redex}[1]{{\color{Red}#1}}
 
 % Simple abbreviations
 \newcommand{\lambdacalc}{lambda calculus\xspace} %We discuss the \lambdacalc...
 \newcommand{\Lambdacalc}{Lambda calculus\xspace} %\Lambdacalc is really cool.
+\newcommand{\LambdaCalc}{Lambda Calculus\xspace}%\section{\LambdaCalc}
 \newcommand{\TM}{Turing machine\xspace}
 \newcommand{\TMs}{Turing machines\xspace}
 \newcommand{\ISL}{instruction-set language\xspace}
@@ -92,6 +95,11 @@ Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
 \newcommand{\token}[1]{\ensuremath{\langle\text{\textit{#1}}\rangle}}
 \newcommand{\where}{\mid}
 \newcommand{\pair}[2]{\ensuremath{\left(#1,\,#2\right)}}
+\newcommand{\reducesinto}[2][]{\ifthenelse{\equal{#1}{}}{\ensuremath{\rightarrow_{#2}}}{\ensuremath{\twoheadrightarrow_{#2}}}}% reducesInSteps:ToTerm:
+\newcommand{\betared}[1][]{\reducesinto[#1]{\beta}}
+\newcommand{\alphared}[1][]{\reducesinto[#1]{\alpha}}
+\newcommand{\etared}[1][]{\reducesinto[#1]{\eta}}
+\newcommand{\betacon}{\ensuremath{=_{\beta}}}
 
 % Math: Simple abbreviations
 \let\oldprime=\prime

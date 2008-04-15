@@ -1,0 +1,14 @@
+\myChapter{Theory}\label{functional:theory}
+\input{chapters/functional/theory/Types}
+\section{\LambdaCalc}
+In \partandnameref{Chapter}{background:beginnings}, we briefly sketched the \lambdacalc{}. Now, we shall take the time to do it justice. The fundamentals of the \lambdacalc are simple, unassuming, and somewhat unintuitive. By extending the \lambdacalc{}, we can make it more ``natural'' for reasoning about and even doing programming, but this comes at the cost of reducing its power. It is, however, partly this reduction in power that makes these extensions so appealing.
+
+\input{chapters/functional/theory/PureUntyped}
+\input{chapters/functional/theory/Extended}
+
+\section{Bibliographic Notes}
+not as fine a distinction as that made by Sestoft; ours echoes the more popular equation of cbv and applicative order, while he carefully distinguishes the two in terms of \lambdacalc reduction.
+
+We have barely scratched the surface of the \lambdacalc and type theory. \citet{Barendregt:The-Lambda:1984} is the standard reference for the untyped \lambdacalc and develops many aspects of the topic in tremendous detail, but many of those details are not directly relevant to programming languages.
+
+The \lambdacalc in one form or another is often hurriedly introduced as more or less new material where needed in books and articles dealing with functional progamming. The concept of \asword{type} can itself be introduced into the \lambdacalc in a variety of ways and then subsequently elaborated. \citet{Cardelli:On-understanding:1985} provides a very readable introduction to practical issues of types and programming languages\empause the presentation in this chapter is significantly influenced by the presentation therein\empause, while \citet{Barendregt:Types:1990} looks more carefully at the ways typing can be introduced formally into the \lambdacalc{}; our formal definition of the pure, untyped \lambdacalc in good part follows the two-page summary given near the beginning of this article. \citet{Thompson:Type:1991}, developed from lectures given at the University of Kent and the Federal University of Pernambuco, Recife, Brazil, introduces types in the context of programming languages and constructive logic, while \citet{Pierce:Types:2002} is a full-length textbook on type theory, and \citet{Pierce:Advanced:2005} an edited collection of research papers on the topic.

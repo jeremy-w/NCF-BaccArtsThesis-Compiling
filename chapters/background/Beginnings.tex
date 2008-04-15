@@ -2,13 +2,13 @@
 % Need to practically write this twice this because otherwise there's a bad interaction between the smallcaps and the italic in the section heading in the body versus the desired italics in the table of contents; it seems small caps italics is not an option...
 % Also, can't use \Deutsch in the title---LaTeX coughs something about capacity exceeded. This is okay, because I wanted to use Babel to handle German hyphenation, and this is not going to be hyphenated in the TOC, anyway.
 \section[A Sticky \foreign{Entscheidungsproblem}]{A Sticky Entscheidungsproblem}
-The decision problem %, known under its German name \Deutsch{Entscheidungsproblem,} 
+The \vocab{decision problem} %, known under its German name \Deutsch{Entscheidungsproblem,} 
 was an important problem in twentieth-century mathematical logic.\footnote{For example, it is intimately bound up with Hilbert's tenth problem: 
 \begin{quote}
 Given a Diophantine equation with any number of unknown quantities and with rational integral numerical coefficients: \emph{To devise a process according to which it can be determined in a finite number of operations whether the equation is solvable in rational integers.}
 \end{quote}
 }
-It addresses the fundamental question of what we can and cannot know. There are many ways to pose the decision problem. One formulation was given by Hilbert and Ackermann in their 1928 book \textit{Principles of Theoretical Logic.} They call the dual problems of determining the universal validity and determining the satisfiability of a logical expression the \vocab{decision problem}. The problem is solved when one knows a ``process'' that determines either property of any given logical expression in first-order logic. The particular first-order logic they had in mind was that propounded in their book.%, \Deutsch{der engere Funktionenkalk\"ul} (renamed to \Deutsch{der engere Pr\"adikatenkalk\"ul} in the 1959 edition).
+It addresses the fundamental question of what we can and cannot know. There are many ways to pose the decision problem, or \vocab{Entscheidungsproblem} as it was often called. One formulation was given by Hilbert and Ackermann in their 1928 book \textit{Principles of Theoretical Logic.} They call the dual problems of determining the universal validity and determining the satisfiability of a logical expression the \vocab{decision problem}. The problem is solved when one knows a ``process'' that determines either property of any given logical expression in first-order logic. The particular first-order logic they had in mind was that propounded in their book on the restricted function calculus, later called the restricted predicate calculus.%, \Deutsch{der engere Funktionenkalk\"ul} (renamed to \Deutsch{der engere Pr\"adikatenkalk\"ul} in the 1959 edition).
 They were not able to be so clear about what they meant by ``process.''
 
 By the 1930s, not only was the nebulous idea of a process formalized, but the decision problem had been solved in a way unanticipated by Hilbert: it was impossible to provide such a process.
@@ -24,7 +24,7 @@ From \lambdacalc springs the functional paradigm, while the Turing machine inspi
 \section{Church and His Calculus}
 Church developed the \lambdacalc in hope of providing a logical basis for all of mathematics. While he was ultimately frustrated in this, he succeeded in creating a rich framework for both logic and, eventually, computer programming.
 
-The \lambdacalc formulates computation as term rewriting and distills the concept of the function to textual substitution. The text comes in the form of \vocab{lambda terms;} the rewriting comes as \vocab{reduction rules.} To define the set of lambda terms $\Lambda$, we seed it with an infinite set of variables $V = \set{v, v\prime, v\prime\prime, \dotsc}$ and then further admit all expressions built using two operations, \vocab{application} and \vocab{abstraction:}
+The \lambdacalc formulates computation as term rewriting and distills the concept of the function to textual substitution. The text comes in the form of \vocab[lambda terms]{lambda terms;} the rewriting comes as \vocab[reduction rules]{reduction rules.} To define the set of lambda terms $\Lambda$, we seed it with an infinite set of variables $V = \set{v, v\prime, v\prime\prime, \dotsc}$ and then further admit all expressions built using two operations, \vocab{application} and \vocab{abstraction:}
 \begin{align*}
 x \in V &\implies x \in \Lambda\\
 M,N \in \Lambda &\implies (MN) \in \Lambda \quad\text{(application)}\\
