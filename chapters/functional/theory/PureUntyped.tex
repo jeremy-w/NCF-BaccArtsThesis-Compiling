@@ -242,14 +242,14 @@ An important property of the \lambdacalc is related to this. It is known as the 
 \item Secondly, it states that if two terms $M$ and $N$ are $\beta$-convertible into each other, then there is some other common term $P$ to which the first two can both be reduced. This is to say that, if $M \betacon N$, then we can find some $P$ such that $M \betared[*] P$ and $N \betared[*] P$ as well.
 \end{itemize}
 
-Since the Church--Rosser property is so important, we will endeavor to sketch a proof that it holds for the pure untyped lambda calculus. %CRIT-TODO: Sketch proof of Church--Rosser.
+Since the Church--Rosser property is so important, we will endeavor to sketch a proof that it holds for the pure untyped lambda calculus. We defer a discussion of the property's implications for the lambda calculus till after we have introduced the idea of a normal form.%CRIT-TODO: Sketch proof of Church--Rosser.
 
 \subsubsection{Normal Forms}\label{untyped:nf}
-Now that we have defined lambda terms and $\beta$-reduction, we can give a normal form for lambda terms. This is important if we are to explain the impact of the Church-Rosser property. A lambda term is said to be in \vocab{normal form} if it cannot be further $\beta$-reduced, that is to say, the lambda term $M$ is in normal form if there is no $N$ such that $M \betared N$.
+Now that we have defined lambda terms and $\beta$-reduction, we can give a normal form for lambda terms. This is important if we are to explain the impact of the Church--Rosser property. A lambda term is said to be in \vocab{normal form} if it cannot be further $\beta$-reduced, that is to say, the lambda term $M$ is in normal form if there is no $N$ such that $M \betared N$.
 
 Not all terms have normal forms. The lambda term $(\lambda x.xx)(\lambda x.xx)$, sometimes called $\Omega$, has no normal form, since it reduces always and only to itself. Some terms do have normal forms, but it is possible to $\beta$-reduce the term an arbitrary number of times without reaching this form. What this means practically that it is important to select the right \vocab{reducible expression (redex)} to $\beta$-reduce, otherwise one might continue $\beta$-reducing without ever terminating in the normal form. It is easy to produce examples of such terms by throwing $\Omega$ into the mix: $(\lambda xy.y) \Omega z$ has as its normal form $z$, but of course one could repeatedly select $\Omega$ for reduction and thereby never realize this. Terms that \emph{always} reduce to normal form within a finite number of $\beta$-reductions, regardless of the reduction strategy employed, are called \vocab{strongly normalizing}.
 
-Now that the concepts of normal forms and strongly normalizing terms is clear, we can explicate the Church-Rosser property. Altogether, it means that, if a term has a normal form, then regardless of the reduction steps we use to reach that form, it will always be possible from anywhere along the way to reach the normal form: there's no way we can misstep and be kept from ever reaching the normal form short of intentionally, repeatedly making the wrong choice of expression to reduce. If the term is strongly normalizing, we can go one better and state that the reduction steps we use to reach its normal form are completely irrelevant, as all chains of reductions will eventually terminate in that normal form. The property also shows that the normal form is unique, for if $N_{1}$ and $N_{2}$ were two distinct normal forms of a given term, then they would have to share a common term $N_{3}$ to which they could both be $\beta$-reduced.
+Now that the concepts of normal forms and strongly normalizing terms is clear, we can explicate the Church--Rosser property. Altogether, it means that, if a term has a normal form, then regardless of the reduction steps we use to reach that form, it will always be possible from anywhere along the way to reach the normal form: there's no way we can misstep and be kept from ever reaching the normal form short of intentionally, repeatedly making the wrong choice of expression to reduce. If the term is strongly normalizing, we can go one better and state that the reduction steps we use to reach its normal form are completely irrelevant, as all chains of reductions will eventually terminate in that normal form. The property also shows that the normal form is unique, for if $N_{1}$ and $N_{2}$ were two distinct normal forms of a given term, then they would have to share a common term $N_{3}$ to which they could both be $\beta$-reduced.
 
 \subsubsection{Recursion and $Y$}\label{untyped:y}
 The pure, untyped \lambdacalc is Turing complete. An important part of achieving this degree of expressive power is the ability to make recursive definitions using the \lambdacalc{}. The way to do so is surprisingly succinct. One common means is what is known as the \vocab{paradoxical combinator}, universally designated by $Y$. Here is its definition:
@@ -273,7 +273,7 @@ Y F &\equiv (\redex{\lambda f}. (\lambda x.\redex{f}(xx))(\lambda x.\redex{f}(xx
 &\betared F (\redex{\lambda x}. F(\redex{x}\redex{x})) \redex{(\lambda x. F(xx))}\\
 &\betared F ( F ( ((\redex{\lambda x}. F(\redex{x}\redex{x})) \redex{(\lambda x. F(xx))} ))\\
 &\betared F ( F ( F ( ((\redex{\lambda x}. F(\redex{x}\redex{x})) \redex{(\lambda x. F(xx))} )))\\
-&\vdots
+&\hphantom{\rightarrow}\vdots
 \end{align*}
 As you can see quite plainly, $YF$ leads to repeated self-application of $F$. This iteration of $F$ is how it produces a fixed point.%CRIT-TODO: Does it ALWAYS reach a fixed point? Or only sometimes?
 
@@ -284,7 +284,7 @@ In the context of the \lambdacalc{}, we call them reduction strategies. In the c
 
 The choices we make in terms of \lambdacalc reduction strategy have equivalents in terms of order of evaluation of functions and their arguments. The fundamental question is this: should we evaluate the arguments before passing them on to the function, or should we call the function and just point it at its arguments so it has access to them and their values as needed?
 
-If we first deal with the arguments and only then with the function as a whole, then we are employing a \vocab{call-by-value} evaluation strategy, so-called because the function call takes place with the values of the arguments provided to the function. The arguments are evaluated, and the resulting value is bound to the formal parameters of the function.
+If we first deal with the arguments and only then with the function as a whole, then we are employing a \vocab{call-by-value} evaluation strategy, so called because the function call takes place with the values of the arguments provided to the function. The arguments are evaluated, and the resulting value is bound to the formal parameters of the function.
 
 If we instead begin by evaluating the body of the function itself and only evaluate the arguments as necessary, we are pursuing a \vocab{call-by-name} evaluation strategy. Call-by-name gets its name from the way that the formal parameters are bound only to the names of the actual arguments. It is only when the value of one of the arguments is required to proceed with evaluating the function's body that the argument is evaluated.
 
@@ -303,3 +303,22 @@ The same cannot be said for applicative order, which can fail to reduce a term t
 
 \subsubsection{Strictness}\label{untyped:strictness}
 If a computation never terminates, as with the attempt to $\beta$-reduce $\Omega$ to normal form, then we say that it \vocab{diverges}. An important concept for functions is that of \vocab{strictness}. We say a function is strict in a given parameter if the evaluation of the function itself diverges whenever the evaluation of the parameter diverges. The function $\lambda x y. y$ given above is strict only in its second argument, $y$, since we can evaluate the function even when a divergent term is substituted for $x$, as recently demonstrated. A function that is strict in all arguments is called a \vocab{strict function}. The function $\lambda x. x$ can readily be seen as strict, since this function is simply the identity function.
+
+\subsubsection{\texorpdfstring{$\eta$-Conversion}{Eta-Conversion}}\label{untyped:eta}
+Strictness is important to understanding the appropriateness of a different sort of convertibility relationship between terms. This type of conversion expresses the equivalence of a function expecting some number of arguments and a function that ``wraps'' that function and provides it with those arguments. We call two such expressions $M$ and $N$ \vocab{$\eta$-convertible}, written $M \etacon N$, and we define $\eta$-conversion as
+\[
+\lambda x. F x \etacon F,\quad x \notin \FV{F}\text{ .}
+\]
+The last part, $x \notin \FV{F}$, should be read as ``where $x$ is not among the free variables of $F$'' and serves to exclude abstraction over variables that would capture a free variable in $F$ from being defined as $\eta$-convertible with $F$.\footnote{If you are familiar with the concept of \asword{extensional equality,} you should have no trouble remembering the definition of $\eta$-conversion if you think of it as ``$\eta$ for \asword{extensional.}''}
+
+$\eta$-conversion is useful because it identifies a host of identically-behaving terms. We can produce an infinite number, even when we identify $\alpha$-convertible expressions, starting with something as simple as the identity $\lambda x. x$. All we need do is repeatedly abstract this term with respect to $x$. This gives rise to the sequence $I$ of terms 
+\begin{align*}
+I_{1} &= \lambda x.x\\
+I_{2} &= \etify{x}{\lambda x.x}\\
+I_{3} &= \etify{x}{\etify{x}{\lambda x.x}}\\
+I_{4} &= \etify{x}{\etify{x}{\etify{x}{\lambda x.x}}}\\
+&\hphantom{=}\vdots
+\end{align*}
+Since $x$ is always bound within the body of the abstraction, this causes no problems with variable capture. But all the terms in this sequence behave the same way; in fact, the application of any one of them to a term $M$ is $\beta$-convertible with the application of any other to the same term $M$ and, ultimately, with $M$ itself: $I_{n} M \betared I_{n-1} M \betared \dotsb \betared I_{1} M \betared M$.
+
+But $\eta$-conversion might nevertheless be an inappropriate notion of equality in some cases. If we are reducing only to weak normal form, for example, then reduction of $\lambda x . \Omega$ terminates immediately, while reduction of $\Omega$ will never terminate. The introduction of types can also pose problems for the notion of $\eta$-conversion. But where we can employ $\eta$-conversion, we can at times drastically reduce the number of substitutions required due to $\beta$-reduction by simplifying the terms involved using $\eta$-conversion first. In the end, whether we decide it is appropriate or not to add $\eta$-conversion to our \lambdacalc{}, the operational equivalence between terms that it highlights is well worth keeping in mind.

@@ -100,6 +100,9 @@ Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
 \newcommand{\alphared}[1][]{\reducesinto[#1]{\alpha}}
 \newcommand{\etared}[1][]{\reducesinto[#1]{\eta}}
 \newcommand{\betacon}{\ensuremath{=_{\beta}}}
+\newcommand{\etacon}{\ensuremath{=_{\eta}}}
+\newcommand{\FV}[1]{\ensuremath{\mathcal{FV}(#1)}}
+\newcommand{\etify}[2]{\ensuremath{\lambda #1 . (#2) #1}}
 
 % Math: Simple abbreviations
 \let\oldprime=\prime
