@@ -1,10 +1,110 @@
 
-%% Created for jeremy at 2008-04-14 20:37:29 -0400 
+%% Created for jeremy at 2008-04-16 22:14:30 -0400 
 
 
 %% Saved with string encoding Western (ASCII) 
 
 
+
+@misc{Altenkirch:Why-Dependent:2005,
+	Author = {Thorsten Altenkirch and Conor McBride and James McKinna},
+	Date-Added = {2008-04-16 22:12:18 -0400},
+	Date-Modified = {2008-04-16 22:13:42 -0400},
+	Howpublished = {Manuscript, available online},
+	Keywords = {manuscript},
+	Month = {April},
+	Title = {Why Dependent Types Matter},
+	Year = {2005},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFouLi8uLi9QYXBlcnMvQWx0ZW5raXJjaC9BbHRlbmtpcmNoLU1jQnJpZGUtTWNLaW5uYSAtIFdoeSBEZXBlbmRlbnQgVHlwZXMgTWF0dGVyICgyMDA1KS5wZGbSGw8cHVdOUy5kYXRhTxECJgAAAAACJgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAMfYoH0FsdGVua2lyY2gtTWNCcmlkZS1NIzMxRjYwMC5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAx9gDELCl/UERGIAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAApBbHRlbmtpcmNoABAACAAAwTR+XQAAABEACAAAxCxhvwAAAAEAEAAx9igALZE/AANHrAAAa9gAAgBDT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkFsdGVua2lyY2g6QWx0ZW5raXJjaC1NY0JyaWRlLU0jMzFGNjAwLnBkZgAADgCGAEIAQQBsAHQAZQBuAGsAaQByAGMAaAAtAE0AYwBCAHIAaQBkAGUALQBNAGMASwBpAG4AbgBhACAALQAgAFcAaAB5ACAARABlAHAAZQBuAGQAZQBuAHQAIABUAHkAcABlAHMAIABNAGEAdAB0AGUAcgAgACgAMgAwADAANQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGFVc2Vycy9qZXJlbXkvUGFwZXJzL0FsdGVua2lyY2gvQWx0ZW5raXJjaC1NY0JyaWRlLU1jS2lubmEgLSBXaHkgRGVwZW5kZW50IFR5cGVzIE1hdHRlciAoMjAwNSkucGRmAAATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgEHAQwBFAM+A0ADRQNOA1kDXQNrA3IDewOAA4MAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADkA==}}
+
+@article{McKinna:Why-dependent:2006,
+	Address = {New York, NY, USA},
+	Author = {James McKinna},
+	Date-Added = {2008-04-16 22:09:54 -0400},
+	Date-Modified = {2008-04-16 22:10:12 -0400},
+	Doi = {http://doi.acm.org/10.1145/1111320.1111038},
+	Issn = {0362-1340},
+	Journal = {SIGPLAN Not.},
+	Number = {1},
+	Pages = {1--1},
+	Publisher = {ACM},
+	Title = {Why dependent types matter},
+	Volume = {41},
+	Year = {2006},
+	Abstract = {Language designers have in recent years proposed a wealth of richer type systems for programming which seek to extend the range of statically enforced guarantees on data and code. Most such proposals have been evolutionary extensions of ML or Haskell, offering programmers a balanced compromise between expressive strength and existing well-understood technology. Typically they revolve around type- or kind-indexed types such as GADTs, supported by limited equality reasoning at the type-checking level, thus separating the dynamic behaviour of programs from the (simpler) static behaviour of indexing information occurring in their types.I want to argue in this talk for a more radical departure from such practice by examining full spectrum type dependency, lifting such restrictions on the data upon which types may depend. Conor McBride and I designed the language EPIGRAM for experiments in programming with inductive families of data (of which GADTs are a special case). Using it for illustration, I will explore some of the possibilities and challenges afforded by full spectrum type dependency at the static and dynamic level:
+\begin{itemize}
+\item types directly support modelling complex invariants in terms of other data (rather than their types), with a Curry-Howard flavour of data-as-evidence; such complexity is on a 'pay-as-you-go' basis, while keeping type annotations and other syntactic overheads to a minimum;\item data decomposition steps, e.g. case analysis, furnish more informative interactions between types and values during typechecking; such steps may moreover be abstractly specified by their types, and thus user definable; this supports a style of programming embracing 'learning by testing', views, and Burstall's 'hand simulation plus a little induction';\item the absence of a rigid phase distinction need not lead to type-passing or excessive run-time overhead; effectful computation, in particular partiality, can be incorporated via variations on existing ideas such as monads.\end{itemize}This talk is based on joint work with Conor McBride, Edwin Brady and Thorsten Altenkirch.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/1111320.1111038},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEEQuLi8uLi9QYXBlcnMvTWNLaW5uYS9NY0tpbm5hIC0gV2h5IGRlcGVuZGVudCB0eXBlcyBtYXR0ZXIgKDIwMDYpLnBkZtIbDxwdV05TLmRhdGFPEQHkAAAAAAHkAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAx9hwfTWNLaW5uYSAtIFdoeSBkZXBlbmQjMzFGNjFCLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADH2G8QsKiNQREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAAB01jS2lubmEAABAACAAAwTR+XQAAABEACAAAxCxiYwAAAAEAEAAx9hwALZE/AANHrAAAa9gAAgBAT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOk1jS2lubmE6TWNLaW5uYSAtIFdoeSBkZXBlbmQjMzFGNjFCLnBkZgAOAGAALwBNAGMASwBpAG4AbgBhACAALQAgAFcAaAB5ACAAZABlAHAAZQBuAGQAZQBuAHQAIAB0AHkAcABlAHMAIABtAGEAdAB0AGUAcgAgACgAMgAwADAANgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAEtVc2Vycy9qZXJlbXkvUGFwZXJzL01jS2lubmEvTWNLaW5uYSAtIFdoeSBkZXBlbmRlbnQgdHlwZXMgbWF0dGVyICgyMDA2KS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAPEA9gD+AuYC6ALtAvYDAQMFAxMDGgMjAygDKwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAM4}}
+
+@article{McBride:The-view:2004,
+	Address = {New York, NY, USA},
+	Author = {Conor McBride and James McKinna},
+	Date-Added = {2008-04-16 21:46:02 -0400},
+	Date-Modified = {2008-04-16 21:50:29 -0400},
+	Doi = {http://dx.doi.org/10.1017/S0956796803004829},
+	Issn = {0956-7968},
+	Journal = {J. Funct. Program.},
+	Number = {1},
+	Pages = {69--111},
+	Publisher = {Cambridge University Press},
+	Title = {The view from the left},
+	Volume = {14},
+	Year = {2004},
+	Abstract = {Pattern matching has proved an extremely powerful and durable notion in functional programming. This paper contributes a new programming notation for type theory which elaborates the notion in various ways.
+
+Firstly, as is by now quite well-known in the type theory community, definition by pattern matching becomes a more discriminating tool in the presence of dependent types, since it refines the explanation of types as well as values. This becomes all the more true in the presence of the rich class of datatypes known as inductive families (Dybjer, 1991).
+
+Secondly, as proposed by Peyton Jones (1997) for Haskell, and independently rediscovered by us, subsidiary case analyses on the results of intermediate computations, which commonly take place on the right-hand side of definitions by pattern matching, should rather be handled on the left. In simply-typed languages, this subsumes the trivial case of Boolean guards; in our setting it becomes yet more powerful.
+
+Thirdly, elementary pattern matching decompositions have a well-defined interface given by a dependent type; they correspond to the statement of an induction principle for the datatype. More general, user-definable decompositions may be defined which also have types of the same general form. Elementary pattern matching may therefore be recast in abstract form, with a semantics given by translation. Such abstract decompositions of data generalize Wadler's (1987) notion of `view'. The programmer wishing to introduce a new view of a type $\mathit{T}$, and exploit it directly in pattern matching, may do so via a standard programming idiom. The type theorist, looking through the Curry--Howard lens, may see this as proving a theorem, one which establishes the validity of a new induction principle for $\mathit{T}$.
+
+We develop enough syntax and semantics to account for this high-level style of programming in dependent type theory. We close with the development of a typechecker for the simply-typed lambda calculus, which furnishes a view of raw terms as either being well-typed, or containing an error. The implementation of this view is \textit{ipso facto} a proof that typechecking is decidable.},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1017/S0956796803004829},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEEguLi8uLi9QYXBlcnMvTWNCcmlkZS9NY0JyaWRlLU1jS2lubmEgLSBUaGUgdmlldyBmcm9tIHRoZSBsZWZ0ICgyMDA0KS5wZGbSGw8cHVdOUy5kYXRhTxEB8AAAAAAB8AACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAMfWOH01jQnJpZGUtTWNLaW5uYSAtIFRoIzMxRjU4MS5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAx9YHELCMpAAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAdNY0JyaWRlAAAQAAgAAME0fl0AAAARAAgAAMQsW2kAAAABABAAMfWOAC2RPwADR6wAAGvYAAIAQE9kaW46VXNlcnM6amVyZW15OlBhcGVyczpNY0JyaWRlOk1jQnJpZGUtTWNLaW5uYSAtIFRoIzMxRjU4MS5wZGYADgBoADMATQBjAEIAcgBpAGQAZQAtAE0AYwBLAGkAbgBuAGEAIAAtACAAVABoAGUAIAB2AGkAZQB3ACAAZgByAG8AbQAgAHQAaABlACAAbABlAGYAdAAgACgAMgAwADAANAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAE9Vc2Vycy9qZXJlbXkvUGFwZXJzL01jQnJpZGUvTWNCcmlkZS1NY0tpbm5hIC0gVGhlIHZpZXcgZnJvbSB0aGUgbGVmdCAoMjAwNCkucGRmAAATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgD1APoBAgL2AvgC/QMGAxEDFQMjAyoDMwM4AzsAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADSA==}}
+
+@misc{McBride:The-view:2001,
+	Author = {Conor McBride and James McKinna},
+	Date-Added = {2008-04-16 21:45:58 -0400},
+	Date-Modified = {2008-04-16 22:14:04 -0400},
+	Howpublished = {Manuscript, available online},
+	Keywords = {manuscript},
+	Month = {Dec},
+	Note = {Very different, early version of later J. Functional Programming paper. McKinna published online with note that ``we still think it worth reading as one of the only introductions to our perspective on \textit{interactive} program development.''},
+	Title = {The view from the left (early draft)},
+	Url = {http://www.dcs.st-and.ac.uk/~james/},
+	Year = {2001},
+	Abstract = {Interactive, refinement-style proof construction in type theory has several things to offer the programmer seeking to exploit languages with dependent types.
+
+Firstly, as is by now quite well-known, definition by pattern matching becomes a more discriminating tool for problem-solving, since it refines the explanation of types as well as values. This corresponds to the instantiation of propositions in proof by induction.
+
+Secondly, Gentzen's sequent calculus draws attention to the r\^{o}le played by cut formul\ae. Subsidiary case analyses on the results of intermediate computations, which commonly take place on the right-hand side of definitions for pattern matching, should rather be explained by `left rules'. This subsumes the trivial case of Boolean guards in simply-types languages.
+
+Thirdly, pattern matching decompositions have a well-defined interface given by a dependent type. These are user-definable, and generalize Wadler's notion of `view' (Wadler, 1987). The programmer wishing to introduce a new view of datatype, and exploit it directly in pattern matching, may do so via a standard idiom: writing a program.
+
+This paper introduces enough syntax and semantics to account for this high-level style of programming in dependent type theory. It culminates int he development of a type-checker for the simply-typed lambda calculus, which furnishes a view of raw terms as either being well-typed, or containing an error. The implementation of this view is a proof that typechecking is decidable.},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFYuLi8uLi9QYXBlcnMvTWNCcmlkZS9NY0JyaWRlLU1jS2lubmEgLSBUaGUgdmlldyBmcm9tIHRoZSBsZWZ0IChlYXJseSBkcmFmdCkgKDIwMDApLnBkZtIbDxwdV05TLmRhdGFPEQIaAAAAAAIaAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAx9Y4fTWNCcmlkZS1NY0tpbm5hIC0gVGgjMzFGNTg3LnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADH1h8QsIzYAAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAAB01jQnJpZGUAABAACAAAwTR+XQAAABEACAAAxCxbdgAAAAEAEAAx9Y4ALZE/AANHrAAAa9gAAgBAT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOk1jQnJpZGU6TWNCcmlkZS1NY0tpbm5hIC0gVGgjMzFGNTg3LnBkZgAOAIQAQQBNAGMAQgByAGkAZABlAC0ATQBjAEsAaQBuAG4AYQAgAC0AIABUAGgAZQAgAHYAaQBlAHcAIABmAHIAbwBtACAAdABoAGUAIABsAGUAZgB0ACAAKABlAGEAcgBsAHkAIABkAHIAYQBmAHQAKQAgACgAMgAwADAAMAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAF1Vc2Vycy9qZXJlbXkvUGFwZXJzL01jQnJpZGUvTWNCcmlkZS1NY0tpbm5hIC0gVGhlIHZpZXcgZnJvbSB0aGUgbGVmdCAoZWFybHkgZHJhZnQpICgyMDAwKS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAQMBCAEQAy4DMAM1Az4DSQNNA1sDYgNrA3ADcwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAOA}}
+
+@inproceedings{McBride:Functional:2004,
+	Address = {New York, NY, USA},
+	Author = {Conor McBride and James McKinna},
+	Booktitle = {Haskell '04: Proceedings of the 2004 ACM SIGPLAN workshop on Haskell},
+	Date-Added = {2008-04-16 21:34:24 -0400},
+	Date-Modified = {2008-04-16 21:57:47 -0400},
+	Doi = {http://doi.acm.org/10.1145/1017472.1017477},
+	Isbn = {1-58113-850-4},
+	Location = {Snowbird, Utah, USA},
+	Pages = {1--9},
+	Publisher = {ACM},
+	Title = {Functional Pearl: {I} am not a number -- {I} am a free variable},
+	Year = {2004},
+	Abstract = {In this paper, we show how to manipulate syntax with binding using a mixed representation of names for free variables (with respect to the task in hand) and de Bruijn indices [5] for bound variables. By doing so, we retain the advantages of both representations: naming supports easy, arithmetic-free manipulation of terms; de Bruijn indices eliminate the need for \alpha-conversion. Further, we have ensured that not only the user but also the \textit{implementation} need never deal with de Bruijn indices, except within key basic operations.
+
+Moreover, we give a hierarchical representation for names which naturally reflects the structure of the operations we implement. Name choice is safe and straightforward. Our technology combines easily with an approach to syntax manipulation inspired by Huet's 'zippers'[10].
+
+Without the ideas in this paper, we would have struggled to implement EPIGRAM [19]. Our example -- constructing inductive elimination operators for datatype families -- is but one of many where it proves invaluable.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/1017472.1017477},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEG0uLi8uLi9QYXBlcnMvTWNCcmlkZS9NY0JyaWRlLU1jS2lubmEgLSBGdW5jdGlvbmFsIHBlYXJsOiBJIGFtIG5vdCBhIG51bWJlciAtLSBJIGFtIGEgZnJlZSB2YXJpYWJsZSAoMjAwNCkucGRm0hsPHB1XTlMuZGF0YU8RAl4AAAAAAl4AAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADH1jh9NY0JyaWRlLU1jS2lubmEgLSBGdSMzMUY1QTAucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMfWgxCwj7lBERiAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAHTWNCcmlkZQAAEAAIAADBNH5dAAAAEQAIAADELFwuAAAAAQAQADH1jgAtkT8AA0esAABr2AACAEBPZGluOlVzZXJzOmplcmVteTpQYXBlcnM6TWNCcmlkZTpNY0JyaWRlLU1jS2lubmEgLSBGdSMzMUY1QTAucGRmAA4AsgBYAE0AYwBCAHIAaQBkAGUALQBNAGMASwBpAG4AbgBhACAALQAgAEYAdQBuAGMAdABpAG8AbgBhAGwAIABwAGUAYQByAGwALwAgAEkAIABhAG0AIABuAG8AdAAgAGEAIABuAHUAbQBiAGUAcgAgAC0ALQAgAEkAIABhAG0AIABhACAAZgByAGUAZQAgAHYAYQByAGkAYQBiAGwAZQAgACgAMgAwADAANAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAHRVc2Vycy9qZXJlbXkvUGFwZXJzL01jQnJpZGUvTWNCcmlkZS1NY0tpbm5hIC0gRnVuY3Rpb25hbCBwZWFybDogSSBhbSBub3QgYSBudW1iZXIgLS0gSSBhbSBhIGZyZWUgdmFyaWFibGUgKDIwMDQpLnBkZgATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgEaAR8BJwOJA4sDkAOZA6QDqAO2A70DxgPLA84AAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAAD2w==}}
 
 @article{Barendregt:The-impact:1997,
 	Author = {Barendregt, H. P.},
@@ -243,15 +343,17 @@ packagability, tools, training, and popularity) and two non-reasons
 	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGkuLi8uLi9QYXBlcnMvQmFyZW5kcmVndC9CYXJlbmRyZWd0LUhlbWVyaWsgLSBUeXBlcyBpbiBMYW1iZGEgQ2FsY3VsaSBhbmQgUHJvZ3JhbW1pbmcgTGFuZ3VhZ2VzICgxOTkwKS5wZGbSGw8cHVdOUy5kYXRhTxECUgAAAAACUgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAMae1H0JhcmVuZHJlZ3QtSGVtZXJpayAtIzMxQTdBMy5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxp6PEJrhlUERGIHBydncAAgADAAAJIAAAAAAAAAAAAAAAAAAAAApCYXJlbmRyZWd0ABAACAAAwTR+XQAAABEACAAAxCbwpQAAAAEAEAAxp7UALZE/AANHrAAAa9gAAgBDT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkJhcmVuZHJlZ3Q6QmFyZW5kcmVndC1IZW1lcmlrIC0jMzFBN0EzLnBkZgAADgCkAFEAQgBhAHIAZQBuAGQAcgBlAGcAdAAtAEgAZQBtAGUAcgBpAGsAIAAtACAAVAB5AHAAZQBzACAAaQBuACAATABhAG0AYgBkAGEAIABDAGEAbABjAHUAbABpACAAYQBuAGQAIABQAHIAbwBnAHIAYQBtAG0AaQBuAGcAIABMAGEAbgBnAHUAYQBnAGUAcwAgACgAMQA5ADkAMAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAHBVc2Vycy9qZXJlbXkvUGFwZXJzL0JhcmVuZHJlZ3QvQmFyZW5kcmVndC1IZW1lcmlrIC0gVHlwZXMgaW4gTGFtYmRhIENhbGN1bGkgYW5kIFByb2dyYW1taW5nIExhbmd1YWdlcyAoMTk5MCkucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqARYBGwEjA3kDewOAA4kDlAOYA6YDrQO2A7sDvgAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAPL}}
 
 @article{Bruijn:Lambda:1972,
-	Author = {de Bruijn, N. G.},
+	Author = {de Bru{\ij}n, N. G.},
 	Date-Added = {2008-04-12 19:04:51 -0400},
-	Date-Modified = {2008-04-12 19:04:58 -0400},
-	Journal = {Indagationes Mathematicae},
+	Date-Modified = {2008-04-16 21:31:06 -0400},
+	Journal = {Indagationes Mathematic{\ae}},
+	Number = {5},
 	Pages = {381-392},
-	Title = {{Lambda calculus notation with nameless dummies. a tool for automatic formula manipulation with application to the church-rosser theorem}},
+	Title = {Lambda calculus notation with nameless dummies, a tool for automatic formula manipulation, with application to the {C}hurch--{R}osser theorem},
 	Volume = {34},
 	Year = 1972,
-	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEE4uLi8uLi9QYXBlcnMvQnJ1aWpuL0JydWlqbiAtIExhbWJkYSBjYWxjdWx1cyBub3RhdGlvbiB3aXRoIG5hbWVsZXNzICgxOTcyKS5wZGbSGw8cHVdOUy5kYXRhTxECAgAAAAACAgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAMae0H0JydWlqbiAtIExhbWJkYSBjYWxjIzMxQTdBOS5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxp6nEJrhyUERGIHBydncAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAZCcnVpam4AEAAIAADBNH5dAAAAEQAIAADEJvCyAAAAAQAQADGntAAtkT8AA0esAABr2AACAD9PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6QnJ1aWpuOkJydWlqbiAtIExhbWJkYSBjYWxjIzMxQTdBOS5wZGYAAA4AdgA6AEIAcgB1AGkAagBuACAALQAgAEwAYQBtAGIAZABhACAAYwBhAGwAYwB1AGwAdQBzACAAbgBvAHQAYQB0AGkAbwBuACAAdwBpAHQAaAAgAG4AYQBtAGUAbABlAHMAcwAgACgAMQA5ADcAMgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFVVc2Vycy9qZXJlbXkvUGFwZXJzL0JydWlqbi9CcnVpam4gLSBMYW1iZGEgY2FsY3VsdXMgbm90YXRpb24gd2l0aCBuYW1lbGVzcyAoMTk3MikucGRmAAATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgD7AQABCAMOAxADFQMeAykDLQM7A0IDSwNQA1MAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADYA==}}
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEE4uLi8uLi9QYXBlcnMvQnJ1aWpuL0JydWlqbiAtIExhbWJkYSBjYWxjdWx1cyBub3RhdGlvbiB3aXRoIG5hbWVsZXNzICgxOTcyKS5wZGbSGw8cHVdOUy5kYXRhTxECAgAAAAACAgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAMae0H0JydWlqbiAtIExhbWJkYSBjYWxjIzMxQTdBOS5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxp6nEJrhyUERGIHBydncAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAZCcnVpam4AEAAIAADBNH5dAAAAEQAIAADEJvCyAAAAAQAQADGntAAtkT8AA0esAABr2AACAD9PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6QnJ1aWpuOkJydWlqbiAtIExhbWJkYSBjYWxjIzMxQTdBOS5wZGYAAA4AdgA6AEIAcgB1AGkAagBuACAALQAgAEwAYQBtAGIAZABhACAAYwBhAGwAYwB1AGwAdQBzACAAbgBvAHQAYQB0AGkAbwBuACAAdwBpAHQAaAAgAG4AYQBtAGUAbABlAHMAcwAgACgAMQA5ADcAMgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFVVc2Vycy9qZXJlbXkvUGFwZXJzL0JydWlqbi9CcnVpam4gLSBMYW1iZGEgY2FsY3VsdXMgbm90YXRpb24gd2l0aCBuYW1lbGVzcyAoMTk3MikucGRmAAATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgD7AQABCAMOAxADFQMeAykDLQM7A0IDSwNQA1MAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADYA==},
+	Bdsk-File-2 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFAuLi8uLi9QYXBlcnMvQnJ1XGlqbi9CcnVcaWpuIC0gTGFtYmRhIGNhbGN1bHVzIG5vdGF0aW9uIHdpdGggbmFtZWxlc3MgKDE5NzIpLnBkZtIbDxwdV05TLmRhdGFPEQIIAAAAAAIIAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAx9QgfQnJ1XGlqbiAtIExhbWJkYSBjYWwjMzFGNDU3LnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADH0V8QsFwpQREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAAB0JydVxpam4AABAACAAAwTR+XQAAABEACAAAxCxPSgAAAAEAEAAx9QgALZE/AANHrAAAa9gAAgBAT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkJydVxpam46QnJ1XGlqbiAtIExhbWJkYSBjYWwjMzFGNDU3LnBkZgAOAHgAOwBCAHIAdQBcAGkAagBuACAALQAgAEwAYQBtAGIAZABhACAAYwBhAGwAYwB1AGwAdQBzACAAbgBvAHQAYQB0AGkAbwBuACAAdwBpAHQAaAAgAG4AYQBtAGUAbABlAHMAcwAgACgAMQA5ADcAMgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFdVc2Vycy9qZXJlbXkvUGFwZXJzL0JydVxpam4vQnJ1XGlqbiAtIExhbWJkYSBjYWxjdWx1cyBub3RhdGlvbiB3aXRoIG5hbWVsZXNzICgxOTcyKS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAP0BAgEKAxYDGAMdAyYDMQM1A0MDSgNTA1gDWwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANo}}
 
 @article{Douence:A-systematic:1998a,
 	Address = {New York, NY, USA},
@@ -1800,13 +1902,13 @@ These lecture notes give an overview of the techniques that have been developed 
 		<key>group name</key>
 		<string>NCF Thesis</string>
 		<key>keys</key>
-		<string>Demaine:Cache-Oblivious:2002,Pottier:Menhir:2007,Hudak:A-history:2007,Bannerjee:Loop:1993,Hines:Using:2005,Cooper:Engineering:2004,Aho:Principles:1977,Muchnick:Advanced:1997,McPeak:Elkhound:2002,Grune:Parsing:2007,Aho:Compilers:1986,Bravenboer:Preventing:2007,Hopcroft:Introduction:2007,Kulkarni:Fast:2005,Zima:Supercompilers:1991,Aho:Compilers:2006,Wyk:Context-aware:2007,Bannerjee:Loop:1994,Herken:The-Universal:1995,Brand:Disambiguation:2002,Visser:Scannerless:1997,Paakki:Attribute:1995,Hudak:Conception:1989,Pierce:Types:2002,Turing:On-Computable:1937,Scott:Programming:2006,Thompson:Type:1991,Bravenboer:Declarative:2006,Patterson:Computer:2007,Hennessy:Computer:2006,Bravenboer:Concrete:2004,Pierce:Advanced:2005,Wolfe:High-Performance:1996,Pager:The-lane:1973,Parr:ANTLR:1995,Hovemeyer:Finding:2004,Lattner:LLVM:2002,Bannerjee:Dependence:1988,Cardelli:On-understanding:1985,Spector:Efficient:1988,Barendregt:Types:1990,Barendregt:The-Lambda:1984,Peyton-Jones:Tackling:2000,Wadler:Monads:1995</string>
+		<string>Demaine:Cache-Oblivious:2002,Peyton-Jones:Tackling:2000,Wadler:Monads:1995,Bannerjee:Loop:1993,Hines:Using:2005,Cooper:Engineering:2004,Aho:Principles:1977,Muchnick:Advanced:1997,McPeak:Elkhound:2002,Grune:Parsing:2007,Aho:Compilers:1986,Bravenboer:Preventing:2007,Hopcroft:Introduction:2007,Kulkarni:Fast:2005,Zima:Supercompilers:1991,Aho:Compilers:2006,Wyk:Context-aware:2007,Bannerjee:Loop:1994,Herken:The-Universal:1995,Brand:Disambiguation:2002,Visser:Scannerless:1997,Paakki:Attribute:1995,Hudak:Conception:1989,Pierce:Types:2002,Turing:On-Computable:1937,McBride:Functional:2004,Scott:Programming:2006,Thompson:Type:1991,Bravenboer:Declarative:2006,Patterson:Computer:2007,Hennessy:Computer:2006,Bravenboer:Concrete:2004,Pierce:Advanced:2005,Wolfe:High-Performance:1996,Pager:The-lane:1973,Parr:ANTLR:1995,Hovemeyer:Finding:2004,Lattner:LLVM:2002,Bannerjee:Dependence:1988,Cardelli:On-understanding:1985,Spector:Efficient:1988,Barendregt:Types:1990,Barendregt:The-Lambda:1984,Pottier:Menhir:2007,Hudak:A-history:2007</string>
 	</dict>
 	<dict>
 		<key>group name</key>
 		<string>Textbooks</string>
 		<key>keys</key>
-		<string>Thompson:Type:1991,Scott:Programming:2006,Patterson:Computer:2007,Hennessy:Computer:2006,Hopcroft:Introduction:2007,Cooper:Engineering:2004,Barendregt:The-Lambda:1984,Muchnick:Advanced:1997</string>
+		<string>Thompson:Type:1991,Scott:Programming:2006,Patterson:Computer:2007,Muchnick:Advanced:1997,Hopcroft:Introduction:2007,Hennessy:Computer:2006,Cooper:Engineering:2004,Barendregt:The-Lambda:1984</string>
 	</dict>
 </array>
 </plist>
