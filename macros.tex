@@ -1,7 +1,10 @@
 % !iTexMac(input): thesis.tex
 
 % Information about the thesis
-\newcommand{\myTitle}{Compiling Functional Languages\xspace}
+\newcommand{\myTitle}{Compiling Imperative and Functional Languages\xspace}
+%\newcommand{\mySubtitle}{}
+\newcommand{\myDisplayTitle}{{\color{Maroon}\spacedallcaps{\myTitle}\ifx\mySubtitle\\\mySubtitle\fi}}
+\newcommand{\myFullTitle}{\ifx\mySubtitle\myTitle \mySubtitle\else\myTitle\fi}
 \newcommand{\myDegree}{Bachelor of Arts\xspace}
 \newcommand{\myName}{Jeremy W. Sherman\xspace}
 \newcommand{\myAdvisor}{Dr. Karsten Henckell\xspace}

@@ -9,17 +9,25 @@
 \let\cleardoublepage\relax
 
 \begin{center}
-    {\color{Maroon}%
-    \spacedallcaps{\myTitle}} \\ \medskip
-    
-    %\spacedlowsmallcaps{\myName} \\
+    \myDisplayTitle \\ \medskip
+  
     \myName \\
     \myUni, 2008
 \end{center}
 
 \chapter*{Abstract}
-The abstract should not exceed 200 words, or a page and a half of text. The sponsor's signature is required. If an unsigned thesis is submitted, the sponsor will be notified. A final copy of the abstract should be emailed to the library thesis advisor, \href{mailto:creed@ncf.edu}{Caroline Reed}, as a Word or \code{.rtf} file for inclusion in the Thesis Database. For senior theses, the abstract should summarize the problems addressed, the research, the methods, and the major findings.
+Computers operate at a very low level of abstraction. People think in terms of higher-level abstractions. Programming languages let people describe a computation using higher-level abstractions in such a way that the description can be translated into something a computer can execute. This translation is performed algorithmically by a program called a compiler. This thesis looks at how a compiler carries out this translation for two very different types of programming languages, the imperative and the functional.
 
+It begins by explaining how these two types differ fundamentally in terms of their notions of computation. It shows how the modern computer can be thought of as an elaboration and optimization of the abstract Turing machine that embodies the imperative languages' notion of computation. It then surveys the structure of such computers with an eye toward what that structure means a compiler must be able to do.
+
+The work of a compiler can be broken down into several parts. Each part receives the program in some form, process it, and outputs it in another form. The last part produces a representation of the program that the computer can execute. The design of these parts is guided by important theoretical abstractions, which this thesis describes along with each part.
+
+The thesis then describes the imperative family of programming languages, which reflect the concept of computation that is built into modern computers, and how they are compiled into a computer-executable representation. The discussion focuses particularly on how to improve the result of compilation.
+
+The thesis next considers the functional language family. Functional languages conceive of computation in a way utterly foreign to that implemented by modern computers, but programs written in functional languages must ultimately run on such computers. After a discussion of the theory behind functional languages, the thesis gives their history and defining characteristics. It explores the compilation of functional languages through case studies of compilers for the Haskell and Objective Caml languages. It introduces Haskell and Objective Caml as contemporary exemplars of the two primary kinds of functional languages. It briefly describes each language before examining the structure and implementation of a major compiler for that language.
+
+The thesis closes with a brief comparison of the paradigms that characterize the two language families and speculation on the future of programming languages and compilers.
+%382 words < 500 words => good to go!
 
 \vfill
 
