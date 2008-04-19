@@ -242,7 +242,7 @@ An important property of the \lambdacalc is related to this. It is known as the 
 \item Secondly, it states that if two terms $M$ and $N$ are $\beta$-convertible into each other, then there is some other common term $P$ to which the first two can both be reduced. This is to say that, if $M \betacon N$, then we can find some $P$ such that $M \betared[*] P$ and $N \betared[*] P$ as well.
 \end{itemize}
 
-Since the Church--Rosser property is so important, we will endeavor to sketch a proof that it holds for the pure untyped lambda calculus. We defer a discussion of the property's implications for the lambda calculus till after we have introduced the idea of a normal form.%CRIT-TODO: Sketch proof of Church--Rosser.
+Since the Church--Rosser property is so important, we will endeavor to sketch a proof that it holds for the pure untyped \lambdacalc{}. We defer a discussion of the property's implications for the \lambdacalc till after we have introduced the idea of a normal form.%CRIT-TODO: Sketch proof of Church--Rosser.
 
 \subsubsection{Normal Forms}\label{untyped:nf}
 Now that we have defined lambda terms and $\beta$-reduction, we can give a normal form for lambda terms. This is important if we are to explain the impact of the Church--Rosser property. A lambda term is said to be in \vocab{normal form} if it cannot be further $\beta$-reduced, that is to say, the lambda term $M$ is in normal form if there is no $N$ such that $M \betared N$.

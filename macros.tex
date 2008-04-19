@@ -27,12 +27,13 @@
 \newcommand{\replace}[3]{\ensuremath{#3\left[#1 := #2\right]}} %M[x := N]
 %\newcommand{\replace}[3]{\ensuremath{#3\left[#2 / #1\right]}} %M[N/x]
 \newcommand{\empause}{ -- }%{---}; using spaced en-dash per Bringhurst
-\newcommand{\redex}[1]{{\color{Red}#1}}
+\newcommand{\redex}[1]{{\color{Maroon}#1}}%formerly Red
 
 % Simple abbreviations
 \newcommand{\lambdacalc}{lambda calculus\xspace} %We discuss the \lambdacalc...
 \newcommand{\Lambdacalc}{Lambda calculus\xspace} %\Lambdacalc is really cool.
 \newcommand{\LambdaCalc}{Lambda Calculus\xspace}%\section{\LambdaCalc}
+\newcommand{\lambdacalcs}{lambda calculi\xspace}
 \newcommand{\TM}{Turing machine\xspace}
 \newcommand{\TMs}{Turing machines\xspace}
 \newcommand{\ISL}{instruction-set language\xspace}
@@ -91,6 +92,7 @@ Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
 \newcommand{\kstar}{\ensuremath{^{\star}}{}}
 \newcommand{\posclos}{\ensuremath{^{+}}{}}
 \newcommand{\alt}{\ensuremath{\mid}}%{\ensuremath{\,\vert\,}}
+
 \newcommand{\produces}{\ensuremath{\rightarrow}}
 \newcommand{\altproduces}{\ensuremath{::=}}
 \newcommand{\derivesrelay}[1][]{\ensuremath{\xRightarrow[#1]{\DArgTop}}}
@@ -98,6 +100,7 @@ Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
 \newcommand{\token}[1]{\ensuremath{\langle\text{\textit{#1}}\rangle}}
 \newcommand{\where}{\mid}
 \newcommand{\pair}[2]{\ensuremath{\left(#1,\,#2\right)}}
+
 \newcommand{\reducesinto}[2][]{\ifthenelse{\equal{#1}{}}{\ensuremath{\rightarrow_{#2}}}{\ensuremath{\twoheadrightarrow_{#2}}}}% reducesInSteps:ToTerm:
 \newcommand{\betared}[1][]{\reducesinto[#1]{\beta}}
 \newcommand{\alphared}[1][]{\reducesinto[#1]{\alpha}}
@@ -106,6 +109,17 @@ Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
 \newcommand{\etacon}{\ensuremath{=_{\eta}}}
 \newcommand{\FV}[1]{\ensuremath{\mathcal{FV}(#1)}}
 \newcommand{\etify}[2]{\ensuremath{\lambda #1 . (#2) #1}}
+\newcommand{\dred}[1][]{\reducesinto[#1]{\delta}}
+
+\newcommand{\type}[1]{\text{\code{#1}}}
+\newcommand{\typecon}[1]{\text{\textsf{#1}}}
+\newcommand{\const}[1]{\text{\textit{#1}}}
+\newcommand{\stmt}[3][math]{\ifthenelse{\equal{#1}{math}}%
+{\ensuremath{#2 : #3}}% \stmt{term}{\sigma}; this is the default behavior
+{\ensuremath{#2 : \type{#3}}}}% \stmt[text]{term}{int}; should we use \colon instead of :?
+\newcommand{\basis}{\ensuremath{\mathcal{B}}}
+\newcommand{\turnstile}{\ensuremath{\vdash}}
+
 
 % Math: Simple abbreviations
 \let\oldprime=\prime

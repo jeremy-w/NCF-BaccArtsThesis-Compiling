@@ -1,7 +1,140 @@
 \subsection{Extending the \LambdaCalc}
+While we have taken some time to explain the \lambdacalc{}, the system itself is quite lean. It is also powerful. Indeed, we can use it to describe any computation we could describe with a Turing machine. Such a description is also similarly lengthy and inconvenient. Thus, we will extend the \lambdacalc in two major ways: 
+\begin{itemize}
+\item We will introduce a new set of normal-form lambda terms as constants, so that the numbers, booleans, and so forth become primitive concepts of the calculus rather than needing to be encoded in terms of lambda terms.
+\item We will introduce typing into the system.
+\end{itemize}
+These extensions also serve to raise the level of abstraction of the \lambdacalc closer to that of a functional programming language.\footnote{This section follows the development of the \lambdacalc in \citet{Hudak:Conception:1989} closely, including use of some of the same examples.}
 
 \subsubsection{Untyped \LambdaCalc with Constants}
+We first extend the pure untyped \lambdacalc by adding \vocab{constants}. As when we introduced variables, we can formally define the constant terms as normal form lambda terms built from a base symbol $c$ distinct from the $v$ used for variables and many primes:
+\begin{align*}
+\Lambda &\produces V \alt C \alt (\Lambda\; \Lambda) \alt (\lambda\; V\; \Lambda)\\
+V &\produces v \alt V\prime\\
+C &\produces c \alt C\prime
+\end{align*}
+and then our use of, say, $c$ to represent the integer $0$ becomes purely a matter of convention. But just as we established variable naming conventions to make our notation more readable, so too can we establish conventions for writing constants that allow $0$, $1$, \const{True}, and so forth to appear directly in our notation.
+
+But we are not restricted to adding only static constants such as the numbers and booleans. We can also take some to be operators, such as a test for equality $=$, addition $+$, subtraction $-$, or even \const{If}. These clearly operate on other terms, but how remains to be defined. That is the purpose of \vocab{$\delta$-rules}, which are basically ad hoc reduction rules for dealing with constant terms much as $\beta$-reduction describes more generally how to reduce expressions of any lambda terms.
+
+For example, we can give a set of $\delta$-rules that make $+$ operate on the particular constants that we have identified with the integers in a way consistent with our intuitive understanding of addition:
+\begin{align*}
+(+\; 0)\; 0 &\dred 0\\
+(+\; 0)\; 1 &\dred 1\\
+&\hphantom{\rightarrow}\vdots\\
+(+\; 1)\; 0 &\dred 1\\
+&\hphantom{\rightarrow}\vdots
+\end{align*}
+We can deal with \textit{If} likewise:
+\begin{align*}
+\const{If True } e_{1} e_{2} &\dred e_{1}\\
+\const{If False } e_{1} e_{2} &\dred e_{2}
+\end{align*}
+
+In extending the system with $\delta$-rules, we must be very careful to preserve properties we consider essential to the system, such as the Church--Rosser properties. For example, if we were to add $\delta$-rules such that \textit{Or} becomes a left-to-right, short-circuiting operator, we would be fine:
+\begin{align*}
+\const{Or True } e &\dred \const{True}\\
+\const{Or False } e &\dred e
+\end{align*}
+But if we wanted to add $\delta$-rules truer to our intuitive understanding of \textit{Or}, namely that it yields true if either of its operands is true, regardless of the value of the other operand, we might add rules such as:
+\begin{align*}
+\const{Or True } e &\dred \const{True}\\
+\const{Or } e \const{ True} &\dred \const{True}\\
+\const{Or False False} &\dred \const{False}
+\end{align*}
+But, with the addition of these rules, it would no longer be true that a normal order reduction strategy guarantees reduction of a term to normal form if it has one. In fact, no deterministic reduction strategy would suffice to regain that property!
 
 \subsubsection{Typed \LambdaCalc with Constants}
+The addition of constants to the \lambdacalc merely made it easier for us to express concepts already expressible in the pure \lambdacalc{}. The central notions of abstraction, application, and of the various kinds of reduction and conversion that we had introduced for the \lambdacalc remained untouched. The only definition we really had to modify was that of a normal form, and we modified that implicitly with our introduction of constants as distinguished, normal form lambda terms. The introduction of types, however, fundamentally changes the \lambdacalc{}.
+
+To develop the typed \lambdacalc with constants, we begin by adopting a lambda term grammar identical to that used for the \lambdacalc with constants:
+\begin{align*}
+\Lambda &\produces V \alt C \alt (\Lambda\; \Lambda) \alt (\lambda\; V\; \Lambda)\\
+V &\produces v \alt V\prime\\
+C &\produces c \alt C\prime
+\end{align*}
+
+We then introduce alongside this a parallel set~$T$ of \vocab{types} comprising type variables, constants, and function types:
+\begin{align*}
+T &\produces V \alt C \alt F\\
+V &\produces \alpha \alt V\prime\\
+C &\produces \zeta \alt C\prime\\
+F &\produces (T \to T)
+\end{align*}
+
+Notational conventions accompany this introduction:
+\begin{itemize}
+\item $\sigma$, $\tau$, $\upsilon$ represent arbitrary types.
+\item $\alpha$, $\beta$, $\gamma$ represent arbitrary type variables.
+\item The function type arrow $\to$ is considered to associate to the right. Thus, $\sigma \to \tau \to \upsilon$ should be read as $\sigma \to (\tau \to \upsilon)$.
+\end{itemize}
+We will not need to refer to arbitrary type constants, so no convention addresses them. Just as we named certain constant lambda terms $0$, $1$, and so forth, so too can we introduce names for various constant types, such as \type{int}, \type{real}, and \type{bool}.
+
+Lambda terms and types come together in \vocab[type assignment statement]{statements}. A statement \stmt{M}{\sigma} says that a given term $M$, the \vocab{subject} of the statement, can be assigned type $\sigma$, the \vocab{predicate} of the statement.
+
+Whereas lambda terms formed the basis of the pure \lambdacalc{}, statements make up the basis of the typed \lambdacalc{}. When we introduced constants into the pure \lambdacalc{}, we had to introduce $\delta$-rules that formally related those constants within the system. We used these $\delta$-rules to establish relationships that agreed with our intuitive understanding of how the constants were interrelated, but we had to be sure not to introduce a careless rule that changed the very properties of the \lambdacalc that make it so useful to us. The particular statements that make up the basis of the typed \lambdacalc are also left to our discretion, and we can use them in a similar way. Thus, we will assume, for example, that  $\stmt[text]{\text{\const{True}}}{bool}$ and $\stmt[text]{\text{\const{False}}}{bool}$, and that $\stmt[text]{0}{int}$, $\stmt[text]{1}{int}$, and so on. Formally, the basis\empause let us call it \basis\empause is composed of a set of statements with whose subjects are distinct variables or constants.
+
+Using this basis, we can assign types to other lambda terms. If we can derive a statement \stmt{M}{\sigma} from the basis \basis, then we write $\basis \turnstile \stmt{M}{\sigma}$. All statements can be derived using three rules:
+\begin{itemize}
+\item \spacedlowsmallcaps{Basis}. If \stmt{x}{\sigma} is an element of the basis, then we can make the statement that \stmt{x}{\sigma}.
+\[
+    \frac{\stmt{x}{\sigma} \in \basis}{\basis \turnstile \stmt{x}{\sigma}}
+\]
+
+\item \spacedlowsmallcaps{$\to$ Introduction}. Abstraction is analogous to creating a function by transforming a variable in an expression into a parameter. The type resulting from abstraction reflects this.
+\[
+    \frac{\basis \turnstile \stmt{x}{\sigma}\quad%
+        \basis \turnstile \stmt{M}{\tau}}%
+    {\basis \turnstile \stmt{(\lambda\; x\; M)}{(\sigma \to \tau)}}
+\]
+
+\item \spacedlowsmallcaps{$\to$ Elimination}. Application is analogous to applying a function to an appropriate argument, and this is reflected in the type of an application.
+\[
+    \frac{\basis \turnstile \stmt{M}{(\sigma \to \tau)}\quad
+        \basis \turnstile \stmt{N}{\sigma}}%
+    {\basis \turnstile \stmt{(M\; N)}{\tau}}
+\]
+\end{itemize}
+
+The introduction of types has important implications for the central properties of the \lambdacalc{}. The Church--Rosser property persists, but we gain several other powerful properties:
+\begin{itemize}
+\item \vocab{subject reduction}. Type persists unchanged through $\beta$-reduction.
+\[
+\frac{M \betared[*] M\prime \quad \basis \turnstile \stmt{M}{\sigma}}%
+{\basis \turnstile \stmt{M\prime}{\sigma}}
+\]
+
+\item \vocab{strong normalization}. If a term can be assigned a type, then it is strongly normalizing.\footnote{Recall that a term is strongly normalizing if and only if it always $\beta$-reduces to normal form after a finite number of reductions.}
+
+\item \vocab{decidability of type-checking}. Given a basis \basis{} and a statement \stmt{M}{\sigma}, it is decidable whether $\basis \turnstile \stmt{M}{\sigma}$.
+
+\item \vocab{decidability of type inference}. Given a basis \basis{} and a term $M$, we can decide whether there is any $\sigma$ such that $\basis \turnstile \stmt{M}{\sigma}$. If there is, then we can use \basis{} and $M$ to compute such a $\sigma$.
+\end{itemize}
+
+These are indeed powerful, useful properties, but the overall expressive power of the \lambdacalc in fact \emph{decreases} with the introduction of types. Recall that, in the pure \lambdacalc{}, there were terms without normal forms, such as $\Omega$. The term that we used to introduce recursion into the \lambdacalc{}, $Y$, has no normal form. Both $\Omega$ and $Y$ apply a term to itself:
+\begin{align*}
+\Omega &\equiv (\lambda x.xx)(\lambda x.xx)\\
+Y &\equiv \lambda f.(\lambda x. f (x x))(\lambda x. f (x x))
+\end{align*}
+As you can see, they actually make use of nested self-application: both terms contain the application $(x\; x)$ within the application of one abstraction to the selfsame abstraction. In $\Omega$, this abstraction is $\lambda x. xx$; in $Y$, it is $\lambda x. f (x x)$.
+
+But these terms cannot be assigned a type, for the fundamental reason that self-application is not typable. Let us see what happens when we attempt to assign a type to $\lambda x. x x$. We know that $x$ must have some type, say, $\sigma$. The rule of $\to$ introduction specifies that, to apply one term to another, the first term must be able to be assigned a function type and the second term must be able to be assigned the same type as that to the left of the arrow in the function type. But this means that the type of $x$ must be a solution to the type equation $\sigma = (\sigma \to \tau)$, and there is no such type in our typed \lambdacalc with constants.\footnote{It is possible to extend the \lambdacalc so that self-application becomes typable; see the discussion in \citet[\mbox{Section 3.2, pp. 14--17}]{Barendregt:Types:1990} of recursive types and the $\lambda \mu$-calculus.}
+
+We are not so sad to see $\Omega$ become untypable. A term that does nothing except lead to endless $\beta$-reduction is useless to us. But we needed $Y$ to define recursive functions. Regaining $Y$ is the point of our next extension.
 
 \subsubsection{Typed Recursive \LambdaCalc with Constants}
+After the effort of the past two extensions to the \lambdacalc, extending the typed \lambdacalc with constants to encompass recursion is surprisingly simple. All we need do is introduce a polymorphic fixed-point operator among our constants, introduce an appropriate type into our basis, and craft a $\delta$-rule to make this operator behave as we desire.
+
+Thus, we anoint $Y$ our fixed-point operator name of choice. The only functions we want to apply $Y$ to are those that must recurse upon themselves. As such, they must consume the very type of value they produce, that is, the type of any such function must be $(\sigma \to \sigma)$. A fixed point of such a function must have the type of the argument of the function.  Since $Y$, given a function, produces a fixed point of that function, we assign $Y$ the family of types \stmt{Y}{(\sigma \to \sigma) \to \sigma}, which is to say that we add a \stmt{Y_{\sigma}}{(\sigma \to \sigma) \to \sigma} to our basis \basis{} for every type $\sigma$ that can be formed according to our grammar for types.
+
+That $Y$ in fact is a fixed-point operator is represented in the \lambdacalc by the fact that $Y F \betacon F (Y F)$. The final element of our extension, then, is a family of $\delta$-rules corresponding to the family of typed fixed-point operators $Y_{\sigma}$ that reintroduces this convertibility:
+\[
+\frac{\basis \turnstile \stmt{M}{(\sigma \to \sigma)}}%
+{(Y_{\sigma}\; M) \dred (M\; (Y_{\sigma}\; M))} 
+\quad 
+\frac{\basis \turnstile \stmt{M}{(\sigma \to \sigma)}}%
+{(M\; (Y_{\sigma}\; M)) \dred (Y_{\sigma}\; M)}
+\]
+This has the effect that, if \stmt{M}{(\sigma \to \sigma)}, then $(Y_{\sigma}\; M)$ and $(M\; (Y_{\sigma}\; M))$ are interconvertible. We call this type of conversion \vocab{typed $Y$-conversion}.
+
+With this final extension, we now have a \lambdacalc that closely resembles the \lambdacalcs that underlie modern functional languages. But, before we talk of them, perhaps we ought to go over the developments and languages that led to today's functional languages.
