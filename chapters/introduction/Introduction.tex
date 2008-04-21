@@ -1,2 +1,50 @@
-\myChapter{Introduction}\label{introduction:introduction}
-I plan to write this after I've written more of the thesis. I might even delay writing this till it comes time to write the conclusion. Since conclusions frequently return to ideas raised and promises (as it were) made in the introduction, this does not sound like too bad of an idea.
+\forcemark{Introduction}
+\refstepcounter{dummy}
+\addcontentsline{toc}{chapter}{\tocEntry{Introduction}}
+\chapter*{Introduction}\label{introduction:introduction}
+\subsubsection*{Computers and Programs}
+Computers are everywhere. You use them every day. But when you look into what computers are, you might be surprised. Computers do very little, but they do it very well. What they do is simple: we can capture the essential elements of a computer in an abstract machine whose description takes up maybe ten pages. How they do this can fill volumes. The implications of what computers can do have been nothing short of world-changing.
+
+With computers came programming languages. The computer itself supports only a rudimentary, primitive language. This language describes everything in terms of the computer's hardware. It provides very few abstractions that hide these implementation details. The development of higher-level languages that support a much richer set of abstractions has been essential to realizing the potential of the computer.
+
+The term \vocab{program} is overloaded with meanings. It can refer to a computer-executable file, a specific application that can run on a variety of computers using a variety of computer-specific executables, or the code written in a programming language that is meant to become one of these other sorts of programs.
+
+The concept that hides behind these different uses is that of the program as an idea of a computation: ``play music,'' ``find derivatives of polynomials,'' ``pilot an airplane.'' In reifying this idea, one must make many implementation decisions. Some of these can be thought of as belonging to a more implementation-friendly, specialized version of that program: What algorithms should be employed? How should we represent the information we are working with? In answering these questions, we draw on more elementary programs.
+
+But, eventually, one must commit to a form for this program, a concrete representation. In their most authoritative form, these representations consist of executable specifications of the computation: ``code'' written in some language that can be made to run on a computer. Languages with a richer set of abstractions\empause higher-level languages\empause are a natural choice for this purpose, as they admit a more direct translation from abstract idea to concrete representation. Some of the elementary programs you intended to use, such as various data structures, might even already be provided in some concrete form or another.
+
+\subsubsection*{A Tale of Two Stories}
+But, in the end, computers still speak computer, not these other, more human- and idea-friendly languages. The story of how a program represented in a higher-level language is transformed into a representation that a computer can not only carry out but that is well-suited to this purpose is an amazing, rich, nuanced story. The architecture of the computer determines whether a representation is well-suited for execution by it or not, and so this plays a part in this story. The abstractions provided by the higher-level language determine what sorts of transformations must be performed, so these too play a part in the story.
+% Wow, it is incredibly tempting to try to convolute this to include a pun on \textit{Being and Time.} Transformation to ``computer language'' -> being in a representation in that language; transformation to a ``well-suited'' representation -> transformation to an efficient representation -> executes quickly -> time. I could likely make this pun better if I had actually read Sein und Zeit, and it would never be appropriate here regardless, so, moving along\dots
+
+This story is the story of the compiler, the program that is responsible for carrying out this translation. It is also the central story of this thesis. We tell it by describing the major players: the computer, the compiler, and the languages. We discuss them, in fact, in roughly that order. It might seem backward to talk of compilers before languages. We actually assume throughout that you have at least a basic reading knowledge of a programming language such as C or Java, though we also provide analogies to natural language (such as English) where possible in our discussion of compilers. Ultimately, we talk of compilers before languages because the job of a compiler is roughly similar for all languages, but the languages themselves differ in interesting ways that have a significant impact on the specifics of their compilers.
+
+The birth, life, and death of programming languages also make for fascinating reading.\footnote{If you are interested, you might want to start with the proceedings of the few history of programming languages (\abbrev{HOPL}) conferences that have taken place.} New languages build on and refine older languages while introducing novel ideas of their own. We can even talk of programming language genealogy and draw out family trees.\footnote{\href{http://lambda-the-ultimate.org/}{Lambda the Ultimate (\nolinkurl{http://lambda-the-ultimate.org/})} has a good collection of links to genealogical diagrams.}
+
+Two of the oldest and most prolific trees belong to the imperative and functional families of programming languages. The abstractions offered by these families are sometimes quite similar, but the overall combination of abstractions differ in significant ways. These differences are truly fundamental: the two trees are rooted in different notions of the fundamental process of computation.
+
+These notions are embodied in two different formalisms, the Turing machine and the \lambdacalc{}. The Turing machine was the inspiration for both today's computers and the imperative language family. Thus, the translation from a higher-level, imperative language to a computer's very low-level language can be looked at as a translation from one imperative language to another.
+
+The \lambdacalc{}, on the other hand, embodies a radically different notion of computation. Its heritors, the functional family, can be thought of in good part as higher-level versions of the \lambdacalc{}. Translating these languages into the \lambdacalc{}, then, is similar to translating imperative languages into machine language.
+
+But \lambdacalc is not machine language, and so an important element of compiling all functional languages is effecting this paradigm shift: taking the representation of a computation defined in terms of the \lambdacalc and turning it into a computation defined in terms of Turing machines.
+
+This last step is the trickiest and most amazing part of compiling functional languages, and so we will look at it closely through the lenses of two different compilers for two different languages. These languages represent the two principal branches of the functional language family tree. Looking at a compiler from each branch will serve to illuminate the particular problems each branch poses for compilation.
+
+\subsubsection*{The Neverending Story}%or, The Tail: A Pre-Story
+The conclusion of this thesis is about a story that has yet to be written. Or perhaps it would be more exact to see, that we are writing now. For the last part of this thesis is about what is to become of our two families. In it, we will put our two families side by side. We have seen where they have been, and some of where they are now. The final question is one you can help answer: what are they to become?
+
+%redo automark:
+\automark[section]{chapter}
+% REPEATED FROM classicthesis.sty
+% required to get spacedlowsmallcaps section headers
+    \clearscrheadings
+    \setheadsepline{0pt}
+    \ifthenelse{\boolean{nochapters}}%
+        {\relax}%
+        {\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{}}}
+    \renewcommand{\sectionmark}[1]{\markright{\thesection\ \spacedlowsmallcaps{#1}}}
+    \lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
+    \rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
+    \renewcommand{\headfont}{\small}  
+% END REPETITION

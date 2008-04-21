@@ -15,8 +15,11 @@
 \newcommand{\myLocation}{Sarasota, Fla.\xspace}
 \newcommand{\myTime}{May 2008\xspace}
 
+% Tricky TOC/display stuff
+\newcommand{\forcemark}[1]{\manualmark\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+
 % Semantic markup
-\newcommand{\code}[1]{{\small\ttfamily #1}} %the variable \code{x}
+\newcommand{\code}[1]{\text{\small\ttfamily #1}} %the variable \code{x}
 \newcommand{\foreign}[1]{\textit{#1}} %the \foreign{Entscheidungsproblem}
 \newcommand{\asword}[1]{\textit{#1}} %such a strange word, \asword{word.}
 \newcommand{\vocab}[2][]{\spacedlowsmallcaps{#2}} %the \vocab{lambda terms} are...
