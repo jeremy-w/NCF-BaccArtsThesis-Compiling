@@ -1,25 +1,34 @@
 \myChapter{History}\label{functional:history}
-\section{Predecessors}
-\subsection{Lisp}
+\input{chapters/functional/history/Predecessors}
+\input{chapters/functional/history/Modern}
 
-\subsection{Iswim}
-
-\subsection{APL and FP}
-
-\section{Modern Functional Languages}
-\subsection{ML}
-
-\subsection{Haskell}
-
-\section{Criticisms}
-\subsection{Trivial Update Problem}
-\subsection{Explicit versus Implicit Parameters}
-\subsection{Input--Output}
-\subsection{Lack of Familiarity}
+%TODO: Stick in conclusion.
+%\section{Criticisms}
+%\subsection{Trivial Update Problem}
+%\subsection{Explicit versus Implicit Parameters}
+%\subsection{Input--Output}
+%\subsection{Lack of Familiarity}
 
 \section{Bibliographic Notes}
+\citet{Hudak:Conception:1989} surveys the history of functional programming languages through the 1980s. It develops the concepts of the \lambdacalc and its extensions in parallel to the history. This survey particularly influenced the overall structure of the section on the predecessors of modern functional languages.
+
+Lisp made its debut in McCarthy's seminal paper ``Recursive Functions of Symbolic Expressions and their Computation by Machine, Part~I'' \citep{McCarthy:Recursive:1960}.\footnote{If you read this paper, you will find that we have fudged some of the technical details of Lisp's description and omitted recounting some significant innovations that were not relevant to the body of functional programming. This was intentional.} There is a good body of literature on the history of Lisp. McCarthy recounts its early history in \citet{McCarthy:History:1978}. \citet{Stoyan:Early:1984} covers much the same time period, concluding their history a bit before McCarthy, but where McCarthy's history was based primarily on his recollection, theirs is based on written records. It is very interesting to watch the elements of Lisp gradually fall into place here and there throughout various documents. McCarthy's Lisp retrospective \citep{McCarthy:LISP:1980} provides a very concise recounting of the most significant innovations and characteristic elements of Lisp. \Citet{Steele-Jr.:The-evolution:1993} gives a fascinating recounting of the tumultuous history of the Lisp family that transpired between the early history as described by McCarthy and Stoyan and the standardization of Common Lisp. \Citet{Layer:Lisp:1991} describes the novel elements of the Lisp programming environment, including some information on Lisp machines, computers that were specially developed to support Lisp and its environment. As for Scheme, its community recently (2008) ratified \textit{The Revised$^{6}$ Report on the Algorithmic Language Scheme}.\footnote{Affectionately known as the \abbrev{R$^{6}$RS}, the name standards for the \textit{Revised Revised \dots Revised Report\dots.} For the report itself as well as details on the process that led to its ratification, see \url{http://www.r6rs.org/}.}
+
+Iswim\dots\citet{Landin:The-next:1966}.
+APL\dots\citet{Iverson:A-programming:1962}.
+FP\dots\citet{Backus:Can-programming:1978}
+
+ML LCF stuff, Hindley--Milner stuff
+SML ref the definition
+
+HASKELL
+ref the website
+ref the definition
+ref the history papers
+
 \citet{Hudak:Conception:1989} develops the theory associated with the \lambdacalc alongside the history of functional programming. \citet{Hudak:A-history:2007} thoroughly describes the development of Haskell.
 
-Monads, which we introduced in the context of input--output, are used extensively in Haskell but the concept and its uses continue to prove difficult to grasp. Most texts discussing Haskell take a stab at explaining monads along the way, but \citet{Wadler:Monads:1995} focuses exclusively on the use of monads in functional programming. \citet{Peyton-Jones:Tackling:2000} focuses on how Haskell handles the ``awkward squad'' of input--output, concurrency, exceptions, and interfacing with other languages. These topics provide many examples of monads and their uses in Haskell, as well as being of interest for functional languages in general as an record of one set of solutions to some thorny issues for functional programming.
-
-\citet{Scott:Programming:2006} discusses the trivial update problem after introducing functional programming using Scheme (an influential Lisp) and Haskell.
+%TODO: Stick in conclusion.
+%Monads, which we introduced in the context of input--output, are used extensively in Haskell but the concept and its uses continue to prove difficult to grasp. Most texts discussing Haskell take a stab at explaining monads along the way, but \citet{Wadler:Monads:1995} focuses exclusively on the use of monads in functional programming. \citet{Peyton-Jones:Tackling:2000} focuses on how Haskell handles the ``awkward squad'' of input--output, concurrency, exceptions, and interfacing with other languages. These topics provide many examples of monads and their uses in Haskell, as well as being of interest for functional languages in general as an record of one set of solutions to some thorny issues for functional programming.
+%
+%\citet{Scott:Programming:2006} discusses the trivial update problem after introducing functional programming using Scheme (an influential Lisp) and Haskell.
