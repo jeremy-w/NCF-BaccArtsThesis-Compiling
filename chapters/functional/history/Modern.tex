@@ -1,0 +1,89 @@
+\section{Modern Functional Languages}
+While the who's in, who's out of older languages is up for debate, most modern functional languages bear a close family resemblance. The central features of a modern functional language are:
+\begin{itemize}
+\item
+first-class functions and a firm basis in the \lambdacalc;
+\item
+static typing together with type inference and polymorphism;
+\item
+algebraic data types and pattern matching.
+\end{itemize}
+Most modern functional languages also feature:
+\begin{itemize}
+\item
+abstract data types and modules;
+\item
+equational function definitions and boolean guards.
+\end{itemize}
+We will discuss each of these in turn.
+
+\subsection{Central Features}
+\subsection{Other Features}
+
+\section{Classified by Order of Evaluation}
+The development of modern functional languages can be divided into two branches. We can characterize these branches in two ways. One is by the purity of their adherence to the \lambdacalc and the concept of \vocab{referential transparency}, that is to say that the same reference, be it function call or variable name or what have you, always stands for the same value throughout a program. The other is the reduction strategy they employ.
+
+Reduction strategies\dots strict/lazy likened to earlier applicative order/normal order\dots
+
+\subsection{Strict Languages}
+Strict: ML, CAML Light, (Objective Caml)
+
+\subsection{Lazy Languages}
+``hair shirt of laziness'' (need a citation for that)\\
+Lazy: SASL, KRC, Miranda, (Lazy ML), Haskell
+
+History goes here, details of lexical/syntactic/etc.~and formal definitions go in the chapter on Ghc.
+
+\begin{itemize}
+\item \vocab{algebraic data types (ADTs)} such as pairs, lists, and other such abstractions and the ability of the user to define more. For example, \lstinline{data Tree a = Leaf a | Branch (Tree a) (Tree a)} is a \vocab{data constructor} that can be used to create a tree with values of some base type (\lstinline{a}, here acting as a type variable) at its leaves. Thus, \lstinline{tree = Branch (Leaf "a") (Leaf "b")} has type \mbox{\lstinline{Tree [Char]}}, read ``tree of character lists,'' and corresponds to the tree
+\[
+\begin{xy}\SelectTips{eu}{10}
+\xymatrix{%
+&*{\bullet}\ar[dl] \ar[dr]\\
+*++\txt{\code{"a"}}&&*++\txt{\code{"b"}}}
+\end{xy}
+\]
+\item \vocab{abstract data types} that hide their concrete representation from the user. This is generally coupled with a module system; hiding the representation is accomplished by not exporting representation-specific definitions for use in the program importing the module.
+\item \vocab{pattern matching} for easily getting at the elements of algebraic data types and \vocab{equational definitions} of functions. The first equation with a pattern matching the argument is selected to handle the argument. For example, we could define a function on trees that counts the number of branches with
+\begin{lstlisting}
+branches (Leaf   _  ) = 0
+branches (Branch a b) = 1 + branches a
+                          + branches b
+\end{lstlisting}
+The underscore is used in a pattern as a ``don't care'' symbol: it indicates the presence a value that we choose not to bind to a name, since we would never refer to that name.
+\item Definition by cases for functions (which is really another variety of pattern matching). We could rewrite the last function using an explicit case statement:
+\begin{lstlisting}
+branches2 tree = case tree of
+                    Leaf   _   -> 0
+                    Branch a b -> 1 + branches2 a
+                                    + branches2 b
+\end{lstlisting}
+\item \vocab{guards}, which are boolean predicates that can be used in equational function definitions. Guards block their definition of the function from being used when they evaluate to false. The first guard successfully passed determines the branch of the function definition that applies to the given value. Thus, we could easily define an \lstinline{isLeaf} predicate for use with our trees:
+\begin{lstlisting}
+isLeaf t | branches t == 0 = True
+         | otherwise       = False
+\end{lstlisting}
+Where pattern matching could be seen as equivalent to a case statement, guards can be seen as equivalent to chained if expressions:
+\begin{lstlisting}
+isLeaf2 t = if branches t == 0 then True else False
+\end{lstlisting}
+In fact, \lstinline{otherwise} is simply another name for \lstinline{True}, so a more direct translation of \lstinline{isLeaf} would be:
+\begin{lstlisting}
+isLeaf3 t = if branches t == 0
+               then True
+               else if True 
+                       then False  
+                       else False
+\end{lstlisting}
+This is, in fact, a chain of if \emph{expressions}, not if statements. An if expression can be used anywhere an expression is expected. The else branch is always required, which means the expression will always have some value, either that of the true or the false branch.
+\item Static typing and user-defined types.
+\item Polymorphic functions. The data constructors \lstinline{Leaf} and \lstinline{Branch} defined above are in fact polymorphic; they both result in trees of some type \lstinline{a}, where \lstinline{a} is any type. We can even construct trees whose leaves are themselves trees!
+\item Type inference that prevents the unnecessary type annotations that plague languages such as C and Java. For example, the types of the functions \lstinline{branches} and \lstinline{isLeaf} defined above are inferred to be
+\begin{lstlisting}
+branches :: (Num t1) => Tree t -> t1
+isLeaf :: Tree t -> Bool
+\end{lstlisting}
+Here, \lstinline{(Num t1) =>} should be read as restricting the type variable \lstinline{t1} to subtypes of the typeclass \lstinline{Num}.
+\end{itemize}
+
+%Need to put in a chapter (parallel history?) on abstract machines, balkanization, interpreters versus compilers, and so on and so forth. Should talk about why we chose Ghc and SML/NJ, as well.
