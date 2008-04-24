@@ -4,7 +4,7 @@ simple:
 thesis:
 	pdflatex thesis
 	latex_count=3 ; \
-	while egrep -is '(rerun|undefined references)' thesis.log \
+	while egrep -is '(undefined references)' thesis.log \
 		&& [ $$latex_count -gt 0 ] ;\
 	do \
 		echo "Rerunning latex..." ;\
@@ -16,7 +16,7 @@ bib:
 	bibtex thesis
 	pdflatex thesis
 	latex_count=3 ; \
-	while egrep -is '(rerun|undefined references)' thesis.log && test $$latex_count -gt 0;\
+	while egrep -is '(undefined references)' thesis.log && test $$latex_count -gt 0;\
 	do \
 		echo "Rerunning latex..." ;\
 		pdflatex thesis ;\
@@ -30,7 +30,7 @@ index:
 	makeindex thesis
 	pdflatex thesis
 	latex_count=3 ; \
-	while egrep -is '(rerun|undefined references)' thesis.log ;\
+	while egrep -is '(undefined references)' thesis.log ;\
 	do \
 		echo "Rerunning latex..." ;\
 		pdflatex thesis ;\

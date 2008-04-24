@@ -4,7 +4,7 @@ While the who's in, who's out of older languages is up for debate, most modern f
 \item
 first-class functions and a firm basis in the \lambdacalc;
 \item
-static typing together with type inference and polymorphism;
+static typing coupled with type inference and polymorphism;
 \item
 algebraic data types and pattern matching.
 \end{itemize}
@@ -18,14 +18,165 @@ equational function definitions and boolean guards.
 We will discuss each of these in turn.
 
 \subsection{Central Features}
+\subsubsection{First-Class Functions and the \LambdaCalc}
+It is quite easy to represent functions in the \lambdacalc and to create functions of functions. Such \vocab{higher-order functions} are unusual in imperative languages. Among the provided data types, they are usually second-class citizens: they have no literal representation, but can only be created through statements, nor can they be assigned to variables, passed into or returned from other functions. They are not on par with the integers or even characters.
+
+Functional languages make functions first-class citizens. You can do anything with them that you would be allowed to do with integers. This makes it easy to create and employ higher-order functions, and functional programming has a rich vocabulary describing common, heavily-used higher-order functions and common types of higher-order functions. First-class functions are also employed extensively in the form of curried functions.
+
+First-class functions is the most striking result of functional languages' basis in the \lambdacalc{}, and it heavily influences the entire style of programming in functional languages. But taking the \lambdacalc as the starting point of the entire programming language is the most radical characteristic of modern functional languages, and the effects of this choice are felt throughout the resulting languages.
+
+\subsubsection{Static Typing, Type Inference, and Polymorphism}
+Modern functional languages are statically typed. They are based, not on the untyped \lambdacalc{}, but on some variety of the typed \lambdacalc{}. The introduction of types has advantages from the software engineering point of view. It also has advantages from the point of view of compiler performance.
+
+Static typing in imperative languages is often regarded as a burden because of the need to declare the type of all variables and functions. Modern functional languages relieve this burden through type inference. This means that code written in functional languages is free to omit redundant type declarations: if you state that \lstinline{x = 5}, then there is no need to reiterate that \lstinline{x} is an \lstinline{Integer} for the sole benefit of the compiler. Modern functional languages are designed to allow type inference, and their compilers are designed to perform it.
+
+A surprising result of type inference is that it makes polymorphism the standard behavior for functions. Whenever a function could be construed as taking operands of a more general type, it is, unless an explicit type declaration is supplied that restricts this.
+
+The standard higher-order function \lstinline{map} is a good example of this. \lstinline{map} takes as its arguments a function and a list and produces a list containing the results of applying the function to each element of the original list in order. That description is somewhat complex; an example would perhaps be simpler. If we take for granted a boolean function \lstinline{isNonZero} that takes an integer argument and returns either \lstinline{True} if the number is nonzero or \lstinline{False} if it is zero,\footnote{We can define \lstinline{isNonZero} in Haskell as \lstinline{isNonZero x = not (x == 0)}.} then 
+\begin{lstlisting}
+map isNonZero [0, 1, 2, 3]
+\end{lstlisting}
+evaluates to 
+\begin{lstlisting}
+[isNonZero 0, isNonZero 1, isNonZero 2, isNonZero 3]
+\end{lstlisting}
+and thence to 
+\begin{lstlisting}
+[False, True, True, True]
+\end{lstlisting}
+The type of map is \lstinline{(a -> b) -> [a] -> [b]}, where \lstinline{a} and \lstinline{b} here are type variables as discussed in \nameref{types:polymorphism},~p.~\pageref{types:polymorphism}.
+
+\subsubsection{Algebraic Data Types and Pattern Matching}
+A distinctive characteristic of the type systems of modern functional languages is their support for creating and using \vocab{algebraic data types (ADTs)}. Algebraic data types are so called because they can be looked upon as a sum of products of other data types. What this means practically is that algebraic data types function as discriminated (tagged) unions; the tags are called \vocab{data constructors} and serve to wrap the supplied data in the algebraic data type. Pairs and lists are simple examples, but since special syntax is often supplied to make their use more natural, they are not very good examples of creating \abbrev{ADT}s.
+
+Let us instead consider an algebraic data type representing a tree with values of some unspecified type stored in the leaves. The declaration of such a data type might look like \begin{lstlisting}
+data Tree a = Leaf a | Branch (Tree a) (Tree a)
+\end{lstlisting}
+(The unspecified type that is being wrapped is represented here as \lstinline{a}.) This also happens to be a \emph{recursive} data type: each branch wraps a pair of subtrees. Thus, \lstinline{tree = Branch (Leaf 1) (Leaf 2)} has type \mbox{\lstinline{Tree Int}}, read ``tree of int,'' and corresponds to the tree
+\[
+\begin{xy}\SelectTips{eu}{10}
+\xymatrix{%
+&*{\bullet}\ar[dl] \ar[dr]\\
+*++\txt{\code{1}}&&*++\txt{\code{2}}}
+\end{xy}
+\]
+
+We have seen that it is simple to create an algebraic type and build instances of that type. But how do we get at the wrapped information? To decompose algebraic data types, modern functional languages support \vocab{pattern matching}.
+
+The fundamental pattern-matching construct is the \vocab{case} expression. Its basic form indicates the variable for which cases are being enumerated and then sets up a correspondence between patterns and expressions to evaluate as the value of the \asword{case} expression in the event the corresponding pattern matches the provided variable. The patterns are checked in the order they are listed; the first matching pattern decides which expression is evaluated. Still informally, but somewhat more symbolically, we could represent the form of the \asword{case} expression as
+\[
+\text{\code{case} } \langle\text{\textit{variable}}\rangle \text{ \code{of} } \left (\langle\text{\textit{pattern}}\rangle \text{ \code{->} } \langle\text{\textit{expression}}\rangle \right)^{+}
+\]
+
+As an example, let us suppose we wish to count the number of branches in a tree. An example of such a function is \lstinline{countBranches} of Listing~\ref{features:case} on page~\pageref{features:case}. The patterns are analogous to the expressions we would use to construct the type of data that the pattern matches; the variables of the patterns, rather than passing data into the constructors, instead are used as names for the data that was initially supplied as parameters to the constructor.
+
+The type of this function together with its name provide an excellent summary of its behavior. It also provides us with another example of polymorphism and our first example of subtyping. The type of \lstinline{countBranches} is \lstinline{(Num t1) => Tree t -> t1}. Here, \lstinline{(Num t1) =>} expresses a restriction on the type of the type variable \lstinline{t1} used in the rest of the type expression. It says that the type of \lstinline{t1} must be some subtype of the type class \lstinline{Num}. The underscore you see in the definition of this function is used in patterns as a ``don't care'' symbol: it indicates the presence a value that we choose not to bind to a name, since we do not intend to refer to the value.
+
+\begin{lstlisting}[float,caption={Pattern-matching via \code{case}},label={features:case}]
+countBranches tree = case tree of
+                        Leaf   _   -> 0
+                        Branch a b -> 1 + countBranches a
+                                        + countBranches b
+\end{lstlisting}
+
 \subsection{Other Features}
+\subsubsection{Abstract Data Types and Modules}
+\vocab{abstract data types} are data types that hide their concrete representation from the user. In this way, the representation of the type becomes internal to it: the fact that, say, a stack is actually implemented as a list is hidden, and only operations dealing with stacks as stacks are exposed. This means that the implementation of the abstract type can be changed as necessary. For example, if lists proved too slow to support the heavy use we wished to make of stacks, we could move instead to some other representation without having to change any of the code that used our stacks.
+
+This kind of implementation hiding together with interface exposure is frequently accomplished through a module system. The existence of a powerful and usable module system is an important part of the ``coming of age'' of functional languages, because modules are necessary to support ``programming in the large'' as is necessary in real-world environments where complex problems must be solve and large amounts of code are involved. In terms of modules, an abstract data type's representation is hidden by not exporting representation-specific definitions for use in the program importing the module.
+
+In the context of abstractions of algebraic data types, this takes the form of not exporting the data constructors. Instead, other functions are exported that make use of the data constructors without exposing this fact to the user of the abstract data type. A simple version of such a function would simply duplicate the data constructor. More complex versions can build in bounds-checking, type-checking, or normalization of the representation\empause for example, such a ``smart constructor'' could be used to ensure an internal tree representation remains balanced.
+
+\subsubsection{Equations and Guards}
+Modern functional languages support a very readable, compact notation for defining functions that builds on the pattern matching performed by \asword{case} statements. They allow functions to be defined as a sequence of equations. Listing~\ref{features:equations} on page~\pageref{features:equations} reimplements the functionality of Listing~\ref{features:case} (p.~\pageref{features:case}) using an equational style of function definition. If you compare this new definition to the earlier definition, which used the \asword{case} expression, you will see that the pattern matching is implicit in the syntax used to define functions equationally.
+
+\begin{lstlisting}[float,caption={Pattern-matching via equational function definition},label={features:equations}]
+countBranches2 (Leaf   _  ) = 0
+countBranches2 (Branch a b) = 1 + countBranches a
+                              + countBranches b
+\end{lstlisting}
+
+
+Another feature of modern functional languages that simplifies function definition is \vocab{guards}. Guards are boolean predicates that can be used in function definitions and \asword{case} statements. Guards block the expression they precede from being used when they evaluate to false, even if the pattern preceding the guard matches. The first pattern and guard successfully passed determines the case that applies to the given value.
+
+An an example, we could use one of the \lstinline{countBranches} functions given earlier to define an \lstinline{isLeaf} predicate for use with our trees. If the tree has zero branches, it must be a leaf. If it has one or more branches, it must not be. In Listing~\ref{features:guards} on page~\pageref{features:guards}, we use a guard that applies this number-of-branches test in order to prevent the function \lstinline{isLeaf} from evaluating to \lstinline{True} when its argument \lstinline{t} is a tree with more than zero branches.
+\begin{lstlisting}[float,caption={Cases with guards},label={features:guards}]
+isLeaf t | countBranches t > 0 = False
+         | otherwise          = True
+\end{lstlisting}
+
+We can also describe guards in terms of how the same effect could be accomplished using other expressions. Guards used with function definitions can be seen as equivalent to chained \asword{if} expressions where each successive guard appears in the \asword{else} branch of the preceding guard.\footnote{We do indeed mean \asword{if} \emph{expressions}, not \asword{if} statements. An \asword{if} expression can be used anywhere an expression is expected. The \asword{else} branch is always required, which means the expression will always have some value, either that of the true or the false branch.} The expressions being guarded in the function definition become the contents of the \asword{then} branch that is evaluated if their guard evaluates to true. A translation along these lines of the \lstinline{isLeaf} function of Listing~\ref{features:guards} (p.~\pageref{features:guards}) is:
+\begin{lstlisting}
+isLeaf2 t = if branches t == 0 then True else False
+\end{lstlisting}
+But, since \lstinline{otherwise} is simply another name for \lstinline{True}, we can produce a more faithful (and redundant) translation of the original \lstinline{isLeaf} function, as shown in Listing~\ref{guards:ifthenelse} on page~\pageref{guards:ifthenelse}.
+
+\begin{lstlisting}[float,caption={Guards as chained if-then-else--expressions},label={guards:ifthenelse}]
+isLeaf3 t = if countBranches t == 0
+               then True
+               else if True 
+                       then False  
+                       else False
+\end{lstlisting}
+
+We can similarly transform a \asword{case} statement that uses both patterns and guards, but this requires a significant amount of nesting and duplication. We must first attempt to match the patterns. As before, if a pattern does not match, the next pattern is tried. Each guard migrates to the corresponding expression. The original expression is wrapped in an \asword{if} expression that tests the corresponding guard condition. If the test succeeds, the \asword{then} branch is the expression corresponding to the pattern just matched and guard just passed is evaluated. Otherwise, we must duplicate the remaining patterns and guards, and transform them similarly.
+
+An example should clarify this. We will not use descriptive names as before, because they would obscure the transformation and motivating such descriptive names would unduly prolong this discussion. The case expression with three guarded branches of Listing~\ref{cases:guards}~(p.~\pageref{cases:guards}) can be transformed as described above into the nested case expressions without guards of Listing~\ref{cases:noguards}~(p.~\pageref{cases:noguards}).
+
+\begin{figure}
+\myfloatalign%
+\caption{Transforming a \asword{case} statement to eliminate guards}%
+\captionsetup{position=top}
+\subfloat[With Guards]{%
+\label{cases:guards}%
+\begin{minipage}{0.4\textwidth}
+\begin{tabbing}
+\code{case} \=$E$ \code{of} \+\\
+    $p_1 \mid g_1 \to e_1$\\
+    $p_2 \mid g_2 \to e_2$\\
+    $p_3 \mid g_3 \to e_3$
+\end{tabbing}
+\end{minipage}
+}%
+\qquad%
+\subfloat[Without Guards]{%
+\label{cases:noguards}%
+\begin{minipage}{0.4\textwidth}
+\begin{tabbing}%NOTE: If \code{} changes, so must this!
+% Tab stops:
+%  |           |   |   |        |
+\code{case} \=$E$ \code{of} \+\\
+    $p_1 \to B_1$\\
+    $p_2 \to B_2$\\
+    $p_3 \to B_3$\-\\
+\code{where}\+\\
+    $B_1 =$ \code{if} \=$g_1$\+\\
+                \code{then} $e_1$\\
+                \code{else}\= \+\\
+                    \code{case} \=$E$ \code{of}\+\\
+                        $p_2 \to B_2$\\
+                        $p_3 \to B_3$\-\-\-\\
+    $B_2 =$ \code{if} $g_2$\+\\
+                \code{then} $e_2$\\
+                \code{else} \+\\
+                    \code{case} $E$ \code{of}\+\\
+                        $p_3 \to B_3$\-\-\-\\
+    $B_3 =$ \code{if} $g_3$\+\\
+                \code{then} $e_3$\\
+                \code{else error }\code{("Patterns not"++}\+\+\\
+                                  \code{\ \ \ " exhaustive")}%For some reason, tabstops didn't line it up exactly.
+%    \code{errorText} $=$ \code{"Non-exhaustive patterns"}
+\end{tabbing}
+\end{minipage}%
+}%
+\end{figure}
 
 \section{Classified by Order of Evaluation}
 The development of modern functional languages can be divided into two branches. We can characterize these branches in two ways. One is by the purity of their adherence to the \lambdacalc and the concept of \vocab{referential transparency}, that is to say that the same reference, be it function call or variable name or what have you, always stands for the same value throughout a program. The other is the reduction strategy they employ.
 
 Reduction strategies\dots strict/lazy likened to earlier applicative order/normal order\dots
 
-\subsection{Strict Languages}
+\subsection{Eager Languages}
 Strict: ML, CAML Light, (Objective Caml)
 
 \subsection{Lazy Languages}
@@ -33,57 +184,5 @@ Strict: ML, CAML Light, (Objective Caml)
 Lazy: SASL, KRC, Miranda, (Lazy ML), Haskell
 
 History goes here, details of lexical/syntactic/etc.~and formal definitions go in the chapter on Ghc.
-
-\begin{itemize}
-\item \vocab{algebraic data types (ADTs)} such as pairs, lists, and other such abstractions and the ability of the user to define more. For example, \lstinline{data Tree a = Leaf a | Branch (Tree a) (Tree a)} is a \vocab{data constructor} that can be used to create a tree with values of some base type (\lstinline{a}, here acting as a type variable) at its leaves. Thus, \lstinline{tree = Branch (Leaf "a") (Leaf "b")} has type \mbox{\lstinline{Tree [Char]}}, read ``tree of character lists,'' and corresponds to the tree
-\[
-\begin{xy}\SelectTips{eu}{10}
-\xymatrix{%
-&*{\bullet}\ar[dl] \ar[dr]\\
-*++\txt{\code{"a"}}&&*++\txt{\code{"b"}}}
-\end{xy}
-\]
-\item \vocab{abstract data types} that hide their concrete representation from the user. This is generally coupled with a module system; hiding the representation is accomplished by not exporting representation-specific definitions for use in the program importing the module.
-\item \vocab{pattern matching} for easily getting at the elements of algebraic data types and \vocab{equational definitions} of functions. The first equation with a pattern matching the argument is selected to handle the argument. For example, we could define a function on trees that counts the number of branches with
-\begin{lstlisting}
-branches (Leaf   _  ) = 0
-branches (Branch a b) = 1 + branches a
-                          + branches b
-\end{lstlisting}
-The underscore is used in a pattern as a ``don't care'' symbol: it indicates the presence a value that we choose not to bind to a name, since we would never refer to that name.
-\item Definition by cases for functions (which is really another variety of pattern matching). We could rewrite the last function using an explicit case statement:
-\begin{lstlisting}
-branches2 tree = case tree of
-                    Leaf   _   -> 0
-                    Branch a b -> 1 + branches2 a
-                                    + branches2 b
-\end{lstlisting}
-\item \vocab{guards}, which are boolean predicates that can be used in equational function definitions. Guards block their definition of the function from being used when they evaluate to false. The first guard successfully passed determines the branch of the function definition that applies to the given value. Thus, we could easily define an \lstinline{isLeaf} predicate for use with our trees:
-\begin{lstlisting}
-isLeaf t | branches t == 0 = True
-         | otherwise       = False
-\end{lstlisting}
-Where pattern matching could be seen as equivalent to a case statement, guards can be seen as equivalent to chained if expressions:
-\begin{lstlisting}
-isLeaf2 t = if branches t == 0 then True else False
-\end{lstlisting}
-In fact, \lstinline{otherwise} is simply another name for \lstinline{True}, so a more direct translation of \lstinline{isLeaf} would be:
-\begin{lstlisting}
-isLeaf3 t = if branches t == 0
-               then True
-               else if True 
-                       then False  
-                       else False
-\end{lstlisting}
-This is, in fact, a chain of if \emph{expressions}, not if statements. An if expression can be used anywhere an expression is expected. The else branch is always required, which means the expression will always have some value, either that of the true or the false branch.
-\item Static typing and user-defined types.
-\item Polymorphic functions. The data constructors \lstinline{Leaf} and \lstinline{Branch} defined above are in fact polymorphic; they both result in trees of some type \lstinline{a}, where \lstinline{a} is any type. We can even construct trees whose leaves are themselves trees!
-\item Type inference that prevents the unnecessary type annotations that plague languages such as C and Java. For example, the types of the functions \lstinline{branches} and \lstinline{isLeaf} defined above are inferred to be
-\begin{lstlisting}
-branches :: (Num t1) => Tree t -> t1
-isLeaf :: Tree t -> Bool
-\end{lstlisting}
-Here, \lstinline{(Num t1) =>} should be read as restricting the type variable \lstinline{t1} to subtypes of the typeclass \lstinline{Num}.
-\end{itemize}
 
 %Need to put in a chapter (parallel history?) on abstract machines, balkanization, interpreters versus compilers, and so on and so forth. Should talk about why we chose Ghc and SML/NJ, as well.
