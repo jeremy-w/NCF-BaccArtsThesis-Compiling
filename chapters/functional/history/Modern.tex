@@ -123,6 +123,8 @@ We can similarly transform a \asword{case} statement that uses both patterns and
 
 An example should clarify this. We will not use descriptive names as before, because they would obscure the transformation and motivating such descriptive names would unduly prolong this discussion. The case expression with three guarded branches of Listing~\ref{cases:guards}~(p.~\pageref{cases:guards}) can be transformed as described above into the nested case expressions without guards of Listing~\ref{cases:noguards}~(p.~\pageref{cases:noguards}).
 
+These transformations can be adapted to handle multiple guarded expressions per pattern, but transformation process only becomes more tedious. The examples given should suffice to demonstrate how much the use of guards simplifies both reading and writing of functional programs using pattern matching.
+
 \begin{figure}
 \myfloatalign%
 \caption{Transforming a \asword{case} statement to eliminate guards}%
@@ -172,15 +174,26 @@ An example should clarify this. We will not use descriptive names as before, bec
 \end{figure}
 
 \section{Classified by Order of Evaluation}
-The development of modern functional languages can be divided into two branches. We can characterize these branches in two ways. One is by the purity of their adherence to the \lambdacalc and the concept of \vocab{referential transparency}, that is to say that the same reference, be it function call or variable name or what have you, always stands for the same value throughout a program. The other is the reduction strategy they employ.
+Functional languages developed along two branches. These branches are distinguished by their evaluation strategy: one branch pursued the applicative order, call-by-value evaluation strategy; the other pursued the normal order, call-by-name evaluation strategy. Languages belonging to the applicative order branch are called \vocab{eager languages} because they eagerly reduce functions and arguments before substituting the argument into the function. Presented with the application $f\, M$, where $f \betared f\prime$ and $M \betared M'$, an eager language will reduce $f\, M$ to $f\prime\, M\prime$ and only then substitute $M\prime$ into $f$. Languages that are part of the normal order branch are called \vocab{lazy languages}, because they delay reducing functions and arguments until absolutely necessary. When a function is applied to an argument, they simply substitute the argument wholesale and proceed with reduction of the resulting lambda term. When a lazy language encounters an application $f\, M$ of $f$ to $M$, it immediately performs the substitution of $M$ into $f$.
 
-Reduction strategies\dots strict/lazy likened to earlier applicative order/normal order\dots
+The branches have also diverged along the lines of purity and strictness. Eager languages have historically been \vocab{impure}, meaning that they allow side effects of evaluation to affect the state of the program. \vocab[destructive update]{Destructive update} (also known as mutation) is a prime example. Using destructive update, we can sort a list in place simply by mutating its elements into a sorted order. Without destructive update, we would be forced to use the old list to produce a new list, which requires us to allocate space for both the original list and its sorted counterpart.
+
+While destructive update might lead to local improvements in efficiency, it and other impurities destroy \vocab{referential transparency}, since the same expression no longer evaluates to the same value at all times and places in the program. Consider the list \lstinline{ell = [3, 2, 1]}. With this definition, \lstinline{head ell} evaluates to \lstinline{3}. But if we sort it in place, later occurrences of \lstinline{head ell} will evaluate to \lstinline{1}. As you can see, \lstinline{head ell} is no longer always equivalent to \lstinline{head ell}: the reference \lstinline{head ell} is no longer transparent.
+
+Losing referential integrity complicates reasoning about the behavior of the program and the development of any proofs about its behavior. While impurity makes it easier to rely on knowledge of data structures and algorithms gained while using imperative languages, it also undermines one of the strengths of functional programming, that its programs are easier to reason about. The ability to fall back on imperative algorithms also stunts the development of purely functional data structures and algorithms. This is impurity as crutch.
+
+While lazy languages have remained pure, this is in good part due to necessity. Lazy reduction makes it difficult to predict when a particular term will be reduced, and so it is hard to predict when the side effects of a particularly reduction would occur and difficult to ensure they occur when you wish.
+
+The decision between strict and non-strict semantics has also frequently fallen along family lines. Eager languages are almost always strict, by which we mean that the functions of that language default to being strict.\footnote{Whether it is even possible to avoid strictness in a particular case, and the particular methods for doing so where it is possible, will differ from language to language.} If they are going to pursue an applicative order reduction strategy, unless they investigate some sort of concurrent pursuit of several reductions simultaneously, then they will be stuck reducing a divergent argument regardless of whether it would be needed by the function once the substitution of the argument into the function is made. This is the case when functions that ignore their argument are applied to a divergent term: $(\lambda x. \lambda y. y) \Omega \betared \lambda y.y$, but if you attempt to evaluate $\Omega$ prior to substituting it for $x$ in the function, the evaluation will diverge. Lazy languages, on the other hand, will not fall into this trap. Their evaluation strategy makes them non-strict.
+
+The way that laziness forces a language to take the ``high road'' of purity has been referred to as the ``hair shirt of laziness'' \citep{Peyton-Jones:Wearing:2003}. The purity that results from adopting non-strict semantics has a pervasive effect on the entire language. For example, one is forced to discover a functional way to cope with input--output, and computation with infinite data structures becomes feasible. Infinite data structures are usable in a lazy language because, so long as only a finite amount of the structure is demanded, evaluation continues only until that amount has been evaluated.
+
+We have provided some background on the two primary branches of the modern functional family. Now we will briefly summarize their history.
 
 \subsection{Eager Languages}
-Strict: ML, CAML Light, (Objective Caml)
+Strict: ML, SML/CAML Light, Objective Caml
 
 \subsection{Lazy Languages}
-``hair shirt of laziness'' (need a citation for that)\\
 Lazy: SASL, KRC, Miranda, (Lazy ML), Haskell
 
 History goes here, details of lexical/syntactic/etc.~and formal definitions go in the chapter on Ghc.

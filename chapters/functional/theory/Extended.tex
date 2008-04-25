@@ -15,7 +15,7 @@ C &\produces c \alt C\prime
 \end{align*}
 and then our use of, say, $c$ to represent the integer $0$ becomes purely a matter of convention. But just as we established variable naming conventions to make our notation more readable, so too can we establish conventions for writing constants that allow $0$, $1$, \const{True}, and so forth to appear directly in our notation.
 
-But we are not restricted to adding only static constants such as the numbers and booleans. We can also take some to be operators, such as a test for equality $=$, addition $+$, subtraction $-$, or even \const{If}. These clearly operate on other terms, but how remains to be defined. That is the purpose of \vocab{$\delta$-rules}, which are basically ad hoc reduction rules for dealing with constant terms much as $\beta$-reduction describes more generally how to reduce expressions of any lambda terms.
+But we are not restricted to adding only static constants such as the numbers and booleans. We can also take some to be operators, such as a test for equality $=$, addition $+$, subtraction $-$, or even \const{If}. These clearly operate on other terms, but how remains to be defined. That is the purpose of \vocab{$\delta$-rules}, which are basically ad hoc reduction rules for dealing with constant terms much as $\beta$-re\-duc\-tion describes more generally how to reduce expressions of any lambda terms.
 
 For example, we can give a set of $\delta$-rules that make $+$ operate on the particular constants that we have identified with the integers in a way consistent with our intuitive understanding of addition:
 \begin{align*}
@@ -45,7 +45,7 @@ But if we wanted to add $\delta$-rules truer to our intuitive understanding of \
 But, with the addition of these rules, it would no longer be true that a normal order reduction strategy guarantees reduction of a term to normal form if it has one. In fact, no deterministic reduction strategy would suffice to regain that property!
 
 \subsubsection{Typed \LambdaCalc with Constants}
-The addition of constants to the \lambdacalc merely made it easier for us to express concepts already expressible in the pure \lambdacalc{}. The central notions of abstraction, application, and of the various kinds of reduction and conversion that we had introduced for the \lambdacalc remained untouched. The only definition we really had to modify was that of a normal form, and we modified that implicitly with our introduction of constants as distinguished, normal form lambda terms. The introduction of types, however, fundamentally changes the \lambdacalc{}.
+The addition of constants to the \lambdacalc merely made it easier for us to express concepts already expressible in the pure \lambdacalc{}. The central notions of abstraction, application, and of the various kinds of reduction and con\-ver\-sion that we had introduced for the \lambdacalc remained untouched. The only definition we really had to modify was that of a normal form, and we modified that implicitly with our introduction of constants as distinguished, normal form lambda terms. The introduction of types, however, fundamentally changes the \lambdacalc{}.
 
 To develop the typed \lambdacalc with constants, we begin by adopting a lambda term grammar identical to that used for the \lambdacalc with constants:
 \begin{align*}
@@ -98,7 +98,7 @@ Using this basis, we can assign types to other lambda terms. If we can derive a 
 
 The introduction of types has important implications for the central properties of the \lambdacalc{}. The Church--Rosser property persists, but we gain several other powerful properties:
 \begin{itemize}
-\item \vocab{subject reduction}. Type persists unchanged through $\beta$-reduction.
+\item \vocab{subject reduction}. Type persists unchanged through $\beta$-re\-duc\-tion.
 \[
 \frac{M \betared[*] M\prime \quad \basis \turnstile \stmt{M}{\sigma}}%
 {\basis \turnstile \stmt{M\prime}{\sigma}}
@@ -116,11 +116,11 @@ These are indeed powerful, useful properties, but the overall expressive power o
 \Omega &\equiv (\lambda x.xx)(\lambda x.xx)\\
 Y &\equiv \lambda f.(\lambda x. f (x x))(\lambda x. f (x x))
 \end{align*}
-As you can see, they actually make use of nested self-application: both terms contain the application $(x\; x)$ within the application of one abstraction to the selfsame abstraction. In $\Omega$, this abstraction is $\lambda x. xx$; in $Y$, it is $\lambda x. f (x x)$.
+As you can see, they actually make use of nested self-ap\-pli\-ca\-tion: both terms contain the application $(x\; x)$ within the application of one abstraction to the selfsame abstraction. In $\Omega$, this abstraction is $\lambda x. xx$; in $Y$, it is $\lambda x. f (x x)$.
 
-But these terms cannot be assigned a type, for the fundamental reason that self-application is not typable. Let us see what happens when we attempt to assign a type to $\lambda x. x x$. We know that $x$ must have some type, say, $\sigma$. The rule of $\to$ introduction specifies that, to apply one term to another, the first term must be able to be assigned a function type and the second term must be able to be assigned the same type as that to the left of the arrow in the function type. But this means that the type of $x$ must be a solution to the type equation $\sigma = (\sigma \to \tau)$, and there is no such type in our typed \lambdacalc with constants.\footnote{It is possible to extend the \lambdacalc so that self-application becomes typable; see the discussion in \citet[\mbox{Section 3.2, pp. 14--17}]{Barendregt:Types:1990} of recursive types and the $\lambda \mu$-calculus.}
+But these terms cannot be assigned a type, for the fundamental reason that self-ap\-pli\-ca\-tion is not typable. Let us see what happens when we attempt to assign a type to $\lambda x. x x$. We know that $x$ must have some type, say, $\sigma$. The rule of $\to$ introduction specifies that, to apply one term to another, the first term must be able to be assigned a function type and the second term must be able to be assigned the same type as that to the left of the arrow in the function type. But this means that the type of $x$ must be a solution to the type equation $\sigma = (\sigma \to \tau)$, and there is no such type in our typed \lambdacalc with constants.\footnote{It is possible to extend the \lambdacalc so that self-ap\-pli\-ca\-tion becomes typable; see the discussion in \citet[\mbox{Section 3.2, pp. 14--17}]{Barendregt:Types:1990} of recursive types and the $\lambda \mu$-calculus.}
 
-We are not so sad to see $\Omega$ become untypable. A term that does nothing except lead to endless $\beta$-reduction is useless to us. But we needed $Y$ to define recursive functions. Regaining $Y$ is the point of our next extension.
+We are not so sad to see $\Omega$ become untypable. A term that does nothing except lead to endless $\beta$-re\-duc\-tion is useless to us. But we needed $Y$ to define recursive functions. Regaining $Y$ is the point of our next extension.
 
 \subsubsection{Typed Recursive \LambdaCalc with Constants}
 After the effort of the past two extensions to the \lambdacalc, extending the typed \lambdacalc with constants to encompass recursion is surprisingly simple. All we need do is introduce a polymorphic fixed-point operator among our constants, introduce an appropriate type into our basis, and craft a $\delta$-rule to make this operator behave as we desire.
@@ -135,6 +135,6 @@ That $Y$ in fact is a fixed-point operator is represented in the \lambdacalc by 
 \frac{\basis \turnstile \stmt{M}{(\sigma \to \sigma)}}%
 {(M\; (Y_{\sigma}\; M)) \dred (Y_{\sigma}\; M)}
 \]
-This has the effect that, if \stmt{M}{(\sigma \to \sigma)}, then $(Y_{\sigma}\; M)$ and $(M\; (Y_{\sigma}\; M))$ are interconvertible. We call this type of conversion \vocab{typed $Y$-conversion}.
+This has the effect that, if \stmt{M}{(\sigma \to \sigma)}, then $(Y_{\sigma}\; M)$ and $(M\; (Y_{\sigma}\; M))$ are intercon\-vert\-i\-ble. We call this type of con\-ver\-sion \vocab{typed $Y$-con\-ver\-sion}.
 
 With this final extension, we now have a \lambdacalc that closely resembles the \lambdacalcs that underlie modern functional languages. But, before we talk of them, perhaps we ought to go over the developments and languages that led to today's functional languages.
