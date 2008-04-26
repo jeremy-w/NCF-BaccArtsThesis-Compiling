@@ -1,10 +1,97 @@
 
-%% Created for jeremy at 2008-04-25 04:00:07 -0400 
+%% Created for jeremy at 2008-04-25 22:43:18 -0400 
 
 
 %% Saved with string encoding Western (ASCII) 
 
 
+
+@book{Peyton-Jones:Haskell:2003,
+	Date-Added = {2008-04-25 22:38:57 -0400},
+	Date-Modified = {2008-04-25 22:43:18 -0400},
+	Doi = {http://dx.doi.org/10.2277/0521826144},
+	Editor = {Peyton Jones, Simon},
+	Isbn = {9780521826143},
+	Month = {April},
+	Note = {Also available online from \url{http://haskell.org/}},
+	Publisher = {Cambridge University Press},
+	Title = {Haskell 98 Language and Libraries: The Revised Report},
+	Year = {2003},
+	Abstract = {Haskell is the world's leading lazy functional programming language, widely used for teaching, research, and applications. The language continues to develop rapidly, but in 1998 the community decided to capture a stable snapshot of the language: Haskell 98. All Haskell compilers support Haskell 98, so practitioners and educators alike have a stable base for their work. This book constitutes the agreed definition of the Haskell 98, both the language itself and its supporting libraries. It has been considerably revised and refined since the original definition, and appears in print for the first time. It should be a standard reference work for anyone involved in research, teaching, or application of Haskell.}}
+
+@article{Washburn:Boxes:2008,
+	Author = {Washburn, Geoffrey and Weirich, Stephanie},
+	Date-Added = {2008-04-25 22:35:50 -0400},
+	Date-Modified = {2008-04-25 22:37:32 -0400},
+	Doi = {10.1017/S0956796807006557},
+	Journal = {J. Funct. Program.},
+	Month = {Jan},
+	Pages = {87--140},
+	Title = {Boxes go bananas: Encoding higher-order abstract syntax with parametric polymorphism},
+	Volume = {18},
+	Year = {2008},
+	Abstract = {Higher-order abstract syntax is a simple technique for implementing languages with functional programming. Object variables and binders are implemented by variables and binders in the host language. By using this technique, one can avoid implementing common and tricky routines dealing with variables, such as capture-avoiding substitution. However, despite the advantages this technique provides, it is not commonly used because it is difficult to write sound elimination forms (such as folds or catamorphisms) for higher-order abstract syntax. To fold over such a data type, one must either simultaneously define an inverse operation (which may not exist) or show that all functions embedded in the data type are parametric. In this paper, we show how first-class polymorphism can be used to guarantee the parametricity of functions embedded in higher-order abstract syntax. With this restriction, we implement a library of iteration operators over data structures containing functionals. From this implementation, we derive ``fusion laws'' that functional programmers may use to reason about the iteration operator. Finally, we show how this use of parametric polymorphism corresponds to the Sch{\"u}rmann, Despeyroux and Pfenning method of enforcing parametricity through modal types. We do so by using this library to give a sound and complete encoding of their calculus into System $\mathbb{F}_{\omega}$. This encoding can serve as a starting point for reasoning about higher-order structures in polymorphic languages.* This is an extended version of the paper that appeared in The 8th ACM SIGPLAN International Conference on Functional Programming (Washburn & Weirich, 2003).},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGQuLi8uLi9QYXBlcnMvV2FzaGJ1cm4vV2FzaGJ1cm4tV2VpcmljaCAtIEJveGVzIGdvIGJhbmFuYXM6IEVuY29kaW5nIGhpZ2hlci1vcmRlciBhYnN0cmFjdCAoMjAwOCkucGRm0hsPHB1XTlMuZGF0YU8RAkQAAAAAAkQAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADgekh9XYXNoYnVybi1XZWlyaWNoIC0gQiMzODFFODcucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOB6HxDgNHlBERiAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAIV2FzaGJ1cm4AEAAIAADBNH5dAAAAEQAIAADEOEVeAAAAAQAQADgekgAtkT8AA0esAABr2AACAEFPZGluOlVzZXJzOmplcmVteTpQYXBlcnM6V2FzaGJ1cm46V2FzaGJ1cm4tV2VpcmljaCAtIEIjMzgxRTg3LnBkZgAADgCeAE4AVwBhAHMAaABiAHUAcgBuAC0AVwBlAGkAcgBpAGMAaAAgAC0AIABCAG8AeABlAHMAIABnAG8AIABiAGEAbgBhAG4AYQBzAC8AIABFAG4AYwBvAGQAaQBuAGcAIABoAGkAZwBoAGUAcgAtAG8AcgBkAGUAcgAgAGEAYgBzAHQAcgBhAGMAdAAgACgAMgAwADAAOAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGtVc2Vycy9qZXJlbXkvUGFwZXJzL1dhc2hidXJuL1dhc2hidXJuLVdlaXJpY2ggLSBCb3hlcyBnbyBiYW5hbmFzOiBFbmNvZGluZyBoaWdoZXItb3JkZXIgYWJzdHJhY3QgKDIwMDgpLnBkZgAAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoBEQEWAR4DZgNoA20DdgOBA4UDkwOaA6MDqAOrAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA7g=}}
+
+@inproceedings{Turner:Miranda:1985,
+	Address = {New York, NY, USA},
+	Author = {D. A. Turner},
+	Booktitle = {Proc. of a conference on Functional programming languages and computer architecture},
+	Date-Added = {2008-04-25 20:17:10 -0400},
+	Date-Modified = {2008-04-25 20:20:58 -0400},
+	Isbn = {3-387-15975-4},
+	Location = {Nancy, France},
+	Pages = {1--16},
+	Publisher = {Springer-Verlag New York, Inc.},
+	Title = {Miranda: a non-strict functional language with polymorphic types},
+	Year = {1985},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFYuLi8uLi9QYXBlcnMvVHVybmVyL1R1cm5lciAtIE1pcmFuZGE6IGEgbm9uLXN0cmljdCBmdW5jdGlvbmFsIGxhbmd1YWdlIHdpdGggKDE5ODUpLnBkZtIbDxwdV05TLmRhdGFPEQIaAAAAAAIaAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA2gVQfVHVybmVyIC0gTWlyYW5kYS8gYSAjMzgxRDU2LnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgdVsQ37YwAAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABlR1cm5lcgAQAAgAAME0fl0AAAARAAgAAMQ4JcwAAAABABAANoFUAC2RPwADR6wAAGvYAAIAP09kaW46VXNlcnM6amVyZW15OlBhcGVyczpUdXJuZXI6VHVybmVyIC0gTWlyYW5kYS8gYSAjMzgxRDU2LnBkZgAADgCGAEIAVAB1AHIAbgBlAHIAIAAtACAATQBpAHIAYQBuAGQAYQAvACAAYQAgAG4AbwBuAC0AcwB0AHIAaQBjAHQAIABmAHUAbgBjAHQAaQBvAG4AYQBsACAAbABhAG4AZwB1AGEAZwBlACAAdwBpAHQAaAAgACgAMQA5ADgANQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAF1Vc2Vycy9qZXJlbXkvUGFwZXJzL1R1cm5lci9UdXJuZXIgLSBNaXJhbmRhOiBhIG5vbi1zdHJpY3QgZnVuY3Rpb25hbCBsYW5ndWFnZSB3aXRoICgxOTg1KS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAQMBCAEQAy4DMAM1Az4DSQNNA1sDYgNrA3ADcwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAOA}}
+
+@inproceedings{Turner:The-semantic:1981,
+	Address = {New York, NY, USA},
+	Author = {D. A. Turner},
+	Booktitle = {FPCA '81: Proceedings of the 1981 conference on Functional programming languages and computer architecture},
+	Date-Added = {2008-04-25 20:12:50 -0400},
+	Date-Modified = {2008-04-25 22:19:22 -0400},
+	Doi = {http://doi.acm.org/10.1145/800223.806766},
+	Isbn = {0-89791-060-5},
+	Location = {Portsmouth, New Hampshire, United States},
+	Pages = {85--92},
+	Publisher = {ACM},
+	Title = {The semantic elegance of applicative languages},
+	Year = {1981},
+	Abstract = { In what does the alleged superiority of applicative languages consist? In the last analysis the answer must be in terms of the reduction in the time required to produce a correct program to solve a given problem. On reflection I decided that the best way to demonstrate this would be to take some reasonably non-trivial problem and show how, by proceeding within a certain kind of applicative language framework it was possible to develop a working solution with a fraction of the effort that would have been necessary in a conventional imperative language. The particular problem I have chosen also brings out a number of general points of interest which I shall discuss briefly afterwards.
+
+Before proceeding it will be necessary for me to quickly outline the language framework within which we shall be working. Very briefly it can be summarised as (non-strict, higher order) recursion equations + set abstraction. Obviously what matters are the underlying semantic concepts, not the particular syntax that is used to express them, but for the sake of definiteness I shall use the notation of KRC (= ``Kent Recursive Calculator''), an applicative programming system implemented at the University of Kent [Turner 81]. KRC is fairly closely based on the earlier language SASL, [Turner 763, but I have added a facility for set abstraction.  },
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/800223.806766},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFYuLi8uLi9QYXBlcnMvVHVybmVyL1R1cm5lciAtIFRoZSBzZW1hbnRpYyBlbGVnYW5jZSBvZiBhcHBsaWNhdGl2ZSBsYW5ndWFnZXMgKDE5ODEpLnBkZtIbDxwdV05TLmRhdGFPEQIaAAAAAAIaAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA2gVQfVHVybmVyIC0gVGhlIHNlbWFudGkjMzgxRDJFLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgdLsQ37DRQREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABlR1cm5lcgAQAAgAAME0fl0AAAARAAgAAMQ4JHQAAAABABAANoFUAC2RPwADR6wAAGvYAAIAP09kaW46VXNlcnM6amVyZW15OlBhcGVyczpUdXJuZXI6VHVybmVyIC0gVGhlIHNlbWFudGkjMzgxRDJFLnBkZgAADgCGAEIAVAB1AHIAbgBlAHIAIAAtACAAVABoAGUAIABzAGUAbQBhAG4AdABpAGMAIABlAGwAZQBnAGEAbgBjAGUAIABvAGYAIABhAHAAcABsAGkAYwBhAHQAaQB2AGUAIABsAGEAbgBnAHUAYQBnAGUAcwAgACgAMQA5ADgAMQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAF1Vc2Vycy9qZXJlbXkvUGFwZXJzL1R1cm5lci9UdXJuZXIgLSBUaGUgc2VtYW50aWMgZWxlZ2FuY2Ugb2YgYXBwbGljYXRpdmUgbGFuZ3VhZ2VzICgxOTgxKS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAQMBCAEQAy4DMAM1Az4DSQNNA1sDYgNrA3ADcwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAOA}}
+
+@techreport{Turner:SASL:1976,
+	Author = {Turner, David A.},
+	Date-Added = {2008-04-25 18:27:32 -0400},
+	Date-Modified = {2008-04-25 18:30:11 -0400},
+	Institution = {University of St. Andrews},
+	Note = {Available from the author's website \url{http://www.cs.mdx.ac.uk/staffpages/dat/}},
+	Title = {SASL Language Manual},
+	Year = {1976 (revised 1983)},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEDwuLi8uLi9QYXBlcnMvVHVybmVyL1R1cm5lciAtIFNBU0wgTGFuZ3VhZ2UgTWFudWFsICgxOTc2KS5wZGbSGw8cHVdOUy5kYXRhTxEBzAAAAAABzAACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAANoFUH1R1cm5lciAtIFNBU0wgTGFuZ3VhIzM4MUM1Ny5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4HFfEN9MCAAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAZUdXJuZXIAEAAIAADBNH5dAAAAEQAIAADEOAtCAAAAAQAQADaBVAAtkT8AA0esAABr2AACAD9PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6VHVybmVyOlR1cm5lciAtIFNBU0wgTGFuZ3VhIzM4MUM1Ny5wZGYAAA4AUgAoAFQAdQByAG4AZQByACAALQAgAFMAQQBTAEwAIABMAGEAbgBnAHUAYQBnAGUAIABNAGEAbgB1AGEAbAAgACgAMQA5ADcANgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAENVc2Vycy9qZXJlbXkvUGFwZXJzL1R1cm5lci9UdXJuZXIgLSBTQVNMIExhbmd1YWdlIE1hbnVhbCAoMTk3NikucGRmAAATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgDpAO4A9gLGAsgCzQLWAuEC5QLzAvoDAwMIAwsAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADGA==}}
+
+@article{Richards:An-overview:1984,
+	Address = {New York, NY, USA},
+	Author = {H. Richards},
+	Date-Added = {2008-04-25 18:15:30 -0400},
+	Date-Modified = {2008-04-25 22:12:37 -0400},
+	Doi = {http://doi.acm.org/10.1145/948290.948294},
+	Issn = {0362-1340},
+	Journal = {SIGPLAN Not.},
+	Number = {10},
+	Pages = {40--45},
+	Publisher = {ACM},
+	Title = {An overview of {ARC} {SASL}},
+	Volume = {19},
+	Year = {1984},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/948290.948294},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEEMuLi8uLi9QYXBlcnMvUmljaGFyZHMvUmljaGFyZHMgLSBBbiBvdmVydmlldyBvZiBBUkMgU0FTTCAoMTk4NCkucGRm0hsPHB1XTlMuZGF0YU8RAeAAAAAAAeAAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADgcPx9SaWNoYXJkcyAtIEFuIG92ZXJ2aSMzODFDM0UucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOBw+xDfQXFBERiAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAIUmljaGFyZHMAEAAIAADBNH5dAAAAEQAIAADEOAicAAAAAQAQADgcPwAtkT8AA0esAABr2AACAEFPZGluOlVzZXJzOmplcmVteTpQYXBlcnM6UmljaGFyZHM6UmljaGFyZHMgLSBBbiBvdmVydmkjMzgxQzNFLnBkZgAADgBcAC0AUgBpAGMAaABhAHIAZABzACAALQAgAEEAbgAgAG8AdgBlAHIAdgBpAGUAdwAgAG8AZgAgAEEAUgBDACAAUwBBAFMATAAgACgAMQA5ADgANAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAEpVc2Vycy9qZXJlbXkvUGFwZXJzL1JpY2hhcmRzL1JpY2hhcmRzIC0gQW4gb3ZlcnZpZXcgb2YgQVJDIFNBU0wgKDE5ODQpLnBkZgATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgDwAPUA/QLhAuMC6ALxAvwDAAMOAxUDHgMjAyYAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADMw==}}
 
 @inproceedings{Pottier:Towards:2006,
 	Author = {Fran{\c c}ois Pottier and Yann {R{\'e}gis-Gianas}},
@@ -2764,7 +2851,7 @@ These lecture notes give an overview of the techniques that have been developed 
 		<key>group name</key>
 		<string>NCF Thesis</string>
 		<key>keys</key>
-		<string>Wyk:Context-aware:2007,Stoyan:Early:1984,Hovemeyer:Finding:2004,Barendregt:Types:1990,Milner:The-Definition:1990,Bannerjee:Loop:1993,Grune:Parsing:2007,Herken:The-Universal:1995,Pottier:Menhir:2007,Bravenboer:Declarative:2006,Scott:Programming:2006,Hindley:The-principal:1969,Kulkarni:Fast:2005,Pierce:Types:2002,Steele-Jr.:The-evolution:1993,Peyton-Jones:Wearing:2003,Wadler:Monads:1995,Iverson:A-programming:1962,McPeak:Elkhound:2002,Paakki:Attribute:1995,McBride:Functional:2004,Olszewski:Churchs:2006,Peyton-Jones:Tackling:2000,Gordon:From:2000,Damas:Principal:1982,Pager:The-lane:1973,Milner:The-Definition:1997,Gansner:The-Standard:2002,Turner:Church:2006,Milner:Commentary:1990,Landin:The-next:1966,Turing:On-Computable:1937,Backus:Can-programming:1978,Cooper:Engineering:2004,Bravenboer:Concrete:2004,Sestoft:Demonstrating:2002,Lattner:LLVM:2002,Zima:Supercompilers:1991,Hines:Using:2005,Bravenboer:Preventing:2007,Pierce:Advanced:2005,Aho:Principles:1977,Aho:Compilers:1986,Aho:Compilers:2006,Cardelli:On-understanding:1985,Parr:ANTLR:1995,Cousineau:A-brief:1996,Visser:Scannerless:1997,Hennessy:Computer:2006,Wolfe:High-Performance:1996,Patterson:Computer:2007,Spector:Efficient:1988,Hudak:A-history:2007,Thompson:Type:1991,Hopcroft:Introduction:2007,Layer:Lisp:1991,Brand:Disambiguation:2002,Demaine:Cache-Oblivious:2002,Bannerjee:Loop:1994,Curry:Modified:1969,Bannerjee:Dependence:1988,Muchnick:Advanced:1997,Barendregt:The-Lambda:1984,Hudak:Conception:1989,McCarthy:LISP:1980</string>
+		<string>Wyk:Context-aware:2007,Stoyan:Early:1984,Richards:An-overview:1984,Hovemeyer:Finding:2004,Barendregt:Types:1990,Milner:The-Definition:1990,Bannerjee:Loop:1993,Grune:Parsing:2007,Herken:The-Universal:1995,Pottier:Menhir:2007,Bravenboer:Declarative:2006,Scott:Programming:2006,Hindley:The-principal:1969,Turner:Miranda:1985,Kulkarni:Fast:2005,Pierce:Types:2002,Steele-Jr.:The-evolution:1993,Peyton-Jones:Wearing:2003,Wadler:Monads:1995,Iverson:A-programming:1962,McPeak:Elkhound:2002,Paakki:Attribute:1995,McBride:Functional:2004,Olszewski:Churchs:2006,Peyton-Jones:Tackling:2000,Gordon:From:2000,Damas:Principal:1982,Pager:The-lane:1973,Milner:The-Definition:1997,Gansner:The-Standard:2002,Turner:Church:2006,Milner:Commentary:1990,Landin:The-next:1966,Turing:On-Computable:1937,Turner:The-semantic:1981,Backus:Can-programming:1978,Cooper:Engineering:2004,Bravenboer:Concrete:2004,Sestoft:Demonstrating:2002,Lattner:LLVM:2002,Zima:Supercompilers:1991,Hines:Using:2005,Bravenboer:Preventing:2007,Pierce:Advanced:2005,Aho:Principles:1977,Aho:Compilers:1986,Aho:Compilers:2006,Cardelli:On-understanding:1985,Parr:ANTLR:1995,Cousineau:A-brief:1996,Visser:Scannerless:1997,Hennessy:Computer:2006,Wolfe:High-Performance:1996,Patterson:Computer:2007,Spector:Efficient:1988,Hudak:A-history:2007,Turner:SASL:1976,Thompson:Type:1991,Hopcroft:Introduction:2007,Layer:Lisp:1991,Brand:Disambiguation:2002,Demaine:Cache-Oblivious:2002,Bannerjee:Loop:1994,Curry:Modified:1969,Bannerjee:Dependence:1988,Muchnick:Advanced:1997,Barendregt:The-Lambda:1984,Hudak:Conception:1989,McCarthy:LISP:1980</string>
 	</dict>
 	<dict>
 		<key>group name</key>
