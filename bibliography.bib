@@ -1,10 +1,505 @@
 
-%% Created for jeremy at 2008-04-25 22:43:18 -0400 
+%% Created for jeremy at 2008-04-27 12:14:25 -0400 
 
 
 %% Saved with string encoding Western (ASCII) 
 
 
+
+@article{Reps:Maximal-munch:1998,
+	Address = {New York, NY, USA},
+	Author = {Thomas Reps},
+	Date-Added = {2008-04-27 11:57:15 -0400},
+	Date-Modified = {2008-04-27 11:57:38 -0400},
+	Doi = {http://doi.acm.org/10.1145/276393.276394},
+	Issn = {0164-0925},
+	Journal = {ACM Trans. Program. Lang. Syst.},
+	Number = {2},
+	Pages = {259--273},
+	Publisher = {ACM},
+	Title = {\"Maximal-munch\" tokenization in linear time},
+	Volume = {20},
+	Year = {1998},
+	Abstract = {The lexical-analysis (or scanning) phase of a compiler attempts to partition an input string into a sequence of tokens. The convention in most languages is that the input is scanned left to right, and each token identified is a ``maximal munch'' of the remaining input---the longest prefix of the remaining input that is a token of the language. Although most of the standard compiler textbooks present a way to perform maximal-munch tokenization, the algorithm they describe is one that, for certain sets of token definitions, can cause the scanner to exhibit quadratic behavior in the worst case. In the article, we show that maximal-munch tokenization can always be performed in time linear in the size of the input.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/276393.276394},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFEuLi8uLi9QYXBlcnMvUmVwcy9SZXBzIC0gXCJNYXhpbWFsLW11bmNoXCIgdG9rZW5pemF0aW9uIGluIGxpbmVhciB0aW1lICgxOTk4KS5wZGbSGw8cHVdOUy5kYXRhTxECCgAAAAACCgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOCvcH1JlcHMgLSBcIk1heGltYWwtbXVuIzM4MkJEOS5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4K9nEOhrQUERGIAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAARSZXBzABAACAAAwTR+XQAAABEACAAAxDpTEAAAAAEAEAA4K9wALZE/AANHrAAAa9gAAgA9T2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOlJlcHM6UmVwcyAtIFwiTWF4aW1hbC1tdW4jMzgyQkQ5LnBkZgAADgCAAD8AUgBlAHAAcwAgAC0AIABcACIATQBhAHgAaQBtAGEAbAAtAG0AdQBuAGMAaABcACIAIAB0AG8AawBlAG4AaQB6AGEAdABpAG8AbgAgAGkAbgAgAGwAaQBuAGUAYQByACAAdABpAG0AZQAgACgAMQA5ADkAOAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFhVc2Vycy9qZXJlbXkvUGFwZXJzL1JlcHMvUmVwcyAtIFwiTWF4aW1hbC1tdW5jaFwiIHRva2VuaXphdGlvbiBpbiBsaW5lYXIgdGltZSAoMTk5OCkucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAP4BAwELAxkDGwMgAykDNAM4A0YDTQNWA1sDXgAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANr}}
+
+@inproceedings{Wadler:The-essence:1992,
+	Address = {New York, NY, USA},
+	Author = {Philip Wadler},
+	Booktitle = {POPL '92: Proceedings of the 19th ACM SIGPLAN-SIGACT symposium on Principles of programming languages},
+	Date-Added = {2008-04-27 10:43:45 -0400},
+	Date-Modified = {2008-04-27 10:43:47 -0400},
+	Doi = {http://doi.acm.org/10.1145/143165.143169},
+	Isbn = {0-89791-453-8},
+	Location = {Albuquerque, New Mexico, United States},
+	Pages = {1--14},
+	Publisher = {ACM},
+	Title = {The essence of functional programming},
+	Year = {1992},
+	Abstract = {This paper explores the use monads to structure functional programs. No prior knowledge of monads or category theory is required.
+
+Monads increase the ease with which programs may be modified. They can mimic the effect of impure features such as exceptions, state, and continuations; and also provide effects not easily achieved with such features. The types of a program reflect which effects occur.
+
+The first section is an extended example of the use of monads. A simple interpreter is modified to support various extra features: error messages, state, output, and non-deterministic choice. The second section describes the relation between monads and the continuation-passing style. The third section sketches how monads are used in a compiler for Haskell that is written in Haskell.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/143165.143169},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEE0uLi8uLi9QYXBlcnMvV2FkbGVyL1dhZGxlciAtIFRoZSBlc3NlbmNlIG9mIGZ1bmN0aW9uYWwgcHJvZ3JhbW1pbmcgKDE5OTIpLnBkZtIbDxwdV05TLmRhdGFPEQH+AAAAAAH+AAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAtkXgfV2FkbGVyIC0gVGhlIGVzc2VuY2UjMzgyQUVCLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgq68Q6CJpQREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABldhZGxlcgAQAAgAAME0fl0AAAARAAgAAMQ6QNoAAAABABAALZF4AC2RPwADR6wAAGvYAAIAP09kaW46VXNlcnM6amVyZW15OlBhcGVyczpXYWRsZXI6V2FkbGVyIC0gVGhlIGVzc2VuY2UjMzgyQUVCLnBkZgAADgB0ADkAVwBhAGQAbABlAHIAIAAtACAAVABoAGUAIABlAHMAcwBlAG4AYwBlACAAbwBmACAAZgB1AG4AYwB0AGkAbwBuAGEAbAAgAHAAcgBvAGcAcgBhAG0AbQBpAG4AZwAgACgAMQA5ADkAMgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFRVc2Vycy9qZXJlbXkvUGFwZXJzL1dhZGxlci9XYWRsZXIgLSBUaGUgZXNzZW5jZSBvZiBmdW5jdGlvbmFsIHByb2dyYW1taW5nICgxOTkyKS5wZGYAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoA+gD/AQcDCQMLAxADGQMkAygDNgM9A0YDSwNOAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA1s=}}
+
+@article{Tofte:A-region:1998,
+	Address = {New York, NY, USA},
+	Author = {Mads Tofte and Lars Birkedal},
+	Date-Added = {2008-04-27 10:43:45 -0400},
+	Date-Modified = {2008-04-27 10:43:48 -0400},
+	Doi = {http://doi.acm.org/10.1145/291891.291894},
+	Issn = {0164-0925},
+	Journal = {ACM Trans. Program. Lang. Syst.},
+	Number = {4},
+	Pages = {724--767},
+	Publisher = {ACM},
+	Title = {A region inference algorithm},
+	Volume = {20},
+	Year = {1998},
+	Abstract = {Region Inference is a program analysis which infers lifetimes of values. It is targeted at a runtime model in which the store consists of a stack of regions and memory management predominantly consists of pushing and popping regions, rather than performing garbage collection. Region Inference has previously been specified by a set of inference rules which formalize when regions may be allocated and deallocated. This article presents an algorithm which implements the specification. We prove that the algorithm is sound with respect to the region inference rules and that it always terminates even though the region inference rules permit polymorphic recursion in regions. The algorithm is the result of several years of experiments with region inference algorithms in the ML Kit, a compiler from Standard ML to assembly language. We report on practical experience with the algorithm and give hints on how to implement it.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/291891.291894},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEEsuLi8uLi9QYXBlcnMvVG9mdGUvVG9mdGUtQmlya2VkYWwgLSBBIHJlZ2lvbiBpbmZlcmVuY2UgYWxnb3JpdGhtICgxOTk4KS5wZGbSGw8cHVdOUy5kYXRhTxEB+AAAAAAB+AACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOCsQH1RvZnRlLUJpcmtlZGFsIC0gQSByIzM4MkIwRS5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4Kw7EOglOUERGIAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAVUb2Z0ZQAAEAAIAADBNH5dAAAAEQAIAADEOkGOAAAAAQAQADgrEAAtkT8AA0esAABr2AACAD5PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6VG9mdGU6VG9mdGUtQmlya2VkYWwgLSBBIHIjMzgyQjBFLnBkZgAOAHIAOABUAG8AZgB0AGUALQBCAGkAcgBrAGUAZABhAGwAIAAtACAAQQAgAHIAZQBnAGkAbwBuACAAaQBuAGYAZQByAGUAbgBjAGUAIABhAGwAZwBvAHIAaQB0AGgAbQAgACgAMQA5ADkAOAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFJVc2Vycy9qZXJlbXkvUGFwZXJzL1RvZnRlL1RvZnRlLUJpcmtlZGFsIC0gQSByZWdpb24gaW5mZXJlbmNlIGFsZ29yaXRobSAoMTk5OCkucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAPgA/QEFAwEDAwMIAxEDHAMgAy4DNQM+A0MDRgAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANT}}
+
+@article{Butterworth:The-GemStone:1991,
+	Address = {New York, NY, USA},
+	Author = {Paul Butterworth and Allen Otis and Jacob Stein},
+	Date-Added = {2008-04-27 10:43:45 -0400},
+	Date-Modified = {2008-04-27 10:43:47 -0400},
+	Doi = {http://doi.acm.org/10.1145/125223.125254},
+	Issn = {0001-0782},
+	Journal = {Commun. ACM},
+	Number = {10},
+	Pages = {64--77},
+	Publisher = {ACM},
+	Title = {The GemStone object database management system},
+	Volume = {34},
+	Year = {1991},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/125223.125254},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGsuLi8uLi9QYXBlcnMvQnV0dGVyd29ydGgvQnV0dGVyd29ydGgtT3Rpcy1TdGVpbiAtIFRoZSBHZW1TdG9uZSBvYmplY3QgZGF0YWJhc2UgbWFuYWdlbWVudCBzeXN0ZW0gKDE5OTEpLnBkZtIbDxwdV05TLmRhdGFPEQJYAAAAAAJYAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA4KxEfQnV0dGVyd29ydGgtT3Rpcy1TdGUjMzgyQUYwLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgq8MQ6CMNQREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAAC0J1dHRlcndvcnRoAAAQAAgAAME0fl0AAAARAAgAAMQ6QQMAAAABABAAOCsRAC2RPwADR6wAAGvYAAIARE9kaW46VXNlcnM6amVyZW15OlBhcGVyczpCdXR0ZXJ3b3J0aDpCdXR0ZXJ3b3J0aC1PdGlzLVN0ZSMzODJBRjAucGRmAA4ApgBSAEIAdQB0AHQAZQByAHcAbwByAHQAaAAtAE8AdABpAHMALQBTAHQAZQBpAG4AIAAtACAAVABoAGUAIABHAGUAbQBTAHQAbwBuAGUAIABvAGIAagBlAGMAdAAgAGQAYQB0AGEAYgBhAHMAZQAgAG0AYQBuAGEAZwBlAG0AZQBuAHQAIABzAHkAcwB0AGUAbQAgACgAMQA5ADkAMQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAHJVc2Vycy9qZXJlbXkvUGFwZXJzL0J1dHRlcndvcnRoL0J1dHRlcndvcnRoLU90aXMtU3RlaW4gLSBUaGUgR2VtU3RvbmUgb2JqZWN0IGRhdGFiYXNlIG1hbmFnZW1lbnQgc3lzdGVtICgxOTkxKS5wZGYAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoBGAEdASUDgQODA4gDkQOcA6ADrgO1A74DwwPGAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA9M=}}
+
+@techreport{Douence:A-Taxonomy:1995,
+	Address = {Rennes, France},
+	Author = {R\'{e}mi Douence and Pascal Fradet},
+	Date-Added = {2008-04-27 02:39:01 -0400},
+	Date-Modified = {2008-04-27 02:40:38 -0400},
+	Institution = {INRIA},
+	Number = {2783},
+	Title = {A Taxonomy of Functional Language Implementations. {P}art {I}: Call-by-value},
+	Type = {Research Report},
+	Year = {1995},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGguLi8uLi9QYXBlcnMvRG91ZW5jZS9Eb3VlbmNlLUZyYWRldCAtIEEgVGF4b25vbXkgb2YgRnVuY3Rpb25hbCBMYW5ndWFnZSBJbXBsZW1lbnRhdGlvbnMuIFBhcnQgKDE5OTUpLnBkZtIbDxwdV05TLmRhdGFPEQJQAAAAAAJQAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAtk0kfRG91ZW5jZS1GcmFkZXQgLSBBIFQjMzgyOEZCLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgo+8Q5lvcAAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAAB0RvdWVuY2UAABAACAAAwTR+XQAAABEACAAAxDnPNwAAAAEAEAAtk0kALZE/AANHrAAAa9gAAgBAT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkRvdWVuY2U6RG91ZW5jZS1GcmFkZXQgLSBBIFQjMzgyOEZCLnBkZgAOAKgAUwBEAG8AdQBlAG4AYwBlAC0ARgByAGEAZABlAHQAIAAtACAAQQAgAFQAYQB4AG8AbgBvAG0AeQAgAG8AZgAgAEYAdQBuAGMAdABpAG8AbgBhAGwAIABMAGEAbgBnAHUAYQBnAGUAIABJAG0AcABsAGUAbQBlAG4AdABhAHQAaQBvAG4AcwAuACAAUABhAHIAdAAgACgAMQA5ADkANQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAG9Vc2Vycy9qZXJlbXkvUGFwZXJzL0RvdWVuY2UvRG91ZW5jZS1GcmFkZXQgLSBBIFRheG9ub215IG9mIEZ1bmN0aW9uYWwgTGFuZ3VhZ2UgSW1wbGVtZW50YXRpb25zLiBQYXJ0ICgxOTk1KS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqARUBGgEiA3YDeAN9A4YDkQOVA6MDqgOzA7gDuwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAPI}}
+
+@techreport{Douence:A-Taxonomy:1995b,
+	Address = {Rennes, France},
+	Author = {R\'{e}mi Douence and Pascal Fradet},
+	Date-Added = {2008-04-27 02:35:04 -0400},
+	Date-Modified = {2008-04-27 02:41:19 -0400},
+	Institution = {INRIA},
+	Number = {3050},
+	Title = {A Taxonomy of Functional Language Implementations. {P}art {II}: Call-by-name, call-by-need, and graph reduction},
+	Type = {Research Report},
+	Year = {1995},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGkuLi8uLi9QYXBlcnMvRG91ZW5jZS9Eb3VlbmNlLUZyYWRldCAtIEEgVGF4b25vbXkgb2YgRnVuY3Rpb25hbCBMYW5ndWFnZSBJbXBsZW1lbnRhdGlvbnMuIFBhcnQgKDE5OTVhKS5wZGbSGw8cHVdOUy5kYXRhTxECUgAAAAACUgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAALZNJH0RvdWVuY2UtRnJhZGV0IC0gQSBUIzM4MjkwMS5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4KQHEOZcAAAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAdEb3VlbmNlAAAQAAgAAME0fl0AAAARAAgAAMQ5z0AAAAABABAALZNJAC2RPwADR6wAAGvYAAIAQE9kaW46VXNlcnM6amVyZW15OlBhcGVyczpEb3VlbmNlOkRvdWVuY2UtRnJhZGV0IC0gQSBUIzM4MjkwMS5wZGYADgCqAFQARABvAHUAZQBuAGMAZQAtAEYAcgBhAGQAZQB0ACAALQAgAEEAIABUAGEAeABvAG4AbwBtAHkAIABvAGYAIABGAHUAbgBjAHQAaQBvAG4AYQBsACAATABhAG4AZwB1AGEAZwBlACAASQBtAHAAbABlAG0AZQBuAHQAYQB0AGkAbwBuAHMALgAgAFAAYQByAHQAIAAoADEAOQA5ADUAYQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAHBVc2Vycy9qZXJlbXkvUGFwZXJzL0RvdWVuY2UvRG91ZW5jZS1GcmFkZXQgLSBBIFRheG9ub215IG9mIEZ1bmN0aW9uYWwgTGFuZ3VhZ2UgSW1wbGVtZW50YXRpb25zLiBQYXJ0ICgxOTk1YSkucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqARYBGwEjA3kDewOAA4kDlAOYA6YDrQO2A7sDvgAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAPL}}
+
+@article{Frenger:Ten-years:2005,
+	Address = {New York, NY, USA},
+	Author = {Paul Frenger},
+	Date-Added = {2008-04-27 01:29:17 -0400},
+	Date-Modified = {2008-04-27 01:29:27 -0400},
+	Doi = {http://doi.acm.org/10.1145/1107541.1107543},
+	Issn = {0362-1340},
+	Journal = {SIGPLAN Not.},
+	Number = {11},
+	Pages = {4--16},
+	Publisher = {ACM},
+	Title = {Ten years of Forth in ACM Sigplan Notices: part 1},
+	Volume = {40},
+	Year = {2005},
+	Abstract = {So here we are: ten years of the \textit{ACM Sigplan Notices Forth Report} is behind us. How amazing it is that we have reached this milestone! I hope that this column's longevity is a reflection of its popularity and perceived value to our readers.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/1107541.1107543},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFkuLi8uLi9QYXBlcnMvRnJlbmdlci9GcmVuZ2VyIC0gVGVuIHllYXJzIG9mIEZvcnRoIGluIEFDTSBTaWdwbGFuIE5vdGljZXM6IHBhcnQgKDIwMDUpLnBkZtIbDxwdV05TLmRhdGFPEQIiAAAAAAIiAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA4KIsfRnJlbmdlciAtIFRlbiB5ZWFycyAjMzgyODE0LnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgoFMQ5gnJQREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAAB0ZyZW5nZXIAABAACAAAwTR+XQAAABEACAAAxDm6sgAAAAEAEAA4KIsALZE/AANHrAAAa9gAAgBAT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkZyZW5nZXI6RnJlbmdlciAtIFRlbiB5ZWFycyAjMzgyODE0LnBkZgAOAIoARABGAHIAZQBuAGcAZQByACAALQAgAFQAZQBuACAAeQBlAGEAcgBzACAAbwBmACAARgBvAHIAdABoACAAaQBuACAAQQBDAE0AIABTAGkAZwBwAGwAYQBuACAATgBvAHQAaQBjAGUAcwAvACAAcABhAHIAdAAgACgAMgAwADAANQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGBVc2Vycy9qZXJlbXkvUGFwZXJzL0ZyZW5nZXIvRnJlbmdlciAtIFRlbiB5ZWFycyBvZiBGb3J0aCBpbiBBQ00gU2lncGxhbiBOb3RpY2VzOiBwYXJ0ICgyMDA1KS5wZGYAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoBBgELARMDOQM7A0ADSQNUA1gDZgNtA3YDewN+AAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA4s=}}
+
+@inproceedings{Altenkirch:Observational:2007,
+	Address = {New York, NY, USA},
+	Author = {Thorsten Altenkirch and Conor McBride and Wouter Swierstra},
+	Booktitle = {PLPV '07: Proceedings of the 2007 workshop on Programming languages meets program verification},
+	Date-Added = {2008-04-27 01:29:17 -0400},
+	Date-Modified = {2008-04-27 01:31:29 -0400},
+	Doi = {http://doi.acm.org/10.1145/1292597.1292608},
+	Isbn = {978-1-59593-677-6},
+	Location = {Freiburg, Germany},
+	Pages = {57--68},
+	Publisher = {ACM},
+	Title = {Observational equality, now!},
+	Year = {2007},
+	Abstract = {
+
+
+This paper has something new and positive to say about propositional equality in programming and proof systems based on the Curry--Howard correspondence between propositions and types. We have found a way to present a propositional equality type
+
+\begin{itemize}
+    \item which is \textit{substitutive,} allowing us to reason by replacing equal for equal in propositions;
+    \item which reflects the \textit{observable} behaviour of values rather than their construction: in particular, we have extensionality-- functions are equal if they take equal inputs to equal outputs;
+    \item which retains \textit{strong} normalisation, \textit{decidable} typechecking and \textit{canonicity} -- the property that closed normal forms inhabiting datatypes have canonical constructors;
+    \item which allows inductive data structures to be expressed in terms of a standard characterisation of \textit{well-founded trees};
+    \item which is presented \textit{syntactically} -- you can implement it directly, and we are doing so this approach stands at the core of Epigram 2;
+    \item which you can play with now: we have simulated our system by a shallow embedding in Agda 2, shipping as part of the standard examples package for that system [21].
+\end{itemize}
+
+Until now, it has always been necessary to sacrifice some of these aspects. The closest attempt in the literature is Altenkirch's construction of a setoid-model for a system with canonicity and extensionality on top of an intensional type theory with proof-irrelevant propositions [4]. Our new proposal simplifies Altenkirch's construction by adopting McBride's heterogeneous approach to equality [19].},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/1292597.1292608},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEF4uLi8uLi9QYXBlcnMvQWx0ZW5raXJjaC9BbHRlbmtpcmNoLU1jQnJpZGUtU3dpZXJzdHJhIC0gT2JzZXJ2YXRpb25hbCBlcXVhbGl0eSwgbm93ISAoMjAwNykucGRm0hsPHB1XTlMuZGF0YU8RAjIAAAAAAjIAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADH2KB9BbHRlbmtpcmNoLU1jQnJpZGUtUyMzODI4NjEucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOChhxDmF7FBERiAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAKQWx0ZW5raXJjaAAQAAgAAME0fl0AAAARAAgAAMQ5viwAAAABABAAMfYoAC2RPwADR6wAAGvYAAIAQ09kaW46VXNlcnM6amVyZW15OlBhcGVyczpBbHRlbmtpcmNoOkFsdGVua2lyY2gtTWNCcmlkZS1TIzM4Mjg2MS5wZGYAAA4AjgBGAEEAbAB0AGUAbgBrAGkAcgBjAGgALQBNAGMAQgByAGkAZABlAC0AUwB3AGkAZQByAHMAdAByAGEAIAAtACAATwBiAHMAZQByAHYAYQB0AGkAbwBuAGEAbAAgAGUAcQB1AGEAbABpAHQAeQAsACAAbgBvAHcAIQAgACgAMgAwADAANwApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGVVc2Vycy9qZXJlbXkvUGFwZXJzL0FsdGVua2lyY2gvQWx0ZW5raXJjaC1NY0JyaWRlLVN3aWVyc3RyYSAtIE9ic2VydmF0aW9uYWwgZXF1YWxpdHksIG5vdyEgKDIwMDcpLnBkZgAAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoBCwEQARgDTgNQA1UDXgNpA20DewOCA4sDkAOTAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA6A=}}
+
+@article{Abbott:partial:2005,
+	Address = {Amsterdam, The Netherlands, The Netherlands},
+	Author = {Michael Abbott and Thorsten Altenkirch and Conor McBride and Neil Ghani},
+	Date-Added = {2008-04-27 01:29:17 -0400},
+	Date-Modified = {2008-04-27 01:29:27 -0400},
+	Issn = {0169-2968},
+	Journal = {Fundam. Inf.},
+	Number = {1-2},
+	Pages = {1--28},
+	Publisher = {IOS Press},
+	Title = {$\partial$ for Data: Differentiating Data Structures},
+	Url = {http://strictlypositive.org/publications.html},
+	Volume = {65},
+	Year = {2005},
+	Abstract = {This paper and our conference paper (Abbott, Altenkirch, Ghani, and McBride, 2003b) explain and analyse the notion of the derivative of a data structure as the type of its one-hole contexts based on the central observation made by McBride (2001). To make the idea precise we need a generic notion of a data type, which leads to the notion of a container, introduced in (Abbott, Altenkirch, and Ghani, 2003a) and investigated extensively in (Abbott, 2003). Using containers we can provide a notion of linear map which is the concept missing from McBride's first analysis. We verify the usual laws of differential calculus including the chain rule and establish laws for initial algebras and terminal coalgebras.},
+	Bdsk-Url-1 = {http://strictlypositive.org/publications.html},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEG8uLi8uLi9QYXBlcnMvQWJib3R0L0FiYm90dC1BbHRlbmtpcmNoLU1jQnJpZGUgLSAkXHBhcnRpYWwkIGZvciBEYXRhOiBEaWZmZXJlbnRpYXRpbmcgRGF0YSBTdHJ1Y3R1cmVzICgyMDA1KS5wZGbSGw8cHVdOUy5kYXRhTxECZAAAAAACZAACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOCiJH0FiYm90dC1BbHRlbmtpcmNoLU1jIzM4MjgyRi5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4KC/EOYQ/AAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAZBYmJvdHQAEAAIAADBNH5dAAAAEQAIAADEObx/AAAAAQAQADgoiQAtkT8AA0esAABr2AACAD9PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6QWJib3R0OkFiYm90dC1BbHRlbmtpcmNoLU1jIzM4MjgyRi5wZGYAAA4AuABbAEEAYgBiAG8AdAB0AC0AQQBsAHQAZQBuAGsAaQByAGMAaAAtAE0AYwBCAHIAaQBkAGUAIAAtACAAJABcAHAAYQByAHQAaQBhAGwAJAAgAGYAbwByACAARABhAHQAYQAvACAARABpAGYAZgBlAHIAZQBuAHQAaQBhAHQAaQBuAGcAIABEAGEAdABhACAAUwB0AHIAdQBjAHQAdQByAGUAcwAgACgAMgAwADAANQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAHZVc2Vycy9qZXJlbXkvUGFwZXJzL0FiYm90dC9BYmJvdHQtQWx0ZW5raXJjaC1NY0JyaWRlIC0gJFxwYXJ0aWFsJCBmb3IgRGF0YTogRGlmZmVyZW50aWF0aW5nIERhdGEgU3RydWN0dXJlcyAoMjAwNSkucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqARwBIQEpA5EDkwOYA6EDrAOwA74DxQPOA9MD1gAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAPj}}
+
+@article{Peyton-Jones:Call-pattern:2007,
+	Address = {New York, NY, USA},
+	Author = {Peyton Jones, Simon},
+	Date-Added = {2008-04-27 01:29:17 -0400},
+	Date-Modified = {2008-04-27 01:30:08 -0400},
+	Doi = {http://doi.acm.org/10.1145/1291220.1291200},
+	Issn = {0362-1340},
+	Journal = {SIGPLAN Not.},
+	Number = {9},
+	Pages = {327--337},
+	Publisher = {ACM},
+	Title = {Call-pattern specialisation for Haskell programs},
+	Volume = {42},
+	Year = {2007},
+	Abstract = {User-defined data types, pattern-matching, and recursion are ubiquitous features of Haskell programs. Sometimes a function is called with arguments that are statically known to be in constructor form, so that the work of pattern-matching is wasted. Even worse, the argument is sometimes freshly-allocated, only to be immediately decomposed by the function.
+
+In this paper we describe a simple, modular transformation that specialises recursive functions according to their argument "shapes". We describe our implementation of this transformation in the Glasgow Haskell Compiler, and give measurements that demonstrate substantial performance improvements: a worthwhile 10% on average, with a factor of 10 in particular cases.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/1291220.1291200},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFYuLi8uLi9QYXBlcnMvSm9uZXMvSm9uZXMgLSBDYWxsLXBhdHRlcm4gc3BlY2lhbGlzYXRpb24gZm9yIEhhc2tlbGwgcHJvZ3JhbXMgKDIwMDcpLnBkZtIbDxwdV05TLmRhdGFPEQIaAAAAAAIaAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA4KAQfSm9uZXMgLSBDYWxsLXBhdHRlcm4jMjlGOEEwLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACn4oAAAAAAAAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABUpvbmVzAAAQAAgAAME0fl0AAAARAAgAAAAAAAAAAAABABAAOCgEAC2RPwADR6wAAGvYAAIAPk9kaW46VXNlcnM6amVyZW15OlBhcGVyczpKb25lczpKb25lcyAtIENhbGwtcGF0dGVybiMyOUY4QTAucGRmAA4AiABDAEoAbwBuAGUAcwAgAC0AIABDAGEAbABsAC0AcABhAHQAdABlAHIAbgAgAHMAcABlAGMAaQBhAGwAaQBzAGEAdABpAG8AbgAgAGYAbwByACAASABhAHMAawBlAGwAbAAgAHAAcgBvAGcAcgBhAG0AcwAgACgAMgAwADAANwApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAF1Vc2Vycy9qZXJlbXkvUGFwZXJzL0pvbmVzL0pvbmVzIC0gQ2FsbC1wYXR0ZXJuIHNwZWNpYWxpc2F0aW9uIGZvciBIYXNrZWxsIHByb2dyYW1zICgyMDA3KS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAQMBCAEQAy4DMAM1Az4DSQNNA1sDYgNrA3ADcwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAOA}}
+
+@article{Le-Fessant:Optimizing:2001,
+	Address = {New York, NY, USA},
+	Author = {Le Fessant, Fabrice and Luc Maranget},
+	Date-Added = {2008-04-27 01:29:17 -0400},
+	Date-Modified = {2008-04-27 01:29:27 -0400},
+	Doi = {http://doi.acm.org/10.1145/507546.507641},
+	Issn = {0362-1340},
+	Journal = {SIGPLAN Not.},
+	Number = {10},
+	Pages = {26--37},
+	Publisher = {ACM},
+	Title = {Optimizing pattern matching},
+	Volume = {36},
+	Year = {2001},
+	Abstract = {We present improvements to the backtracking technique of pattern-matching compilation. Several optimizations are introduced, such as commutation of patterns, use of exhaustiveness information, and control flow optimization through the use of labeled static exceptions and context information. These optimizations have been integrated in the Objective-Caml compiler. They have shown good results in increasing the speed of pattern-matching intensive programs, without increasing final code size.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/507546.507641},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFQuLi8uLi9QYXBlcnMvTGUgRmVzc2FudC9MZSBGZXNzYW50LU1hcmFuZ2V0IC0gT3B0aW1pemluZyBwYXR0ZXJuIG1hdGNoaW5nICgyMDAxKS5wZGbSGw8cHVdOUy5kYXRhTxECFAAAAAACFAACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOCiMH0xlIEZlc3NhbnQtTWFyYW5nZXQgIzM4Mjg3OC5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4KHjEOYcyUERGIAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAApMZSBGZXNzYW50ABAACAAAwTR+XQAAABEACAAAxDm/cgAAAAEAEAA4KIwALZE/AANHrAAAa9gAAgBDT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkxlIEZlc3NhbnQ6TGUgRmVzc2FudC1NYXJhbmdldCAjMzgyODc4LnBkZgAADgB6ADwATABlACAARgBlAHMAcwBhAG4AdAAtAE0AYQByAGEAbgBnAGUAdAAgAC0AIABPAHAAdABpAG0AaQB6AGkAbgBnACAAcABhAHQAdABlAHIAbgAgAG0AYQB0AGMAaABpAG4AZwAgACgAMgAwADAAMQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFtVc2Vycy9qZXJlbXkvUGFwZXJzL0xlIEZlc3NhbnQvTGUgRmVzc2FudC1NYXJhbmdldCAtIE9wdGltaXppbmcgcGF0dGVybiBtYXRjaGluZyAoMjAwMSkucGRmAAATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgEBAQYBDgMmAygDLQM2A0EDRQNTA1oDYwNoA2sAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADeA==}}
+
+@incollection{Restall:Relevant:2006,
+	Author = {Greg Restall},
+	Date-Added = {2008-04-27 01:29:17 -0400},
+	Date-Modified = {2008-04-27 01:29:27 -0400},
+	Editor = {Dov Gabbay and John Woods},
+	Inbook = {Handbook of the History of Logic},
+	Pages = {289--398},
+	Publisher = {Elsevier},
+	Series = {Logic and the Modalities in the Twentieth Century},
+	Title = {Relevant and Substructural Logics},
+	Url = {http://consequently.org/writing/hpplrssl/},
+	Volume = {7},
+	Year = {2006},
+	Abstract = {An historical essay, sketching the development of relevant and substructural logics throughout the 20th Century and into the 21st.},
+	Bdsk-Url-1 = {http://consequently.org/writing/hpplrssl/},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEEsuLi8uLi9QYXBlcnMvUmVzdGFsbC9SZXN0YWxsIC0gUmVsZXZhbnQgYW5kIFN1YnN0cnVjdHVyYWwgTG9naWNzICgyMDA2KS5wZGbSGw8cHVdOUy5kYXRhTxEB+AAAAAAB+AACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOCiKH1Jlc3RhbGwgLSBSZWxldmFudCBhIzM4Mjg3MC5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4KHDEOYcYAAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAdSZXN0YWxsAAAQAAgAAME0fl0AAAARAAgAAMQ5v1gAAAABABAAOCiKAC2RPwADR6wAAGvYAAIAQE9kaW46VXNlcnM6amVyZW15OlBhcGVyczpSZXN0YWxsOlJlc3RhbGwgLSBSZWxldmFudCBhIzM4Mjg3MC5wZGYADgBuADYAUgBlAHMAdABhAGwAbAAgAC0AIABSAGUAbABlAHYAYQBuAHQAIABhAG4AZAAgAFMAdQBiAHMAdAByAHUAYwB0AHUAcgBhAGwAIABMAG8AZwBpAGMAcwAgACgAMgAwADAANgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFJVc2Vycy9qZXJlbXkvUGFwZXJzL1Jlc3RhbGwvUmVzdGFsbCAtIFJlbGV2YW50IGFuZCBTdWJzdHJ1Y3R1cmFsIExvZ2ljcyAoMjAwNikucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAPgA/QEFAwEDAwMIAxEDHAMgAy4DNQM+A0MDRgAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANT}}
+
+@article{Jones:Implementing:1992,
+	Author = {Simon Peyton Jones},
+	Date-Added = {2008-04-27 01:05:30 -0400},
+	Date-Modified = {2008-04-27 01:05:37 -0400},
+	Journal = {Journal of Functional Programming},
+	Month = {April},
+	Number = {2(2)},
+	Pages = {127-202},
+	Title = {Implementing lazy functional languages on stock hardware: the Spineless Tagless G-machine},
+	Url = {http://research.microsoft.com/copyright/accept.asp?path=/users/simonpj/papers/spineless-tagless-gmachine.ps.gz&pub=34},
+	Year = {1992},
+	Bdsk-Url-1 = {http://research.microsoft.com/copyright/accept.asp?path=/users/simonpj/papers/spineless-tagless-gmachine.ps.gz&pub=34},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFUuLi8uLi9QYXBlcnMvSm9uZXMvSm9uZXMgLSBJbXBsZW1lbnRpbmcgbGF6eSBmdW5jdGlvbmFsIGxhbmd1YWdlcyBvbiBzdG9jayAoMTk5MikucGRm0hsPHB1XTlMuZGF0YU8RAhYAAAAAAhYAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADgoBB9Kb25lcyAtIEltcGxlbWVudGluZyMyOUY4QTIucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKfiiAAAAAAAAAAAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAFSm9uZXMAABAACAAAwTR+XQAAABEACAAAAAAAAAAAAAEAEAA4KAQALZE/AANHrAAAa9gAAgA+T2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkpvbmVzOkpvbmVzIC0gSW1wbGVtZW50aW5nIzI5RjhBMi5wZGYADgCGAEIASgBvAG4AZQBzACAALQAgAEkAbQBwAGwAZQBtAGUAbgB0AGkAbgBnACAAbABhAHoAeQAgAGYAdQBuAGMAdABpAG8AbgBhAGwAIABsAGEAbgBnAHUAYQBnAGUAcwAgAG8AbgAgAHMAdABvAGMAawAgACgAMQA5ADkAMgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFxVc2Vycy9qZXJlbXkvUGFwZXJzL0pvbmVzL0pvbmVzIC0gSW1wbGVtZW50aW5nIGxhenkgZnVuY3Rpb25hbCBsYW5ndWFnZXMgb24gc3RvY2sgKDE5OTIpLnBkZgATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgECAQcBDwMpAysDMAM5A0QDSANWA10DZgNrA24AAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADew==}}
+
+@article{Coutts:Stream:2007,
+	Address = {New York, NY, USA},
+	Author = {Duncan Coutts and Roman Leshchinskiy and Don Stewart},
+	Date-Added = {2008-04-27 01:05:30 -0400},
+	Date-Modified = {2008-04-27 01:05:37 -0400},
+	Doi = {http://doi.acm.org/10.1145/1291220.1291199},
+	Issn = {0362-1340},
+	Journal = {SIGPLAN Not.},
+	Number = {9},
+	Pages = {315--326},
+	Publisher = {ACM},
+	Title = {Stream fusion: from lists to streams to nothing at all},
+	Volume = {42},
+	Year = {2007},
+	Abstract = {This paper presents an automatic deforestation system, \textit{stream fusion,} based on equational transformations, that fuses a wider range of functions than existing short-cut fusion systems. In particular, stream fusion is able to fuse zips, left folds and functions over nested lists, including list comprehensions. A distinguishing feature of the framework is its simplicity: by transforming list functions to expose their structure, intermediate values are eliminated by general purpose compiler optimisations.
+
+We have reimplemented the Haskell standard List library on top of our framework, providing stream fusion for Haskell lists. By allowing a wider range of functions to fuse, we see an increase in the number of occurrences of fusion in typical Haskell programs. We present benchmarks documenting time and space improvements.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/1291220.1291199},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGEuLi8uLi9QYXBlcnMvQ291dHRzL0NvdXR0cy1MZXNoY2hpbnNraXktU3Rld2FydCAtIFN0cmVhbSBmdXNpb246IGZyb20gbGlzdHMgdG8gc3RyZWFtcyAoMjAwNykucGRm0hsPHB1XTlMuZGF0YU8RAjoAAAAAAjoAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADgoCR9Db3V0dHMtTGVzaGNoaW5za2l5LSMyOUY4OUYucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKfifAAAAAAAAAAAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAGQ291dHRzABAACAAAwTR+XQAAABEACAAAAAAAAAAAAAEAEAA4KAkALZE/AANHrAAAa9gAAgA/T2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkNvdXR0czpDb3V0dHMtTGVzaGNoaW5za2l5LSMyOUY4OUYucGRmAAAOAJwATQBDAG8AdQB0AHQAcwAtAEwAZQBzAGgAYwBoAGkAbgBzAGsAaQB5AC0AUwB0AGUAdwBhAHIAdAAgAC0AIABTAHQAcgBlAGEAbQAgAGYAdQBzAGkAbwBuAC8AIABmAHIAbwBtACAAbABpAHMAdABzACAAdABvACAAcwB0AHIAZQBhAG0AcwAgACgAMgAwADAANwApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGhVc2Vycy9qZXJlbXkvUGFwZXJzL0NvdXR0cy9Db3V0dHMtTGVzaGNoaW5za2l5LVN0ZXdhcnQgLSBTdHJlYW0gZnVzaW9uOiBmcm9tIGxpc3RzIHRvIHN0cmVhbXMgKDIwMDcpLnBkZgATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgEOARMBGwNZA1sDYANpA3QDeAOGA40DlgObA54AAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADqw==}}
+
+@article{Marlow:Faster:2007,
+	Address = {New York, NY, USA},
+	Author = {Simon Marlow and Alexey Rodriguez Yakushev and Simon Peyton Jones},
+	Date-Added = {2008-04-27 01:05:30 -0400},
+	Date-Modified = {2008-04-27 01:05:37 -0400},
+	Doi = {http://doi.acm.org/10.1145/1291220.1291194},
+	Issn = {0362-1340},
+	Journal = {SIGPLAN Not.},
+	Number = {9},
+	Pages = {277--288},
+	Publisher = {ACM},
+	Title = {Faster laziness using dynamic pointer tagging},
+	Volume = {42},
+	Year = {2007},
+	Abstract = {In the light of evidence that Haskell programs compiled by GHC exhibit large numbers of mispredicted branches on modern processors, we re-examine the "tagless" aspect of the STG-machine that GHC uses as its evaluation model.
+
+We propose two tagging strategies: a simple strategy called semi-tagging that seeks to avoid one common source of unpredictable indirect jumps, and a more complex strategy called dynamic pointer-tagging that uses the spare low bits in a pointer to encode information about the pointed-to object. Both of these strategies have been implemented and exhaustively measured in the context of a production compiler, GHC, and the paper contains detailed descriptions of the implementations. Our measurements demonstrate significant performance improvements (14% for dynamic pointer-tagging with only a 2% increase in code size), and we further demonstrate that much of the improvement can be attributed to the elimination of mispredicted branch instructions.
+
+As part of our investigations we also discovered that one optimisation in the STG-machine, vectored-returns, is no longer worthwhile and we explain why.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/1291220.1291194},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFwuLi8uLi9QYXBlcnMvTWFybG93L01hcmxvdy1ZYWt1c2hldi1Kb25lcyAtIEZhc3RlciBsYXppbmVzcyB1c2luZyBkeW5hbWljIHBvaW50ZXIgKDIwMDcpLnBkZtIbDxwdV05TLmRhdGFPEQIsAAAAAAIsAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAtk1QfTWFybG93LVlha3VzaGV2LUpvbmUjMjlGOEExLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACn4oQAAAAAAAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABk1hcmxvdwAQAAgAAME0fl0AAAARAAgAAAAAAAAAAAABABAALZNUAC2RPwADR6wAAGvYAAIAP09kaW46VXNlcnM6amVyZW15OlBhcGVyczpNYXJsb3c6TWFybG93LVlha3VzaGV2LUpvbmUjMjlGOEExLnBkZgAADgCSAEgATQBhAHIAbABvAHcALQBZAGEAawB1AHMAaABlAHYALQBKAG8AbgBlAHMAIAAtACAARgBhAHMAdABlAHIAIABsAGEAegBpAG4AZQBzAHMAIAB1AHMAaQBuAGcAIABkAHkAbgBhAG0AaQBjACAAcABvAGkAbgB0AGUAcgAgACgAMgAwADAANwApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGNVc2Vycy9qZXJlbXkvUGFwZXJzL01hcmxvdy9NYXJsb3ctWWFrdXNoZXYtSm9uZXMgLSBGYXN0ZXIgbGF6aW5lc3MgdXNpbmcgZHluYW1pYyBwb2ludGVyICgyMDA3KS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAQkBDgEWA0YDSANNA1YDYQNlA3MDegODA4gDiwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAOY}}
+
+@article{Bunder:Variants:2004,
+	Author = {Bunder, M. W. and Seldin, Jonathan P.},
+	Date-Added = {2008-04-27 00:52:06 -0400},
+	Date-Modified = {2008-04-27 00:52:53 -0400},
+	Journal = {Journal of Applied Logic},
+	Keywords = {calculus of constructions; typed lambda calculus; pure type systems},
+	Number = {2},
+	Pages = {191--217},
+	Title = {Variants of the basic calculus of constructions},
+	Title1 = {Variants of Logics: from HOL to the calculus of constructions to teaching mathematical proofs on computers  },
+	Url = {http://www.sciencedirect.com/science/article/B758H-4C5HS0K-1/1/950b844502e73368538606462a7a6b62  },
+	Volume = {2},
+	Year = {2004},
+	Abstract = { In this paper, a number of different versions of the basic calculus of constructions that have appeared in the literature are compared and the exact relationships between them are determined. The biggest differences between versions are those between the original version of Coquand and the version in early papers on the subject by Seldin. None of these results is very deep, but it seems useful to collect them in one place.  },
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/B758H-4C5HS0K-1/1/950b844502e73368538606462a7a6b62%20%20},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEF4uLi8uLi9QYXBlcnMvQnVuZGVyL0J1bmRlci1TZWxkaW4gLSBWYXJpYW50cyBvZiB0aGUgYmFzaWMgY2FsY3VsdXMgb2YgY29uc3RydWN0aW9ucyAoMjAwNCkucGRm0hsPHB1XTlMuZGF0YU8RAjIAAAAAAjIAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADgnxR9CdW5kZXItU2VsZGluIC0gVmFyaSMzODI3QTUucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCelxDlTFAAAAAAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAGQnVuZGVyABAACAAAwTR+XQAAABEACAAAxDmLVAAAAAEAEAA4J8UALZE/AANHrAAAa9gAAgA/T2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkJ1bmRlcjpCdW5kZXItU2VsZGluIC0gVmFyaSMzODI3QTUucGRmAAAOAJYASgBCAHUAbgBkAGUAcgAtAFMAZQBsAGQAaQBuACAALQAgAFYAYQByAGkAYQBuAHQAcwAgAG8AZgAgAHQAaABlACAAYgBhAHMAaQBjACAAYwBhAGwAYwB1AGwAdQBzACAAbwBmACAAYwBvAG4AcwB0AHIAdQBjAHQAaQBvAG4AcwAgACgAMgAwADAANAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGVVc2Vycy9qZXJlbXkvUGFwZXJzL0J1bmRlci9CdW5kZXItU2VsZGluIC0gVmFyaWFudHMgb2YgdGhlIGJhc2ljIGNhbGN1bHVzIG9mIGNvbnN0cnVjdGlvbnMgKDIwMDQpLnBkZgAAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoBCwEQARgDTgNQA1UDXgNpA20DewOCA4sDkAOTAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA6A=}}
+
+@misc{Mehnert:STG-slides:2004,
+	Author = {Hannes Mehnert},
+	Date-Added = {2008-04-27 00:50:21 -0400},
+	Date-Modified = {2008-04-27 00:50:25 -0400},
+	Howpublished = {Lecture slides, available online},
+	Title = {STG slides},
+	Url = {http://uebb.cs.tu-berlin.de/lehre/2004WScompilerbau/ergebnisse/stg.pdf},
+	Year = {2004},
+	Bdsk-Url-1 = {http://uebb.cs.tu-berlin.de/lehre/2004WScompilerbau/ergebnisse/stg.pdf},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEDQuLi8uLi9QYXBlcnMvTWVobmVydC9NZWhuZXJ0IC0gU1RHIHNsaWRlcyAoMjAwNCkucGRm0hsPHB1XTlMuZGF0YU8RAbQAAAAAAbQAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADgnsx9NZWhuZXJ0IC0gU1RHIHNsaWRlcyAoMjAwNCkucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCehxDlTEgAAAAAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAHTWVobmVydAAAEAAIAADBNH5dAAAAEQAIAADEOYtSAAAAAQAQADgnswAtkT8AA0esAABr2AACAEBPZGluOlVzZXJzOmplcmVteTpQYXBlcnM6TWVobmVydDpNZWhuZXJ0IC0gU1RHIHNsaWRlcyAoMjAwNCkucGRmAA4AQAAfAE0AZQBoAG4AZQByAHQAIAAtACAAUwBUAEcAIABzAGwAaQBkAGUAcwAgACgAMgAwADAANAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASADtVc2Vycy9qZXJlbXkvUGFwZXJzL01laG5lcnQvTWVobmVydCAtIFNURyBzbGlkZXMgKDIwMDQpLnBkZgAAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoA4QDmAO4CpgKoAq0CtgLBAsUC0wLaAuMC6ALrAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAvg=}}
+
+@misc{Choi:STG-JVM:2001,
+	Author = {Choi and Kaist},
+	Date-Added = {2008-04-27 00:50:21 -0400},
+	Date-Modified = {2008-04-27 00:50:25 -0400},
+	Howpublished = {Slides from presentation at FLOPS 2001, available online},
+	Title = {STG->JVM slides},
+	Url = {www.jaist.ac.jp/~khchoi/doc/flops2001slide.pdf},
+	Year = {2001},
+	Bdsk-Url-1 = {www.jaist.ac.jp/~khchoi/doc/flops2001slide.pdf},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEDkuLi8uLi9QYXBlcnMvQ2hvaS9DaG9pLUthaXN0IC0gU1RHLT5KVk0gc2xpZGVzICgyMDAxKS5wZGbSGw8cHVdOUy5kYXRhTxEBwgAAAAABwgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOCe0H0Nob2ktS2Fpc3QgLSBTVEctPkpWIzM4MjdBMi5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4J6LEOVMSAAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAARDaG9pABAACAAAwTR+XQAAABEACAAAxDmLUgAAAAEAEAA4J7QALZE/AANHrAAAa9gAAgA9T2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkNob2k6Q2hvaS1LYWlzdCAtIFNURy0+SlYjMzgyN0EyLnBkZgAADgBQACcAQwBoAG8AaQAtAEsAYQBpAHMAdAAgAC0AIABTAFQARwAtAD4ASgBWAE0AIABzAGwAaQBkAGUAcwAgACgAMgAwADAAMQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAEBVc2Vycy9qZXJlbXkvUGFwZXJzL0Nob2kvQ2hvaS1LYWlzdCAtIFNURy0+SlZNIHNsaWRlcyAoMjAwMSkucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAOYA6wDzArkCuwLAAskC1ALYAuYC7QL2AvsC/gAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAML}}
+
+@article{Mountjoy:The-spineless:1999,
+	Address = {New York, NY, USA},
+	Author = {Jon Mountjoy},
+	Date-Added = {2008-04-27 00:50:21 -0400},
+	Date-Modified = {2008-04-27 00:50:25 -0400},
+	Doi = {http://doi.acm.org/10.1145/291251.289439},
+	Issn = {0362-1340},
+	Journal = {SIGPLAN Not.},
+	Number = {1},
+	Pages = {163--173},
+	Publisher = {ACM},
+	Title = {The spineless tagless G-machine, naturally},
+	Volume = {34},
+	Year = {1999},
+	Abstract = {The application of natural semantic specifications of lazy evaluation to areas such as usage analysis, formal profiling and abstract machine construction has shown it to be a useful formalism. This paper introduces several variants and extensions of this specification.The first variant is derived from observations of the Spineless Tagless G-machine (STG), used in the Glasgow Haskell compiler. We present a modified natural semantic specification which can be formally manipulated to derive an STG-like machine.The second variant is the development of a natural semantic specification which allows functions to be applied to more than one argument at once. The STG and TIM abstract machines both allow this kind of behaviour, and we illustrate a use of this semantics by again modifying this semantics following observations of the STG machine. The resulting semantics can be used to formally derive the STG machine. This effectively proves the STG machine correct with respect to Launchbury's semantics.En route, we also show that update markers in the STG machine are necessary for termination, and show how well-known abstract machine instructions, such as the squeeze operation, appear quite naturally as optimisations of the derived abstract machine.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/291251.289439},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFYuLi8uLi9QYXBlcnMvTW91bnRqb3kvTW91bnRqb3kgLSBUaGUgc3BpbmVsZXNzIHRhZ2xlc3MgRy1tYWNoaW5lLCBuYXR1cmFsbHkgKDE5OTkpLnBkZtIbDxwdV05TLmRhdGFPEQIaAAAAAAIaAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA4J68fTW91bnRqb3kgLSBUaGUgc3BpbmUjMzgyN0EzLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgno8Q5UxIAAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAACE1vdW50am95ABAACAAAwTR+XQAAABEACAAAxDmLUgAAAAEAEAA4J68ALZE/AANHrAAAa9gAAgBBT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOk1vdW50am95Ok1vdW50am95IC0gVGhlIHNwaW5lIzM4MjdBMy5wZGYAAA4AggBAAE0AbwB1AG4AdABqAG8AeQAgAC0AIABUAGgAZQAgAHMAcABpAG4AZQBsAGUAcwBzACAAdABhAGcAbABlAHMAcwAgAEcALQBtAGEAYwBoAGkAbgBlACwAIABuAGEAdAB1AHIAYQBsAGwAeQAgACgAMQA5ADkAOQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAF1Vc2Vycy9qZXJlbXkvUGFwZXJzL01vdW50am95L01vdW50am95IC0gVGhlIHNwaW5lbGVzcyB0YWdsZXNzIEctbWFjaGluZSwgbmF0dXJhbGx5ICgxOTk5KS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAQMBCAEQAy4DMAM1Az4DSQNNA1sDYgNrA3ADcwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAOA}}
+
+@techreport{Coquand:The-calculus:1986,
+	Author = {Coquand, T. and Huet, G.},
+	Date-Added = {2008-04-27 00:50:21 -0400},
+	Date-Modified = {2008-04-27 00:53:35 -0400},
+	Institution = {INRIA -- Rocquencourt},
+	Keywords = {calculus of constructions},
+	Month = {May},
+	Number = {RR-0530},
+	Title = {The calculus of constructions},
+	Year = {1986},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEEwuLi8uLi9QYXBlcnMvQ29xdWFuZC9Db3F1YW5kLUh1ZXQgLSBUaGUgY2FsY3VsdXMgb2YgY29uc3RydWN0aW9ucyAoMTk4NikucGRm0hsPHB1XTlMuZGF0YU8RAfwAAAAAAfwAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADgnsB9Db3F1YW5kLUh1ZXQgLSBUaGUgYyMzODI3QTQucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCekxDlTFAAAAAAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAHQ29xdWFuZAAAEAAIAADBNH5dAAAAEQAIAADEOYtUAAAAAQAQADgnsAAtkT8AA0esAABr2AACAEBPZGluOlVzZXJzOmplcmVteTpQYXBlcnM6Q29xdWFuZDpDb3F1YW5kLUh1ZXQgLSBUaGUgYyMzODI3QTQucGRmAA4AcAA3AEMAbwBxAHUAYQBuAGQALQBIAHUAZQB0ACAALQAgAFQAaABlACAAYwBhAGwAYwB1AGwAdQBzACAAbwBmACAAYwBvAG4AcwB0AHIAdQBjAHQAaQBvAG4AcwAgACgAMQA5ADgANgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFNVc2Vycy9qZXJlbXkvUGFwZXJzL0NvcXVhbmQvQ29xdWFuZC1IdWV0IC0gVGhlIGNhbGN1bHVzIG9mIGNvbnN0cnVjdGlvbnMgKDE5ODYpLnBkZgAAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoA+QD+AQYDBgMIAw0DFgMhAyUDMwM6A0MDSANLAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA1g=}}
+
+@inproceedings{Peyton-Jones:The-spineless:1989,
+	Address = {New York, NY, USA},
+	Author = {Peyton Jones, Simon L. and Jon Salkild},
+	Booktitle = {FPCA '89: Proceedings of the fourth international conference on Functional programming languages and computer architecture},
+	Date-Added = {2008-04-27 00:45:26 -0400},
+	Date-Modified = {2008-04-27 00:45:36 -0400},
+	Doi = {http://doi.acm.org/10.1145/99370.99385},
+	Isbn = {0-89791-328-0},
+	Location = {Imperial College, London, United Kingdom},
+	Note = {A much longer version is available from the website of Peyton Jones},
+	Pages = {184--201},
+	Publisher = {ACM},
+	Title = {The spineless tagless G-machine},
+	Year = {1989},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/99370.99385},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFsuLi8uLi9QYXBlcnMvUGV5dG9uIEpvbmVzL1BleXRvbiBKb25lcy1TYWxraWxkIC0gVGhlIHNwaW5lbGVzcyB0YWdsZXNzIEctbWFjaGluZSAoMTk4OSkucGRm0hsPHB1XTlMuZGF0YU8RAigAAAAAAigAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAAC2Reh9QZXl0b24gSm9uZXMtU2Fsa2lsZCMzODI3OUQucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCedxDlTDgAAAAAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAMUGV5dG9uIEpvbmVzABAACAAAwTR+XQAAABEACAAAxDmLTgAAAAEAEAAtkXoALZE/AANHrAAAa9gAAgBFT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOlBleXRvbiBKb25lczpQZXl0b24gSm9uZXMtU2Fsa2lsZCMzODI3OUQucGRmAAAOAIQAQQBQAGUAeQB0AG8AbgAgAEoAbwBuAGUAcwAtAFMAYQBsAGsAaQBsAGQAIAAtACAAVABoAGUAIABzAHAAaQBuAGUAbABlAHMAcwAgAHQAYQBnAGwAZQBzAHMAIABHAC0AbQBhAGMAaABpAG4AZQAgACgAMQA5ADgAOQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGJVc2Vycy9qZXJlbXkvUGFwZXJzL1BleXRvbiBKb25lcy9QZXl0b24gSm9uZXMtU2Fsa2lsZCAtIFRoZSBzcGluZWxlc3MgdGFnbGVzcyBHLW1hY2hpbmUgKDE5ODkpLnBkZgATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgEIAQ0BFQNBA0MDSANRA1wDYANuA3UDfgODA4YAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADkw==}}
+
+@inproceedings{Peyton-Jones:Unboxed:1991,
+	Address = {New York, NY, USA},
+	Author = {Peyton Jones, Simon L. and John Launchbury},
+	Booktitle = {Proceedings of the 5th ACM conference on Functional programming languages and computer architecture},
+	Date-Added = {2008-04-27 00:45:26 -0400},
+	Date-Modified = {2008-04-27 00:45:36 -0400},
+	Isbn = {0-387-54396-1},
+	Location = {Cambridge, Massachusetts, United States},
+	Pages = {636--666},
+	Publisher = {Springer-Verlag New York, Inc.},
+	Title = {Unboxed values as first class citizens in a non-strict functional language},
+	Year = {1991},
+	Abstract = {The code compiled from a non-strict functional program usually manipulates heap-allocated \textit{boxed} numbers. Compilers for such languages often go to considerable trouble to optimise operations on boxed numbers into simpler operations on their unboxed forms. These optimisations are usually handled in an \textit{ad hoc} manner in the code generator, because earlier phases of the compiler have no way to talk about unboxed values.
+
+
+
+We present a new approach, which makes unboxed values into (nearly) first-class citizens. The language, including its type system, is extended to handle unboxed values. The optimisation of boxing and unboxing operations can now be reinterpreted as a set of correctness-preserving program transformations. Indeed the particular transformations required are ones which a compiler would want to implement anyway. The compiler becomes both simpler and more modular.
+
+
+
+Two other benefits accrue. Firstly, the results of strictness analysis can be exploited within the same uniform transformational framework. Secondly, new algebraic data types with unboxed components can be declared. Values of these types can be manipulated much more efficiently than the corresponding boxed versions.
+
+
+Both a static and a dynamic semantics are given for the augmented language. The denotational dynamic semantics is notable for its use of \textit{unpointed domains.}
+},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGUuLi8uLi9QYXBlcnMvUGV5dG9uIEpvbmVzL1BleXRvbiBKb25lcy1MYXVuY2hidXJ5IC0gVW5ib3hlZCB2YWx1ZXMgYXMgZmlyc3QgY2xhc3MgY2l0aXplbnMgKDE5OTEpLnBkZtIbDxwdV05TLmRhdGFPEQJGAAAAAAJGAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAtkXofUGV5dG9uIEpvbmVzLUxhdW5jaGIjMzgyNzlFLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgnnsQ5Uw4AAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAADFBleXRvbiBKb25lcwAQAAgAAME0fl0AAAARAAgAAMQ5i04AAAABABAALZF6AC2RPwADR6wAAGvYAAIARU9kaW46VXNlcnM6amVyZW15OlBhcGVyczpQZXl0b24gSm9uZXM6UGV5dG9uIEpvbmVzLUxhdW5jaGIjMzgyNzlFLnBkZgAADgCYAEsAUABlAHkAdABvAG4AIABKAG8AbgBlAHMALQBMAGEAdQBuAGMAaABiAHUAcgB5ACAALQAgAFUAbgBiAG8AeABlAGQAIAB2AGEAbAB1AGUAcwAgAGEAcwAgAGYAaQByAHMAdAAgAGMAbABhAHMAcwAgAGMAaQB0AGkAegBlAG4AcwAgACgAMQA5ADkAMQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGxVc2Vycy9qZXJlbXkvUGFwZXJzL1BleXRvbiBKb25lcy9QZXl0b24gSm9uZXMtTGF1bmNoYnVyeSAtIFVuYm94ZWQgdmFsdWVzIGFzIGZpcnN0IGNsYXNzIGNpdGl6ZW5zICgxOTkxKS5wZGYAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoBEgEXAR8DaQNrA3ADeQOEA4gDlgOdA6YDqwOuAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA7s=}}
+
+@inproceedings{Reid:Putting:1999,
+	Address = {London, UK},
+	Author = {Alastair Reid},
+	Booktitle = {IFL '98: Selected Papers from the 10th International Workshop on 10th International Workshop},
+	Date-Added = {2008-04-27 00:45:26 -0400},
+	Date-Modified = {2008-04-27 00:45:36 -0400},
+	Isbn = {3-540-66229-4},
+	Pages = {186--199},
+	Publisher = {Springer-Verlag},
+	Title = {Putting the Spine Back in the Spineless Tagless G-Machine: An Implementation of Resumable Black-Holes},
+	Year = {1999},
+	Abstract = {Interrupt handling is a tricky business in lazy functional languages: we have to make sure that thunks that are being evaluated can be halted and later restarted if and when they are required. This is a particular problem for implementations which use black-holing. Black-Holing deliberately makes it impossible to revert such thunks to their original state to avoid a serious space leak. Interactive Haskell implementations such as Hugs and hbi catch interrupts and avoid the problem by omitting or disabling black-holing. Batch mode Haskell implementations such as HBC and the Glasgow Haskell Compiler (GHC) avoid this problem by disabling black-holing or by providing no way to catch interrupts. This paper describes a modification to GHC's abstract machine (the Spineless Tagless G-Machine) which simultaneously supports both interrupts and black-holing.},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFMuLi8uLi9QYXBlcnMvUmVpZC9SZWlkIC0gUHV0dGluZyB0aGUgU3BpbmUgQmFjayBpbiB0aGUgU3BpbmVsZXNzIFRhZ2xlc3MgKDE5OTkpLnBkZtIbDxwdV05TLmRhdGFPEQIQAAAAAAIQAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA4J64fUmVpZCAtIFB1dHRpbmcgdGhlIFMjMzgyNzlGLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgnn8Q5UxAAAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABFJlaWQAEAAIAADBNH5dAAAAEQAIAADEOYtQAAAAAQAQADgnrgAtkT8AA0esAABr2AACAD1PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6UmVpZDpSZWlkIC0gUHV0dGluZyB0aGUgUyMzODI3OUYucGRmAAAOAIQAQQBSAGUAaQBkACAALQAgAFAAdQB0AHQAaQBuAGcAIAB0AGgAZQAgAFMAcABpAG4AZQAgAEIAYQBjAGsAIABpAG4AIAB0AGgAZQAgAFMAcABpAG4AZQBsAGUAcwBzACAAVABhAGcAbABlAHMAcwAgACgAMQA5ADkAOQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFpVc2Vycy9qZXJlbXkvUGFwZXJzL1JlaWQvUmVpZCAtIFB1dHRpbmcgdGhlIFNwaW5lIEJhY2sgaW4gdGhlIFNwaW5lbGVzcyBUYWdsZXNzICgxOTk5KS5wZGYAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoBAAEFAQ0DIQMjAygDMQM8A0ADTgNVA14DYwNmAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA3M=}}
+
+@misc{Hammond:The-spineless:1993,
+	Author = {K. Hammond},
+	Date-Added = {2008-04-27 00:45:26 -0400},
+	Date-Modified = {2008-04-27 00:45:36 -0400},
+	Text = {Kevin Hammond. The spineless tagless G-Machine --- NOT!. Technical Report       (not yet published), Department of Computer Science, Glasgow University,     1993.},
+	Title = {The spineless tagless G-Machine --- NOT},
+	Url = {citeseer.ist.psu.edu/hammond93spineless.html},
+	Year = {1993},
+	Bdsk-Url-1 = {citeseer.ist.psu.edu/hammond93spineless.html},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFEuLi8uLi9QYXBlcnMvSGFtbW9uZC9IYW1tb25kIC0gVGhlIHNwaW5lbGVzcyB0YWdsZXNzIEctTWFjaGluZSAtLS0gTk9UICgxOTkzKS5wZGbSGw8cHVdOUy5kYXRhTxECCgAAAAACCgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOCerH0hhbW1vbmQgLSBUaGUgc3BpbmVsIzM4MjdBMC5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4J6DEOVMQAAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAdIYW1tb25kAAAQAAgAAME0fl0AAAARAAgAAMQ5i1AAAAABABAAOCerAC2RPwADR6wAAGvYAAIAQE9kaW46VXNlcnM6amVyZW15OlBhcGVyczpIYW1tb25kOkhhbW1vbmQgLSBUaGUgc3BpbmVsIzM4MjdBMC5wZGYADgB6ADwASABhAG0AbQBvAG4AZAAgAC0AIABUAGgAZQAgAHMAcABpAG4AZQBsAGUAcwBzACAAdABhAGcAbABlAHMAcwAgAEcALQBNAGEAYwBoAGkAbgBlACAALQAtAC0AIABOAE8AVAAgACgAMQA5ADkAMwApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFhVc2Vycy9qZXJlbXkvUGFwZXJzL0hhbW1vbmQvSGFtbW9uZCAtIFRoZSBzcGluZWxlc3MgdGFnbGVzcyBHLU1hY2hpbmUgLS0tIE5PVCAoMTk5MykucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAP4BAwELAxkDGwMgAykDNAM4A0YDTQNWA1sDXgAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANr}}
+
+@inproceedings{Gill:A-short:1993,
+	Address = {New York, NY, USA},
+	Author = {Andrew Gill and John Launchbury and Simon L. Peyton Jones},
+	Booktitle = {FPCA '93: Proceedings of the conference on Functional programming languages and computer architecture},
+	Date-Added = {2008-04-27 00:40:53 -0400},
+	Date-Modified = {2008-04-27 00:44:43 -0400},
+	Doi = {http://doi.acm.org/10.1145/165180.165214},
+	Isbn = {0-89791-595-X},
+	Location = {Copenhagen, Denmark},
+	Pages = {223--232},
+	Publisher = {ACM},
+	Title = {A short cut to deforestation},
+	Year = {1993},
+	Abstract = {Lists are often used as "glue" to connect separate parts of a program together. We propose an automatic technique for improving the efficiency of such programs, by removing many of these intermediate lists, based on a single, simple, local transformation. We have implemented the method in the Glasgow Haskell compiler.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/165180.165214},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFEuLi8uLi9QYXBlcnMvR2lsbC9HaWxsLUxhdW5jaGJ1cnktSm9uZXMgLSBBIHNob3J0IGN1dCB0byBkZWZvcmVzdGF0aW9uICgxOTkzKS5wZGbSGw8cHVdOUy5kYXRhTxECCgAAAAACCgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOCeUH0dpbGwtTGF1bmNoYnVyeS1Kb25lIzM4Mjc4Qi5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4J4vEOVIIAAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAARHaWxsABAACAAAwTR+XQAAABEACAAAxDmKSAAAAAEAEAA4J5QALZE/AANHrAAAa9gAAgA9T2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkdpbGw6R2lsbC1MYXVuY2hidXJ5LUpvbmUjMzgyNzhCLnBkZgAADgCAAD8ARwBpAGwAbAAtAEwAYQB1AG4AYwBoAGIAdQByAHkALQBKAG8AbgBlAHMAIAAtACAAQQAgAHMAaABvAHIAdAAgAGMAdQB0ACAAdABvACAAZABlAGYAbwByAGUAcwB0AGEAdABpAG8AbgAgACgAMQA5ADkAMwApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFhVc2Vycy9qZXJlbXkvUGFwZXJzL0dpbGwvR2lsbC1MYXVuY2hidXJ5LUpvbmVzIC0gQSBzaG9ydCBjdXQgdG8gZGVmb3Jlc3RhdGlvbiAoMTk5MykucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAP4BAwELAxkDGwMgAykDNAM4A0YDTQNWA1sDXgAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANr}}
+
+@article{Chitil:Type:1999,
+	Address = {New York, NY, USA},
+	Author = {Olaf Chitil},
+	Date-Added = {2008-04-27 00:40:53 -0400},
+	Date-Modified = {2008-04-27 00:44:43 -0400},
+	Doi = {http://doi.acm.org/10.1145/317765.317907},
+	Issn = {0362-1340},
+	Journal = {SIGPLAN Not.},
+	Number = {9},
+	Pages = {249--260},
+	Publisher = {ACM},
+	Title = {Type inference builds a short cut to deforestation},
+	Volume = {34},
+	Year = {1999},
+	Abstract = {Deforestation optimises a functional program by transforming it into another one that does not create certain intermediate data structures. Short cut deforestation is a deforestation method which is based on a single, local transformation rule. In return, short cut deforestation expects both producer and consumer of the intermediate structure in a certain form. Warm fusion was proposed to automatically transform functions into this form. Unfortunately, it is costly and hard to implement. Starting from the fact that short cut deforestation is based on a parametricity theorem of the second-order typed $\lambda$-calculus, we show how the required form of a list producer can be derived by the use of type inference. Typability for the second-order typed $\lambda$-calculus is undecidable. However, we present a linear-time algorithm that solves a partial type inference problem and that, together with controlled inlining and polymorphic type instantiation, suffices for deforestation. The resulting new short cut deforestation algorithm is efficient and removes more intermediate lists than the original.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/317765.317907},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFouLi8uLi9QYXBlcnMvQ2hpdGlsL0NoaXRpbCAtIFR5cGUgaW5mZXJlbmNlIGJ1aWxkcyBhIHNob3J0IGN1dCB0byBkZWZvcmVzdGF0aW9uICgxOTk5KS5wZGbSGw8cHVdOUy5kYXRhTxECJgAAAAACJgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOCeSH0NoaXRpbCAtIFR5cGUgaW5mZXJlIzM4Mjc4Qy5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4J4zEOVIIAAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAZDaGl0aWwAEAAIAADBNH5dAAAAEQAIAADEOYpIAAAAAQAQADgnkgAtkT8AA0esAABr2AACAD9PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6Q2hpdGlsOkNoaXRpbCAtIFR5cGUgaW5mZXJlIzM4Mjc4Qy5wZGYAAA4AjgBGAEMAaABpAHQAaQBsACAALQAgAFQAeQBwAGUAIABpAG4AZgBlAHIAZQBuAGMAZQAgAGIAdQBpAGwAZABzACAAYQAgAHMAaABvAHIAdAAgAGMAdQB0ACAAdABvACAAZABlAGYAbwByAGUAcwB0AGEAdABpAG8AbgAgACgAMQA5ADkAOQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGFVc2Vycy9qZXJlbXkvUGFwZXJzL0NoaXRpbC9DaGl0aWwgLSBUeXBlIGluZmVyZW5jZSBidWlsZHMgYSBzaG9ydCBjdXQgdG8gZGVmb3Jlc3RhdGlvbiAoMTk5OSkucGRmAAATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgEHAQwBFAM+A0ADRQNOA1kDXQNrA3IDewOAA4MAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADkA==}}
+
+@inproceedings{Mu:Algebra:2008,
+	Author = {Shin-Cheng Mu and Hsiang-Shang Ko and Patrik Jansson},
+	Booktitle = {Mathematics of Program Construction 2008},
+	Date-Added = {2008-04-27 00:40:53 -0400},
+	Date-Modified = {2008-04-27 00:44:43 -0400},
+	Homepage = {http://www.iis.sinica.edu.tw/~scm/},
+	Location = {CIRM, Marseille (Luminy), France},
+	Month = {July},
+	Title = {Algebra of programming using dependent types},
+	Url = {http://www.iis.sinica.edu.tw/~scm/pub/mpc08.pdf},
+	Year = {2008},
+	Abstract = {Dependent type theory is rich enough to express that a program satisfies an input/output relational specification, but it could be hard to construct the proof term. On the other hand, squiggolists know very well how to show that one relation is included in another by algebraic reasoning. We demonstrate how to encode functional and relational derivations in a dependently typed programming language. A program is coupled with an algebraic derivation from a specification, whose correctness is guaranteed by the type system.},
+	Bdsk-Url-1 = {http://www.iis.sinica.edu.tw/~scm/pub/mpc08.pdf},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFcuLi8uLi9QYXBlcnMvTXUvTXUtS28tSmFuc3NvbiAtIEFsZ2VicmEgb2YgcHJvZ3JhbW1pbmcgdXNpbmcgZGVwZW5kZW50IHR5cGVzICgyMDA4KS5wZGbSGw8cHVdOUy5kYXRhTxECHAAAAAACHAACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOCeVH011LUtvLUphbnNzb24gLSBBbGdlIzM4Mjc4RC5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4J43EOVIKAAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAJNdQAQAAgAAME0fl0AAAARAAgAAMQ5ikoAAAABABAAOCeVAC2RPwADR6wAAGvYAAIAO09kaW46VXNlcnM6amVyZW15OlBhcGVyczpNdTpNdS1Lby1KYW5zc29uIC0gQWxnZSMzODI3OEQucGRmAAAOAJAARwBNAHUALQBLAG8ALQBKAGEAbgBzAHMAbwBuACAALQAgAEEAbABnAGUAYgByAGEAIABvAGYAIABwAHIAbwBnAHIAYQBtAG0AaQBuAGcAIAB1AHMAaQBuAGcAIABkAGUAcABlAG4AZABlAG4AdAAgAHQAeQBwAGUAcwAgACgAMgAwADAAOAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAF5Vc2Vycy9qZXJlbXkvUGFwZXJzL011L011LUtvLUphbnNzb24gLSBBbGdlYnJhIG9mIHByb2dyYW1taW5nIHVzaW5nIGRlcGVuZGVudCB0eXBlcyAoMjAwOCkucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAQQBCQERAzEDMwM4A0EDTANQA14DZQNuA3MDdgAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAOD}}
+
+@misc{Elliott:Simply:2008,
+	Author = {Conal Elliott},
+	Date-Added = {2008-04-27 00:40:53 -0400},
+	Date-Modified = {2008-04-27 00:44:43 -0400},
+	Homepage = {http://conal.net/papers/simply-reactive/},
+	Howpublished = {Manuscript submitted to ICFP 2008, published online},
+	Month = {April},
+	Note = {Errata available from \url{http://conal.net/papers/simply-reactive/}},
+	Title = {Simply efficient functional reactivity},
+	Year = 2008,
+	Abstract = {Functional reactive programming (FRP) has simple and powerful semantics, but has resisted efficient implementation. In particular, most past implementations have used demand-driven sampling, which accommodates FRP's continuous time semantics and fits well with the nature of functional programming. Consequently, values are wastefully recomputed even when inputs don't change, and reaction latency can be as high as the sampling period.
+
+This paper presents a way to implement FRP that combines data- and demand-driven evaluation, in which values are recomputed only when necessary, and reactions are nearly instantaneous. The implementation is rooted in a new simple formulation of FRP and its semantics and so is easy to understand and reason about.
+
+On the road to efficiency and simplicity, we'll meet some old friends (monoids, functors, applicative functors, monads, morphisms, and improving values) and make some new friends (functional future values, reactive normal form, and concurrent "unambiguous choice").},
+	Annote = {Errata to date (17 Apr 2008)    * Page 3, section 2.2.1: in the semantic Monoid instance definition for Event, drop the "O" constructor.    * Page 4, top left (section 2.3): In the definition of before, the parameters are swapped.    * Page 5, section 4.5, second bullet: "oo" -> "-oo" (oo = $\infty$)    * Page 5, section 4.5: "FTime t" -> "FTime"    * Page 6, section 5.2: "Applicative Behavior" should be "Applicative Reactive"    * Page 7, section 6, second-to-last sentence: "will have to block the" -> "will have to block until the"    * Page 8, section 7.1.2, last sentence: "do some work based partial applications" -> "do some work based upon partial applications"    * Page 8, section 7.2.2: "instance Monad Reactive" -> "instance Monad Event"    * Page 8, bottom right (section 7.2.2), in the definition of adjustTop, the constructors should be named "Ev" resp. "Fut", not "Event" resp. "Future".    * Page 9, section 8: "image to display window" -> "image to a display window"    * Page 12, conclusion, last paragraph, "paper allows retains" -> "paper retains"Thanks to Cale Gibbard, Max Bolingbroke, Kenn Knowles, and an anonymous reader for pointing out these mistakes.},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFAuLi8uLi9QYXBlcnMvRWxsaW90dC9FbGxpb3R0IC0gU2ltcGx5IGVmZmljaWVudCBmdW5jdGlvbmFsIHJlYWN0aXZpdHkgKDIwMDgpLnBkZtIbDxwdV05TLmRhdGFPEQIIAAAAAAIIAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA4J5MfRWxsaW90dCAtIFNpbXBseSBlZmYjMzgyNzhFLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgnjsQ5UgoAAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAAB0VsbGlvdHQAABAACAAAwTR+XQAAABEACAAAxDmKSgAAAAEAEAA4J5MALZE/AANHrAAAa9gAAgBAT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkVsbGlvdHQ6RWxsaW90dCAtIFNpbXBseSBlZmYjMzgyNzhFLnBkZgAOAHgAOwBFAGwAbABpAG8AdAB0ACAALQAgAFMAaQBtAHAAbAB5ACAAZQBmAGYAaQBjAGkAZQBuAHQAIABmAHUAbgBjAHQAaQBvAG4AYQBsACAAcgBlAGEAYwB0AGkAdgBpAHQAeQAgACgAMgAwADAAOAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFdVc2Vycy9qZXJlbXkvUGFwZXJzL0VsbGlvdHQvRWxsaW90dCAtIFNpbXBseSBlZmZpY2llbnQgZnVuY3Rpb25hbCByZWFjdGl2aXR5ICgyMDA4KS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAP0BAgEKAxYDGAMdAyYDMQM1A0MDSgNTA1gDWwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANo}}
+
+@unpublished{Meijer:Down:1993,
+	Author = {Erik Meijer and Ross Paterson},
+	Date-Added = {2008-04-26 19:36:44 -0400},
+	Date-Modified = {2008-04-26 19:58:10 -0400},
+	Keywords = {abstract machines},
+	Note = {Unfinished draft, published online},
+	Title = {Down with $\lambda$-lifting},
+	Url = {http://research.microsoft.com/~emeijer/Papers/down.pdf},
+	Year = {c.~1993},
+	Abstract = {Simplifications of the Spineless Tagless G-Machine and TIM are presented, which like the classic SECD machine or the Krivine machine reduce $\lambda$-expressions to weak head normal form -- no prior $\lambda$-lifting is necessary. The machines are at least as efficient as their combinator forebears but more importantly they are simpler due to the elimination of a translation step that obfuscates programs without improving their efficiency.},
+	Bdsk-Url-1 = {http://research.microsoft.com/~emeijer/Papers/down.pdf},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEEkuLi8uLi9QYXBlcnMvTWVpamVyL01laWplci1QYXRlcnNvbiAtIERvd24gV2l0aCBMYW1iZGEtTGlmdGluZyAoMTk5MykucGRm0hsPHB1XTlMuZGF0YU8RAfIAAAAAAfIAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADaBIB9NZWlqZXItUGF0ZXJzb24gLSBEbyMzODI1RTgucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCXoxDk1BFBERiAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAGTWVpamVyABAACAAAwTR+XQAAABEACAAAxDltRAAAAAEAEAA2gSAALZE/AANHrAAAa9gAAgA/T2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOk1laWplcjpNZWlqZXItUGF0ZXJzb24gLSBEbyMzODI1RTgucGRmAAAOAGwANQBNAGUAaQBqAGUAcgAtAFAAYQB0AGUAcgBzAG8AbgAgAC0AIABEAG8AdwBuACAAVwBpAHQAaAAgAEwAYQBtAGIAZABhAC0ATABpAGYAdABpAG4AZwAgACgAMQA5ADkAMwApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFBVc2Vycy9qZXJlbXkvUGFwZXJzL01laWplci9NZWlqZXItUGF0ZXJzb24gLSBEb3duIFdpdGggTGFtYmRhLUxpZnRpbmcgKDE5OTMpLnBkZgATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgD2APsBAwL5AvsDAAMJAxQDGAMmAy0DNgM7Az4AAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADSw==}}
 
 @book{Peyton-Jones:Haskell:2003,
 	Date-Added = {2008-04-25 22:38:57 -0400},
@@ -179,7 +674,8 @@ Before proceeding it will be necessary for me to quickly outline the language fr
 	Title = {HOPE: An experimental applicative language},
 	Year = {1980},
 	Abstract = {An applicative language called HOPE is described and discussed. The underlying goal of the design and implementation effort was to produce a very simple programming language which encourages the construction of clear and manipulable programs. HOPE does not include an assignment statement; this is felt to be an important simplification. The user may freely define his own data types, without the need to devise a complicated encoding in terms of low-level types. The language is very strongly typed, and as implemented it incorporates a typechecker which handles polymorphic types and overloaded operators. Functions are defined by a set of recursion equations; the left-hand side of each equation includes a pattern used to determine which equation to use for a given argument. The availability of arbitrary higher-order types allows functions to be defined which 'package' recursion. Lazily-evaluated lists are provided, allowing the use of infinite lists which could be used to provide interactive input/output and concurrency. HOPE also includes a simple modularisation facility which may be used to protect the implementation of an abstract data type.},
-	Bdsk-Url-1 = {http://doi.acm.org/10.1145/800087.802799}}
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/800087.802799},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGguLi8uLi9QYXBlcnMvQnVyc3RhbGwvQnVyc3RhbGwtTWFjUXVlZW4tU2FubmVsbGEgLSBIT1BFOiBBbiBleHBlcmltZW50YWwgYXBwbGljYXRpdmUgbGFuZ3VhZ2UgKDE5ODApLnBkZtIbDxwdV05TLmRhdGFPEQJQAAAAAAJQAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA4IB0fQnVyc3RhbGwtTWFjUXVlZW4tU2EjMzgxNkZBLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgW+sQ27tBQREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAACEJ1cnN0YWxsABAACAAAwTR+XQAAABEACAAAxDcnEAAAAAEAEAA4IB0ALZE/AANHrAAAa9gAAgBBT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkJ1cnN0YWxsOkJ1cnN0YWxsLU1hY1F1ZWVuLVNhIzM4MTZGQS5wZGYAAA4ApgBSAEIAdQByAHMAdABhAGwAbAAtAE0AYQBjAFEAdQBlAGUAbgAtAFMAYQBuAG4AZQBsAGwAYQAgAC0AIABIAE8AUABFAC8AIABBAG4AIABlAHgAcABlAHIAaQBtAGUAbgB0AGEAbAAgAGEAcABwAGwAaQBjAGEAdABpAHYAZQAgAGwAYQBuAGcAdQBhAGcAZQAgACgAMQA5ADgAMAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAG9Vc2Vycy9qZXJlbXkvUGFwZXJzL0J1cnN0YWxsL0J1cnN0YWxsLU1hY1F1ZWVuLVNhbm5lbGxhIC0gSE9QRTogQW4gZXhwZXJpbWVudGFsIGFwcGxpY2F0aXZlIGxhbmd1YWdlICgxOTgwKS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqARUBGgEiA3YDeAN9A4YDkQOVA6MDqgOzA7gDuwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAPI}}
 
 @article{Appel:Separate:1994,
 	Address = {New York, NY, USA},
@@ -1299,24 +1795,6 @@ packagability, tools, training, and popularity) and two non-reasons
 	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEE4uLi8uLi9QYXBlcnMvQnJ1aWpuL0JydWlqbiAtIExhbWJkYSBjYWxjdWx1cyBub3RhdGlvbiB3aXRoIG5hbWVsZXNzICgxOTcyKS5wZGbSGw8cHVdOUy5kYXRhTxECAgAAAAACAgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAMae0H0JydWlqbiAtIExhbWJkYSBjYWxjIzMxQTdBOS5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxp6nEJrhyUERGIHBydncAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAZCcnVpam4AEAAIAADBNH5dAAAAEQAIAADEJvCyAAAAAQAQADGntAAtkT8AA0esAABr2AACAD9PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6QnJ1aWpuOkJydWlqbiAtIExhbWJkYSBjYWxjIzMxQTdBOS5wZGYAAA4AdgA6AEIAcgB1AGkAagBuACAALQAgAEwAYQBtAGIAZABhACAAYwBhAGwAYwB1AGwAdQBzACAAbgBvAHQAYQB0AGkAbwBuACAAdwBpAHQAaAAgAG4AYQBtAGUAbABlAHMAcwAgACgAMQA5ADcAMgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFVVc2Vycy9qZXJlbXkvUGFwZXJzL0JydWlqbi9CcnVpam4gLSBMYW1iZGEgY2FsY3VsdXMgbm90YXRpb24gd2l0aCBuYW1lbGVzcyAoMTk3MikucGRmAAATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgD7AQABCAMOAxADFQMeAykDLQM7A0IDSwNQA1MAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADYA==},
 	Bdsk-File-2 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFAuLi8uLi9QYXBlcnMvQnJ1XGlqbi9CcnVcaWpuIC0gTGFtYmRhIGNhbGN1bHVzIG5vdGF0aW9uIHdpdGggbmFtZWxlc3MgKDE5NzIpLnBkZtIbDxwdV05TLmRhdGFPEQIIAAAAAAIIAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAx9QgfQnJ1XGlqbiAtIExhbWJkYSBjYWwjMzFGNDU3LnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADH0V8QsFwpQREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAAB0JydVxpam4AABAACAAAwTR+XQAAABEACAAAxCxPSgAAAAEAEAAx9QgALZE/AANHrAAAa9gAAgBAT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkJydVxpam46QnJ1XGlqbiAtIExhbWJkYSBjYWwjMzFGNDU3LnBkZgAOAHgAOwBCAHIAdQBcAGkAagBuACAALQAgAEwAYQBtAGIAZABhACAAYwBhAGwAYwB1AGwAdQBzACAAbgBvAHQAYQB0AGkAbwBuACAAdwBpAHQAaAAgAG4AYQBtAGUAbABlAHMAcwAgACgAMQA5ADcAMgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFdVc2Vycy9qZXJlbXkvUGFwZXJzL0JydVxpam4vQnJ1XGlqbiAtIExhbWJkYSBjYWxjdWx1cyBub3RhdGlvbiB3aXRoIG5hbWVsZXNzICgxOTcyKS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAP0BAgEKAxYDGAMdAyYDMQM1A0MDSgNTA1gDWwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANo}}
 
-@article{Douence:A-systematic:1998a,
-	Address = {New York, NY, USA},
-	Author = {R\'{e}mi Douence and Pascal Fradet},
-	Date-Added = {2008-04-12 18:58:16 -0400},
-	Date-Modified = {2008-04-12 18:58:38 -0400},
-	Doi = {http://doi.acm.org/10.1145/276393.276397},
-	Issn = {0164-0925},
-	Journal = {ACM Trans. Program. Lang. Syst.},
-	Number = {2},
-	Pages = {344--387},
-	Publisher = {ACM},
-	Title = {A systematic study of functional language implementations},
-	Volume = {20},
-	Year = {1998},
-	Abstract = {We introduce a unified framework to describe, relate, compare, and classify functional language implementations. The compilation process is expressed as a succession of program transformations in the common framework. At each step, different transformations model fundamental choices. A benefit of this approach is to structure and decompose the implementation process. The correctness proofs can be tackled independently for each step and amount to proving program transformations in the functional world. This approach also paves the way to formal comparisons by making it possible to estimate the complexity of individual transformations or compositions of them. Our study aims at covering the whole known design space of sequential functional language implementations. In particular, we consider call-by-value, call-by-name, call-by-need reduction strategies as well as environment- and graph-based implementations. We describe for each compilation step the diverse alternatives as program transformations. In some cases, we illustrate how to compare or relate compilation techniques, express global optimizations, or hybrid implementations. We also provide a classification of well-known abstract machines.},
-	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGsuLi8uLi9QYXBlcnMvRG91ZW5jZS9Eb3VlbmNlLUZyYWRldCAtIEEgc3lzdGVtYXRpYyBzdHVkeSBvZiBmdW5jdGlvbmFsIGxhbmd1YWdlIGltcGxlbWVudGF0aW9ucyAoMTk5OGEpLnBkZtIbDxwdV05TLmRhdGFPEQJYAAAAAAJYAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAtk0kfRG91ZW5jZS1GcmFkZXQgLSBBIHMjMzFBNzQ4LnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADGnSMQmtvFQREYgcHJ2dwACAAMAAAkgAAAAAAAAAAAAAAAAAAAAB0RvdWVuY2UAABAACAAAwTR+XQAAABEACAAAxCbvMQAAAAEAEAAtk0kALZE/AANHrAAAa9gAAgBAT2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOkRvdWVuY2U6RG91ZW5jZS1GcmFkZXQgLSBBIHMjMzFBNzQ4LnBkZgAOAK4AVgBEAG8AdQBlAG4AYwBlAC0ARgByAGEAZABlAHQAIAAtACAAQQAgAHMAeQBzAHQAZQBtAGEAdABpAGMAIABzAHQAdQBkAHkAIABvAGYAIABmAHUAbgBjAHQAaQBvAG4AYQBsACAAbABhAG4AZwB1AGEAZwBlACAAaQBtAHAAbABlAG0AZQBuAHQAYQB0AGkAbwBuAHMAIAAoADEAOQA5ADgAYQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAHJVc2Vycy9qZXJlbXkvUGFwZXJzL0RvdWVuY2UvRG91ZW5jZS1GcmFkZXQgLSBBIHN5c3RlbWF0aWMgc3R1ZHkgb2YgZnVuY3Rpb25hbCBsYW5ndWFnZSBpbXBsZW1lbnRhdGlvbnMgKDE5OThhKS5wZGYAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoBGAEdASUDgQODA4gDkQOcA6ADrgO1A74DwwPGAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA9M=},
-	Bdsk-Url-1 = {http://doi.acm.org/10.1145/276393.276397}}
-
 @inproceedings{McCarthy:LISP:1980,
 	Address = {New York, NY, USA},
 	Author = {John McCarthy},
@@ -2318,11 +2796,11 @@ Spector also gives a good, concise argument for why LR(1) parser generators are 
 	Address = {New York, NY, USA},
 	Author = {Pascal Fradet and Daniel Le M\'{e}tayer},
 	Date-Added = {2007-12-22 21:11:18 -0500},
-	Date-Modified = {2007-12-22 21:12:37 -0500},
+	Date-Modified = {2008-04-26 19:59:57 -0400},
 	Doi = {http://doi.acm.org/10.1145/114005.102805},
 	Issn = {0164-0925},
 	Journal = {ACM Trans. Program. Lang. Syst.},
-	Keywords = {compilation},
+	Keywords = {compilation; abstract machines},
 	Local-Url = {file://localhost/Users/jeremy/Papers/Fradet/Fradet-Metayer%20-%20Compilation%20of%20functional%20languages%20by%20program%20transformation%20(1991).pdf},
 	Number = {1},
 	Pages = {21--51},
@@ -2377,11 +2855,11 @@ Spector also gives a good, concise argument for why LR(1) parser generators are 
 	Address = {New York, NY, USA},
 	Author = {K. V. Seshu Kumar},
 	Date-Added = {2007-12-22 21:06:22 -0500},
-	Date-Modified = {2007-12-22 21:07:27 -0500},
+	Date-Modified = {2008-04-26 20:00:38 -0400},
 	Doi = {http://doi.acm.org/10.1145/981009.981015},
 	Issn = {0362-1340},
 	Journal = {SIGPLAN Not.},
-	Keywords = {compilation, optimization, virtual machines},
+	Keywords = {compilation, optimization, virtual machines; abstract machines},
 	Local-Url = {file://localhost/Users/jeremy/Papers/Kumar/Kumar%20-%20When%20and%20what%20to%20compile-optimize%20in%20a%20virtual%20machine%3F%20(2004).pdf},
 	Number = {3},
 	Pages = {38--45},
@@ -2420,10 +2898,10 @@ Detecting the hot routines is very important from the perspective of performance
 	Author = {Luca Cardelli},
 	Booktitle = {LFP '84: Proceedings of the 1984 ACM Symposium on LISP and functional programming},
 	Date-Added = {2007-12-22 20:58:15 -0500},
-	Date-Modified = {2008-01-02 18:37:41 -0500},
+	Date-Modified = {2008-04-26 19:58:26 -0400},
 	Doi = {http://doi.acm.org/10.1145/800055.802037},
 	Isbn = {0-89791-142-3},
-	Keywords = {history of computing, compilation},
+	Keywords = {history of computing, compilation; abstract machines},
 	Local-Url = {file://localhost/Users/jeremy/Papers/Cardelli/Cardelli%20-%20Compiling%20a%20functional%20language%20(1984).pdf},
 	Location = {Austin, Texas, United States},
 	Pages = {208--217},
@@ -2482,11 +2960,11 @@ The module system was still under construction at the time. Already uses unboxed
 	Address = {New York, NY, USA},
 	Author = {R\'{e}mi Douence and Pascal Fradet},
 	Date-Added = {2007-12-22 20:46:59 -0500},
-	Date-Modified = {2008-01-14 01:39:13 -0500},
+	Date-Modified = {2008-04-26 19:58:54 -0400},
 	Doi = {http://doi.acm.org/10.1145/276393.276397},
 	Issn = {0164-0925},
 	Journal = {ACM Trans. Program. Lang. Syst.},
-	Keywords = {functional languages},
+	Keywords = {functional languages; abstract machines},
 	Local-Url = {file://localhost/Users/jeremy/Papers/Douence/Douence-Fradet%20-%20A%20systematic%20study%20of%20functional%20language%20implementations%20(1998).pdf},
 	Number = {2},
 	Pages = {344--387},
@@ -2849,9 +3327,21 @@ These lecture notes give an overview of the techniques that have been developed 
 <array>
 	<dict>
 		<key>group name</key>
+		<string>deforestation</string>
+		<key>keys</key>
+		<string>Chitil:Type:1999,Elliott:Simply:2008,Mu:Algebra:2008,Gill:A-short:1993</string>
+	</dict>
+	<dict>
+		<key>group name</key>
 		<string>NCF Thesis</string>
 		<key>keys</key>
-		<string>Wyk:Context-aware:2007,Stoyan:Early:1984,Richards:An-overview:1984,Hovemeyer:Finding:2004,Barendregt:Types:1990,Milner:The-Definition:1990,Bannerjee:Loop:1993,Grune:Parsing:2007,Herken:The-Universal:1995,Pottier:Menhir:2007,Bravenboer:Declarative:2006,Scott:Programming:2006,Hindley:The-principal:1969,Turner:Miranda:1985,Kulkarni:Fast:2005,Pierce:Types:2002,Steele-Jr.:The-evolution:1993,Peyton-Jones:Wearing:2003,Wadler:Monads:1995,Iverson:A-programming:1962,McPeak:Elkhound:2002,Paakki:Attribute:1995,McBride:Functional:2004,Olszewski:Churchs:2006,Peyton-Jones:Tackling:2000,Gordon:From:2000,Damas:Principal:1982,Pager:The-lane:1973,Milner:The-Definition:1997,Gansner:The-Standard:2002,Turner:Church:2006,Milner:Commentary:1990,Landin:The-next:1966,Turing:On-Computable:1937,Turner:The-semantic:1981,Backus:Can-programming:1978,Cooper:Engineering:2004,Bravenboer:Concrete:2004,Sestoft:Demonstrating:2002,Lattner:LLVM:2002,Zima:Supercompilers:1991,Hines:Using:2005,Bravenboer:Preventing:2007,Pierce:Advanced:2005,Aho:Principles:1977,Aho:Compilers:1986,Aho:Compilers:2006,Cardelli:On-understanding:1985,Parr:ANTLR:1995,Cousineau:A-brief:1996,Visser:Scannerless:1997,Hennessy:Computer:2006,Wolfe:High-Performance:1996,Patterson:Computer:2007,Spector:Efficient:1988,Hudak:A-history:2007,Turner:SASL:1976,Thompson:Type:1991,Hopcroft:Introduction:2007,Layer:Lisp:1991,Brand:Disambiguation:2002,Demaine:Cache-Oblivious:2002,Bannerjee:Loop:1994,Curry:Modified:1969,Bannerjee:Dependence:1988,Muchnick:Advanced:1997,Barendregt:The-Lambda:1984,Hudak:Conception:1989,McCarthy:LISP:1980</string>
+		<string>Wyk:Context-aware:2007,Stoyan:Early:1984,Richards:An-overview:1984,Hovemeyer:Finding:2004,Barendregt:Types:1990,Milner:The-Definition:1990,Bannerjee:Loop:1993,Grune:Parsing:2007,Herken:The-Universal:1995,Pottier:Menhir:2007,Bravenboer:Declarative:2006,Scott:Programming:2006,Hindley:The-principal:1969,Turner:Miranda:1985,Kulkarni:Fast:2005,Pierce:Types:2002,Steele-Jr.:The-evolution:1993,Peyton-Jones:Wearing:2003,Wadler:Monads:1995,Iverson:A-programming:1962,McPeak:Elkhound:2002,Paakki:Attribute:1995,McBride:Functional:2004,Olszewski:Churchs:2006,Peyton-Jones:Tackling:2000,Gordon:From:2000,Damas:Principal:1982,Pager:The-lane:1973,Milner:The-Definition:1997,Gansner:The-Standard:2002,Turner:Church:2006,Milner:Commentary:1990,Landin:The-next:1966,Turing:On-Computable:1937,Turner:The-semantic:1981,Backus:Can-programming:1978,Cooper:Engineering:2004,Bravenboer:Concrete:2004,Sestoft:Demonstrating:2002,Lattner:LLVM:2002,Zima:Supercompilers:1991,Hines:Using:2005,Bravenboer:Preventing:2007,Pierce:Advanced:2005,Aho:Principles:1977,Aho:Compilers:1986,Aho:Compilers:2006,Cardelli:On-understanding:1985,Parr:ANTLR:1995,Cousineau:A-brief:1996,Visser:Scannerless:1997,Hennessy:Computer:2006,Wolfe:High-Performance:1996,Patterson:Computer:2007,Spector:Efficient:1988,Hudak:A-history:2007,Turner:SASL:1976,Peyton-Jones:Haskell:2003,Thompson:Type:1991,Hopcroft:Introduction:2007,Layer:Lisp:1991,Brand:Disambiguation:2002,Demaine:Cache-Oblivious:2002,Bannerjee:Loop:1994,Curry:Modified:1969,Bannerjee:Dependence:1988,Muchnick:Advanced:1997,Barendregt:The-Lambda:1984,Hudak:Conception:1989,McCarthy:LISP:1980</string>
+	</dict>
+	<dict>
+		<key>group name</key>
+		<string>STG</string>
+		<key>keys</key>
+		<string>Choi:STG-JVM:2001,Reid:Putting:1999,Hammond:The-spineless:1993,Peyton-Jones:Unboxed:1991,Mountjoy:The-spineless:1999,Peyton-Jones:The-spineless:1989,Mehnert:STG-slides:2004</string>
 	</dict>
 	<dict>
 		<key>group name</key>
