@@ -25,7 +25,7 @@ Functional languages make functions first-class citizens. You can do anything wi
 
 First-class functions is the most striking result of functional languages' basis in the \lambdacalc{}, and it heavily influences the entire style of programming in functional languages. But taking the \lambdacalc as the starting point of the entire programming language is the most radical characteristic of modern functional languages, and the effects of this choice are felt throughout the resulting languages.
 
-\subsubsection{Static Typing, Type Inference, and Polymorphism}
+\subsubsection[Static Typing, Type Inference, Polymorphism]{Static Typing, Type Inference, and Polymorphism}
 Modern functional languages are statically typed. They are based, not on the untyped \lambdacalc{}, but on some variety of the typed \lambdacalc{}. The introduction of types has advantages from the software engineering point of view. It also has advantages from the point of view of compiler performance.
 
 Static typing in imperative languages is often regarded as a burden because of the need to declare the type of all variables and functions. Modern functional languages relieve this burden through type inference. This means that code written in functional languages is free to omit redundant type declarations: if you state that \lstinline{x = 5}, then there is no need to reiterate that \lstinline{x} is an \lstinline{Integer} for the sole benefit of the compiler. Modern functional languages are designed to allow type inference, and their compilers are designed to perform it.
@@ -127,7 +127,7 @@ These transformations can be adapted to handle multiple guarded expressions per 
 
 \begin{figure}
 \myfloatalign%
-\caption{Transforming a \asword{case} statement to eliminate guards}%
+\caption[\asword{Case} without guards]{Transforming a \asword{case} statement to eliminate guards}%
 \captionsetup{position=top}
 \subfloat[With Guards]{%
 \label{cases:guards}%

@@ -6,7 +6,7 @@ While we have taken some time to explain the \lambdacalc{}, the system itself is
 \end{itemize}
 These extensions also serve to raise the level of abstraction of the \lambdacalc closer to that of a functional programming language.\footnote{This section follows the development of the \lambdacalc in \citet{Hudak:Conception:1989} closely, including use of some of the same examples.}
 
-\subsubsection{Untyped \LambdaCalc with Constants}
+\subsubsection[Untyped with Constants]{Untyped \LambdaCalc with Constants}
 We first extend the pure untyped \lambdacalc by adding \vocab{constants}. As when we introduced variables, we can formally define the constant terms as normal form lambda terms built from a base symbol $c$ distinct from the $v$ used for variables and many primes:
 \begin{align*}
 \Lambda &\produces V \alt C \alt (\Lambda\; \Lambda) \alt (\lambda\; V\; \Lambda)\\
@@ -42,9 +42,9 @@ But if we wanted to add $\delta$-rules truer to our intuitive understanding of \
 \const{Or } e \const{ True} &\dred \const{True}\\
 \const{Or False False} &\dred \const{False}
 \end{align*}
-But, with the addition of these rules, it would no longer be true that a normal order reduction strategy guarantees reduction of a term to normal form if it has one. In fact, no deterministic reduction strategy would suffice to regain that property!
+But, with the addition of these rules, it would no longer be true that a normal order reduction strategy guarantees reduction of a term to normal form if it has one. In fact, no deterministic reduction strategy would suffice to regain that property! Any deterministic strategy, on encountering $\const{Or}\; e_{1}\; e_{2}$, would have to always reduce $e_{1}$ or always reduce $e_{2}$ before reducing the other term. If it always first reduces $e_{1}$, then it will fail to reduce $\const{Or } \Omega \const{ True}$ to normal form; if it always first reduces $e_{2}$, then it will fail to reduce $\const{Or True } \Omega$ to normal form.
 
-\subsubsection{Typed \LambdaCalc with Constants}
+\subsubsection[Typed with Constants]{Typed \LambdaCalc with Constants}
 The addition of constants to the \lambdacalc merely made it easier for us to express concepts already expressible in the pure \lambdacalc{}. The central notions of abstraction, application, and of the various kinds of reduction and con\-ver\-sion that we had introduced for the \lambdacalc remained untouched. The only definition we really had to modify was that of a normal form, and we modified that implicitly with our introduction of constants as distinguished, normal form lambda terms. The introduction of types, however, fundamentally changes the \lambdacalc{}.
 
 To develop the typed \lambdacalc with constants, we begin by adopting a lambda term grammar identical to that used for the \lambdacalc with constants:
@@ -72,7 +72,7 @@ We will not need to refer to arbitrary type constants, so no convention addresse
 
 Lambda terms and types come together in \vocab[type assignment statement]{statements}. A statement \stmt{M}{\sigma} says that a given term $M$, the \vocab{subject} of the statement, can be assigned type $\sigma$, the \vocab{predicate} of the statement.
 
-Whereas lambda terms formed the basis of the pure \lambdacalc{}, statements make up the basis of the typed \lambdacalc{}. When we introduced constants into the pure \lambdacalc{}, we had to introduce $\delta$-rules that formally related those constants within the system. We used these $\delta$-rules to establish relationships that agreed with our intuitive understanding of how the constants were interrelated, but we had to be sure not to introduce a careless rule that changed the very properties of the \lambdacalc that make it so useful to us. The particular statements that make up the basis of the typed \lambdacalc are also left to our discretion, and we can use them in a similar way. Thus, we will assume, for example, that  $\stmt[text]{\text{\const{True}}}{bool}$ and $\stmt[text]{\text{\const{False}}}{bool}$, and that $\stmt[text]{0}{int}$, $\stmt[text]{1}{int}$, and so on. Formally, the basis\empause let us call it \basis\empause is composed of a set of statements with whose subjects are distinct variables or constants.
+Whereas lambda terms formed the basis of the pure \lambdacalc{}, statements make up the basis of the typed \lambdacalc{}. When we introduced constants into the pure \lambdacalc{}, we had to introduce $\delta$-rules that formally related those constants within the system. We used these $\delta$-rules to establish relationships that agreed with our intuitive understanding of how the constants were interrelated, but we had to be sure not to introduce a careless rule that changed the very properties of the \lambdacalc that make it so useful to us. The particular statements that make up the basis of the typed \lambdacalc are also left to our discretion, and we can use them in a similar way. Thus, we will assume, for example, that  $\stmt[text]{\text{\const{True}}}{bool}$ and $\stmt[text]{\text{\const{False}}}{bool}$, and that $\stmt[text]{0}{int}$, $\stmt[text]{1}{int}$, and so on. Formally, the basis\empause let us call it \basis\empause is composed of a set of statements whose subjects are distinct variables or constants.
 
 Using this basis, we can assign types to other lambda terms. If we can derive a statement \stmt{M}{\sigma} from the basis \basis, then we write $\basis \turnstile \stmt{M}{\sigma}$. All statements can be derived using three rules:
 \begin{itemize}
@@ -122,7 +122,7 @@ But these terms cannot be assigned a type, for the fundamental reason that self-
 
 We are not so sad to see $\Omega$ become untypable. A term that does nothing except lead to endless $\beta$-re\-duc\-tion is useless to us. But we needed $Y$ to define recursive functions. Regaining $Y$ is the point of our next extension.
 
-\subsubsection{Typed Recursive \LambdaCalc with Constants}
+\subsubsection[Typed Recursive with Constants]{Typed Recursive \LambdaCalc with Constants}
 After the effort of the past two extensions to the \lambdacalc, extending the typed \lambdacalc with constants to encompass recursion is surprisingly simple. All we need do is introduce a polymorphic fixed-point operator among our constants, introduce an appropriate type into our basis, and craft a $\delta$-rule to make this operator behave as we desire.
 
 Thus, we anoint $Y$ our fixed-point operator name of choice. The only functions we want to apply $Y$ to are those that must recurse upon themselves. As such, they must consume the very type of value they produce, that is, the type of any such function must be $(\sigma \to \sigma)$. A fixed point of such a function must have the type of the argument of the function.  Since $Y$, given a function, produces a fixed point of that function, we assign $Y$ the family of types \stmt{Y}{(\sigma \to \sigma) \to \sigma}, which is to say that we add a \stmt{Y_{\sigma}}{(\sigma \to \sigma) \to \sigma} to our basis \basis{} for every type $\sigma$ that can be formed according to our grammar for types.

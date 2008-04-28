@@ -236,20 +236,68 @@ $L \betacon M \betacon N \betacon P$
 \endgroup
 \end{figure}
 
-An important property of the \lambdacalc is related to this. It is known as the \vocab{Church--Rosser property}, and it says two things.
+\paragraph{The Church--Rosser Theorem}An important property of the \lambdacalc is related to this. It is known as the \vocab{Church--Rosser theorem}, and it says that the \lambdacalc together with $\betared$ has two properties.
 \begin{itemize} 
 \item Firstly, it says that if any lambda term can be reduced in one or more steps to two different lambda terms, then it is possible to reduce each of those lambda terms in some number of steps to the same term. More symbolically, this can be put as follows: if $M \betared[*] M_{1}$ and $M \betared[*] M_{2}$, then there exists an $M_{3}$ such that $M_{1} \betared[*] M_{3}$ and $M_{2} \betared[*] M_{3}$. What this means graphically is that, given the figure from the second row of the table in Fig.~\ref{untyped:betaconv}~(p.~\pageref{untyped:betaconv}), we can infer the existence of the term $P$ in the the last row of that table.
 \item Secondly, it states that if two terms $M$ and $N$ are $\beta$-con\-vert\-i\-ble into each other, then there is some other common term $P$ to which the first two can both be reduced. This is to say that, if $M \betacon N$, then we can find some $P$ such that $M \betared[*] P$ and $N \betared[*] P$ as well.
 \end{itemize}
 
-Since the Church--Rosser property is so important, we will endeavor to sketch a proof that it holds for the pure untyped \lambdacalc{}. We defer a discussion of the property's implications for the \lambdacalc till after we have introduced the idea of a normal form.%CRIT-TODO: Sketch proof of Church--Rosser.
+The first of these properties is known as the \vocab{Church--Rosser property}. The second property does not have a name of its own. Since the Church--Rosser theorem is so important, we will sketch a proof that it holds for the pure untyped \lambdacalc{}. We defer a discussion of the theorem's implications for the \lambdacalc till after we have introduced the idea of a normal form.
+
+There are numerous proofs of the Church--Rosser theorem. The one sketched here is due to Tait and Martin--L{\"o}f by way of Barendregt.\footnote{See \citet[\S 3.2]{Barendregt:The-Lambda:1984}.} After proving a set of lemmas, the Church--Rosser theorem becomes a simple corollary.
+
+We begin by defining the \vocab[diamond property]{diamond property.} A binary relation~$\rightarrowtail$ on lambda terms satisfies the diamond property if for all lambda terms~$M$, $M_{1}$, and $M_{2}$, such that $M \rightarrowtail M_{1}$ and~$M \rightarrowtail M_{2}$, there also exists a term~$M_{3}$ such that both $M_{1} \rightarrowtail M_{3}$ and $M_{2} \rightarrowtail M_{3}$. In a reduction diagram, the term~$M_{3}$ appears to complete the diamond begun by~$M \rightarrowtail M_{1}$ and $M \rightarrowtail M_{2}$; this is illustrated by Fig.~\ref{diamond} on page~\pageref{diamond}.
+
+\begin{figure}[btp]
+\caption[The diamond property]{The diamond property\\
+The binary relation~$\rightarrowtail$ satisfies the diamond property if, for every three terms~$M$, $M_{1}$, and $M_{2}$ such that $M \rightarrowtail M_{1}$ and $M \rightarrowtail M_{2}$, there exists some fourth term~$M_{3}$ such that $M_{1} \rightarrowtail M_{3}$ and $M_{2} \rightarrowtail M_{3}$. In this diagram, solid arrows indicate assumed relations, while dashed arrows indicate inferred relations.%
+}
+\label{diamond}
+\myfloatalign
+\begingroup
+\SelectTips{eu}{10}
+\entrymodifiers={++}
+\centerline{\xymatrix@!{
+&M \ar@{>->}[dl] \ar@{>->}[dr]\\
+M_{1} \ar@{>-->}[dr] & & M_{2} \ar@{>-->}[dl]\\
+&M_{3}
+}}%
+\endgroup
+\end{figure}
+
+From this definition, it is clear that, if we can prove that $\betared[*]$ satisfies the diamond property, then we have proved that $\betared[*]$ has the Church--Rosser property. The first lemma shows that, if a binary relation $\rightarrowtail$ on a set (such as $\beta$-re\-duc\-tion $\betared$ is on the set of lambda terms) satisfies the diamond property, then so too does its transitive closure $\rightarrowtail^{*}$. This is suggested by the diagram of Fig.~\ref{diamondchase} on page~\pageref{diamondchase}.
+
+\begin{figure}[btp]
+\caption[Transitive diamonds]{Transitive diamonds\\
+No matter how many $\rightarrowtail$ steps $\rightarrowtail^{*}$ might put $M_{1}$ and $M_{2}$ away from $M$, repeated application of the diamond property of $\rightarrowtail$ lets us show that its transitive closure $\rightarrowtail^{*}$ also satisfies the diamond property: there is always some $M_{3}$ such that both $M_{1} \rightarrowtail^{*} M_{3}$ and $M_{2} \rightarrowtail^{*} M_{3}$.%
+}
+\label{diamondchase}
+\myfloatalign
+\begingroup
+\SelectTips{eu}{10}
+%\entrymodifiers={++}
+% One step one way, two the other: we can still bring them together using the diamond property. Fits in a 4 by 4 grid.
+\centerline{\xymatrix@!{
+&M
+\ar@{>->}[dl] \ar@{>->}[dr]
+\ar@/_1pc/@<-1ex>@{>->}_>{*}[dl] \ar@/^1pc/@<1ex>@{>->}^>{*}[ddrr]\\
+M_{1} \ar@/_1pc/@<-1ex>@{>-->}[rrdd]_>{*} \ar@{>-->}[dr] & & \bullet \ar@{>->}[dr] \ar@{>-->}[dl]\\
+& \bullet \ar@{>-->}[dr] && M_{2} \ar@{>-->}[dl] \ar@/^1pc/@<1ex>@{>-->}^>{*}[dl]\\
+&&M_{3}
+}}%
+\endgroup
+\end{figure}
+
+This lemma is not quite what we need. Since $M \betared[*] M$~for all lambda terms~$M$, $\betared[*]$~is in fact the \emph{reflexive} transitive closure of~$\betared$. The solution to this mismatch is to define a reflexive binary relation on lambda terms similar to~$\betared$ such that many-step~$\beta$-re\-duc\-tion~($\betared[*]$) is this relation's transitive closure. Once we prove that this new relation has the diamond property, we have proven that its transitive closure~$\betared[*]$ has the Church--Rosser property.
+
+Once we have that many-step $\beta$-re\-duc\-tion $\betared[*]$ satisfies the diamond property, it becomes simple to prove that $\beta$-con\-vert\-ible terms can be $\beta$-re\-duced to a common term (the second property specified ): The result follows readily from the definition of $\betacon$.
 
 \subsubsection{Normal Forms}\label{untyped:nf}
-Now that we have defined lambda terms and $\beta$-re\-duc\-tion, we can give a normal form for lambda terms. This is important if we are to explain the impact of the Church--Rosser property. A lambda term is said to be in \vocab{normal form} if it cannot be further $\beta$-reduced, that is to say, the lambda term $M$ is in normal form if there is no $N$ such that $M \betared N$.
+Now that we have defined lambda terms and $\beta$-re\-duc\-tion, we can give a normal form for lambda terms. This is important if we are to explain the impact of the Church--Rosser theorem. A lambda term is said to be in \vocab{normal form} if it cannot be further $\beta$-reduced, that is to say, the lambda term $M$ is in normal form if there is no $N$ such that $M \betared N$.
 
 Not all terms have normal forms. The lambda term $(\lambda x.xx)(\lambda x.xx)$, sometimes called $\Omega$, has no normal form, since it reduces always and only to itself. Some terms do have normal forms, but it is possible to $\beta$-reduce the term an arbitrary number of times without reaching this form. What this means practically that it is important to select the right \vocab{reducible expression (redex)} to $\beta$-reduce, otherwise one might continue $\beta$-reducing without ever terminating in the normal form. It is easy to produce examples of such terms by throwing $\Omega$ into the mix: $(\lambda xy.y) \Omega z$ has as its normal form $z$, but of course one could repeatedly select $\Omega$ for reduction and thereby never realize this. Terms that \emph{always} reduce to normal form within a finite number of $\beta$-re\-duc\-tions, regardless of the reduction strategy employed, are called \vocab{strongly normalizing}.
 
-Now that the concepts of normal forms and strongly normalizing terms is clear, we can explicate the Church--Rosser property. Altogether, it means that, if a term has a normal form, then regardless of the reduction steps we use to reach that form, it will always be possible from anywhere along the way to reach the normal form: there's no way we can misstep and be kept from ever reaching the normal form short of intentionally, repeatedly making the wrong choice of expression to reduce. If the term is strongly normalizing, we can go one better and state that the reduction steps we use to reach its normal form are completely irrelevant, as all chains of reductions will eventually terminate in that normal form. The property also shows that the normal form is unique, for if $N_{1}$ and $N_{2}$ were two distinct normal forms of a given term, then they would have to share a common term $N_{3}$ to which they could both be $\beta$-reduced.
+Now that the concepts of normal forms and strongly normalizing terms is clear, we can explicate the Church--Rosser theorem. Altogether, it means that, if a term has a normal form, then regardless of the reduction steps we use to reach that form, it will always be possible from anywhere along the way to reach the normal form: there's no way we can misstep and be kept from ever reaching the normal form short of intentionally, repeatedly making the wrong choice of expression to reduce. If the term is strongly normalizing, we can go one better and state that the reduction steps we use to reach its normal form are completely irrelevant, as all chains of reductions will eventually terminate in that normal form. This also shows that the normal form is unique, for if $N_{1}$ and $N_{2}$ were two distinct normal forms of a given term, then they would have to share a common term $N_{3}$ to which they could both be $\beta$-reduced.
 
 \subsubsection{Recursion and $Y$}\label{untyped:y}
 The pure, untyped \lambdacalc is Turing complete. An important part of achieving this degree of expressive power is the ability to make recursive definitions using the \lambdacalc{}. The way to do so is surprisingly succinct. One common means is what is known as the \vocab{paradoxical combinator}, universally designated by $Y$. Here is its definition:
