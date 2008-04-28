@@ -1,10 +1,19 @@
 \myChapter{Conclusion}\label{functional:conclusion}
-$\langle$Summary text.$\rangle$
+This chapter introduced the functional language family. After we introduced the theory at its roots, we sketched the history of the functional family, from early predecessors such as \abbrev{LISP} and influential non-functional languages such as \abbrev{APL} to today's mature functional languages. Many approaches to compiling functional languages have been advanced, and we discussed some of them before delving into case studies of compilers for two different exemplars of the primary branches of the functional family.
 
 \begin{itemize}
-\item In \partandnameref{Chapter}{functional:theory}, \dots.
+\item In \partandnameref{Chapter}{functional:theory}, we revisited the concept of \asword{type} and explored some of its complexities. We then developed the \lambdacalc and introduced constants and types into its framework. When we discovered this prevented us from employing recursive definitions, we introduced a family of typed fixed point operators.
 
-\item In \partandnameref{Chapter}{functional:history}, \dots.
+\item In \partandnameref{Chapter}{functional:history}, we looked at the history of the functional family through the lens of its influential languages. Among the predecessors of today's functional languages, we discussed McCarthy's \abbrev{LISP,} Landin's Iswim, Iverson's \abbrev{APL} and Backus's \abbrev{FP}. We then turned to modern functional languages. After describing common defining features, we looked at the two primary branches of the functional family, the eager and the lazy languages. Eager languages, such as \abbrev{ML}, use what amounts to call-by-value as their reduction strategy. Lazy languages, such as those created by Turner and their successor of sorts, Haskell, implement what amounts call-by-name.
 
-\item In \partandnameref{Chapter}{functional:ghc} and \partandnameref{Chapter}{functional:ocaml}, \dots.
+\item In \partandnameref{Chapter}{functional:compiling}, we described in broad terms how functional languages are compiled. Functional languages are primarily a ``sugaring'' of the \lambdacalc{}, and by first desugaring them, we reduce them to a simple, core language that is only slightly more abstract than the \lambdacalc itself. From this point on, we can look at the process of compiling from two points of view.
+\begin{itemize}
+\item
+One is that the remainder of compiling consists in repeated transformation of the representation in order to encode control flow, environment management, and heap management. The languages of these transformations are conceptually dialects the \lambdacalc{}.
+
+\item
+The other is that the core language representation is compiled into instructions for an abstract machine of some variety, and it is this abstract machine that runs the program: the compiled representation, in some sense, encodes both the program and a virtual machine to run the program.
+\end{itemize}
+
+\item In \partandnameref{Chapter}{functional:ghc} and \partandnameref{Chapter}{functional:smlnj}, we studied how two functional languages are actually compiled. These provide concrete examples in contrast to the generalities of our discussion in \partandnameref{Chapter}{functional:compiling}.
 \end{itemize}
