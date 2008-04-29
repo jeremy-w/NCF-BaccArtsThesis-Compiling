@@ -1,12 +1,172 @@
 \myChapter{Compiling}\label{functional:compiling}
+\section{From Interpreters to Compilers}
+Higher-level imperative languages in a sense grew out of assembly language. They were designed with compilation in mind. Functional languages, however, have a history of interpretation. Lisp began solely as an interpreted language, and \abbrev{ML} programs were first run using an interpreter written in Lisp. It was not immediately clear how to compile such languages. The interpreters supplied a programming environment (for example, the interpreter might support both editing and debugging of code from within the interpreter) and were used interactively. The interpreter managed the runtime system, including in particular \vocab{garbage collection}, which freed space allocated to data that had become useless. Later, such interpreters were extended to support on-the-fly compilation of function definitions.
+
+When it comes to functional languages, the distinction between interpreter and compiler becomes blurry. Interpreters can perform compilation, and compilers for functional languages frequently provide an interactive interface in addition to simple compilation facilities. When a program written in a functional language is interpreted, the interpretation manages garbage collection, storage allocation, and other such issues. All this bookkeeping is the province of the \vocab{runtime system}, and it does not go away simply because one wants to compile a program instead of interpret it. In order to work, the compiled representation of a program written in a functional language must be coupled with a runtime system. It is a short step from providing each compiled representation with a runtime system to providing each with both a runtime system and its own, private interpreter. This code--runtime-system--interpreter package is self-sufficient: it is directly executable. Such a package is, in fact, what some compilers for functional languages produce.
+
+Other implementations offer the option of compiling a program to a bytecode representation for interpretation afterwards by a virtual machine. The same bytecode program can then be run on a variety of platforms, so long as its minimal platform\empause the virtual machine\empause is available to host it.
+
+\section{The Runtime System}
+The runtime system is an essential part of compiling functional languages. It provides a common set of functionality needed by all compiled programs. The two most critical services it provides are primitive operations and storage management. Primitive operations are what actual perform the computation specified by $\delta$-rules. They also enable programs to interface with their environment by providing access to functionality related to the operating system. Storage management is essential, since space is allocated as needed and must be reclaimed in order to prevent excessive memory use. The run time system might also handle threading, bytecode interpretation, and runtime linking of object code. Because the runtime system oversees primitive operations and memory management, it also plays an important part in profiling the runtime behavior of the compiled code.
+
+Every compiler for functional languages will contain a run time system of some sort. A runtime system provides several distinct, major services. Storage management can become quite involved; primitive operations are a necessary part of producing working code. Since each of these services can to some degree be dealt with independently of the others, the compiler's structure may not reflect a concept of a runtime system as such, but the basic services will nevertheless be in place and recognizable; they simply will not be grouped together.
+
+\section{The Problem}
+We have seen that functional languages are based on the \lambdacalc and provide the programmer with a variety of higher-level abstractions such as algebraic data types, pattern matching, and higher-order functions. These have few parallels in imperative languages, and they create new problems for compilation.
+
+New abstractions are not the only source of problems encountered when compiling functional languages. We compiled imperative languages by progressively lowering the level of abstraction of the program's representation till finally we were representing the program in machine instructions. If we try the same lowering process with a functional language, we run into a snag: instead of bottoming out in machine language, we bottom out in the \lambdacalc{}. Functional languages are based on a model of computation fundamentally different from the von~Neumann model at the root of the imperative languages. To compile a functional language, we must somehow model the \lambdacalc{}'s computation-through-reduction using the von~Neumann computer that is the target platform.
+
+We will return to these problems as we go through the phases of compilation.
+
+\section{The Front End}
+The problems confronted by the front end do not change when we move from imperative to functional languages. However, if we choose to implement the front end in the functional language itself, we can take advantage of the abstractions offered by functional languages in constructing the lexer and parser. If we instead implement generators for lexers and parsers using the functional language, it becomes a simple matter to integrate lexing and parsing into a compiler written in the language itself. Other programs written in the language then also have ready access to a lexer and parser. Perhaps this goes some way to explain why many compilers for functional languages are distributed along with both a lexer generator and parser generator written in the language of the compiler.\footnote{That this allows the compiler writer to avoid the complexities associated with defining and then using a foreign-function interface to programs produced using an imperative language could also be a motivating factor.}
+
+As you might imagine, semantic analysis takes on a new importance in languages where type inference is taken for granted and the programmer can create new data types. Type inference can be treated as a pass in itself. Type inference replaces type checking, since once the compiler has reconstructed a valid type for a term, the type has been checked. If the term cannot be assigned a valid type, type inference has failed: either the program is not well-typed, or the programmer must supply type annotations for some term that is valid but for which a type cannot be inferred.
+
+\section{Intermediate Representations}
+Compilers for functional languages employ some \IRs not used by imperative language compilers. Functional languages are on the whole a sugaring of the \lambdacalc{}, and so it is possible to represent a program written in a functional language using smaller and smaller subsets of the full language. Thus, source-to-source transformations, where code in the source language is rewritten in the source language in an altered form, play a more important role in functional languages than is common in imperative languages. Transformations into a core language are in fact sometimes used in definitions of functional languages in order to explain the behavior of more complex constructs.
+
+Just as programs represented in imperative languages are translated into \SSA form because this facilitates static analysis, optimization, and proof of a given optimization's correctness, it was popular around the 1980s to translate a functional language program into \vocab{continuation passing style (CPS)}. In \CPS{}, control flow and argument passing is made explicit. Every function is augmented with a further argument that serves as the \vocab{continuation}. The function is then called with another function that is to use the result of its computation as the continuation argument. Rather than returning the result \lstinline{x} of evaluating the function to a caller, the function instead invokes the continuation with \lstinline{x} as the continuation's argument. In compiling call-by-value languages, translation into \CPS has been proven to enable more transformations than are possible in the source language.
+
+However, since the translation to \CPS is ultimately reversed during code generation, recent compilers have moved to carefully performing some of the transformations developed for use with \CPS directly in the source representation. \CPS is still used locally for some optimizations in a process known as ``contification'' or local \CPS conversion. This can be used alongside \SSA to enable further optimizations during functional language compilation.
+
+Graph representations of the program also play a bigger part in some compilers. A large class of compilers build their back end around graph representations of the program; reduction is performed in terms of the graph. The development of such \vocab{graph reduction} machines played an important part in making lazy evaluation feasible, since they provide a ready way to conceive of substitution in reduction without copying. If all terms are represented by a collection of linked nodes, rather than copying the term to each location in order to substitute it, we instead make multiple links to the single original term. When one of the substituted terms is reduced, all terms immediately share the result: no reduction is performed more than once.
+
+Some compilers employ \emph{typed} intermediate languages. This allows them to use the additional information provided by types throughout compilation. Instead of simply performing type checking to ensure the program is valid and subsequently ignoring types, the type of terms becomes additional fodder for analysis and optimization.
+
+\section{The Middle End}
+Just as in imperative compilers, the middle end is where the most effort is expended. Optimization is the key to producing good code and a good compiler. (Naturally, different kinds of optimization will be required depending on your idea of good.) Compilers for functional languages are typically the subjects and results of research. Different compilers are frequently based around entirely different \IRs and back ends, so work on optimization for functional languages is much more balkanized than research on optimization for imperative languages. Optimizations described in the literature are generally described in terms of improvements of an existing compiler in the context of a particular language, set of intermediate representations, and back end. It is not always clear which parts of this work applies in general to functional language compilation, and which parts are inextricable from the particular context in which they were developed.
+
+While the particular optimizations that can be performed might differ from compiler to compiler, all compilers for functional languages confront a set of common problems due to the features that modern functional languages offer. These problems are partially addressed through enabling and performing specific kinds of optimizations and partially through design of the back end. They can also be addressed through extensions to the language itself that allow the programmer to provide further information to the compiler.
+
+Compiler-specific language extensions are not confined to functional language compilers, of course. An imperative example would be a C compiler adding support for an equivalent of the \lstinline[morekeywords=restrict]{restrict} keyword added by the C99 standard prior to the standard's publication. The \lstinline[morekeywords=restrict]{restrict} keyword is a type qualifier meant to be used with pointers. It is used to declare that the object pointed to by the pointer will be accessed only through the pointer. This shortcuts the need for the compiler to perform difficult alias analysis to determine whether this is the case by allowing the programmer to advise the compiler that this relationship between the pointer and the pointed to holds. More importantly, this allows the programmer to declare that this restricted relationship holds even when the compiler would be unable to infer the relationship through analysis, which enables previously impossible optimizations.
+
+Such extensions are not without peril. The \lstinline[morekeywords=restrict]{restrict} keyword also provides one more way for C programmers to shoot themselves in the foot. If an optimization relies on the fact that a pointer is declared with the \lstinline[morekeywords=restrict]{restrict} type qualifier, but the relationship indicated by the qualifier in fact does not hold, then optimization could introduce erroneous behavior into an otherwise correct program. The same difficulty is a matter of concern for other extensions that provide information relied on in optimization that cannot be verified independently through analysis; at the same time, an extension that does not also extend the potential for optimization would be redundant.
+
+\subsection{Common Problems}
+Whether the compiler chooses to extend the language or not, it still faces some common problems.
+\begin{itemize}
+\item
+First-class functions require the construction of closures. A lazy evaluation strategy requires the creation of even more closures.
+
+\item 
+The immutability required to preserve referential transparency can require significant amounts of copying. For example, sorting a list recursively produces a multitude of new lists. Lists can be expensive to construct and manipulate, but they are used extensively in functional programming, as are algebraic data types and pattern matching in general.
+
+\item
+Polymorphism is desirable, but it also requires that all arguments be treated identically regardless of their type: no matter whether an argument is an integer or a list, it has to fit in the same argument box.
+\end{itemize}
+
+\begin{lstlisting}[float,caption={Creating a closure},label={closure}]
+makeAdder n = addNto
+    where addNto m = n + m
+\end{lstlisting}
+
+\subsubsection{Closures and Suspensions}
+A \vocab{closure} is formed by taking a function definition and binding any free variables to their existing definition in the closest enclosing (generally lexical) environment. The code in Listing~\ref{closure}~(p.~\pageref{closure}) returns a closure that can be used to produce a function that always adds two to its argument:
+\begin{lstlisting}
+add2to = makeAdder 2
+\end{lstlisting}
+With this definition, evaluating \lstinline{map add2to [1, 2, 3]} results in \lstinline{[3, 4, 5]}. Note that the definition of the function \lstinline{addNto} uses a variable \lstinline{n} that is not passed to it. This variable is defined in the immediately enclosing environment of \lstinline{makeAdder}. When \lstinline{makeAdder 2} is evaluated, \lstinline{n} is bound to 2 and a closure of \lstinline{addNto} is returned wherein \lstinline{n} is bound to the value \lstinline{n} had when the closure was created. Evaluating \lstinline{makeAdder 3} results in a closure where \lstinline{n} is bound to 3. If there were no definition for the free variable \lstinline{n} in the function definition, it would be impossible to produce a closure and the definition would be in error. This would be the case if we attempted to define \lstinline{g x = x + y} in an environment without any binding for \lstinline{y}.
+
+A closure could at times be formed by partially evaluating the closure by directly substituting the definition, particularly in eagerly evaluated languages, but it is tricky to ensure this specialization of the function takes into account the already available definitions and preserves the semantics of evaluation of the unspecialized function. Instead, a closure is most often implemented as an unevaluated function together with its own environment of definitions. Only once all arguments have been provided to the function will evaluation actually occur. In this sense, a closure represents a frozen, or suspended, computation: a promise to perform some evaluation once all arguments are available to the function. Dealing with closures efficiently thus becomes an important part of enabling heavy use of higher-order functions in programs written in a functional language\empause and any functional language that encourages currying encourages frequent use of higher-order functions.
+
+Since lazy languages only evaluate a term when necessary, they must make extensive use of suspended computations and only force their evaluation as needed. Optimizing the implementation of such suspensions thus becomes an important part of optimizing a compiler for a lazy language. Indeed, a common optimization is to introduce \vocab[strictness analysis]{strictness analysis,} which attempts to eliminate the construction of suspensions that will perforce be evaluated in the course of evaluating the program. As an example, a request to display the result of a computation requires that the entire computation be carried out to produce the result. There is no question of some part of the result not being required, since the entire result is supposed to be output. Such a display function is strict in its argument.
+
+\subsubsection{Referential Transparency and Copies}
+The immutability required to preserve referential transparency can require significant amounts of copying. For example, sorting a list recursively produces a multitude of new lists.
+
+strictness not the answer here
+instead: deforestation; fusion
+and: update analysis
+
+lists an instance of algebraic data types; pattern matching: linear time pattern matching is slow, can do much better, can get quite sophisticated
+
+Mutable references reintroduce the complications of analysis that we encountered when discussing imperative languages.
+
+\subsubsection{Polymorphism and Boxes}
+polymorphism forces a single, standardized representation of all arguments, leads to boxing, can speed things up via unboxing
+
+
+\section{The Back End}
+stack machines particularly amenable to peephole optimization (Cardelli)
+somewhat like rewriting rules used with intermediate language for deforestation/short-cut fusion
+
+C as target language (``portable assembler''); small development teams, easy to deploy, low-level enough that it's okay (but not that great; witness ghc's ``Evil Mangler'' Perl script)
+
+\subsection{some common styles of abstract machines}
+\begin{itemize}
+\item SECD
+\item SKI
+\item lambda lifting, supercombinators, graph reduction
+\item G-machine
+\item spineless G-machine
+\item spineless tagless G-machine
+\item reintroducing tags
+\end{itemize}
+Do last three belong more in the section on Ghc, since spineless tagless G-machine was its abstract machine?
+
+\subsection{design space for abstract machines}
+(per Douence and Fradet) seen some examples; what's going on here?
+
+types of evaluation
+\begin{itemize}
+\item call-by-value: 
+\begin{itemize}
+\item eval--apply, 
+\item marks (push--enter), 
+\item stackless;
+\end{itemize}
+\item call-by-name: 
+\begin{itemize}
+\item push--enter, 
+\item marks + updatable marks, 
+\item eval--apply;
+\end{itemize} 
+\item graph building;
+\end{itemize}
+
+types of abstraction
+\begin{itemize}
+\item generic, 
+\item shared (links), 
+\item copied (vectors) and subtypes: 
+\begin{itemize}
+\item at function entry, 
+\item on closure build and open, and
+\item on closure build only but coupled with a local environment
+\end{itemize}
+\end{itemize}
+considerations for adapting call-by-name to call-by-need:
+\begin{itemize}
+\item sharing, 
+\item updates, 
+\item heap management (caller update, \emph{callee update}), 
+\item graph reduction
+\end{itemize}
+
+another what's going on: virtual machine versus abstract machine (see work by Ager for distinction), but we shall just call them all abstract machines (likely will migrate this comment entirely to bibliography)
 
 \section{Bibliographic Notes}
-example implementations:
-lisp and programming environments: layer
-cardelli
-appel
+\Citet{McCarthy:History:1978} describes the creation of the first Lisp interpreter. The first\abbrev{ML} interpreter was implemented in Lisp~\citep[see][footnote~5]{Gordon:From:2000}. By the start of the 1990s, Lisp offered a sophisticated programming environment~\citep{Layer:Lisp:1991}. \Citet{Cardelli:Compiling:1984} describes how an \abbrev{ML} compiler was developed based on the ``implementation folklore'' of various Lisps rather than using the style advocated by compiler textbooks directed towards imperative languages. The incremental, on-the-fly compilation used by Lisp systems and some interactive compilers for functional languages is also known as \vocab{just-in-time compilation} and has its own interesting history~\citep{Aycock:A-brief:2003}. Virtual machines are also an active topic of research in themselves~\citep{Shi:Virtual:2008} as well as as they relate to functional languages and abstract machines~\citep{Danvy:A-journey:2003,Ager:A-functional:2003,Ager:A-Functional:2003a,Ager:A-Functional:2004,Ager:From:2003}.
 
-douence/fradet for overall framework
+A brief history of \CPS is given by~\citet{Flanagan:The-essence:2004}. While they suggest the argument over whether compiling primarily through \CPS is worthwhile has been settled against \CPS, \citet{Kennedy:Compiling:2007} at least believes \CPS provides distinct benefits in simplicity compared to other, later intermediate representations. The best resource on \CPS{}, at least as of the early 1990s, is \textit{Compiling with Continuations}~\citep{Appel:Compiling:1992}. Speaking of intermediate representations, we should note that \SSA can actually be seen as functional programming~\citep{Appel:Compiling:1992}.
+
+The suspensions created to represent ``frozen'' computations during the compilation of lazy languages are also known as \vocab{thunks}~\citep{Ingerman:Thunks:1961}. Thunks can be used to simulate call-by-name within a call-by-value evaluation strategy~\citep{Hatcliff:Thunks:1997}. Strictness analysis, which can be used to avoid the creation of thunks, can be seen as a case of order of evaluation (or ``path'') analysis~\citep{Bloss:Path:1994}. Strictness optimizations can cause surprising, unwelcome behavior~\citep{Beemster:Strictness:1994}.
+
+deforestation via short cuts~\citep{Gill:A-short:1993}\empause peephole optimization for list operations; can be spotted using type inference~\citep{Chitil:Type:1999}; same problem of wanting to eliminate unnecessary construction of intermediate data structures is addressed more generally by stream fusion~\citep{Coutts:Stream:2007}.
+
+applying loop optimization to functional arrays~\citep{Anderson:Compilation:1990}
+
+unboxing~\citep{Peyton-Jones:Unboxed:1991,Thiemann:Unboxed:1995}
+
+call pattern specialization~\citep{Peyton-Jones:Call-pattern:2007}; pattern-matching requires some finesse~\citep{Le-Fessant:Optimizing:2001}
+%; pattern matching can become much more powerful~\citep{McBride:The-view:2004}%TODO: This is appropriate for the chapter on features, not here.
+
+push/enter versus eval/apply~\citep{Marlow:Making:2004}
+
+space leaks~\citep{Wadler:Fixing:1987} and black-holing~\citep{Jones:Tail:1992} for graph reducers; black-holing makes it impossible to back up in the event of an interrupt or other exception, requiring another solution~\citep{Reid:Putting:1999} if we wish to support interrupts while avoiding a known source of space leaks
+
+douence/fradet~\citep{Douence:A-systematic:1998} for overall framework
 abstract machines: cardelli, SECD, TIM, ABC, G, nu-G, STG
 
 optimizations: for SML/NJ, for GHC (putting the spine back, putting the tags back); more generally: strictness analysis, update analysis, copy elimination, unboxing, fusion, deforestation

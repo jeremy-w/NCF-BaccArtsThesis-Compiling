@@ -84,6 +84,13 @@ Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
 \newcommand{\Algol}[1][]{\spacedlowsmallcaps{ALGOL#1}\xspace}
 \newcommand{\Unix}{\spacedlowsmallcaps{UNIX}\xspace}
 
+\newcommand{\CPS}[1][short]{\ifthenelse{\equal {#1}{short}}{%then is short - the default
+         \spacedlowsmallcaps{CPS}\xspace%this suggests all \abbrev should be in small caps...
+     }{%else is long
+         continuation passing style\xspace%
+     }%end-if
+}%end-def
+
 % More complex macros
 % Two options for part-and-namerefs. First has problems if hyphenation interferes with the hyperref'd part and also creates too much emphasized text. Second emphasizes (via a link) only the part name.
 %\newcommand{\partandnameref}[2]{\hyperref[#2]{#1}~\ref{#2}, \nameref{#2}}
