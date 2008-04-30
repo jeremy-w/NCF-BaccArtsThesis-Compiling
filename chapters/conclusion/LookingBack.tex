@@ -1,11 +1,43 @@
 \myChapter{Looking Back}\label{conclusion:back}
-\section{Two Families against a Common Background}
-this is the actual survey part
-
 \section{Imperative and Functional Languages}
-this is reflection on how the two are related but different
+The models of computation that underlie both the imperative and functional families were developed around the same time, but the development of the von~Neumann machine set imperative languages on the path to ascendancy.
+
+At first, these machines could be programmed only by manipulation of their hardware. The development of software brought assembly language, the prototypical imperative language, to the fore. Even today, assembly language cannot be beat for the control over the underlying machine it brings, but this control comes at great cost: in programming time, and in portability. It takes a long time to write a substantial amount of assembly code, and the code is then tied to the platform it was written for.
+
+In the 1950s, Fortran brought imperative languages to a higher level of abstraction; later imperative languages brought more powerful abstractions. Still, early Fortran remains, though primitive, recognizably imperative. Within a decade, Lisp would be born. Lisp was an important predecessor for today's functional languages: Lisp made higher-order functions available, and so one faces similar problems compiling Lisp as compiling today's functional languages. But Lisp started as Lisp and continues as Lisp: there is no mistaking Lisp code for anything but Lisp code, and Lisp style is quite distinct from the style of modern functional programming.
+
+It was another decade before \ML made its debut in the 1970s. It started as an interpreted language without the concept of algebraic data types, which was borrowed later from another language. The lazy branch would not begin to bear fruit until the 1980s. Over the next two decades, the functional language family would grow into its modern form.
+
+In order to have any hope of displacing assembly as the dominant programming language, Fortran had to be fast, and it was designed from the outset with speed in mind. Lisp grew up with artificial intelligence and was adopted because it was very well-suited to programming in that domain. It competed on features and the power of its abstractions, not on speed. It pioneered garbage collection, but it took decades of research to get past the ``stop the world'' effect that scanning the heap and scavenging useful data can cause if done without sufficient sophistication. Since many application domains for programming languages demand speed, Lisp was only ever a marginal language outside symbolic processing. The imperative family would continue to look on garbage collection as an expensive and unneeded luxury until languages developed for object-oriented programming showed that it can bring new levels of productivity: computers are fast enough that writing, not executing, the code becomes the bottleneck in developing software.
+
+\ML grew out of work on a theorem prover, and it too was developed (using Lisp, no less) to serve its application domain. Its type system could provide guarantees for theorem proving that a weaker system could not. Significant work was required to make both Lisp and \ML run decently fast on ``stock hardware.'' Partly for this reason, many persons researched alternative computing architectures meant to support such languages directly, just as the von~Neumann architecture naturally supports programs written in imperative languages. But stock hardware eventually won out, and it was only in the 1990s that optimizations were discovered to make lazy functional languages at all competitive with compiled imperative languages on stock hardware.
+
+The bottom line, for all programming languages, is the machine they must eventually run on. 
+
+problems of imp prog paradigm:
+still not abstract enough?
+backus's criticisms still valid: word-at-a-time, von~Neumann bottleneck
+
+problems for fctl prog paradigm:
+unusual
+avoid backus's criticisms of anarchy/too much freedom through typing
 
 \section{Imperative and Functional Compilers}
 this is reflection on the focuses of compilers for the two languages and what their problems are
 
+problems for compiling imp:
+pointers
+data flow
+do not handle recursion well
+not so parallel-friendly
+
+problems for compiling func:
+closures
+model of evaluation
+data structures
+purity
+
+work on both continues
+
 \section{Bibliographic Notes}
+Algebraic data types were borrowed by \ML from Burstall's Hope.
