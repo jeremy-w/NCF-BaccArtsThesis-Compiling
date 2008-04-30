@@ -12,29 +12,33 @@ In order to have any hope of displacing assembly as the dominant programming lan
 
 \ML grew out of work on a theorem prover, and it too was developed (using Lisp, no less) to serve its application domain. Its type system could provide guarantees for theorem proving that a weaker system could not. Significant work was required to make both Lisp and \ML run decently fast on ``stock hardware.'' Partly for this reason, many persons researched alternative computing architectures meant to support such languages directly, just as the von~Neumann architecture naturally supports programs written in imperative languages. But stock hardware eventually won out, and it was only in the 1990s that optimizations were discovered to make lazy functional languages at all competitive with compiled imperative languages on stock hardware.
 
-The bottom line, for all programming languages, is the machine they must eventually run on. 
+The bottom line, for all programming languages, is the machine they must eventually run on. This has been a blessing for imperative languages (at least when uniprocessors were the standard) and a curse for functional. Functional languages also suffer from requiring of the programmer a fundamentally different style of programming than other kinds of languages.
 
-problems of imp prog paradigm:
-still not abstract enough?
-backus's criticisms still valid: word-at-a-time, von~Neumann bottleneck
+Backus's criticisms of imperative languages, leveled during his Turing award lecture, continue to be valid. Imperative programming is still not high-level enough\empause to use Backus's phrase, it still amounts to ``word-at-a-time programming''\empause and many of the dominant imperative languages continue to require programmers to supply redundant type annotations. This is ameliorated to some degree by the rise of dynamically-typed scripting languages, some of which (Groovy, Beanshell, Pnuts, Jython, and JRuby, for example) are implemented on top of the very platform designed to host the more heavy-weight Java, but dynamic typing gives up the benefits of static typing offered by functional languages.
 
-problems for fctl prog paradigm:
-unusual
-avoid backus's criticisms of anarchy/too much freedom through typing
+Functional programming languages stand in stark contrast to imperative languages. The contrast might be too severe: their strangeness might put off more programmers than it attracts. It requires a significant investment of time and effort to transition from imperative to functional programming, especially since many of the techniques learnt in an imperative setting cannot be transferred directly to the functional, including even common data structures.
+
+Today's functional programming languages have finally begun to overcome the slowness inherent in simulating $\beta$-re\-duc\-tion on a von~Neumann machine, but Backus's primary criticism of them was not based on their being slow, but on their not being ``history sensitive.'' They seem to have no way to store information from one run of the program to the next; the lack of state cripples their usefulness. Backus rightly pointed out that this has been a major source of trouble; he gave the example of pure Lisp becoming wrapped in layers upon layers of von~Neumann complexity.
+
+Today's functional languages have tried to solve the problem of state either by limiting its use and making it explicit, in \ML via reference cells and in lazy languages through either monads or streams. The \ML concept of reference cells is virtually identical to the concept of a variable in imperative languages. We will not say anything of monads here. Streams can be used in lazy languages to represent interaction with the world outside: the program is provided with an infinite stream of responses as input and produces an infinite stream of requests. Since the language is lazy, it is possible to avoid evaluating any input responses until a request has been made, such as to open a file. This often leads to ``double-barreled'' continuation passing style, where one barrel is used if the request succeeds and the other is used if the request garners an error response. These solutions avoid layers of von~Neumann complexity, but at the cost of a different variety of obtuseness.
 
 \subsection*{Imperative and Functional Compilers}
-this is reflection on the focuses of compilers for the two languages and what their problems are
+Imperative and functional compilers have no trouble with lexing and parsing. It's in the middle and back ends that problems present themselves. Here, they must go head to head with the problems inherent in their languages.
 
-problems for compiling imp:
-pointers
-data flow
-do not handle recursion well
-not so parallel-friendly
+Imperative languages make extensive use of pointers and other aliases and frequently reassign names (variables) to different values. This complicates analysis of data flow in the program and limits the optimizations that can be performed. Imperative compilers have historically had difficulty handling recursion, as it is difficult to tell when a given recursive call can reuse the same stack space rather than requiring allocation of a new stack frame. Recursive calls that pass all needed information to the function itself for the next call do not require allocation of a new stack frame, as the return value will have been computed by the time the recursion bottoms out. This kind of recursion is known as \vocab{tail recursion}. Listing~\ref{tailrecursion} on page~\pageref{tailrecursion} gives a common example of this: a version of the factorial function that makes use of an accumulator argument to store the in-progress computation of the final value. The function \lstinline{fac} serves to hide this accumulator function from the user; it simply calls the actual worker function with its argument and the initial value of the accumulator.
 
-problems for compiling func:
-closures
-computational model mismatch
-data structures
-purity
+\begin{lstlisting}[float,caption={A tail-recursive factorial function},label={tailrecursion}]
+fac n = fac' n 1
+    where fac' 1 accu = accu
+          fac' n accu = fac' (n - 1) (n*accu)
+\end{lstlisting}
 
-work on both continues
+Imperative languages also have difficulty dealing with concurrency and parallelism. It is here that the von~Neumann bottleneck becomes most apparent. The reliance programs written in imperative languages have on constant access to a common store leads, in a concurrent setting, to problems with too many threads needing access to the same part of the store. Locking mechanisms can keep this model workable, but they require a significant amount of trouble on the programmer's part.
+
+Functional languages have their own problems. The most obvious ones boil down to the mismatch between their computational model and that of the machine their programs must run on. It is hard to carry out reduction efficiently. The necessity of closures leads to a significant amount of overhead for running programs and a significant amount of added complexity in the implementation of compilers for functional languages.
+
+Functional programmers' extensive use of lists and similar data structures can also lead to insufferably slow code without optimization. Either the programmer must be very careful and aware of the code that will be produced by the compiler for a given function, or the compiler must perform clever optimizations. Lazy languages only complicate this with their unpredictable evaluation order. Slight differences in the way a function is written can lead to completely different time and space complexities. Lazy languages also require the development of strictness analyses and associated optimizations.
+
+Purity can in fact be considered a burden from the compiler's point of view. Referential transparency simplifies analysis and transformation, but it also necessitates a new class of optimizations. Update analysis attempts to discover when a given reference will never be used and reuse its associated data structure. Operations must be implemented such that the greatest amount of each data structure possible is shared and reused, lest space be wasted. For lazy languages, a new class of problems, space leaks, rears its ugly head, surprising programmers and leading to \foreign{ad hoc} analyses and optimizations meant to squash some of the most egregious examples.
+
+Needless to say, work on compiling both functional and imperative languages continues.

@@ -31,17 +31,4 @@ This last step is the trickiest and most amazing part of compiling functional la
 \subsubsection*{The Neverending Story}%or, The Tail: A Pre-Story
 The conclusion of this thesis is about a story that has yet to be written. Or perhaps it would be more exact to see, that we are writing now. For the last part of this thesis is about what is to become of our two families. In it, we will put our two families side by side. We have seen where they have been, and some of where they are now. The final question is one you can help answer: what are they to become?
 
-%redo automark:
-\automark[section]{chapter}
-% REPEATED FROM classicthesis.sty
-% required to get spacedlowsmallcaps section headers
-    \clearscrheadings
-    \setheadsepline{0pt}
-    \ifthenelse{\boolean{nochapters}}%
-        {\relax}%
-        {\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{}}}
-    \renewcommand{\sectionmark}[1]{\markright{\thesection\ \spacedlowsmallcaps{#1}}}
-    \lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
-    \rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
-    \renewcommand{\headfont}{\small}  
-% END REPETITION
+\fixmarks

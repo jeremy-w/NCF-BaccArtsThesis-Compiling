@@ -1,12 +1,5 @@
 \partlevelChapter{Epilogue}\label{epilogue:epilogue}
-We have come to the end. This final part reflects on what you have just read and offers some thoughts on what you might expect to see in the future.
-
-\begin{description}
-\item[\nameref{conclusion:back}] surveys the body of this thesis and looks at the imperative and functional families side by side.
-
-\item[\nameref{conclusion:forward}] describes some new developments in the two families today and speculates on where these developments might lead us tomorrow.
-
-\end{description}
+The body of this work is through. This epilogue reflects on what you have just read about the functional and imperative families and offers some thoughts on future developments.
 
 % Input major sections:
 \input{chapters/epilogue/LookingBack}
@@ -14,30 +7,17 @@ We have come to the end. This final part reflects on what you have just read and
 \input{chapters/epilogue/LookingForward}
 
 \section*{Suggestions for Further Research}
-Where should people go if they want to know more? What avenues haven't we explored? What avenues have we only recently discovered? What's next?
+This thesis touched on a wide variety of subjects, from computer architecture to formal language theory and automata, parsing, optimizations, imperative and functional languages, the \lambdacalc and type theory. Each of these subjects has already had much said about it. References to related work have been given in the bibliographic notes at the end of each chapter.
 
-\section*{Conclusion}\label{conclusion:conclusion}
+If paradigms have captured your fancy, you might want to investigate a paradigm we did not have time to explore, logic programming. This paradigm is exemplified by the language Prolog. Work is ongoing to make constraint programming, an offshoot of logic programming, a viable paradigm. We mentioned attempts to blend functional and imperative features in a single language; there have also been attempts to create so-called functional logic languages, such as Curry.
+
+Work to date on virtual machines for functional languages has approached them from a formal point of view. There is a significant body of literature treating virtual machines in themselves that explores optimizing and improving them. Applying this literature to the virtual machines used with functional languages could perhaps yield interesting results.
 
 \section*{Bibliographic Notes}
-Algebraic data types were borrowed by \ML from Burstall's Hope.
+Algebraic data types were borrowed by \ML from Burstall's Hope~\citep{Burstall:HOPE:1980}. We referred frequently to Backus's influential 1978 Turing award lecture~\citep{Backus:Can-programming:1978}.
 
-use in industry: OCaml funded by, Haskell history, Wadler's and Appel's lists
+Functional languages have seen significant use in industry. Development of Objective Caml is funded in part by a consortium including Intel, Microsoft, Jane Street Capital~\citep{Minsky:Caml:2008}, and LexiFi; the last two companies are involved in trading and finance. \Citet{Hudak:A-history:2007} give a list of companies using Haskell along with descriptions of how they use the language in addition to examples of the language's impact in higher education. Wadler\footnote{``Functional Programming in the Real World,'' \url{http://homepages.inf.ed.ac.uk/wadler/realworld/}.} maintains an extensive list of applications of functional programming. Appel\footnote{``Implementation work using \ML{},'' \url{http://www.cs.princeton.edu/~appel/smlnj/projects.html}} keeps up a smaller list of implementation work done using \ML{}. Wadler~\citep{Wadler:Why-no-one-uses:1998} provides an insightful analysis of why functional languages are not used more.
 
-erik meijer: LINQ and confessions
+Observational type theory~\citep{Altenkirch:Observational:2007} is an interesting and powerful idea, while dependent types are powerful enough to express a variety of concepts that must otherwise be built into a language or done without~\citep{Altenkirch:Why-Dependent:2005,McKinna:Why-dependent:2006}. Meijer has worked to introduce concepts from functional programming into the imperative programming world, and he provides an excellent overview~\citep{Meijer:Confessions:2007} of this work.
 
-
-
-%redo automark:
-\automark[section]{chapter}
-% REPEATED FROM classicthesis.sty
-% required to get spacedlowsmallcaps section headers
-    \clearscrheadings
-    \setheadsepline{0pt}
-    \ifthenelse{\boolean{nochapters}}%
-        {\relax}%
-        {\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{}}}
-    \renewcommand{\sectionmark}[1]{\markright{\thesection\ \spacedlowsmallcaps{#1}}}
-    \lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
-    \rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
-    \renewcommand{\headfont}{\small}  
-% END REPETITION
+\fixmarks
