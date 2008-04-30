@@ -19,6 +19,9 @@
 \newcommand{\forcemark}[1]{\manualmark\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
 \newcommand{\anchorme}{\refstepcounter{dummy}}%\typeout{dummy = \thedummy}}
 % If we could precede all paragraph and subsubsection calls with \anchorme, they might actually go to the proper page instead of that of the closest preceding figure, table, or (sub)section. Or does just labeling them work? We'll have to check later.
+\newcommand{\partlevelChapter}[1]{\forcemark{#1}\anchorme%
+\addcontentsline{toc}{part}{\texorpdfstring{\color{Black}\spacedlowsmallcaps{#1}}{#1}}%
+\chapter*{#1}}
 
 % Semantic markup
 \newcommand{\code}[1]{\text{\small\ttfamily #1}} %the variable \code{x}

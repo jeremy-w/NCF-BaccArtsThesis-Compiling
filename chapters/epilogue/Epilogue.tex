@@ -1,0 +1,43 @@
+\partlevelChapter{Epilogue}\label{epilogue:epilogue}
+We have come to the end. This final part reflects on what you have just read and offers some thoughts on what you might expect to see in the future.
+
+\begin{description}
+\item[\nameref{conclusion:back}] surveys the body of this thesis and looks at the imperative and functional families side by side.
+
+\item[\nameref{conclusion:forward}] describes some new developments in the two families today and speculates on where these developments might lead us tomorrow.
+
+\end{description}
+
+% Input major sections:
+\input{chapters/epilogue/LookingBack}
+
+\input{chapters/epilogue/LookingForward}
+
+\section*{Suggestions for Further Research}
+Where should people go if they want to know more? What avenues haven't we explored? What avenues have we only recently discovered? What's next?
+
+\section*{Conclusion}\label{conclusion:conclusion}
+
+\section*{Bibliographic Notes}
+Algebraic data types were borrowed by \ML from Burstall's Hope.
+
+use in industry: OCaml funded by, Haskell history, Wadler's and Appel's lists
+
+erik meijer: LINQ and confessions
+
+
+
+%redo automark:
+\automark[section]{chapter}
+% REPEATED FROM classicthesis.sty
+% required to get spacedlowsmallcaps section headers
+    \clearscrheadings
+    \setheadsepline{0pt}
+    \ifthenelse{\boolean{nochapters}}%
+        {\relax}%
+        {\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{}}}
+    \renewcommand{\sectionmark}[1]{\markright{\thesection\ \spacedlowsmallcaps{#1}}}
+    \lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
+    \rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
+    \renewcommand{\headfont}{\small}  
+% END REPETITION
