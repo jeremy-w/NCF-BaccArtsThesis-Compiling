@@ -1,0 +1,19 @@
+\myChapter{Case Studies}\label{casestudies}
+The discussion of the previous chapter was limited to generalities. We now turn to two specific implementations of functional compilation. The Glasgow Haskell compiler is an actively developed, mature compiler for the lazy functional language Haskell. The Standard \ML of New Jersey compiler is a stable, mature compiler for the eager functional language Standard \ML{}. Both compilers implement numerous extensions to their base language and provide a variety of additional tools and libraries, many of which are used in developing the compilers themselves.
+
+Compilers are very complex programs made up of a number of interacting, complex parts. We make no pretense of describing the compilers \foreign{in toto.} Our study is guided by two questions:
+\begin{itemize}
+\item
+How do these compilers use the fact that they are compilers for functional languages to their advantage?
+
+\item
+How do they solve the problems functional languages pose for compilation?
+\end{itemize}
+
+Answering these questions entails looking at specific optimizations enabled by compiling functional languages and optimizations required to efficiently compile functional languages. All optimizations are carried out using specific intermediate representations, so we will describe the intermediate representations used in these compilers. In the course of discussing solutions to problems introduced by functional languages, we will also briefly discuss the two compilers' implementations of garbage collection and pattern matching. We will also look more closely at how the compilers transform the source functional program into something executable in the target, von~Neumann environment.
+
+\input{chapters/functional/Ghc}
+
+\input{chapters/functional/SmlNj}
+
+\section{Bibliographic Notes}
