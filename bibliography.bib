@@ -1,10 +1,205 @@
 
-%% Created for jeremy at 2008-05-01 03:40:57 -0400 
+%% Created for jeremy at 2008-05-01 05:05:41 -0400 
 
 
 %% Saved with string encoding Western (ASCII) 
 
 
+
+@inproceedings{George:A-Portable:1994,
+	Address = {London, UK},
+	Author = {Lal George and Florent Guillame and John H. Reppy},
+	Booktitle = {CC '94: Proceedings of the 5th International Conference on Compiler Construction},
+	Date-Added = {2008-05-01 04:56:45 -0400},
+	Date-Modified = {2008-05-01 04:56:46 -0400},
+	Isbn = {3-540-57877-3},
+	Pages = {83--97},
+	Publisher = {Springer-Verlag},
+	Title = {A Portable and Optimizing Back End for the SML/NJ Compiler},
+	Year = {1994},
+	Abstract = {There are two major goals that must be addressed in a portable back end: a good sequence of instructions must be selected making full use of the capabilities of the machine, and it must be possible to orchestrate target-specific optimizations. A key to the first problem is the language MLRISC, intended in part, to represent the simplest and most basic operations implementable in hardware. The importance of MLRISC is that it provides a common representation for expressing the instruction set of any hardware platform. Bottom-up tree pattern matching with dynamic programming, expressed using succinct and clear specifications of the target instruction set, is used to generate target machine code from an MLRISC program. Target-specific optimizations are performed by parameterizing off-the-shelf optimization modules with concepts common across architectures. The specification of a variety of architectures, and the ability to mix and match sophisticated optimization algorithms are shown. The resulting back end is independent of the intermediate language used in SML/NJ, and could in principle be used in a compiler for a source language quite different from SML. We argue that porting the compiler to a new architecture requires substantially less effort than the existing abstract machine approach, and report significant gains from preliminary architecture description driven optimizations.},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEHEuLi8uLi9QYXBlcnMvR2VvcmdlL0dlb3JnZS1HdWlsbGFtZS1SZXBweSAtIEEgUG9ydGFibGUgYW5kIE9wdGltaXppbmcgQmFjayBFbmQgZm9yIHRoZSBTTUwtTkogQ29tcGlsZXIgKDE5OTQpLnBkZtIbDxwdV05TLmRhdGFPEQJqAAAAAAJqAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA4hrUfR2VvcmdlLUd1aWxsYW1lLVJlcHAjMzg4NzJBLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADiHKsQ+/IYAAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABkdlb3JnZQAQAAgAAME0fl0AAAARAAgAAMQ/NMYAAAABABAAOIa1AC2RPwADR6wAAGvYAAIAP09kaW46VXNlcnM6amVyZW15OlBhcGVyczpHZW9yZ2U6R2VvcmdlLUd1aWxsYW1lLVJlcHAjMzg4NzJBLnBkZgAADgC8AF0ARwBlAG8AcgBnAGUALQBHAHUAaQBsAGwAYQBtAGUALQBSAGUAcABwAHkAIAAtACAAQQAgAFAAbwByAHQAYQBiAGwAZQAgAGEAbgBkACAATwBwAHQAaQBtAGkAegBpAG4AZwAgAEIAYQBjAGsAIABFAG4AZAAgAGYAbwByACAAdABoAGUAIABTAE0ATAAtAE4ASgAgAEMAbwBtAHAAaQBsAGUAcgAgACgAMQA5ADkANAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAHhVc2Vycy9qZXJlbXkvUGFwZXJzL0dlb3JnZS9HZW9yZ2UtR3VpbGxhbWUtUmVwcHkgLSBBIFBvcnRhYmxlIGFuZCBPcHRpbWl6aW5nIEJhY2sgRW5kIGZvciB0aGUgU01MLU5KIENvbXBpbGVyICgxOTk0KS5wZGYAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoBHgEjASsDmQObA6ADqQO0A7gDxgPNA9YD2wPeAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA+s=}}
+
+@article{Shao:Implementing:1999,
+	Address = {New York, NY, USA},
+	Author = {Zhong Shao and Christopher League and Stefan Monnier},
+	Date-Added = {2008-05-01 04:56:45 -0400},
+	Date-Modified = {2008-05-01 04:56:46 -0400},
+	Doi = {http://doi.acm.org/10.1145/291251.289460},
+	Issn = {0362-1340},
+	Journal = {SIGPLAN Not.},
+	Number = {1},
+	Pages = {313--323},
+	Publisher = {ACM},
+	Title = {Implementing typed intermediate languages},
+	Volume = {34},
+	Year = {1999},
+	Abstract = {Recent advances in compiler technology have demonstrated the benefits of using strongly typed intermediate languages to compile richly typed source languages (e.g., ML). A type-preserving compiler can use types to guide advanced optimizations and to help generate provably secure mobile code. Types, unfortunately, are very hard to represent and manipulate efficiently; a naive implementation can easily add exponential overhead to the compilation and execution of a program. This paper describes our experience with implementing the FLINT typed intermediate language in the SML/NJ production compiler. We observe that a type-preserving compiler will not scale to handle large types unless all of its type-preserving stages preserve the asymptotic time and space usage in representing and manipulating types. We present a series of novel techniques for achieving this property and give empirical evidence of their effectiveness.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/291251.289460},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFwuLi8uLi9QYXBlcnMvU2hhby9TaGFvLUxlYWd1ZS1Nb25uaWVyIC0gSW1wbGVtZW50aW5nIHR5cGVkIGludGVybWVkaWF0ZSBsYW5ndWFnZXMgKDE5OTkpLnBkZtIbDxwdV05TLmRhdGFPEQIsAAAAAAIsAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAtlG0fU2hhby1MZWFndWUtTW9ubmllciAjMzg4NzQ4LnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADiHSMQ+/cBQREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABFNoYW8AEAAIAADBNH5dAAAAEQAIAADEPzYAAAAAAQAQAC2UbQAtkT8AA0esAABr2AACAD1PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6U2hhbzpTaGFvLUxlYWd1ZS1Nb25uaWVyICMzODg3NDgucGRmAAAOAJYASgBTAGgAYQBvAC0ATABlAGEAZwB1AGUALQBNAG8AbgBuAGkAZQByACAALQAgAEkAbQBwAGwAZQBtAGUAbgB0AGkAbgBnACAAdAB5AHAAZQBkACAAaQBuAHQAZQByAG0AZQBkAGkAYQB0AGUAIABsAGEAbgBnAHUAYQBnAGUAcwAgACgAMQA5ADkAOQApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGNVc2Vycy9qZXJlbXkvUGFwZXJzL1NoYW8vU2hhby1MZWFndWUtTW9ubmllciAtIEltcGxlbWVudGluZyB0eXBlZCBpbnRlcm1lZGlhdGUgbGFuZ3VhZ2VzICgxOTk5KS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAQkBDgEWA0YDSANNA1YDYQNlA3MDegODA4gDiwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAOY}}
+
+@techreport{League:Formal:1998,
+	Address = {New Haven, Conn., USA},
+	Author = {Christopher League and Zhong Shao},
+	Date-Added = {2008-05-01 04:35:29 -0400},
+	Date-Modified = {2008-05-01 04:41:06 -0400},
+	Institution = {Yale University},
+	Month = {May},
+	Number = {Yale-CS-TR 1171},
+	Title = {Formal Semantics of the FLINT Intermediate Language},
+	Type = {Technical Report},
+	Url = {http://flint.cs.yale.edu/flint/publications/formal98.html},
+	Year = {1998},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGAuLi8uLi9QYXBlcnMvTGVhZ3VlL0xlYWd1ZS1TaGFvIC0gRm9ybWFsIFNlbWFudGljcyBvZiB0aGUgRkxJTlQgSW50ZXJtZWRpYXRlIExhbmd1YWdlICgxOTk4KS5wZGbSGw8cHVdOUy5kYXRhTxECOAAAAAACOAACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOIbjH0xlYWd1ZS1TaGFvIC0gRm9ybWFsIzM4ODZCQy5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4hrzEPvjzAAAAAAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAZMZWFndWUAEAAIAADBNH5dAAAAEQAIAADEPzEzAAAAAQAQADiG4wAtkT8AA0esAABr2AACAD9PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6TGVhZ3VlOkxlYWd1ZS1TaGFvIC0gRm9ybWFsIzM4ODZCQy5wZGYAAA4AmgBMAEwAZQBhAGcAdQBlAC0AUwBoAGEAbwAgAC0AIABGAG8AcgBtAGEAbAAgAFMAZQBtAGEAbgB0AGkAYwBzACAAbwBmACAAdABoAGUAIABGAEwASQBOAFQAIABJAG4AdABlAHIAbQBlAGQAaQBhAHQAZQAgAEwAYQBuAGcAdQBhAGcAZQAgACgAMQA5ADkAOAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGdVc2Vycy9qZXJlbXkvUGFwZXJzL0xlYWd1ZS9MZWFndWUtU2hhbyAtIEZvcm1hbCBTZW1hbnRpY3Mgb2YgdGhlIEZMSU5UIEludGVybWVkaWF0ZSBMYW5ndWFnZSAoMTk5OCkucGRmAAATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgENARIBGgNWA1gDXQNmA3EDdQODA4oDkwOYA5sAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADqA==}}
+
+@article{George:Iterated:1996,
+	Address = {New York, NY, USA},
+	Author = {Lal George and Andrew W. Appel},
+	Date-Added = {2008-05-01 04:34:03 -0400},
+	Date-Modified = {2008-05-01 04:34:04 -0400},
+	Doi = {http://doi.acm.org/10.1145/229542.229546},
+	Issn = {0164-0925},
+	Journal = {ACM Trans. Program. Lang. Syst.},
+	Number = {3},
+	Pages = {300--324},
+	Publisher = {ACM},
+	Title = {Iterated register coalescing},
+	Volume = {18},
+	Year = {1996},
+	Abstract = {An important function of any register allocator is to target registers so as to eliminate copy instructions. Graph-coloring register allocation is an elegant approach to this problem. If the source and destination of a move instruction do not interfere, then their nodes can be coalesced in the interference graph. Chaitin's coalescing heuristic could make a graph uncolorable (i.e., introduce spills); Briggs et al. demonstrated a conservative coalescing heuristic that preserves colorability. But Briggs's algorithm is too conservative and leaves too many move instructions in our programs. We show how to interleave coloring reductions with Briggs's coalescing heuristic, leading to an algorithm that is safe but much more aggressive.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/229542.229546},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEEouLi8uLi9QYXBlcnMvR2VvcmdlL0dlb3JnZS1BcHBlbCAtIEl0ZXJhdGVkIHJlZ2lzdGVyIGNvYWxlc2NpbmcgKDE5OTYpLnBkZtIbDxwdV05TLmRhdGFPEQH2AAAAAAH2AAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAA4hrUfR2VvcmdlLUFwcGVsIC0gSXRlcmEjMzg4NjkyLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADiGksQ+92VQREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABkdlb3JnZQAQAAgAAME0fl0AAAARAAgAAMQ/L6UAAAABABAAOIa1AC2RPwADR6wAAGvYAAIAP09kaW46VXNlcnM6amVyZW15OlBhcGVyczpHZW9yZ2U6R2VvcmdlLUFwcGVsIC0gSXRlcmEjMzg4NjkyLnBkZgAADgBuADYARwBlAG8AcgBnAGUALQBBAHAAcABlAGwAIAAtACAASQB0AGUAcgBhAHQAZQBkACAAcgBlAGcAaQBzAHQAZQByACAAYwBvAGEAbABlAHMAYwBpAG4AZwAgACgAMQA5ADkANgApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFFVc2Vycy9qZXJlbXkvUGFwZXJzL0dlb3JnZS9HZW9yZ2UtQXBwZWwgLSBJdGVyYXRlZCByZWdpc3RlciBjb2FsZXNjaW5nICgxOTk2KS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAPcA/AEEAv4DAAMFAw4DGQMdAysDMgM7A0ADQwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANQ}}
+
+@article{Shao:Efficient:2000,
+	Address = {New York, NY, USA},
+	Author = {Zhong Shao and Andrew W. Appel},
+	Date-Added = {2008-05-01 04:34:03 -0400},
+	Date-Modified = {2008-05-01 04:34:04 -0400},
+	Doi = {http://doi.acm.org/10.1145/345099.345125},
+	Issn = {0164-0925},
+	Journal = {ACM Trans. Program. Lang. Syst.},
+	Number = {1},
+	Pages = {129--161},
+	Publisher = {ACM},
+	Title = {Efficient and safe-for-space closure conversion},
+	Volume = {22},
+	Year = {2000},
+	Abstract = {Modern compilers often implement function calls (or returns) in two steps: first, a ``closure'' environment is properly installed to provide access for free variables in the target program fragment; second, the control is transferred to the target by a ``jump with arguments (for results).'' Closure conversion---which decides where and how to represent closures at runtime---is a crucial step in the compilation of functional languages. This paper presents a new algorithm that exploits the use of compile-time control and data-flow information to optimize funtion calls. By extensive closure sharing and allocation by 36% and memory fetches for local and global variables by 43%; and improves the already efficient code generated by an earlier version of the Standard ML of New Jersey compiler by about 17% on a DECstation 5000. Moreover, unlike most other approaches, our new closure-allocation scheme the strong safe-for-space-complexity rule, thus achieving good asymptotic space usage.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/345099.345125},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFkuLi8uLi9QYXBlcnMvU2hhby9TaGFvLUFwcGVsIC0gRWZmaWNpZW50IGFuZCBzYWZlLWZvci1zcGFjZSBjbG9zdXJlIGNvbnZlcnNpb24gKDIwMDApLnBkZtIbDxwdV05TLmRhdGFPEQIiAAAAAAIiAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAtlG0fU2hhby1BcHBlbCAtIEVmZmljaWUjMzg4NjgzLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADiGg8Q+9y5QREYgAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABFNoYW8AEAAIAADBNH5dAAAAEQAIAADEPy9uAAAAAQAQAC2UbQAtkT8AA0esAABr2AACAD1PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6U2hhbzpTaGFvLUFwcGVsIC0gRWZmaWNpZSMzODg2ODMucGRmAAAOAJAARwBTAGgAYQBvAC0AQQBwAHAAZQBsACAALQAgAEUAZgBmAGkAYwBpAGUAbgB0ACAAYQBuAGQAIABzAGEAZgBlAC0AZgBvAHIALQBzAHAAYQBjAGUAIABjAGwAbwBzAHUAcgBlACAAYwBvAG4AdgBlAHIAcwBpAG8AbgAgACgAMgAwADAAMAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAGBVc2Vycy9qZXJlbXkvUGFwZXJzL1NoYW8vU2hhby1BcHBlbCAtIEVmZmljaWVudCBhbmQgc2FmZS1mb3Itc3BhY2UgY2xvc3VyZSBjb252ZXJzaW9uICgyMDAwKS5wZGYAEwABLwAAFQACAA3//wAAgAbSHyAhIlgkY2xhc3Nlc1okY2xhc3NuYW1loyIjJF1OU011dGFibGVEYXRhVk5TRGF0YVhOU09iamVjdNIfICYnoickXE5TRGljdGlvbmFyeQAIABEAGwAkACkAMgBEAEkATABRAFMAXABiAGkAdAB8AIMAhgCIAIoAjQCPAJEAkwCgAKoBBgELARMDOQM7A0ADSQNUA1gDZgNtA3YDewN+AAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAA4s=}}
+
+@article{Steckler:Lightweight:1997,
+	Address = {New York, NY, USA},
+	Author = {Paul A. Steckler and Mitchell Wand},
+	Date-Added = {2008-05-01 04:34:03 -0400},
+	Date-Modified = {2008-05-01 04:34:04 -0400},
+	Doi = {http://doi.acm.org/10.1145/239912.239915},
+	Issn = {0164-0925},
+	Journal = {ACM Trans. Program. Lang. Syst.},
+	Number = {1},
+	Pages = {48--86},
+	Publisher = {ACM},
+	Title = {Lightweight closure conversion},
+	Volume = {19},
+	Year = {1997},
+	Abstract = {We consider the problem of lightweight closure conversion, in which multiple procedure call protocols may coexist in the same code. A lightweight closure omits bindings for some of the free variables of the procedure that is represents. Flow analysis is used to match the protocol expected by each procedure and the protocol used at its possible call sites. We formulate the flow analysis as a deductive system that generates a labeled transition system and a set of constraints. We show that any solution to the constraints justifies the resulting transformation. Some of the techniques used are similar to those of abstract interpretation, but others appear to be novel.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/239912.239915},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEE8uLi8uLi9QYXBlcnMvU3RlY2tsZXIvU3RlY2tsZXItV2FuZCAtIExpZ2h0d2VpZ2h0IGNsb3N1cmUgY29udmVyc2lvbiAoMTk5NykucGRm0hsPHB1XTlMuZGF0YU8RAgQAAAAAAgQAAgAABE9kaW4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAME0Rh1IKwAAADiGth9TdGVja2xlci1XYW5kIC0gTGlnaCMzODg2ODYucGRmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOIaGxD73PFBERiAAAAAAAAIAAwAACSAAAAAAAAAAAAAAAAAAAAAIU3RlY2tsZXIAEAAIAADBNH5dAAAAEQAIAADEPy98AAAAAQAQADiGtgAtkT8AA0esAABr2AACAEFPZGluOlVzZXJzOmplcmVteTpQYXBlcnM6U3RlY2tsZXI6U3RlY2tsZXItV2FuZCAtIExpZ2gjMzg4Njg2LnBkZgAADgB0ADkAUwB0AGUAYwBrAGwAZQByAC0AVwBhAG4AZAAgAC0AIABMAGkAZwBoAHQAdwBlAGkAZwBoAHQAIABjAGwAbwBzAHUAcgBlACAAYwBvAG4AdgBlAHIAcwBpAG8AbgAgACgAMQA5ADkANwApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFZVc2Vycy9qZXJlbXkvUGFwZXJzL1N0ZWNrbGVyL1N0ZWNrbGVyLVdhbmQgLSBMaWdodHdlaWdodCBjbG9zdXJlIGNvbnZlcnNpb24gKDE5OTcpLnBkZgATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgD8AQEBCQMRAxMDGAMhAywDMAM+A0UDTgNTA1YAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADYw==}}
+
+@article{Ashley:A-practical:1998,
+	Address = {New York, NY, USA},
+	Author = {J. Michael Ashley and R. Kent Dybvig},
+	Date-Added = {2008-05-01 04:34:03 -0400},
+	Date-Modified = {2008-05-01 04:34:04 -0400},
+	Doi = {http://doi.acm.org/10.1145/291891.291898},
+	Issn = {0164-0925},
+	Journal = {ACM Trans. Program. Lang. Syst.},
+	Number = {4},
+	Pages = {845--868},
+	Publisher = {ACM},
+	Title = {A practical and flexible flow analysis for higher-order languages},
+	Volume = {20},
+	Year = {1998},
+	Abstract = {A flow analysis collects data-flow and control-flow information about programs. A compiler can use this information to enable optimizations. The analysis described in this article unifies and extends previous work on flow analysis for higher-order languages supporting assignment and control operators. The analysis is abstract interpretation based and is parameterized over two polyvariance operators and a projection operator. These operators are used to regulate the speed and accuracy of the analysis. An implementation of the analysis is incorporated into and used in a production Scheme compiler. The analysis can process any legal Scheme program without modification. Others have demonstrated that a 0CFA analysis can enables the optimizations, but a 0CFA analysis is O(n)3). An O(n) instantiation of our analysis successfully enables the optimization of closure representations and procedure calls. Experiments with the cheaper instantiation show that it is as effective as 0CFA for these optimizations.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/291891.291898},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEGYuLi8uLi9QYXBlcnMvQXNobGV5L0FzaGxleS1EeWJ2aWcgLSBBIHByYWN0aWNhbCBhbmQgZmxleGlibGUgZmxvdyBhbmFseXNpcyBmb3IgaGlnaGVyLW9yZGVyICgxOTk4KS5wZGbSGw8cHVdOUy5kYXRhTxECSgAAAAACSgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAAOIa0H0FzaGxleS1EeWJ2aWcgLSBBIHByIzM4ODY4OS5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4honEPvdEUERGIAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAAZBc2hsZXkAEAAIAADBNH5dAAAAEQAIAADEPy+EAAAAAQAQADiGtAAtkT8AA0esAABr2AACAD9PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6QXNobGV5OkFzaGxleS1EeWJ2aWcgLSBBIHByIzM4ODY4OS5wZGYAAA4ApgBSAEEAcwBoAGwAZQB5AC0ARAB5AGIAdgBpAGcAIAAtACAAQQAgAHAAcgBhAGMAdABpAGMAYQBsACAAYQBuAGQAIABmAGwAZQB4AGkAYgBsAGUAIABmAGwAbwB3ACAAYQBuAGEAbAB5AHMAaQBzACAAZgBvAHIAIABoAGkAZwBoAGUAcgAtAG8AcgBkAGUAcgAgACgAMQA5ADkAOAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAG1Vc2Vycy9qZXJlbXkvUGFwZXJzL0FzaGxleS9Bc2hsZXktRHlidmlnIC0gQSBwcmFjdGljYWwgYW5kIGZsZXhpYmxlIGZsb3cgYW5hbHlzaXMgZm9yIGhpZ2hlci1vcmRlciAoMTk5OCkucGRmAAATAAEvAAAVAAIADf//AACABtIfICEiWCRjbGFzc2VzWiRjbGFzc25hbWWjIiMkXU5TTXV0YWJsZURhdGFWTlNEYXRhWE5TT2JqZWN00h8gJieiJyRcTlNEaWN0aW9uYXJ5AAgAEQAbACQAKQAyAEQASQBMAFEAUwBcAGIAaQB0AHwAgwCGAIgAigCNAI8AkQCTAKAAqgETARgBIANuA3ADdQN+A4kDjQObA6IDqwOwA7MAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAADwA==}}
+
+@inproceedings{Shao:Space-efficient:1994,
+	Address = {New York, NY, USA},
+	Author = {Zhong Shao and Andrew W. Appel},
+	Booktitle = {LFP '94: Proceedings of the 1994 ACM conference on LISP and functional programming},
+	Date-Added = {2008-05-01 04:34:03 -0400},
+	Date-Modified = {2008-05-01 04:34:04 -0400},
+	Doi = {http://doi.acm.org/10.1145/182409.156783},
+	Isbn = {0-89791-643-3},
+	Location = {Orlando, Florida, United States},
+	Pages = {150--161},
+	Publisher = {ACM},
+	Title = {Space-efficient closure representations},
+	Year = {1994},
+	Abstract = {Many modern compilers implement function calls (or returns) in two steps: first, a closure environment is properly installed to provide access for free variables in the target program fragment; second, the control is transferred to the target by a ``jump with arguments (or results)''. Closure conversion, which decides where and how to represent closures at runtime, is a crucial step in compilation of functional languages. We have a new algorithm that exploits the use of compile-time control and data flow information to optimize closure representations. By extensive closure sharing and allocating as many closures in registers as possible, our new closure conversion algorithm reduces heap allocation by 36% and memory fetches for local/global variables by 43%; and improves the already-efficient code generated by the Standard ML of New Jersey compiler by about 17% on a DECstation 5000. Moreover, unlike most other approaches, our new closure allocation scheme satisfies the strong ``safe for space complexity'' rule, thus achieving good asymptotic space usage.},
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/182409.156783},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEFEuLi8uLi9QYXBlcnMvU2hhby9TaGFvLUFwcGVsIC0gU3BhY2UtZWZmaWNpZW50IGNsb3N1cmUgcmVwcmVzZW50YXRpb25zICgxOTk0KS5wZGbSGw8cHVdOUy5kYXRhTxECCgAAAAACCgACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAALZRtH1NoYW8tQXBwZWwgLSBTcGFjZS1lIzM4ODY4RC5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ho3EPvdSUERGIAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAARTaGFvABAACAAAwTR+XQAAABEACAAAxD8vkgAAAAEAEAAtlG0ALZE/AANHrAAAa9gAAgA9T2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOlNoYW86U2hhby1BcHBlbCAtIFNwYWNlLWUjMzg4NjhELnBkZgAADgCAAD8AUwBoAGEAbwAtAEEAcABwAGUAbAAgAC0AIABTAHAAYQBjAGUALQBlAGYAZgBpAGMAaQBlAG4AdAAgAGMAbABvAHMAdQByAGUAIAByAGUAcAByAGUAcwBlAG4AdABhAHQAaQBvAG4AcwAgACgAMQA5ADkANAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAFhVc2Vycy9qZXJlbXkvUGFwZXJzL1NoYW8vU2hhby1BcHBlbCAtIFNwYWNlLWVmZmljaWVudCBjbG9zdXJlIHJlcHJlc2VudGF0aW9ucyAoMTk5NCkucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAP4BAwELAxkDGwMgAykDNAM4A0YDTQNWA1sDXgAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAANr}}
+
+@inproceedings{Shao:Unrolling:1994,
+	Address = {New York, NY, USA},
+	Author = {Zhong Shao and John H. Reppy and Andrew W. Appel},
+	Booktitle = {LFP '94: Proceedings of the 1994 ACM conference on LISP and functional programming},
+	Date-Added = {2008-05-01 04:34:03 -0400},
+	Date-Modified = {2008-05-01 04:34:04 -0400},
+	Doi = {http://doi.acm.org/10.1145/182409.182453},
+	Isbn = {0-89791-643-3},
+	Location = {Orlando, Florida, United States},
+	Pages = {185--195},
+	Publisher = {ACM},
+	Title = {Unrolling lists},
+	Year = {1994},
+	Abstract = { Lists are ubiquitous in functional programs, thus supporting lists efficiently is a major concern to compiler writers for functional languages. Lists are normally represented as linked cons cells, with each cons cell containing a car (the data) and a cdr (the link); this is inefficient in the use of space, because 50% of the storage is used for links. Loops and recursions on lists are slow on modern machines because of the long chains of control dependencies (in checking for nil) and data dependencies (in fetching cdr fields).We present a data structure for ``unrolled lists'', where each cell has several data items (car fields) and one link (cdr). This reduces the memory used for links, and it significantly shortens the length of control-dependence and data-dependence chains in operations on lists.We further present an efficient compile-time analysis that transforms programs written for ``ordinary'' lists into programs on unrolled lists. The use of our new representation requires no change to existing programs.
+
+We sketch the proof of soundness of our analysis---which is based on refinement types---and present some preliminary measurements of our technique.  },
+	Bdsk-Url-1 = {http://doi.acm.org/10.1145/182409.182453},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfED8uLi8uLi9QYXBlcnMvU2hhby9TaGFvLVJlcHB5LUFwcGVsIC0gVW5yb2xsaW5nIGxpc3RzICgxOTk0KS5wZGbSGw8cHVdOUy5kYXRhTxEB1AAAAAAB1AACAAAET2RpbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwTRGHUgrAAAALZRtH1NoYW8tUmVwcHktQXBwZWwgLSBVIzM4ODY4Ri5wZGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ho/EPvdaUERGIAAAAAAAAgADAAAJIAAAAAAAAAAAAAAAAAAAAARTaGFvABAACAAAwTR+XQAAABEACAAAxD8vmgAAAAEAEAAtlG0ALZE/AANHrAAAa9gAAgA9T2RpbjpVc2VyczpqZXJlbXk6UGFwZXJzOlNoYW86U2hhby1SZXBweS1BcHBlbCAtIFUjMzg4NjhGLnBkZgAADgBcAC0AUwBoAGEAbwAtAFIAZQBwAHAAeQAtAEEAcABwAGUAbAAgAC0AIABVAG4AcgBvAGwAbABpAG4AZwAgAGwAaQBzAHQAcwAgACgAMQA5ADkANAApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAEZVc2Vycy9qZXJlbXkvUGFwZXJzL1NoYW8vU2hhby1SZXBweS1BcHBlbCAtIFVucm9sbGluZyBsaXN0cyAoMTk5NCkucGRmABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAOwA8QD5AtEC0wLYAuEC7ALwAv4DBQMOAxMDFgAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAMj}}
+
+@inproceedings{Shao:Typed:1997,
+	Address = {Santa Barbara, CA},
+	Author = {Zhong Shao},
+	Booktitle = {1997 {USENIX} Conference on Domain-Specific                   Languages},
+	Date-Added = {2008-05-01 04:32:57 -0400},
+	Date-Modified = {2008-05-01 04:33:00 -0400},
+	Month = {Oct},
+	Title = {Typed Common Intermediate Format},
+	Year = 1997,
+	Abstract = {Application languages are very effective in solving
+                  specific software problems. Unfortunately, they pose
+                  great challenges to reliable and efficient
+                  implementations. In fact, most existing application
+                  languages are slow, interpreted, and have poor
+                  interoperability with general-purpose languages.\par
+                  This paper presents a framework for building a high
+                  quality systems environment for multiple advanced
+                  languages. Our key innovation is the use of a common
+                  typed intermediate language, named FLINT, to model
+                  the semantics and interactions of various
+                  language-specific features. FLINT is based on a
+                  predicative variant of the Girard-Reynolds
+                  polymorphic calculus F-omega, extended with a very
+                  rich set of primitive types and functions.\par FLINT
+                  provides a common compiler infrastructure that can
+                  be quickly adapted to generate compilers for new
+                  general-purpose and domain-specific languages. With
+                  its single unified type system, FLINT serves as a
+                  great platform for reasoning about cross-language
+                  inter-operations. FLINT types act as a glue to
+                  connect language features that complicate
+                  interoperability, such as mixed data
+                  representations, multiple function calling
+                  conventions, and different memory management
+                  protocols. In addition, because all runtime
+                  representations are determined by FLINT types,
+                  languages compiled under FLINT can share the same
+                  system-wide garbage collector and foreign function
+                  call interface.\par },
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGBwpZJGFyY2hpdmVyWCR2ZXJzaW9uVCR0b3BYJG9iamVjdHNfEA9OU0tleWVkQXJjaGl2ZXISAAGGoNEICVRyb290gAGoCwwXGBkaHiVVJG51bGzTDQ4PEBMWWk5TLm9iamVjdHNXTlMua2V5c1YkY2xhc3OiERKABIAFohQVgAKAA4AHXHJlbGF0aXZlUGF0aFlhbGlhc0RhdGFfEEQuLi8uLi9QYXBlcnMvU2hhby9TaGFvIC0gVHlwZWQgQ29tbW9uIEludGVybWVkaWF0ZSBGb3JtYXQgKDE5OTcpLnBkZtIbDxwdV05TLmRhdGFPEQHkAAAAAAHkAAIAAARPZGluAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBNEYdSCsAAAAtlG0fU2hhbyAtIFR5cGVkIENvbW1vbiAjMzg4NkE1LnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADiGpcQ++JEAAAAAAAAAAAACAAMAAAkgAAAAAAAAAAAAAAAAAAAABFNoYW8AEAAIAADBNH5dAAAAEQAIAADEPzDRAAAAAQAQAC2UbQAtkT8AA0esAABr2AACAD1PZGluOlVzZXJzOmplcmVteTpQYXBlcnM6U2hhbzpTaGFvIC0gVHlwZWQgQ29tbW9uICMzODg2QTUucGRmAAAOAGYAMgBTAGgAYQBvACAALQAgAFQAeQBwAGUAZAAgAEMAbwBtAG0AbwBuACAASQBuAHQAZQByAG0AZQBkAGkAYQB0AGUAIABGAG8AcgBtAGEAdAAgACgAMQA5ADkANwApAC4AcABkAGYADwAKAAQATwBkAGkAbgASAEtVc2Vycy9qZXJlbXkvUGFwZXJzL1NoYW8vU2hhbyAtIFR5cGVkIENvbW1vbiBJbnRlcm1lZGlhdGUgRm9ybWF0ICgxOTk3KS5wZGYAABMAAS8AABUAAgAN//8AAIAG0h8gISJYJGNsYXNzZXNaJGNsYXNzbmFtZaMiIyRdTlNNdXRhYmxlRGF0YVZOU0RhdGFYTlNPYmplY3TSHyAmJ6InJFxOU0RpY3Rpb25hcnkACAARABsAJAApADIARABJAEwAUQBTAFwAYgBpAHQAfACDAIYAiACKAI0AjwCRAJMAoACqAPEA9gD+AuYC6ALtAvYDAQMFAxMDGgMjAygDKwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAM4}}
 
 @book{Jones:Garbage:1996,
 	Author = {Richard Jones and Rafael Lins},
