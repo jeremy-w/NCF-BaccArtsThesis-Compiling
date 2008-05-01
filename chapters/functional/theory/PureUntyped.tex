@@ -288,7 +288,7 @@ M_{1} \ar@/_1pc/@<-1ex>@{>-->}[rrdd]_>{*} \ar@{>-->}[dr] & & \bullet \ar@{>->}[d
 \endgroup
 \end{figure}
 
-This lemma is not quite what we need. Since $M \betared[*] M$~for all lambda terms~$M$, $\betared[*]$~is in fact the \emph{reflexive} transitive closure of~$\betared$. The solution to this mismatch is to define a reflexive binary relation on lambda terms similar to~$\betared$ such that many-step~$\beta$-re\-duc\-tion~($\betared[*]$) is this relation's transitive closure. Once we prove that this new relation has the diamond property, we have proven that its transitive closure~$\betared[*]$ has the Church--Rosser property.
+This lemma is not quite what we need. Single-step $\beta$-re\-duc\-tion~$\betared$ is not reflexive, but many-step $\beta$-re\-duc\-tion is. Many-step $\beta$-re\-duc\-tion~$\betared[*]$ is in fact the \emph{reflexive} transitive closure of~$\betared$. The solution to this mismatch is to define a reflexive binary relation on lambda terms similar to~$\betared$ such that many-step~$\beta$-re\-duc\-tion is this new relation's transitive closure. Once we prove that this new relation has the diamond property, we have proven that its transitive closure~$\betared[*]$ has the Church--Rosser property.
 
 Once we have that many-step $\beta$-re\-duc\-tion $\betared[*]$ satisfies the diamond property, it becomes simple to prove that $\beta$-con\-vert\-ible terms can be $\beta$-re\-duced to a common term (the second property specified ): The result follows readily from the definition of $\betacon$.
 

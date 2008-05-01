@@ -9,7 +9,7 @@ This chapter introduced the functional language family. After we introduced the 
 \item In \partandnameref{Chapter}{functional:compiling}, we described in broad terms how functional languages are compiled. Functional languages are primarily a ``sugaring'' of the \lambdacalc{}, and by first desugaring them, we reduce them to a simple, core language that is only slightly more abstract than the \lambdacalc itself. From this point on, we can look at the process of compiling from two points of view.
 \begin{itemize}
 \item
-One is that the remainder of compiling consists in repeated transformation of the representation in order to encode control flow, environment management, and heap management. The languages of these transformations are conceptually dialects the \lambdacalc{}.
+One is that the remainder of compiling consists in repeated transformation of the representation in order to encode control flow, environment management, and heap management. The languages of these transformations are conceptually dialects of the \lambdacalc{}.
 
 \item
 The other is that the core language representation is compiled into instructions for an abstract machine of some variety, and it is this abstract machine that runs the program: the compiled representation, in some sense, encodes both the program and a virtual machine to run the program.
