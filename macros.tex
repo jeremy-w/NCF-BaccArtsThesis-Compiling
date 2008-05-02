@@ -24,6 +24,10 @@
 \chapter*{#1}}
 \newcommand{\fixmarks}{\input{misc/fixmarks}}
 
+\newcommand{\acmheadspace}{\relax}%{\hspace{1em plus 2pt minus 1pt}}
+\newcommand{\acmhead}[1]{\relax}%{\textit{#1}\acmheadspace}
+\newcommand{\acmclass}[4]{\relax}%{\item #1 [\spacedlowsmallcaps{#2}]\ifthenelse{\equal{#3}{}}{\relax}{: #3\ifthenelse{\equal{#4}{}}{\relax}{\empause\textit{#4}}}}% example: \acmclass{D.3.1}{Programming Languages}{Language Classifications}{applicative languages; nonprocedural languages;}
+
 % Semantic markup
 \newcommand{\code}[1]{\text{\small\ttfamily #1}} %the variable \code{x}
 \newcommand{\foreign}[1]{\textit{#1}} %the \foreign{Entscheidungsproblem}

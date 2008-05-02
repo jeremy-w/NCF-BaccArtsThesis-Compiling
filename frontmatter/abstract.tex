@@ -18,16 +18,10 @@
 \chapter*{Abstract}
 Computers operate at a very low level of abstraction. People think in terms of higher-level abstractions. Programming languages let people describe a computation using higher-level abstractions in such a way that the description can be translated into something a computer can execute. This translation is performed algorithmically by a program called a compiler.
 
-The work of a compiler can be broken down into several parts. Each part receives the program in some form, processes it, and outputs it in another form. The last part produces a representation of the program that the computer can execute. The design of these parts is guided by important theoretical abstractions and significant practical concerns.
+This thesis looks at how a compiler carries out this translation for two very different types of programming languages, the imperative and the functional. Imperative languages reflect the concept of computation that is built into modern von~Neumann computers, while functional languages conceive of computation as a process of symbolic rewriting. The functional model of computation is utterly different from the von~Neumann model, but programs written in functional languages must ultimately run on von~Neumann machines.
 
-This thesis looks at how a compiler carries out this translation for two very different types of programming languages, the imperative and the functional. It begins by explaining how these two types differ fundamentally in terms of their notions of computation. Background information on computers and compilers follows.
-
-The thesis first describes the imperative family of programming languages, which reflect the concept of computation that is built into modern computers, and how they are compiled into a computer-executable representation. The discussion focuses particularly on how to improve the result of compilation.
-
-The thesis next considers the functional language family. Functional languages conceive of computation in a way utterly foreign to that implemented by modern computers, but programs written in functional languages must ultimately run on such computers. After a discussion of the theory behind functional languages, the thesis gives their history and defining characteristics. It explores the compilation of functional languages through a case study of a compiler for the lazy functional language Haskell.
-
-The thesis closes with a brief comparison of the paradigms that characterize the two language families and speculation on the future of programming languages and compilers.
-%328 words < 500 words => good to go!
+The thesis focuses throughout on optimizing program representation for execution on modern von~Neumann computers. A case study of the Glasgow Haskell compiler provides a concrete example of functional language compilation.
+%157 words < 500 words => good to go!
 
 \vfill
 

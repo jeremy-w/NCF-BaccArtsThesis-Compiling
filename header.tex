@@ -16,6 +16,10 @@
     abstract=false%
 }
 
+\newif\ifgloss
+\glossfalse
+%\glosstrue
+
 \newif\ifbib
 %\bibfalse
 \bibtrue
@@ -47,7 +51,7 @@
 % Options for classicthesis.sty:
 % tocaligned eulerchapternumbers drafting linedheaders listsseparated
 % subfig nochapters beramono eulermath parts minionpro pdfspacing
-\usepackage[eulerchapternumbers,drafting,pdfspacing,%
+\usepackage[eulerchapternumbers,pdfspacing,%drafting,%
             subfig,beramono,eulermath,parts,letterpaper]{classicthesis}
 \usepackage[xspace]{ellipsis}
 
@@ -134,14 +138,14 @@ mathescape=true,literate={:=}{{$\gets$}}1 {rx}{{$r_{x}$}}2 {ry}{{$r_{y}$}}2 {rz}
 %*******************************************************
 % List those files out of all \include'd that should actually be included.
 % (You will want to comment this section out to get a full draft.)
-\includeonly{%
+%\includeonly{%
 %frontmatter/bastard-title,%
 %frontmatter/title-recto,%
 %frontmatter/title-verso,%
 %frontmatter/dedication,%
 %frontmatter/abstract,%
 %frontmatter/acknowledgments,%
-frontmatter/contents,%
+%frontmatter/contents,%
 %chapters/introduction/Introduction,
 %
 %chapters/background/Overview,%
@@ -156,19 +160,19 @@ frontmatter/contents,%
 %chapters/imperative/Optimizing,%
 %chapters/imperative/Conclusion,
 %
-chapters/functional/Overview,%
+%chapters/functional/Overview,%
 %chapters/functional/Theory,%
 %chapters/functional/History,%
 %chapters/functional/Compiling,%
-chapters/functional/CaseStudy,%
-chapters/functional/Conclusion,%
+%chapters/functional/CaseStudy,%
+%chapters/functional/Conclusion,%
 %
 %chapters/epilogue/Epilogue,%
 %
-backmatter/bibliography,%
+%backmatter/bibliography,%
 %backmatter/glossary,%
 %backmatter/index,%
-}
+%}
 
 \begin{document}
 \frenchspacing

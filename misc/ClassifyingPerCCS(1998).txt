@@ -1,0 +1,52 @@
+(Using the 1998 ACM Computing Classification System; see http://www.acm.org/class/1998/.)
+
+1. Look at the top two levels in the classification tree and make a note of any of the second-level nodes that seem to be relevant.
+
+A.1 INTRODUCTORY AND SURVEY (general lit.)
+C.0 GENERAL (computer systems org.)
+D.3 PROGRAMMING LANGUAGES (software)
+F.1 COMPUTATION BY ABSTRACT DEVICES
+F.3 LOGICS AND MEANINGS OF PROGRAMS
+F.4 MATHEMATICAL LOGIC AND FORMAL LANGUAGES
+K.2 HISTORY OF COMPUTING
+
+2. Using the first- and second-level nodes of the classification scheme already identified, look at the third-level nodes (if applicable; nodes A, E, G, and J have areas that do not go below the second level) and the subject descriptors under them. Identify any descriptors that seem to apply to your particular paper. For example, for the paper "An efficient method for checking object-oriented database schema correctness," by A. Formica et al., appearing in the September 1998 issue of ACM Transactions on Database Systems, the categories would include (you must list the most relevant, or primary, category first): H.2.4 Systems---Object-oriented databases, D.3.3 Language Constructs and Features---Data types and structures, and H.2.1 Logical Design---Schema and subschema. Use the lowest numbered node in the tree available and use descriptors when applicable (as they normally will be). Use as many descriptors under a single numbered node as are appropriate for the paper. Be sure to use all the different categories and nodes that apply to your paper. Use the numbered node without any descriptors if: (1) none of the descriptors apply or (2) if essentially all of them apply. For example, use H.4.1 Office Automation if the paper deals with the general concepts of office automation.
+
+Categories and Subject Descriptors
+\newcommand{\acmclass}[4]{#1 [\spacedlowsmallcaps{#2}]: #3\ifthenelse{\equal{#4}{}}{\relax}{\empause\textit{#4}}}% example: \acmclass{D.3.1}{Programming Languages}{Language Classifications}{applicative languages; nonprocedural languages;}
+
+General Terms
+Keywords
+
+A.1 [INTRODUCTORY AND SURVEY]
+C.0 [GENERAL]
+D.3.2 [PROGRAMMING LANGUAGES]: Language Classifications--- Applicative (functional) languages, Object-oriented languages, Haskell, GHC
+D.3.3 [PROGRAMMING LANGUAGES]: Language Constructs and Features
+D.3.4 [PROGRAMMING LANGUAGES]: Processors
+F.1.1 [COMPUTATION BY ABSTRACT DEVICES]: Models of Computation
+F.3.3 [COMPUTATION BY ABSTRACT DEVICES]: Studies of Program Constructs
+F.4.1 [COMPUTATION BY ABSTRACT DEVICES]: Mathematical Logic\empause Computability theory, Lambda calculus and related systems
+F.4.2 [COMPUTATION BY ABSTRACT DEVICES]: Grammars and Other Rewriting Systems
+F.4.3 [COMPUTATION BY ABSTRACT DEVICES]: Formal Languages\empause Classes defined by grammars or automata, Decision problems
+K.2 [HISTORY OF COMPUTING]
+
+3. In addition to the existing descriptors, you may add implicit subject descriptors, which are proper names (the names of languages, systems, and so forth). The implicit subject descriptors are associated with a numbered node and should be used whenever they are significant. Do not use an implicit subject descriptor just because the proper name is mentioned in your paper. For example, a paper all about FORTRAN would show up under D.3.2 Language Classifications with an implicit subject descriptor of FORTRAN. You should use this implicit subject descriptor only if FORTRAN is crucial to the content of the paper.
+
+Treat implicit subject descriptors just like other subject descriptors. They go in the same list.
+
+4. Don't use General nodes, 5. use Misc. only if you have to, 6. Dont' use the wrong section o the tree, 7. Watch out for retired terms marked by * and **
+
+8. Format:
+
+Categories and subject descriptors: Third-level node number [Second-level node title]: Third-level node title---first subject descriptor, second subject descriptor, etc.;
+
+Third-level node number...
+
+9. Now look at the list of 16 general terms and decide which, if any, are applicable. These selections are independent of the nodes of the tree you have used. For example, for the paper in Step 4, you would write General Terms: Design, Performance, Reliability.
+    * Design    * Languages    * Performance    * Theory
+
+9. Finally, prepare a list of additional key words and phrases. These are primarily words or phrases that are not covered by the existing scheme. This situation is likely to occur at greater levels of detail than can exist in a four-level tree. You may also wish to add words or phrases that are synonymous with those already in the scheme but which you prefer. Be sure the key words and phrases will make sense if they appear separately. For example, the word "breadth" might make sense in the context of a specific paper but is unlikely to be meaningful in a separate alphabetized list of words. Also, an adjective should not be used without a noun. The question to ask is, "Would someone look for this key word or phrase in an index?" Do not repeat words or phrases from any level of the Classification System in your list. For example, for the paper in Step 2, the authors chose as Additional Key Words and Phrases: databases, graph theory, inheritance conflicts, inheritance process, object-oriented database schemas, and recursive types.Additional Key Words and Phrases: blah, blah, ..., and blah
+
+optimization
+
+10. It is strongly recommended that you look through published issues of the journal in which your paper is to appear to see how papers on the same or related topics have been classified.

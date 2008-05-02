@@ -21,7 +21,24 @@ We will discuss each of these in turn.
 \subsubsection{First-Class Functions and the \LambdaCalc}
 It is quite easy to represent functions in the \lambdacalc and to create functions of functions. Such \vocab{higher-order functions} are unusual in imperative languages. Among the provided data types, they are usually second-class citizens: they have no literal representation, but can only be created through statements, nor can they be assigned to variables, passed into or returned from other functions. They are not on par with the integers or even characters.
 
-Functional languages make functions first-class citizens. You can do anything with them that you would be allowed to do with integers. This makes it easy to create and employ higher-order functions, and functional programming has a rich vocabulary describing common, heavily-used higher-order functions and common types of higher-order functions. First-class functions are also employed extensively in the form of curried functions.
+Functional languages make functions first-class citizens. This means that:\footnote{This particular list is due to~\citet{Mody:Functional:1992}; others provide similar lists of ``rights'' characteristic of first-class data types. Some authors go further and describe the rights typical of second- and third-class data types, as well~\citep[for example][\S 3.5.2]{Scott:Programming:2006}.}
+\begin{itemize}
+\item
+Functions are denotable values: there is some way to describe a function literally, just as you would right \code{5} to denote the integer five without having to give it a name.
+
+\item
+Functions can be passed into functions: such functions with functional arguments are known as \vocab[higher-order function]{higher-order functions}.
+
+\item
+Functions can be returned from functions.
+
+\item
+Functions can be stored in data structures: you can create lists of functions as readily as you would lists of integers.
+
+\item
+Storage for functions is managed by the system.
+\end{itemize}
+With functions as first-class citizens, it easy to create and employ higher-order functions, and functional programming has a rich vocabulary describing common, heavily-used higher-order functions and common types of higher-order functions. First-class functions are also employed extensively in the form of curried functions.
 
 First-class functions is the most striking result of functional languages' basis in the \lambdacalc{}, and it heavily influences the entire style of programming in functional languages. But taking the \lambdacalc as the starting point of the entire programming language is the most radical characteristic of modern functional languages, and the effects of this choice are felt throughout the resulting languages.
 
@@ -52,7 +69,7 @@ A distinctive characteristic of the type systems of modern functional languages 
 Let us instead consider an algebraic data type representing a tree with values of some unspecified type stored in the leaves. The declaration of such a data type might look like \begin{lstlisting}
 data Tree a = Leaf a | Branch (Tree a) (Tree a)
 \end{lstlisting}
-(The unspecified type that is being wrapped is represented here as \lstinline{a}.) This also happens to be a \emph{recursive} data type: each branch wraps a pair of subtrees. Thus, \lstinline{tree = Branch (Leaf 1) (Leaf 2)} has type \mbox{\lstinline{Tree Int}}, read ``tree of int,'' and corresponds to the tree
+(The unspecified type that is being wrapped is represented here as \lstinline{a}.) This also happens to be a \emph{recursive} data type: each branch wraps a pair of subtrees. The declaration \lstinline{tree = Branch (Leaf 1) (Leaf 2)} gives the variable \lstinline{tree} the value of a branch with two leaves of integers. Thus, we have values of type \lstinline{Integer} substituting for the type variable \lstinline{a} in \lstinline{Tree a}. The variable \lstinline{tree} thus has type \mbox{\lstinline{Tree Integer}}, read ``tree of integer,'' and corresponds to the tree
 \[
 \begin{xy}\SelectTips{eu}{10}
 \xymatrix{%
@@ -70,7 +87,7 @@ The fundamental pattern-matching construct is the \vocab{case} expression. Its b
 
 As an example, let us suppose we wish to count the number of branches in a tree. An example of such a function is \lstinline{countBranches} of Listing~\ref{features:case} on page~\pageref{features:case}. The patterns are analogous to the expressions we would use to construct the type of data that the pattern matches; the variables of the patterns, rather than passing data into the constructors, instead are used as names for the data that was initially supplied as parameters to the constructor.
 
-The type of this function together with its name provide an excellent summary of its behavior. It also provides us with another example of polymorphism and our first example of subtyping. The type of \lstinline{countBranches} is \lstinline{(Num t1) => Tree t -> t1}. Here, \lstinline{(Num t1) =>} expresses a restriction on the type of the type variable \lstinline{t1} used in the rest of the type expression. It says that the type of \lstinline{t1} must be some subtype of the type class \lstinline{Num}. The underscore you see in the definition of this function is used in patterns as a ``don't care'' symbol: it indicates the presence a value that we choose not to bind to a name, since we do not intend to refer to the value.
+The type of this function together with its name provide an excellent summary of its behavior. It also provides us with another example of polymorphism and our first example of subtyping. The type of \lstinline{countBranches} is \lstinline{(Num t1) => Tree t -> t1}. Here, \lstinline{(Num t1) =>} expresses a restriction on the type of the type variable \lstinline{t1} used in the rest of the type expression. It says that the type of \lstinline{t1} must be some subtype of the type class \lstinline{Num}. The underscore you see in the definition of this function is used in patterns as a ``don't care'' symbol: it indicates the presence of a value that we choose not to bind to a name, since we do not intend to refer to the value.
 
 \begin{lstlisting}[float,caption={Pattern-matching via \code{case}},label={features:case}]
 countBranches tree = case tree of
@@ -83,7 +100,7 @@ countBranches tree = case tree of
 \subsubsection{Abstract Data Types and Modules}
 \vocab{abstract data types} are data types that hide their concrete representation from the user. In this way, the representation of the type becomes internal to it: the fact that, say, a stack is actually implemented as a list is hidden, and only operations dealing with stacks as stacks are exposed. This means that the implementation of the abstract type can be changed as necessary. For example, if lists proved too slow to support the heavy use we wished to make of stacks, we could move instead to some other representation without having to change any of the code that used our stacks.
 
-This kind of implementation hiding together with interface exposure is frequently accomplished through a module system. The existence of a powerful and usable module system is an important part of the ``coming of age'' of functional languages, because modules are necessary to support ``programming in the large'' as is necessary in real-world environments where complex problems must be solve and large amounts of code are involved. In terms of modules, an abstract data type's representation is hidden by not exporting representation-specific definitions for use in the program importing the module.
+This kind of implementation hiding together with interface exposure is frequently accomplished through a module system. The existence of a powerful and usable module system is an important part of the ``coming of age'' of functional languages, because modules are necessary to support ``programming in the large'' as is necessary in real-world environments where complex problems must be solved and large amounts of code are involved. In terms of modules, an abstract data type's representation is hidden by not exporting representation-specific definitions for use in the program importing the module.
 
 In the context of abstractions of algebraic data types, this takes the form of not exporting the data constructors. Instead, other functions are exported that make use of the data constructors without exposing this fact to the user of the abstract data type. A simple version of such a function would simply duplicate the data constructor. More complex versions can build in bounds-checking, type-checking, or normalization of the representation\empause for example, such a ``smart constructor'' could be used to ensure an internal tree representation remains balanced.
 
@@ -93,7 +110,7 @@ Modern functional languages support a very readable, compact notation for defini
 \begin{lstlisting}[float,caption={Pattern-matching via equational function definition},label={features:equations}]
 countBranches2 (Leaf   _  ) = 0
 countBranches2 (Branch a b) = 1 + countBranches a
-                              + countBranches b
+                                + countBranches b
 \end{lstlisting}
 
 
@@ -102,14 +119,14 @@ Another feature of modern functional languages that simplifies function definiti
 An an example, we could use one of the \lstinline{countBranches} functions given earlier to define an \lstinline{isLeaf} predicate for use with our trees. If the tree has zero branches, it must be a leaf. If it has one or more branches, it must not be. In Listing~\ref{features:guards} on page~\pageref{features:guards}, we use a guard that applies this number-of-branches test in order to prevent the function \lstinline{isLeaf} from evaluating to \lstinline{True} when its argument \lstinline{t} is a tree with more than zero branches.
 \begin{lstlisting}[float,caption={Cases with guards},label={features:guards}]
 isLeaf t | countBranches t > 0 = False
-         | otherwise          = True
+         | otherwise           = True
 \end{lstlisting}
 
 We can also describe guards in terms of how the same effect could be accomplished using other expressions. Guards used with function definitions can be seen as equivalent to chained \asword{if} expressions where each successive guard appears in the \asword{else} branch of the preceding guard.\footnote{We do indeed mean \asword{if} \emph{expressions}, not \asword{if} statements. An \asword{if} expression can be used anywhere an expression is expected. The \asword{else} branch is always required, which means the expression will always have some value, either that of the true or the false branch.} The expressions being guarded in the function definition become the contents of the \asword{then} branch that is evaluated if their guard evaluates to true. A translation along these lines of the \lstinline{isLeaf} function of Listing~\ref{features:guards} (p.~\pageref{features:guards}) is:
 \begin{lstlisting}
 isLeaf2 t = if branches t == 0 then True else False
 \end{lstlisting}
-But, since \lstinline{otherwise} is simply another name for \lstinline{True}, we can produce a more faithful (and redundant) translation of the original \lstinline{isLeaf} function, as shown in Listing~\ref{guards:ifthenelse} on page~\pageref{guards:ifthenelse}.
+But, since the \lstinline{otherwise} of Listing~\ref{features:guards}~(p.~\pageref{features:guards}) is simply another name for \lstinline{True}, we can produce a more faithful (and redundant) translation of the original \lstinline{isLeaf} function, as shown in Listing~\ref{guards:ifthenelse} on page~\pageref{guards:ifthenelse}.
 
 \begin{lstlisting}[float,caption={Guards as chained if-then-else--expressions},label={guards:ifthenelse}]
 isLeaf3 t = if countBranches t == 0

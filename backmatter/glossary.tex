@@ -1,0 +1,10 @@
+%********************************************************************
+% Glossary
+%*******************************************************
+% work-around to have small caps also here in the headline
+\manualmark
+\markboth{\spacedlowsmallcaps{\bibname}}{\spacedlowsmallcaps{\bibname}} % work-around to have small caps also
+\stepcounter{dummy}
+\refstepcounter{dummy}
+\addtocontents{toc}{\protect\vspace{\beforebibskip}} % to have the glossary a bit from the rest in the toc
+\addcontentsline{toc}{part}{\tocEntry{Glossary}}

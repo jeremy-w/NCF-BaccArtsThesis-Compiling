@@ -6,7 +6,7 @@
 \doublespacing
 
 % Frontmatter
-\include{frontmatter/bastard-title}
+%\include{frontmatter/bastard-title}
 \include{frontmatter/title-recto}
 \include{frontmatter/title-verso}
 \cleardoublepage\include{frontmatter/dedication}
@@ -54,6 +54,9 @@
 %\cleardoublepage\myPart{Appendices}\label{appendices}
 %\include{chapters/Appendix}%probably want at least to aggregate all acronyms and initialisms together with their expansions
 %  Note: ifbib and ifidx are declared at the top of header.tex
+\ifgloss
+\cleardoublepage\include{backmatter/glossary}\label{glossary}
+\fi
 \ifbib
 \cleardoublepage\include{backmatter/bibliography}\label{bibliography}
 \fi
