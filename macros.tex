@@ -89,7 +89,7 @@ Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
 \newcommand{\Unix}{\spacedlowsmallcaps{UNIX}\xspace}
 
 \newcommand{\CPS}[1][short]{\ifthenelse{\equal {#1}{short}}{%then is short - the default
-         \spacedlowsmallcaps{\abbrev{CPS}}\xspace%this suggests all \abbrev should be in small caps...
+         \abbrev{CPS}\xspace%this suggests all \abbrev should be in small caps...
      }{%else is long
          continuation passing style\xspace%
      }%end-if
@@ -97,7 +97,7 @@ Bottom-up rewrite system\ifthenelse{\equal{#2}{pl}}{s}{}}{%
 
 \newcommand{\ML}{\abbrev{ML}\xspace}
 \newcommand{\GHC}[1][short]{\ifthenelse{\equal {#1}{short}}{%then is short - the default
-         \spacedlowsmallcaps{\abbrev{GHC}}\xspace%this suggests all \abbrev should be in small caps...
+         \abbrev{GHC}\xspace%this suggests all \abbrev should be in small caps...
      }{%else is long
          Glasgow Haskell compiler\xspace%
      }%end-if
