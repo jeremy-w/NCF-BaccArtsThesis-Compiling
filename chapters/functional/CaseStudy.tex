@@ -1,0 +1,46 @@
+\myChapter{Case Study: The Glasgow Haskell Compiler}\label{casestudy}
+The discussion of the previous chapter was limited to generalities. We now look at a specific implementation of functional compilation. The Glasgow Haskell compiler is an actively developed, mature compiler for the lazy functional language Haskell. It implements numerous extensions to the standard language and provides a variety of additional tools and libraries, many of which are used in developing the compiler itself.
+
+Compilers are very complex programs made up of a number of interacting, complex parts. We make no pretense of describing the \GHC[long] \foreign{in toto.} Our study is guided by two questions:
+\begin{itemize}
+\item
+How do these compilers use the fact that they are compilers for functional languages to their advantage?
+
+\item
+How do they solve the problems functional languages pose for compilation?
+\end{itemize}
+
+Answering these questions entails looking at specific optimizations enabled by compiling functional languages and optimizations required to efficiently compile functional languages. All optimizations are carried out using specific intermediate representations, so we will describe the intermediate representations used in these compilers. In the course of discussing solutions to problems introduced by functional languages, we will also briefly discuss the two compilers' implementations of garbage collection and pattern matching. We will also look more closely at how the compilers transform the source functional program into something executable in the target, von~Neumann environment.
+
+We gave a brief history of the Haskell language towards the end of \partandnameref{Chapter}{functional:history}. The Glasgow Haskell Compiler (\GHC{}) is today the principal Haskell compiler. It is used both to produce compiled Haskell programs doing real work as well as for research into functional languages and their implementation. \GHC is written primarily in Haskell itself, though some parts (most of the runtime system) are still implemented in C.
+
+\subsection{Intermediate Representations}
+haskell itself\empause all typechecking done here rather than in desugared version; allows for better error messages
+
+core ``Core is a very small, explicitly-typed, variant of System F. The exact variant is called System FC, which embodies equality constraints and coercions.'' the commentary, compiler, coresyntype
+
+corelint, consistency checking possibly the most useful part of typed IL
+
+STG
+
+Cmm
+under construction: \CPS Cmm
+
+NCG (native code gen) uses Haskell Instr datatype
+
+or just run through C compiler and edit results afterwards with Evil Mangler
+
+\subsection{Garbage Collection}
+two-arena stop-copy; mark-sweep if there's not enough space to do stop-copy
+
+\subsection{Pattern Matching}
+???
+
+\subsection{Optimizations}
+need to do some reading; all happens in terms of Core, the CoreSimpl stage, using rules, principally
+
+\subsection{Going von Neumann}
+STG machine $\to$ Cmm is where the magic's at, but there's a lot of analysis and transformation that goes into creating the STG representation
+
+\section{Bibliographic Notes}
+\Citet[\S 9]{Hudak:A-history:2007} places \GHC in the context of other implementations of the Haskell language.
