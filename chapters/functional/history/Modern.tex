@@ -124,16 +124,16 @@ isLeaf t | countBranches t > 0 = False
 
 We can also describe guards in terms of how the same effect could be accomplished using other expressions. Guards used with function definitions can be seen as equivalent to chained \asword{if} expressions where each successive guard appears in the \asword{else} branch of the preceding guard.\footnote{We do indeed mean \asword{if} \emph{expressions}, not \asword{if} statements. An \asword{if} expression can be used anywhere an expression is expected. The \asword{else} branch is always required, which means the expression will always have some value, either that of the true or the false branch.} The expressions being guarded in the function definition become the contents of the \asword{then} branch that is evaluated if their guard evaluates to true. A translation along these lines of the \lstinline{isLeaf} function of Listing~\ref{features:guards} (p.~\pageref{features:guards}) is:
 \begin{lstlisting}
-isLeaf2 t = if branches t == 0 then True else False
+isLeaf2 t = if countBranches t > 0 then False else True
 \end{lstlisting}
 But, since the \lstinline{otherwise} of Listing~\ref{features:guards}~(p.~\pageref{features:guards}) is simply another name for \lstinline{True}, we can produce a more faithful (and redundant) translation of the original \lstinline{isLeaf} function, as shown in Listing~\ref{guards:ifthenelse} on page~\pageref{guards:ifthenelse}.
 
 \begin{lstlisting}[float,caption={Guards as chained if-then-else--expressions},label={guards:ifthenelse}]
-isLeaf3 t = if countBranches t == 0
-               then True
+isLeaf3 t = if countBranches t > 0
+               then False
                else if True 
-                       then False  
-                       else False
+                       then True  
+                       else True
 \end{lstlisting}
 
 We can similarly transform a \asword{case} statement that uses both patterns and guards, but this requires a significant amount of nesting and duplication. We must first attempt to match the patterns. As before, if a pattern does not match, the next pattern is tried. Each guard migrates to the corresponding expression. The original expression is wrapped in an \asword{if} expression that tests the corresponding guard condition. If the test succeeds, the \asword{then} branch is the expression corresponding to the pattern just matched and guard just passed is evaluated. Otherwise, we must duplicate the remaining patterns and guards, and transform them similarly.
