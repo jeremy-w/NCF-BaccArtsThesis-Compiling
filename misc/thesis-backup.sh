@@ -1,33 +1,32 @@
 #!/bin/bash
-myRepo="/Users/jeremy/Projects/thesis"
-myUser='student_jeremy.sherman'
-myHost='students.ncf.edu:thesis-backups/'
+hgRepo="/Users/jeremy/Projects/thesis"
+sshUser='student_jeremy.sherman'
+backupHost='students.ncf.edu:thesis-backups/'
+hg='/opt/local/bin/hg'
 
 # build filename
-cd $myRepo
+cd $hgRepo
 echo "$0: building filename..."
-myRevId=`/opt/local/bin/hg log -r -1 | awk '/^changeset/ {print $2}'`
-myFileId=`echo $myRevId | awk -F ':' '{print "r" $1 "(" $2 ")"}'`
-# keeping a colon in the name messed with Mac OS X's mind
-myFilename="thesis-$myFileId.tbz2"
-if (test $? -ne 0); then echo "$0: ERROR backing up thesis!"; exit 1; fi
+myFilename="`$hg tip --template 'thesis-r{rev}({node|short}).tbz2'`"
+myRevInfo="`$hg tip --template '{rev}:{node|short}'`"
+if (test $? -ne 0); then echo "$0: Error building filename; aborting backup. Is the path to hg still $hg?"; exit 1; fi
 
 # create backup file
 cd ..
 echo "$0: creating backup archive..."
-tar -cjf "$myFilename" $myRepo
-if (test $? -ne 0); then echo "$0: ERROR backing up thesis!"; exit 1; fi
+tar -cjf "$myFilename" "$hgRepo"
+if (test $? -ne 0); then echo "$0: Unable to create $myFilename via tar. Aborting backup."; exit 1; fi
 
 # script convo with host
-mySftpScript="put $myFilename"
+mySftpScript="put \"$myFilename\""
 
 # perform the backup
-echo "$0: connecting to backup server $myHost..."
-echo $mySftpScript | sftp -b - $myUser@$myHost
-if (test $? -ne 0); then echo "$0: ERROR backing up thesis!"; exit 1; fi
+echo "$0: connecting to backup server $backupHost..."
+echo $mySftpScript | sftp -b - $sshUser@$backupHost
+if (test $? -ne 0); then echo "$0: Transfer of $myFilename to $backupHost failed. Unable to perform backup."; exit 1; fi
 
 # clean up
 echo "$0: transfer complete, removing temporary files..."
-rm $myFilename
+rm "$myFilename"
 
-echo "$0: backup of current revision $myRevId completed at " `date +"%F %T"`
+echo "$0: backup of tip (revision $myRevInfo) completed at" `date +"%F %T"`
